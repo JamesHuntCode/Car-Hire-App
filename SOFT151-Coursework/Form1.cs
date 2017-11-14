@@ -12,9 +12,7 @@ namespace SOFT151_Coursework
 {
     public partial class Form1 : Form
     {
-        // 2D array list containing cars within specific companies:
-
-        List<Company> companies = new List<Company>();
+        List<Company> companies = new List<Company>(); // List of all companies
 
         public Form1()
         {
@@ -27,14 +25,19 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < 10; i++)
             {
-                companies.Add(new Company(i + 1, "Company: " + (i + 1), "Example address", "Example postcode"));
+                companies.Add(new Company(i + 1, "Company " + (i + 1), "Example address", "Example postcode"));
             }
 
             // Display these new values to the list box displaying all companies:
 
-            for (int i = 0; i < companies.Count; i++)
+            updateList(0, companies);
+        }
+
+        private void updateList(int startFrom, List<Company> list) // Method used to loop over the contents of the companies list and display all contents
+        {
+            for (int i = startFrom; i < list.Count; i++)
             {
-                this.lstAllCompanies.Items.Add(companies[i].PrintSummary());
+                this.lstAllCompanies.Items.Add(list[i].PrintSummary());
             }
         }
 
@@ -42,22 +45,32 @@ namespace SOFT151_Coursework
 
         private void btnAddNewCompany_Click(object sender, EventArgs e)
         {
+            // Generate a new dynamic form allowing the user to add a new company:
 
+            frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Add New Company");
+            popup.ShowDialog(this);
         }
 
-        public void AddNew()
+        public void AddNew(int companyID, string companyName, string companyAddress, string companyPostcode) 
         {
+            this.companies.Add(new Company(companyID, companyName, companyAddress, companyPostcode)); // Add a new company to the array list of companies
 
+            // Re-display the updated contents of the companies list:
+
+            updateList((companies.Count - 2), companies);
         }
 
         private void btnUpdateCompany_Click(object sender, EventArgs e)
         {
+            // Generate a new dynamic for allowing the user to edit a previous company's information:
 
+            frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information");
+            popup.ShowDialog(this);
         }
 
-        public void Update()
+        public void UpdateCompany()
         {
-
+            
         }
 
         private void btnOpenCompany_Click(object sender, EventArgs e)

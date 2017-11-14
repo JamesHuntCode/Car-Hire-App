@@ -18,7 +18,7 @@ namespace SOFT151_Coursework
 
         // Array list used to store information about the companies cars:
 
-        List<Car> cars = new List<Car>();
+        private List<Car> cars = new List<Car>();
 
         // Constructor:
 
@@ -37,6 +37,7 @@ namespace SOFT151_Coursework
         public void SetAddress(string companyAddress) { this.address = companyAddress; }
         public void SetPostcode(string companyPostcode) { this.postcode = companyPostcode; }
         public void SetNumCars(int numberOfCars) { this.numCars = numberOfCars; }
+        public void AddNewCar(Car newCar) { this.cars.Add(newCar); } // Method used to add a new car to the company's records
 
         // Getter Methods:
 
@@ -45,12 +46,18 @@ namespace SOFT151_Coursework
         public string GetAddress() { return this.address; }
         public string GetPostcode() { return this.postcode; }
         public int GetNumberOfCars() { return this.numCars; }
+        public List<Car> GetAllCars() { return this.cars; } // Method used to obtain a full list of all of the company's cars
 
         // Extra Methods:
-
-        public string PrintSummary()
+        
+        public void removeCar(Car car) // Method used to remove a specific car from the companies records
         {
-            return "Company name: " + name + " --  ID number: " + idNumber.ToString();
+            this.cars.Remove(car);
+        }
+
+        public string PrintSummary() // Used to retrieve a summary of the company's information
+        {
+            return "Company name: " + name + " <-----> (ID number: " + idNumber.ToString() + ")";
         }
     }
 }
