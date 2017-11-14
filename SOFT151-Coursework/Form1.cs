@@ -30,12 +30,12 @@ namespace SOFT151_Coursework
 
             // Display these new values to the list box displaying all companies:
 
-            updateList(0, companies);
+            updateList(companies);
         }
 
-        private void updateList(int startFrom, List<Company> list) // Method used to loop over the contents of the companies list and display all contents
+        private void updateList(List<Company> list) // Method used to loop over the contents of the companies list and display all contents
         {
-            for (int i = startFrom; i < list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
                 this.lstAllCompanies.Items.Add(list[i].PrintSummary());
             }
@@ -53,24 +53,63 @@ namespace SOFT151_Coursework
 
         public void AddNew(int companyID, string companyName, string companyAddress, string companyPostcode) 
         {
-            this.companies.Add(new Company(companyID, companyName, companyAddress, companyPostcode)); // Add a new company to the array list of companies
+            // Check to see if the list already contains that company:
 
-            // Re-display the updated contents of the companies list:
+            bool match = false;
 
-            updateList((companies.Count - 2), companies);
+            for (int i = 0; i < companies.Count; i++)
+            {
+                if (companies[i].GetName() == companyName)
+                {
+                    match = true;
+                }
+            }
+
+            if (!match) // There is not a match - safe to proceed with upload of new company
+            {
+                this.companies.Add(new Company(companyID, companyName, companyAddress, companyPostcode)); // Add a new company to the array list of companies
+
+                // Re-display the updated contents of the companies list:
+
+                this.lstAllCompanies.Items.Clear();
+                updateList(companies);
+            }
+            else
+            {
+                MessageBox.Show("It looks like you already have a company with that name stored!"); // Alert the user that they may have a duplicate entry 
+            }
         }
 
         private void btnUpdateCompany_Click(object sender, EventArgs e)
         {
-            // Generate a new dynamic for allowing the user to edit a previous company's information:
+            // Make sure the user has selected a company to update:
 
-            frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information");
-            popup.ShowDialog(this);
+            if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
+            {
+                MessageBox.Show("Make sure you select a company to edit."); // Alert the user
+            }
+            else
+            {
+                // Generate a new dynamic for allowing the user to edit a previous company's information:
+
+                frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information", companies[lstAllCompanies.SelectedIndex]);
+                popup.ShowDialog(this);
+            }
         }
 
-        public void UpdateCompany()
+        public void UpdateCompany(Company oldRecord, int newCompanyID, string newCompanyName, string newCompanyAddress, string newCompanyPostcode)
         {
-            
+            // Update old records:
+
+            oldRecord.SetId(newCompanyID);
+            oldRecord.SetName(newCompanyName);
+            oldRecord.SetAddress(newCompanyAddress);
+            oldRecord.SetPostcode(newCompanyPostcode);
+
+            //Display the updated company information:
+
+            this.lstAllCompanies.Items.Clear();
+            updateList(companies);
         }
 
         private void btnOpenCompany_Click(object sender, EventArgs e)

@@ -159,7 +159,6 @@
             this.Controls.Add(this.lblHeader);
             this.Name = "frmDynamicAddOrUpdate";
             this.Text = "DynamicAddOrUpdate";
-            this.Load += new System.EventHandler(this.frmDynamicAddOrUpdate_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

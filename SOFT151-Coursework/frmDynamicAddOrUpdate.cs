@@ -12,7 +12,8 @@ namespace SOFT151_Coursework
 {
     public partial class frmDynamicAddOrUpdate : Form
     {
-        public frmDynamicAddOrUpdate(string formName)
+        Company updateMe;
+        public frmDynamicAddOrUpdate(string formName, Company company = null)
         {
             InitializeComponent();
 
@@ -20,11 +21,18 @@ namespace SOFT151_Coursework
 
             this.Text = formName;
             this.lblHeader.Text = formName;
-        }
 
-        private void frmDynamicAddOrUpdate_Load(object sender, EventArgs e)
-        {
-            
+            updateMe = company;
+
+            // Load pre-loaded information if the user wants to edit:
+
+            if (formName == "Update Company Information") // Load in current company's information
+            {
+                this.txtNewID.Text = Convert.ToString(company.GetId());
+                this.txtNewName.Text = company.GetName();
+                this.txtNewAddress.Text = company.GetAddress();
+                this.txtNewPostcode.Text = company.GetPostcode();
+            }
         }
 
         // Button Controls:
@@ -46,16 +54,25 @@ namespace SOFT151_Coursework
                 newCompanyName = this.txtNewName.Text;
                 newCompanyAddress = this.txtNewAddress.Text;
                 newCompanyPostcode = this.txtNewPostcode.Text;
-
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message); // Display error message to the user
+                this.Close();
             }
 
-            frmMain.AddNew(newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
+            if (this.Text == "Add New Company") // Add new company 
+            {
+                frmMain.AddNew(newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
-            this.Close(); // Close the form after adding new company details
+                this.Close(); // Close the form after adding new company details
+            }
+            else if (this.Text == "Update Company Information") // Edit previous company 
+            {
+                frmMain.UpdateCompany(updateMe, newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
+
+                this.Close(); // Close the form after updating company details
+            }
         }
 
         private void btnCancelUpdate_Click(object sender, EventArgs e) // User wants to cancel their choice to update a company's record
