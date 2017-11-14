@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SOFT151_Coursework
 {
-    class Company
+    public class Company
     {
         // Object Properties:
 
@@ -16,15 +16,18 @@ namespace SOFT151_Coursework
         private string postcode;
         private int numCars;
 
+        // Array list used to store information about the companies cars:
+
+        List<Car> cars = new List<Car>();
+
         // Constructor:
 
-        public Company(int id, string companyName, string companyAddress, string companyPostcode, int numberOfCars)
+        public Company(int id, string companyName, string companyAddress, string companyPostcode)
         {
             this.idNumber = id;
             this.name = companyName;
             this.address = companyAddress;
             this.postcode = companyPostcode;
-            this.numCars = numberOfCars;
         }
 
         // Setter Methods:

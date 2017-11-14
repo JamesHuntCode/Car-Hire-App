@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SOFT151_Coursework
 {
-    class Car
+    public class Car
     {
         // Object Properties:
 

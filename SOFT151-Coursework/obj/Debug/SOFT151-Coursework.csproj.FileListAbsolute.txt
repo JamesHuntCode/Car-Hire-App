@@ -7,3 +7,13 @@ c:\users\liz stuart\documents\visual studio 2015\Projects\SOFT151-Coursework\SOF
 c:\users\liz stuart\documents\visual studio 2015\Projects\SOFT151-Coursework\SOFT151-Coursework\obj\Debug\SOFT151-Coursework.csproj.GenerateResource.Cache
 c:\users\liz stuart\documents\visual studio 2015\Projects\SOFT151-Coursework\SOFT151-Coursework\obj\Debug\SOFT151-Coursework.exe
 c:\users\liz stuart\documents\visual studio 2015\Projects\SOFT151-Coursework\SOFT151-Coursework\obj\Debug\SOFT151-Coursework.pdb
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\bin\Debug\SOFT151-Coursework.exe.config
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\bin\Debug\SOFT151-Coursework.exe
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\bin\Debug\SOFT151-Coursework.pdb
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151-Coursework.csprojResolveAssemblyReference.cache
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.Form1.resources
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.Properties.Resources.resources
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151-Coursework.csproj.GenerateResource.Cache
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151-Coursework.csproj.CoreCompileInputs.cache
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151-Coursework.exe
+\\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151-Coursework.pdb
