@@ -23,19 +23,16 @@ namespace SOFT151_Coursework
         {
 
             #region generate a few hard coded cars and companies to work with:
-            // Generate some random companies to work with (dev purposes):
 
             for (int i = 0; i < 10; i++)
             {
                 companies.Add(new Company(i + 1, "Company " + (i + 1), "Example address", "Example postcode")); 
 
-                for (int j = 0; j < 10; j++) // Generate a few random cars in those companies (dev purposes):
+                for (int j = 0; j < 10; j++) 
                 {
                     companies[i].AddNewCar(new Car(j + 1, "Random Make", "Random Model", "123456", "Petrol", new DateTime(), "No comments yet"));
                 }
             }
-
-            // Display these new values to the list box displaying all companies:
 
             updateList(companies);
 
@@ -65,7 +62,7 @@ namespace SOFT151_Coursework
                         this.lstRecentActivity.Items.Add("You updated a company's information.");
                         break;
                     case "view-info":
-                        this.lstRecentActivity.Items.Add("You viewed a company's full information profile.");
+                        this.lstRecentActivity.Items.Add("You viewed a company's full profile.");
                         break;
                     case "remove":
                         this.lstRecentActivity.Items.Add("You removed a company from your records.");
@@ -86,7 +83,7 @@ namespace SOFT151_Coursework
                         this.lstRecentActivity.Items.Add("You updated a company's car information.");
                         break;
                     case "view-info":
-                        this.lstRecentActivity.Items.Add("You viewed a car's full information profile.");
+                        this.lstRecentActivity.Items.Add("You viewed a car's full profile.");
                         break;
                     case "remove":
                         this.lstRecentActivity.Items.Add("You removed a car from a company's records.");
@@ -124,7 +121,7 @@ namespace SOFT151_Coursework
 
             if (!match) // There is not a match - safe to proceed with upload of new company
             {
-                this.companies.Add(new Company(companyID, companyName, companyAddress, companyPostcode)); // Add a new company to the array list of companies
+                this.companies.Add(new Company(companyID, companyName, companyAddress, companyPostcode)); // Add a new company to the list of companies
 
                 // Re-display the updated contents of the companies list:
 
@@ -219,18 +216,6 @@ namespace SOFT151_Coursework
 
                 createNotification("remove", "company");
             }
-        }
-
-        // User is searching for a company or reading through their recent activity:
-
-        private void txtSearchCompany_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSearchRecentActivity_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

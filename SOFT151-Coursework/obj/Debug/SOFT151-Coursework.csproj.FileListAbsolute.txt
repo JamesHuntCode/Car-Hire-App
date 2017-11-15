@@ -29,3 +29,4 @@ C:\Users\jhunt8\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-
 \\Mac\Home\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.frmDynamicAddOrUpdate.resources
 C:\Users\jhunt8\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.frmMain.resources
 C:\Users\jhunt8\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.frmCompanyProfile.resources
+C:\Users\jhunt8\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.frmDynamicAddOrUpdateCar.resources

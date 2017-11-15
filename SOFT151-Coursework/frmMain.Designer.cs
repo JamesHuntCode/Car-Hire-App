@@ -60,7 +60,7 @@
             // 
             this.lblCompaniesHeader.AutoSize = true;
             this.lblCompaniesHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompaniesHeader.Location = new System.Drawing.Point(304, 105);
+            this.lblCompaniesHeader.Location = new System.Drawing.Point(308, 105);
             this.lblCompaniesHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCompaniesHeader.Name = "lblCompaniesHeader";
             this.lblCompaniesHeader.Size = new System.Drawing.Size(176, 24);
@@ -74,7 +74,6 @@
             this.txtSearchCompany.Name = "txtSearchCompany";
             this.txtSearchCompany.Size = new System.Drawing.Size(409, 20);
             this.txtSearchCompany.TabIndex = 5;
-            this.txtSearchCompany.TextChanged += new System.EventHandler(this.txtSearchCompany_TextChanged);
             // 
             // btnAddNewCompany
             // 
@@ -138,13 +137,12 @@
             this.txtSearchRecentActivity.Name = "txtSearchRecentActivity";
             this.txtSearchRecentActivity.Size = new System.Drawing.Size(409, 20);
             this.txtSearchRecentActivity.TabIndex = 15;
-            this.txtSearchRecentActivity.TextChanged += new System.EventHandler(this.txtSearchRecentActivity_TextChanged);
             // 
             // lblRecentActivityHeader
             // 
             this.lblRecentActivityHeader.AutoSize = true;
             this.lblRecentActivityHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecentActivityHeader.Location = new System.Drawing.Point(707, 105);
+            this.lblRecentActivityHeader.Location = new System.Drawing.Point(719, 105);
             this.lblRecentActivityHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRecentActivityHeader.Name = "lblRecentActivityHeader";
             this.lblRecentActivityHeader.Size = new System.Drawing.Size(202, 24);

@@ -12,7 +12,7 @@ namespace SOFT151_Coursework
 {
     public partial class frmCompanyProfile : Form
     {
-        Company viewMe;
+        Company currentCompany;
 
         public frmCompanyProfile(Company company)
         {
@@ -36,18 +36,70 @@ namespace SOFT151_Coursework
                 this.lstListCompanyCars.Items.Add(companyCars[i].PrintSummary());
             }
 
-            viewMe = company;
+            currentCompany = company;
+        }
+
+        private void updateList(List<Car> list) // Method used to loop over the contents of the companies list and display all contents
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                this.lstListCompanyCars.Items.Add(list[i].PrintSummary());
+            }
         }
 
         // User is interacting with the buttons on the form:
 
         private void btnAddNewCar_Click(object sender, EventArgs e) // User wants to add a new car to the company's records
         {
+            // Generate a new dynamic form allowing the user to add a new car:
 
+            frmDynamicAddOrUpdateCar popup = new frmDynamicAddOrUpdateCar("Add New Car");
+            popup.ShowDialog(this);
+        }
+
+        public void AddNew(Car car)
+        {
+            // *MAYBE* implement a way of checking if a company is adding duplicate data (recommended / come back to this)
+
+            this.currentCompany.AddNewCar(car); // Add the new car to the company's list of cars
         }
 
         private void btnUpdateCar_Click(object sender, EventArgs e) // User wants to update a car's details
+        { 
+            // Make sure the user has selected a company to update:
+
+            if (this.lstListCompanyCars.SelectedIndex == -1) // User has not selected a company
+            {
+                MessageBox.Show("Make sure you select a car to edit."); // Alert the user
+            }
+            else
+            {
+                // Generate a new dynamic form allowing the user to add a new car:
+
+                frmDynamicAddOrUpdateCar popup = new frmDynamicAddOrUpdateCar("Update Car Information", currentCompany.GetAllCars()[this.lstListCompanyCars.SelectedIndex]);
+                popup.ShowDialog(this);
+            }
+        }
+
+        public void UpdateCar(Car oldCar, int newCarId, string newCarMake, string newCarModel, string newCarReg, string newFuelType, DateTime newLastServiced, string newComments)
         {
+            // Update old records:
+
+            oldCar.SetId(newCarId);
+            oldCar.SetMake(newCarMake);
+            oldCar.SetModel(newCarModel);
+            oldCar.SetRegistration(newCarReg);
+            oldCar.SetFuelType(newFuelType);
+            oldCar.SetDateLastServiced(newLastServiced);
+            oldCar.SetComments(newComments);
+
+            //Display the updated company information:
+
+            this.lstListCompanyCars.Items.Clear();
+            updateList(this.currentCompany.GetAllCars());
+
+            // Push notification to the user's recent activity: (COME BACK TO THIS)
+
 
         }
 

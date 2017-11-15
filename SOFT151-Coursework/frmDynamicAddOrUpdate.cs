@@ -12,7 +12,7 @@ namespace SOFT151_Coursework
 {
     public partial class frmDynamicAddOrUpdate : Form
     {
-        Company updateMe;
+        Company currentCompany;
         public frmDynamicAddOrUpdate(string formName, Company company = null)
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace SOFT151_Coursework
             this.Text = formName;
             this.lblHeader.Text = formName;
 
-            updateMe = company;
+            currentCompany = company;
 
             // Load pre-loaded information if the user wants to edit:
 
@@ -58,7 +58,8 @@ namespace SOFT151_Coursework
             catch (Exception err)
             {
                 MessageBox.Show(err.Message); // Display error message to the user
-                this.Close();
+
+                this.Close(); // Close form to stop uploading incomplete information
             }
 
             if (this.Text == "Add New Company") // Add new company 
@@ -69,7 +70,7 @@ namespace SOFT151_Coursework
             }
             else if (this.Text == "Update Company Information") // Edit previous company 
             {
-                frmMain.UpdateCompany(updateMe, newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
+                frmMain.UpdateCompany(currentCompany, newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
                 this.Close(); // Close the form after updating company details
             }
@@ -77,7 +78,7 @@ namespace SOFT151_Coursework
 
         private void btnCancelUpdate_Click(object sender, EventArgs e) // User wants to cancel their choice to update a company's record
         {
-            this.Close(); // Close the form and cancel the update
+            this.Close(); // Close the form and cancel all actions
         }
     }
 }
