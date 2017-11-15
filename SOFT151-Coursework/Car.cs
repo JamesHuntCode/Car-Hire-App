@@ -53,9 +53,9 @@ namespace SOFT151_Coursework
         
         // Extra Methods:
 
-        public string PrintSummary()
+        public string PrintSummary() // Used to retrieve a summary of the car's information
         {
-            return "Car make: " + make + " -- Car model: " + model;
+            return "Car make: " + make + " -- Car model: " + model + " -- (ID: " + idNumber + ")";
         }
     }
 }

@@ -39,7 +39,7 @@ namespace SOFT151_Coursework
 
         private void btnSaveAndUpdate_Click(object sender, EventArgs e) // User wants to update a company
         {
-            Form1 frmMain = (Form1)this.Owner; // Set main form as parent form
+            frmMain frmMain = (frmMain)this.Owner; // Set main form as parent form
 
             // Gather user inputs and catch any exceptions:
 
