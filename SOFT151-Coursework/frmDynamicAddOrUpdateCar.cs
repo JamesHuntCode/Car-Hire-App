@@ -33,7 +33,7 @@ namespace SOFT151_Coursework
                 this.txtCarModel.Text = car.GetModel();
                 this.txtCarReg.Text = car.GetReg();
                 this.txtCarFuelType.Text = car.GetFuelType();
-                this.txtLastServiced.Text = Convert.ToString(car.GetDateLastServiced());
+                //this.dtpLastServiced.Value = 
                 this.txtComments.Text = car.GetComments();
             }
         }
@@ -51,7 +51,7 @@ namespace SOFT151_Coursework
             string newCarModel = "";
             string newCarReg = "";
             string newCarFuelType = "";
-            DateTime newDateLastServiced = new DateTime();
+            //newDateLastServiced = new DateTime();
             string newComments = "";
 
             try
@@ -61,7 +61,7 @@ namespace SOFT151_Coursework
                 newCarModel = this.txtCarModel.Text;
                 newCarReg = this.txtCarReg.Text;
                 newCarFuelType = this.txtCarFuelType.Text;
-                newDateLastServiced = Convert.ToDateTime(this.txtLastServiced.Text);
+                newDateLastServiced = this.dtpLastServiced.Value.Date;
                 newComments = this.txtComments.Text;
             }
             catch (Exception err)

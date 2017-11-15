@@ -39,12 +39,12 @@
             this.lblCarModel = new System.Windows.Forms.Label();
             this.lblCarReg = new System.Windows.Forms.Label();
             this.lblCarId = new System.Windows.Forms.Label();
-            this.txtLastServiced = new System.Windows.Forms.TextBox();
             this.txtCarFuelType = new System.Windows.Forms.TextBox();
             this.lblCarFuelType = new System.Windows.Forms.Label();
             this.lblLastService = new System.Windows.Forms.Label();
             this.lblComments = new System.Windows.Forms.Label();
             this.txtComments = new System.Windows.Forms.RichTextBox();
+            this.dtpLastServiced = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -147,13 +147,6 @@
             this.lblCarId.TabIndex = 13;
             this.lblCarId.Text = "Car ID:";
             // 
-            // txtLastServiced
-            // 
-            this.txtLastServiced.Location = new System.Drawing.Point(185, 242);
-            this.txtLastServiced.Name = "txtLastServiced";
-            this.txtLastServiced.Size = new System.Drawing.Size(221, 20);
-            this.txtLastServiced.TabIndex = 26;
-            // 
             // txtCarFuelType
             // 
             this.txtCarFuelType.Location = new System.Drawing.Point(185, 209);
@@ -199,14 +192,21 @@
             this.txtComments.TabIndex = 28;
             this.txtComments.Text = "";
             // 
+            // dtpLastServiced
+            // 
+            this.dtpLastServiced.Location = new System.Drawing.Point(186, 240);
+            this.dtpLastServiced.Name = "dtpLastServiced";
+            this.dtpLastServiced.Size = new System.Drawing.Size(220, 20);
+            this.dtpLastServiced.TabIndex = 29;
+            // 
             // frmDynamicAddOrUpdateCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 480);
+            this.Controls.Add(this.dtpLastServiced);
             this.Controls.Add(this.txtComments);
             this.Controls.Add(this.lblComments);
-            this.Controls.Add(this.txtLastServiced);
             this.Controls.Add(this.txtCarFuelType);
             this.Controls.Add(this.lblCarFuelType);
             this.Controls.Add(this.lblLastService);
@@ -241,11 +241,11 @@
         private System.Windows.Forms.Label lblCarModel;
         private System.Windows.Forms.Label lblCarReg;
         private System.Windows.Forms.Label lblCarId;
-        private System.Windows.Forms.TextBox txtLastServiced;
         private System.Windows.Forms.TextBox txtCarFuelType;
         private System.Windows.Forms.Label lblCarFuelType;
         private System.Windows.Forms.Label lblLastService;
         private System.Windows.Forms.Label lblComments;
         private System.Windows.Forms.RichTextBox txtComments;
+        private System.Windows.Forms.DateTimePicker dtpLastServiced;
     }
 }

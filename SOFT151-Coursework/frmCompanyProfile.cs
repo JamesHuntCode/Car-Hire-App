@@ -59,9 +59,16 @@ namespace SOFT151_Coursework
 
         public void AddNew(Car car)
         {
-            // *MAYBE* implement a way of checking if a company is adding duplicate data (recommended / come back to this)
-
             this.currentCompany.AddNewCar(car); // Add the new car to the company's list of cars
+
+            // Re-display the updated contents of the company's car list:
+
+            this.lstListCompanyCars.Items.Clear();
+            updateList(this.currentCompany.GetAllCars());
+
+            // Push notification to the user's recent activity: (COME BACK TO THIS)
+
+
         }
 
         private void btnUpdateCar_Click(object sender, EventArgs e) // User wants to update a car's details
