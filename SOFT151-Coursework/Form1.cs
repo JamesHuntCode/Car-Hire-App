@@ -41,6 +41,27 @@ namespace SOFT151_Coursework
             }
         }
 
+        // Method used to add notifications to the users' recent activity tab:
+
+        private void createCompanyBasedNotification(string action) 
+        {
+            switch (action)
+            {
+                case "add":
+                    this.lstRecentActivity.Items.Add("You added a new company to your records.");
+                    break;
+                case "update":
+                    this.lstRecentActivity.Items.Add("You updated a company's information.");
+                    break;
+                case "view-info":
+                    this.lstRecentActivity.Items.Add("You viewed a company's full information profile.");
+                    break;
+                case "remove":
+                    this.lstRecentActivity.Items.Add("You removed a company from your records.");
+                    break;
+            }
+        }
+
         // User is interacting with the different features of the program (buttons):
 
         private void btnAddNewCompany_Click(object sender, EventArgs e)
@@ -73,6 +94,10 @@ namespace SOFT151_Coursework
 
                 this.lstAllCompanies.Items.Clear();
                 updateList(companies);
+
+                // Push notification to the user's recent activity:
+
+                createCompanyBasedNotification("add");
             }
             else
             {
@@ -110,6 +135,10 @@ namespace SOFT151_Coursework
 
             this.lstAllCompanies.Items.Clear();
             updateList(companies);
+
+            // Push notification to the user's recent activity:
+
+            createCompanyBasedNotification("update");
         }
 
         private void btnOpenCompany_Click(object sender, EventArgs e)
@@ -119,7 +148,27 @@ namespace SOFT151_Coursework
 
         private void btnRemoveCompany_Click(object sender, EventArgs e)
         {
+            // Make sure the user has selected a company to remove:
 
+            if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
+            {
+                MessageBox.Show("Make sure you select a company to remove."); // Alert the user
+            }
+            else
+            {
+                // Proceed with deletion of selected company:
+
+                this.companies.Remove(companies[this.lstAllCompanies.SelectedIndex]);
+
+                //Display the updated company information:
+
+                this.lstAllCompanies.Items.Clear();
+                updateList(companies);
+
+                // Push notification to the user's recent activity:
+
+                createCompanyBasedNotification("remove");
+            }
         }
 
         // User is searching for a company or reading through their recent activity:
