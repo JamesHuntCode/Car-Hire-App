@@ -68,7 +68,7 @@ namespace SOFT151_Coursework
 
             // Push notification to the user's recent activity: (COME BACK TO THIS)
 
-
+            
         }
 
         private void btnUpdateCar_Click(object sender, EventArgs e) // User wants to update a car's details
@@ -120,6 +120,10 @@ namespace SOFT151_Coursework
             }
             else
             {
+                // Push notification to the user's recent activity: (COME BACK TO THIS)
+
+
+
                 // Proceed with deletion of selected company:
 
                 this.currentCompany.removeCar(this.currentCompany.GetAllCars()[this.lstListCompanyCars.SelectedIndex]);
@@ -128,10 +132,6 @@ namespace SOFT151_Coursework
 
                 this.lstListCompanyCars.Items.Clear();
                 updateList(this.currentCompany.GetAllCars());
-
-                // Push notification to the user's recent activity: (COME BACK TO THIS)
-
-                
             }
         }
 

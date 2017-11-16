@@ -24,7 +24,7 @@ namespace SOFT151_Coursework
             this.lblCarModel.Text = "Car Model: " + car.GetModel();
             this.lblCarReg.Text = "Car Registration: " + car.GetReg();
             this.lblCarFuelType.Text = "Fuel Type: " + car.GetFuelType();
-            this.lblLastServiced.Text = "Last Serviced: " + Convert.ToString(car.GetDateLastServiced());
+            this.lblLastServiced.Text = "Last Serviced: " + Convert.ToString(car.GetDateLastServiced().ToShortDateString());
             this.txtComments.Text = car.GetComments();
 
             currentCar = car;

@@ -31,20 +31,53 @@ namespace SOFT151_Coursework
 
         // Setter Methods:
 
-        public void SetId(int id) { this.idNumber = id; }
-        public void SetName(string companyName) { this.name = companyName; }
-        public void SetAddress(string companyAddress) { this.address = companyAddress; }
-        public void SetPostcode(string companyPostcode) { this.postcode = companyPostcode; }
-        public void AddNewCar(Car newCar) { this.cars.Add(newCar); } // Method used to add a new car to the company's records
+        public void SetId(int id)
+        {
+            this.idNumber = id;
+        }
+        public void SetName(string companyName)
+        {
+            this.name = companyName;
+        }
+        public void SetAddress(string companyAddress)
+        {
+            this.address = companyAddress;
+        }
+        public void SetPostcode(string companyPostcode)
+        {
+            this.postcode = companyPostcode;
+        }
+        public void AddNewCar(Car newCar) // Method used to add a new car to the company's records
+        {
+            this.cars.Add(newCar);
+        } 
 
         // Getter Methods:
 
-        public int GetId() { return this.idNumber; }
-        public string GetName() { return this.name; }
-        public string GetAddress() { return this.address; }
-        public string GetPostcode() { return this.postcode; }
-        public int GetNumberOfCars() { return this.cars.Count; }
-        public List<Car> GetAllCars() { return this.cars; } // Method used to obtain a full list of all of the company's cars
+        public int GetId()
+        {
+            return this.idNumber;
+        }
+        public string GetName()
+        {
+            return this.name;
+        }
+        public string GetAddress()
+        {
+            return this.address;
+        }
+        public string GetPostcode()
+        {
+            return this.postcode;
+        }
+        public int GetNumberOfCars()
+        {
+            return this.cars.Count;
+        }
+        public List<Car> GetAllCars() // Method used to obtain a full list of all of the company's cars
+        {
+            return this.cars;
+        } 
 
         // Extra Methods:
         
