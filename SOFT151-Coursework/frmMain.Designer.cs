@@ -40,9 +40,6 @@
             this.lblRecentActivityHeader = new System.Windows.Forms.Label();
             this.btnOpenCompany = new System.Windows.Forms.Button();
             this.btnRemoveCompany = new System.Windows.Forms.Button();
-            this.lblLogIn = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.lblLogInStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lstAllCompanies
@@ -171,44 +168,11 @@
             this.btnRemoveCompany.UseVisualStyleBackColor = true;
             this.btnRemoveCompany.Click += new System.EventHandler(this.btnRemoveCompany_Click);
             // 
-            // lblLogIn
-            // 
-            this.lblLogIn.AutoSize = true;
-            this.lblLogIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogIn.Location = new System.Drawing.Point(829, 7);
-            this.lblLogIn.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblLogIn.Name = "lblLogIn";
-            this.lblLogIn.Size = new System.Drawing.Size(51, 17);
-            this.lblLogIn.TabIndex = 19;
-            this.lblLogIn.Text = "Log In:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(884, 6);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(126, 20);
-            this.textBox1.TabIndex = 20;
-            // 
-            // lblLogInStatus
-            // 
-            this.lblLogInStatus.AutoSize = true;
-            this.lblLogInStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogInStatus.Location = new System.Drawing.Point(881, 28);
-            this.lblLogInStatus.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblLogInStatus.Name = "lblLogInStatus";
-            this.lblLogInStatus.Size = new System.Drawing.Size(16, 13);
-            this.lblLogInStatus.TabIndex = 21;
-            this.lblLogInStatus.Text = "...";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 462);
-            this.Controls.Add(this.lblLogInStatus);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.lblLogIn);
             this.Controls.Add(this.btnRemoveCompany);
             this.Controls.Add(this.btnOpenCompany);
             this.Controls.Add(this.lblRecentActivityHeader);
@@ -244,9 +208,6 @@
         private System.Windows.Forms.Label lblRecentActivityHeader;
         private System.Windows.Forms.Button btnOpenCompany;
         private System.Windows.Forms.Button btnRemoveCompany;
-        private System.Windows.Forms.Label lblLogIn;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label lblLogInStatus;
     }
 }
 

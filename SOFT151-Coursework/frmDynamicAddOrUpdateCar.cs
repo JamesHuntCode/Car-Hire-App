@@ -12,7 +12,7 @@ namespace SOFT151_Coursework
 {
     public partial class frmDynamicAddOrUpdateCar : Form
     {
-        Car currentCar;
+        private Car currentCar;
         public frmDynamicAddOrUpdateCar(string formName, Car car = null)
         {
             InitializeComponent();

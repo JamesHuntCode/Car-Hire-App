@@ -12,7 +12,7 @@ namespace SOFT151_Coursework
 {
     public partial class frmCarProfile : Form
     {
-        Car currentCar;
+        private Car currentCar;
         public frmCarProfile(Car car)
         {
             InitializeComponent();

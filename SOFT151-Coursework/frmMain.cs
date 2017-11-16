@@ -14,6 +14,8 @@ namespace SOFT151_Coursework
     {
         private List<Company> companies = new List<Company>(); // List of all companies
 
+        private List<string> notifications = new List<string>(); // List of all notifications
+
         public frmMain()
         {
             InitializeComponent();
@@ -21,7 +23,6 @@ namespace SOFT151_Coursework
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             #region generate a few hard coded cars and companies to work with:
 
             for (int i = 0; i < 10; i++)
@@ -47,60 +48,72 @@ namespace SOFT151_Coursework
             }
         }
 
+        public void UpdateNotifications(List<string> list) // Method used to update the notifications and keep the user up to date
+        {
+            this.lstRecentActivity.Items.Clear();
+
+            for (int i = 0; i < notifications.Count; i++)
+            {
+                this.lstRecentActivity.Items.Add(list[i]);
+            }
+        }
+
         // Method used to add notifications to the users' recent activity tab:
 
-        private void createNotification(string notificationType, string action, string affectedElement)
+        public void CreateNotification(string notificationType, string action, string affectedElement)
         {
+            string generatedNotification = "";
+
             switch (action)
             {
                 case "add": // User has added a new company / car
                     if (notificationType == "company")
                     {
-                        this.lstRecentActivity.Items.Add("You added '" + affectedElement + "' to your company records./n");
+                        generatedNotification = "You added '" + affectedElement + "' to your company records.";
                     }
                     else
                     {
-                        this.lstRecentActivity.Items.Add("You added a new car to '" + affectedElement + "'.");
+                        generatedNotification = "You added a new car to '" + affectedElement + "'.";
                     }
-                    this.lstRecentActivity.Items.Add("\n"); // Space out elements in list (user experience)
                     break;
                 case "update": // User has updated a company / car
                     if (notificationType == "company")
                     {
-                        this.lstRecentActivity.Items.Add("You updated '" + affectedElement + "' in your company records.");
+                        generatedNotification = "You updated '" + affectedElement + "' in your company records.";
                     }
                     else
                     {
-                        this.lstRecentActivity.Items.Add("You updated a car which belongs to '" + affectedElement + "'.");
+                        generatedNotification = "You updated a car which belongs to '" + affectedElement + "'.";
                     }
-                    this.lstRecentActivity.Items.Add("\n"); // Space out elements in list (user experience)
                     break;
                 case "view-info": // User has viewed a company's / car's full profile
                     if (notificationType == "company")
                     {
-                        this.lstRecentActivity.Items.Add("You viewed the full profile of '" + affectedElement + "'.");
+                        generatedNotification = "You viewed the full profile of '" + affectedElement + "'.";
                     }
                     else
                     {
-                        this.lstRecentActivity.Items.Add("You viewed the full profile of a car which belongs to '" + affectedElement + "'.");
+                        generatedNotification = "You viewed the full profile of a car which belongs to '" + affectedElement + "'.";
                     }
-                    this.lstRecentActivity.Items.Add("\n"); // Space out elements in list (user experience)
                     break;
                 case "remove": // User has removed a company / car
                     if (notificationType == "company")
                     {
-                        this.lstRecentActivity.Items.Add("You removed '" + affectedElement + "' from your company records.");
+                        generatedNotification = "You removed '" + affectedElement + "' from your company records.";
                     }
                     else
                     {
-                        this.lstRecentActivity.Items.Add("You removed a car from the records of '" + affectedElement + "'.");
+                        generatedNotification = "You removed a car from the records of '" + affectedElement + "'.";
                     }
-                    this.lstRecentActivity.Items.Add("\n"); // Space out elements in list (user experience)
                     break;
                 default: // Action performed by the user is unknown
-                    this.lstRecentActivity.Items.Add("Unidentified action performed.");
+                    generatedNotification = "Unidentified action performed.";
                     break;
-            }        
+            }
+
+            notifications.Add(generatedNotification); // Push the new notification into the implemented list
+
+            UpdateNotifications(notifications); // Refresh the list 
         }
 
         // User is interacting with the different features of the program (buttons):
@@ -138,7 +151,7 @@ namespace SOFT151_Coursework
 
                 // Push notification to the user's recent activity:
 
-                createNotification("company", "add", companyName);
+                CreateNotification("company", "add", companyName);
             }
             else
             {
@@ -179,7 +192,7 @@ namespace SOFT151_Coursework
 
             // Push notification to the user's recent activity:
 
-            createNotification("company", "update", newCompanyName);
+            CreateNotification("company", "update", oldRecord.GetName());
         }
 
         private void btnOpenCompany_Click(object sender, EventArgs e)
@@ -190,14 +203,14 @@ namespace SOFT151_Coursework
             }
             else 
             {
+                // Push notification to user's recent activity:
+
+                CreateNotification("company", "view-info", companies[this.lstAllCompanies.SelectedIndex].GetName());
+
                 // Generate form allowing the user to view the selected company's full profile:
 
                 frmCompanyProfile popup = new frmCompanyProfile(companies[this.lstAllCompanies.SelectedIndex]);
-                popup.ShowDialog(this);
-
-                // Push notification to user's recent activity:
-
-                createNotification("company", "view-info", companies[this.lstAllCompanies.SelectedIndex].GetName());
+                popup.Show(this);
             }
         }
 
@@ -213,7 +226,7 @@ namespace SOFT151_Coursework
             {
                 // Push notification to the user's recent activity:
 
-                createNotification("company", "remove", companies[this.lstAllCompanies.SelectedIndex].GetName());
+                CreateNotification("company", "remove", companies[this.lstAllCompanies.SelectedIndex].GetName());
 
                 // Proceed with deletion of selected company:
 

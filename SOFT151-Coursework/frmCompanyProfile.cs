@@ -12,7 +12,9 @@ namespace SOFT151_Coursework
 {
     public partial class frmCompanyProfile : Form
     {
-        Company currentCompany;
+        private Company currentCompany;
+
+        frmMain mainForm; // LOOK OVER THIS 
 
         public frmCompanyProfile(Company company)
         {
@@ -37,6 +39,8 @@ namespace SOFT151_Coursework
             }
 
             currentCompany = company;
+
+            mainForm = (frmMain)this.Owner; // LOOK OVER THIS 
         }
 
         private void updateList(List<Car> list) // Method used to loop over the contents of the companies list and display all contents
@@ -66,9 +70,9 @@ namespace SOFT151_Coursework
             this.lstListCompanyCars.Items.Clear();
             updateList(this.currentCompany.GetAllCars());
 
-            // Push notification to the user's recent activity: (COME BACK TO THIS)
+            // Push notification to the user's recent activity:
 
-            
+            mainForm.CreateNotification("car", "add", currentCompany.GetName());
         }
 
         private void btnUpdateCar_Click(object sender, EventArgs e) // User wants to update a car's details
@@ -82,7 +86,7 @@ namespace SOFT151_Coursework
             else
             {
                 // Generate a new dynamic form allowing the user to add a new car:
-
+                
                 frmDynamicAddOrUpdateCar popup = new frmDynamicAddOrUpdateCar("Update Car Information", currentCompany.GetAllCars()[this.lstListCompanyCars.SelectedIndex]);
                 popup.ShowDialog(this);
             }
@@ -105,9 +109,9 @@ namespace SOFT151_Coursework
             this.lstListCompanyCars.Items.Clear();
             updateList(this.currentCompany.GetAllCars());
 
-            // Push notification to the user's recent activity: (COME BACK TO THIS)
+            // Push notification to the user's recent activity:
 
-            
+            mainForm.CreateNotification("car", "update", currentCompany.GetName());
         }
 
         private void btnDeleteCar_Click(object sender, EventArgs e) // User wants to remove a car from the company's records
@@ -120,9 +124,9 @@ namespace SOFT151_Coursework
             }
             else
             {
-                // Push notification to the user's recent activity: (COME BACK TO THIS)
+                // Push notification to the user's recent activity:
 
-
+                mainForm.CreateNotification("car", "remove", currentCompany.GetName());
 
                 // Proceed with deletion of selected company:
 
@@ -150,9 +154,9 @@ namespace SOFT151_Coursework
                 frmCarProfile popup = new frmCarProfile(this.currentCompany.GetAllCars()[this.lstListCompanyCars.SelectedIndex]);
                 popup.ShowDialog(this);
 
-                // Push notification to the user's recent activity: (COME BACK TO THIS)
+                // Push notification to the user's recent activity:
 
-                
+                mainForm.CreateNotification("car", "view-info", currentCompany.GetName());
             }
         }
     }
