@@ -50,14 +50,14 @@
             this.lstAllCompanies.Location = new System.Drawing.Point(188, 159);
             this.lstAllCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.lstAllCompanies.Name = "lstAllCompanies";
-            this.lstAllCompanies.Size = new System.Drawing.Size(409, 292);
+            this.lstAllCompanies.Size = new System.Drawing.Size(543, 292);
             this.lstAllCompanies.TabIndex = 0;
             // 
             // lblCompaniesHeader
             // 
             this.lblCompaniesHeader.AutoSize = true;
             this.lblCompaniesHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompaniesHeader.Location = new System.Drawing.Point(308, 105);
+            this.lblCompaniesHeader.Location = new System.Drawing.Point(365, 105);
             this.lblCompaniesHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCompaniesHeader.Name = "lblCompaniesHeader";
             this.lblCompaniesHeader.Size = new System.Drawing.Size(176, 24);
@@ -66,7 +66,7 @@
             // 
             // txtSearchCompany
             // 
-            this.txtSearchCompany.Location = new System.Drawing.Point(188, 135);
+            this.txtSearchCompany.Location = new System.Drawing.Point(250, 135);
             this.txtSearchCompany.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCompany.Name = "txtSearchCompany";
             this.txtSearchCompany.Size = new System.Drawing.Size(409, 20);
@@ -74,7 +74,7 @@
             // 
             // btnAddNewCompany
             // 
-            this.btnAddNewCompany.Location = new System.Drawing.Point(11, 135);
+            this.btnAddNewCompany.Location = new System.Drawing.Point(11, 313);
             this.btnAddNewCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddNewCompany.Name = "btnAddNewCompany";
             this.btnAddNewCompany.Size = new System.Drawing.Size(168, 67);
@@ -85,7 +85,7 @@
             // 
             // btnUpdateCompany
             // 
-            this.btnUpdateCompany.Location = new System.Drawing.Point(11, 206);
+            this.btnUpdateCompany.Location = new System.Drawing.Point(11, 230);
             this.btnUpdateCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateCompany.Name = "btnUpdateCompany";
             this.btnUpdateCompany.Size = new System.Drawing.Size(168, 67);
@@ -98,7 +98,7 @@
             // 
             this.lblOptions.AutoSize = true;
             this.lblOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOptions.Location = new System.Drawing.Point(63, 105);
+            this.lblOptions.Location = new System.Drawing.Point(58, 130);
             this.lblOptions.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOptions.Name = "lblOptions";
             this.lblOptions.Size = new System.Drawing.Size(64, 24);
@@ -121,15 +121,15 @@
             this.lstRecentActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstRecentActivity.FormattingEnabled = true;
             this.lstRecentActivity.ItemHeight = 18;
-            this.lstRecentActivity.Location = new System.Drawing.Point(601, 159);
+            this.lstRecentActivity.Location = new System.Drawing.Point(735, 159);
             this.lstRecentActivity.Margin = new System.Windows.Forms.Padding(2);
             this.lstRecentActivity.Name = "lstRecentActivity";
-            this.lstRecentActivity.Size = new System.Drawing.Size(409, 292);
+            this.lstRecentActivity.Size = new System.Drawing.Size(543, 292);
             this.lstRecentActivity.TabIndex = 14;
             // 
             // txtSearchRecentActivity
             // 
-            this.txtSearchRecentActivity.Location = new System.Drawing.Point(601, 135);
+            this.txtSearchRecentActivity.Location = new System.Drawing.Point(806, 135);
             this.txtSearchRecentActivity.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchRecentActivity.Name = "txtSearchRecentActivity";
             this.txtSearchRecentActivity.Size = new System.Drawing.Size(409, 20);
@@ -139,7 +139,7 @@
             // 
             this.lblRecentActivityHeader.AutoSize = true;
             this.lblRecentActivityHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecentActivityHeader.Location = new System.Drawing.Point(719, 105);
+            this.lblRecentActivityHeader.Location = new System.Drawing.Point(916, 105);
             this.lblRecentActivityHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRecentActivityHeader.Name = "lblRecentActivityHeader";
             this.lblRecentActivityHeader.Size = new System.Drawing.Size(202, 24);
@@ -148,7 +148,7 @@
             // 
             // btnOpenCompany
             // 
-            this.btnOpenCompany.Location = new System.Drawing.Point(11, 277);
+            this.btnOpenCompany.Location = new System.Drawing.Point(11, 159);
             this.btnOpenCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnOpenCompany.Name = "btnOpenCompany";
             this.btnOpenCompany.Size = new System.Drawing.Size(168, 67);
@@ -159,7 +159,7 @@
             // 
             // btnRemoveCompany
             // 
-            this.btnRemoveCompany.Location = new System.Drawing.Point(11, 348);
+            this.btnRemoveCompany.Location = new System.Drawing.Point(11, 384);
             this.btnRemoveCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveCompany.Name = "btnRemoveCompany";
             this.btnRemoveCompany.Size = new System.Drawing.Size(168, 67);
@@ -172,7 +172,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1021, 462);
+            this.ClientSize = new System.Drawing.Size(1287, 462);
             this.Controls.Add(this.btnRemoveCompany);
             this.Controls.Add(this.btnOpenCompany);
             this.Controls.Add(this.lblRecentActivityHeader);

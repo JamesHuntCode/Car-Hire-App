@@ -14,7 +14,7 @@ namespace SOFT151_Coursework
     {
         private Company currentCompany;
 
-        frmMain mainForm; // LOOK OVER THIS 
+        private frmMain mainForm;
 
         public frmCompanyProfile(Company company)
         {
@@ -39,8 +39,6 @@ namespace SOFT151_Coursework
             }
 
             currentCompany = company;
-
-            mainForm = (frmMain)this.Owner; // LOOK OVER THIS 
         }
 
         private void updateList(List<Car> list) // Method used to loop over the contents of the companies list and display all contents
@@ -71,6 +69,8 @@ namespace SOFT151_Coursework
             updateList(this.currentCompany.GetAllCars());
 
             // Push notification to the user's recent activity:
+
+            mainForm = (frmMain)this.Owner;
 
             mainForm.CreateNotification("car", "add", currentCompany.GetName());
         }
@@ -111,6 +111,8 @@ namespace SOFT151_Coursework
 
             // Push notification to the user's recent activity:
 
+            mainForm = (frmMain)this.Owner;
+
             mainForm.CreateNotification("car", "update", currentCompany.GetName());
         }
 
@@ -126,7 +128,9 @@ namespace SOFT151_Coursework
             {
                 // Push notification to the user's recent activity:
 
-                mainForm.CreateNotification("car", "remove", currentCompany.GetName());
+                mainForm = (frmMain)this.Owner;
+
+                this.mainForm.CreateNotification("car", "remove", this.currentCompany.GetName());
 
                 // Proceed with deletion of selected company:
 
@@ -155,6 +159,8 @@ namespace SOFT151_Coursework
                 popup.ShowDialog(this);
 
                 // Push notification to the user's recent activity:
+
+                mainForm = (frmMain)this.Owner;
 
                 mainForm.CreateNotification("car", "view-info", currentCompany.GetName());
             }
