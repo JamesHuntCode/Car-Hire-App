@@ -238,5 +238,52 @@ namespace SOFT151_Coursework
                 updateList(companies);
             }
         }
+
+        private void search(string userInput, List<Company> list, ListBox lstBox)
+        {
+            bool match = false; 
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].GetName().ToUpper() == userInput)
+                {
+                    match = true;
+                }
+            }
+
+            // CARRY ON FROM HERE
+        }
+
+        private void btnSearchCompanies_Click(object sender, EventArgs e) // User wants to search for a company
+        {
+            string userInput = "";
+
+            try
+            {
+                userInput = this.txtSearchCompanies.Text;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            this.search(userInput, this.companies, this.lstAllCompanies); // Search for a matching element
+        }
+
+        private void btnSearchRecentActivity_Click(object sender, EventArgs e) // User wants to search through their recent activity 
+        {
+            string userInput = "";
+
+            try
+            {
+                userInput = this.txtSearchRecentActivity.Text;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            this.search(userInput, this.companies, this.lstRecentActivity); // Search for a matching element
+        }
     }
 }

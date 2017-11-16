@@ -30,7 +30,7 @@
         {
             this.lstAllCompanies = new System.Windows.Forms.ListBox();
             this.lblCompaniesHeader = new System.Windows.Forms.Label();
-            this.txtSearchCompany = new System.Windows.Forms.TextBox();
+            this.txtSearchCompanies = new System.Windows.Forms.TextBox();
             this.btnAddNewCompany = new System.Windows.Forms.Button();
             this.btnUpdateCompany = new System.Windows.Forms.Button();
             this.lblOptions = new System.Windows.Forms.Label();
@@ -40,6 +40,8 @@
             this.lblRecentActivityHeader = new System.Windows.Forms.Label();
             this.btnOpenCompany = new System.Windows.Forms.Button();
             this.btnRemoveCompany = new System.Windows.Forms.Button();
+            this.btnSearchCompanies = new System.Windows.Forms.Button();
+            this.btnSearchRecentActivity = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstAllCompanies
@@ -57,20 +59,20 @@
             // 
             this.lblCompaniesHeader.AutoSize = true;
             this.lblCompaniesHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompaniesHeader.Location = new System.Drawing.Point(365, 105);
+            this.lblCompaniesHeader.Location = new System.Drawing.Point(325, 105);
             this.lblCompaniesHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCompaniesHeader.Name = "lblCompaniesHeader";
             this.lblCompaniesHeader.Size = new System.Drawing.Size(176, 24);
             this.lblCompaniesHeader.TabIndex = 2;
             this.lblCompaniesHeader.Text = "Search Companies:";
             // 
-            // txtSearchCompany
+            // txtSearchCompanies
             // 
-            this.txtSearchCompany.Location = new System.Drawing.Point(250, 135);
-            this.txtSearchCompany.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSearchCompany.Name = "txtSearchCompany";
-            this.txtSearchCompany.Size = new System.Drawing.Size(409, 20);
-            this.txtSearchCompany.TabIndex = 5;
+            this.txtSearchCompanies.Location = new System.Drawing.Point(188, 135);
+            this.txtSearchCompanies.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSearchCompanies.Name = "txtSearchCompanies";
+            this.txtSearchCompanies.Size = new System.Drawing.Size(409, 20);
+            this.txtSearchCompanies.TabIndex = 5;
             // 
             // btnAddNewCompany
             // 
@@ -129,7 +131,7 @@
             // 
             // txtSearchRecentActivity
             // 
-            this.txtSearchRecentActivity.Location = new System.Drawing.Point(806, 135);
+            this.txtSearchRecentActivity.Location = new System.Drawing.Point(735, 135);
             this.txtSearchRecentActivity.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchRecentActivity.Name = "txtSearchRecentActivity";
             this.txtSearchRecentActivity.Size = new System.Drawing.Size(409, 20);
@@ -139,7 +141,7 @@
             // 
             this.lblRecentActivityHeader.AutoSize = true;
             this.lblRecentActivityHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecentActivityHeader.Location = new System.Drawing.Point(916, 105);
+            this.lblRecentActivityHeader.Location = new System.Drawing.Point(846, 105);
             this.lblRecentActivityHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRecentActivityHeader.Name = "lblRecentActivityHeader";
             this.lblRecentActivityHeader.Size = new System.Drawing.Size(202, 24);
@@ -168,11 +170,35 @@
             this.btnRemoveCompany.UseVisualStyleBackColor = true;
             this.btnRemoveCompany.Click += new System.EventHandler(this.btnRemoveCompany_Click);
             // 
+            // btnSearchCompanies
+            // 
+            this.btnSearchCompanies.Location = new System.Drawing.Point(601, 135);
+            this.btnSearchCompanies.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSearchCompanies.Name = "btnSearchCompanies";
+            this.btnSearchCompanies.Size = new System.Drawing.Size(130, 20);
+            this.btnSearchCompanies.TabIndex = 19;
+            this.btnSearchCompanies.Text = "Search";
+            this.btnSearchCompanies.UseVisualStyleBackColor = true;
+            this.btnSearchCompanies.Click += new System.EventHandler(this.btnSearchCompanies_Click);
+            // 
+            // btnSearchRecentActivity
+            // 
+            this.btnSearchRecentActivity.Location = new System.Drawing.Point(1148, 134);
+            this.btnSearchRecentActivity.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSearchRecentActivity.Name = "btnSearchRecentActivity";
+            this.btnSearchRecentActivity.Size = new System.Drawing.Size(130, 20);
+            this.btnSearchRecentActivity.TabIndex = 20;
+            this.btnSearchRecentActivity.Text = "Search";
+            this.btnSearchRecentActivity.UseVisualStyleBackColor = true;
+            this.btnSearchRecentActivity.Click += new System.EventHandler(this.btnSearchRecentActivity_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1287, 462);
+            this.Controls.Add(this.btnSearchRecentActivity);
+            this.Controls.Add(this.btnSearchCompanies);
             this.Controls.Add(this.btnRemoveCompany);
             this.Controls.Add(this.btnOpenCompany);
             this.Controls.Add(this.lblRecentActivityHeader);
@@ -182,7 +208,7 @@
             this.Controls.Add(this.lblOptions);
             this.Controls.Add(this.btnUpdateCompany);
             this.Controls.Add(this.btnAddNewCompany);
-            this.Controls.Add(this.txtSearchCompany);
+            this.Controls.Add(this.txtSearchCompanies);
             this.Controls.Add(this.lblCompaniesHeader);
             this.Controls.Add(this.lstAllCompanies);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -198,7 +224,7 @@
 
         private System.Windows.Forms.ListBox lstAllCompanies;
         private System.Windows.Forms.Label lblCompaniesHeader;
-        private System.Windows.Forms.TextBox txtSearchCompany;
+        private System.Windows.Forms.TextBox txtSearchCompanies;
         private System.Windows.Forms.Button btnAddNewCompany;
         private System.Windows.Forms.Button btnUpdateCompany;
         private System.Windows.Forms.Label lblOptions;
@@ -208,6 +234,8 @@
         private System.Windows.Forms.Label lblRecentActivityHeader;
         private System.Windows.Forms.Button btnOpenCompany;
         private System.Windows.Forms.Button btnRemoveCompany;
+        private System.Windows.Forms.Button btnSearchCompanies;
+        private System.Windows.Forms.Button btnSearchRecentActivity;
     }
 }
 
