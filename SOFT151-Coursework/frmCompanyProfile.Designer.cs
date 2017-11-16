@@ -37,8 +37,7 @@
             this.btnUpdateCar = new System.Windows.Forms.Button();
             this.btnDeleteCar = new System.Windows.Forms.Button();
             this.btnAddNewCar = new System.Windows.Forms.Button();
-            this.btnMakeComments = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnViewCarInfo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblCompanyName
@@ -104,7 +103,7 @@
             // btnUpdateCar
             // 
             this.btnUpdateCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateCar.Location = new System.Drawing.Point(604, 297);
+            this.btnUpdateCar.Location = new System.Drawing.Point(308, 485);
             this.btnUpdateCar.Name = "btnUpdateCar";
             this.btnUpdateCar.Size = new System.Drawing.Size(142, 41);
             this.btnUpdateCar.TabIndex = 6;
@@ -115,7 +114,7 @@
             // btnDeleteCar
             // 
             this.btnDeleteCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteCar.Location = new System.Drawing.Point(604, 439);
+            this.btnDeleteCar.Location = new System.Drawing.Point(456, 485);
             this.btnDeleteCar.Name = "btnDeleteCar";
             this.btnDeleteCar.Size = new System.Drawing.Size(142, 41);
             this.btnDeleteCar.TabIndex = 7;
@@ -126,7 +125,7 @@
             // btnAddNewCar
             // 
             this.btnAddNewCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNewCar.Location = new System.Drawing.Point(604, 155);
+            this.btnAddNewCar.Location = new System.Drawing.Point(160, 485);
             this.btnAddNewCar.Name = "btnAddNewCar";
             this.btnAddNewCar.Size = new System.Drawing.Size(142, 41);
             this.btnAddNewCar.TabIndex = 8;
@@ -134,34 +133,23 @@
             this.btnAddNewCar.UseVisualStyleBackColor = true;
             this.btnAddNewCar.Click += new System.EventHandler(this.btnAddNewCar_Click);
             // 
-            // btnMakeComments
+            // btnViewCarInfo
             // 
-            this.btnMakeComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMakeComments.Location = new System.Drawing.Point(604, 368);
-            this.btnMakeComments.Name = "btnMakeComments";
-            this.btnMakeComments.Size = new System.Drawing.Size(142, 41);
-            this.btnMakeComments.TabIndex = 9;
-            this.btnMakeComments.Text = "Comment On Car";
-            this.btnMakeComments.UseVisualStyleBackColor = true;
-            this.btnMakeComments.Click += new System.EventHandler(this.btnMakeComments_Click);
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(604, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 41);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "View Selected Car";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnViewCarInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewCarInfo.Location = new System.Drawing.Point(12, 485);
+            this.btnViewCarInfo.Name = "btnViewCarInfo";
+            this.btnViewCarInfo.Size = new System.Drawing.Size(142, 41);
+            this.btnViewCarInfo.TabIndex = 10;
+            this.btnViewCarInfo.Text = "View Selected Car";
+            this.btnViewCarInfo.UseVisualStyleBackColor = true;
+            this.btnViewCarInfo.Click += new System.EventHandler(this.btnViewCarInfo_Click);
             // 
             // frmCompanyProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 492);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnMakeComments);
+            this.ClientSize = new System.Drawing.Size(612, 535);
+            this.Controls.Add(this.btnViewCarInfo);
             this.Controls.Add(this.btnAddNewCar);
             this.Controls.Add(this.btnDeleteCar);
             this.Controls.Add(this.btnUpdateCar);
@@ -189,7 +177,6 @@
         private System.Windows.Forms.Button btnUpdateCar;
         private System.Windows.Forms.Button btnDeleteCar;
         private System.Windows.Forms.Button btnAddNewCar;
-        private System.Windows.Forms.Button btnMakeComments;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnViewCarInfo;
     }
 }

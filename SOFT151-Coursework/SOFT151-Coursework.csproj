@@ -48,6 +48,12 @@
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="frmCarProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCarProfile.Designer.cs">
+      <DependentUpon>frmCarProfile.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCompanyProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +80,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCarProfile.resx">
+      <DependentUpon>frmCarProfile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCompanyProfile.resx">
       <DependentUpon>frmCompanyProfile.cs</DependentUpon>
     </EmbeddedResource>

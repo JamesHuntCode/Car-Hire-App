@@ -12,7 +12,7 @@ namespace SOFT151_Coursework
 {
     public partial class frmMain : Form
     {
-        List<Company> companies = new List<Company>(); // List of all companies
+        private List<Company> companies = new List<Company>(); // List of all companies
 
         public frmMain()
         {

@@ -26,14 +26,14 @@ namespace SOFT151_Coursework
 
             // Load pre-loaded information if the user wants to edit:
 
-            if (formName == "Update Car Information") // Load in current company's information
+            if (formName == "Update Car Information") // Load in current car's information
             {
                 this.txtCarID.Text = Convert.ToString(car.GetId());
                 this.txtCarMake.Text = car.GetMake();
                 this.txtCarModel.Text = car.GetModel();
                 this.txtCarReg.Text = car.GetReg();
                 this.txtCarFuelType.Text = car.GetFuelType();
-                //this.dtpLastServiced.Value = 
+                this.dtpLastServiced.Value = DateTime.Today; 
                 this.txtComments.Text = car.GetComments();
             }
         }
@@ -51,7 +51,7 @@ namespace SOFT151_Coursework
             string newCarModel = "";
             string newCarReg = "";
             string newCarFuelType = "";
-            //newDateLastServiced = new DateTime();
+            DateTime newDateLastServiced = new DateTime();
             string newComments = "";
 
             try
@@ -61,7 +61,7 @@ namespace SOFT151_Coursework
                 newCarModel = this.txtCarModel.Text;
                 newCarReg = this.txtCarReg.Text;
                 newCarFuelType = this.txtCarFuelType.Text;
-                newDateLastServiced = this.dtpLastServiced.Value.Date;
+                newDateLastServiced = this.dtpLastServiced.Value;
                 newComments = this.txtComments.Text;
             }
             catch (Exception err)

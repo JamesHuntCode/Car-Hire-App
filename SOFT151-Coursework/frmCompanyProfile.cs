@@ -107,17 +107,53 @@ namespace SOFT151_Coursework
 
             // Push notification to the user's recent activity: (COME BACK TO THIS)
 
-
+            
         }
 
         private void btnDeleteCar_Click(object sender, EventArgs e) // User wants to remove a car from the company's records
         {
+            // Make sure the user has selected a car to remove:
 
+            if (this.lstListCompanyCars.SelectedIndex == -1) // User has not selected a car
+            {
+                MessageBox.Show("Make sure you select a car to remove."); // Alert the user
+            }
+            else
+            {
+                // Proceed with deletion of selected company:
+
+                this.currentCompany.removeCar(this.currentCompany.GetAllCars()[this.lstListCompanyCars.SelectedIndex]);
+
+                //Display the updated company information:
+
+                this.lstListCompanyCars.Items.Clear();
+                updateList(this.currentCompany.GetAllCars());
+
+                // Push notification to the user's recent activity: (COME BACK TO THIS)
+
+                
+            }
         }
 
-        private void btnMakeComments_Click(object sender, EventArgs e) // User wants to make comments about a specific car
+        private void btnViewCarInfo_Click(object sender, EventArgs e) // User wants to see a car's full information breakdown
         {
+            // Make sure the user has selected a car to remove:
 
+            if (this.lstListCompanyCars.SelectedIndex == -1) // User has not selected a car
+            {
+                MessageBox.Show("Make sure you select a car to view."); // Alert the user
+            }
+            else
+            {
+                // Generate form allowing the user to view the selected car's full profile:
+
+                frmCarProfile popup = new frmCarProfile(this.currentCompany.GetAllCars()[this.lstListCompanyCars.SelectedIndex]);
+                popup.ShowDialog(this);
+
+                // Push notification to the user's recent activity: (COME BACK TO THIS)
+
+                
+            }
         }
     }
 }
