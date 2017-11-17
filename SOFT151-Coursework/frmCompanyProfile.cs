@@ -12,6 +12,8 @@ namespace SOFT151_Coursework
 {
     public partial class frmCompanyProfile : Form
     {
+        private List<Car> carSearchResults = new List<Car>();
+
         private Company currentCompany;
 
         private frmMain mainForm;
@@ -29,16 +31,15 @@ namespace SOFT151_Coursework
             this.lblCarCount.Text = "Cars rented: " + Convert.ToString(company.GetNumberOfCars());
             this.lblCompanyPostcode.Text = "Postcode: " + company.GetPostcode();
 
+            currentCompany = company;
+
             // Display all of the companies cars:
 
-            List<Car> companyCars = company.GetAllCars();
-
-            for (int i = 0; i < companyCars.Count; i++)
+            for (int i = 0; i < this.currentCompany.GetAllCars().Count; i++)
             {
-                this.lstListCompanyCars.Items.Add(companyCars[i].PrintSummary());
+                this.lstListCompanyCars.Items.Add(this.currentCompany.GetAllCars()[i].PrintSummary());
             }
 
-            currentCompany = company;
 
             // Set up the color layout of the form:
 
@@ -91,7 +92,7 @@ namespace SOFT151_Coursework
                 // Re-display the updated contents of the company's car list:
 
                 this.lstListCompanyCars.Items.Clear();
-                updateList(this.currentCompany.GetAllCars());
+                this.updateList(this.currentCompany.GetAllCars());
 
                 // Push notification to the user's recent activity:
 
@@ -212,6 +213,72 @@ namespace SOFT151_Coursework
                 mainForm = (frmMain)this.Owner;
 
                 mainForm.CreateNotification("car", "view-info", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
+            }
+        }
+
+        private void searchCar(string userInput, List<Car> list, ListBox lstBox) // Method used to search through the company's list of cars and display a result (if present)
+        {
+            this.carSearchResults.Clear();
+
+            bool match = false;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].GetMake().ToUpper() == userInput.ToUpper() || Convert.ToString(list[i].GetId()) == userInput || list[i].GetModel().ToUpper() == userInput.ToUpper())
+                {
+                    match = true;
+
+                    this.carSearchResults.Add(list[i]);
+                }
+            }
+
+            if (!match) // Dispay no results message (there has not been a match)
+            {
+                lstBox.Items.Clear();
+
+                lstBox.Items.Add("Oops! No cars found! Click refresh and try again.");
+            }
+            else
+            {
+                lstBox.Items.Clear();
+
+                for (int j = 0; j < this.carSearchResults.Count; j++)
+                {
+                    lstBox.Items.Add(this.carSearchResults[j].PrintSummary());
+                }
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e) // User wants to search through company's car record
+        {
+            string userInput = "";
+
+            try
+            {
+                userInput = this.txtSearchCars.Text;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            this.searchCar(userInput, this.currentCompany.GetAllCars(), this.lstListCompanyCars); // Search for a matching element
+
+            // Push notification to the user's recent activity: 
+
+            mainForm = (frmMain)this.Owner;
+
+            mainForm.CreateNotification("car", "search", userInput, DateTime.Now.ToShortTimeString(), this.currentCompany.GetName());
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e) // User wants to bring back up the whole list of cars
+        {
+            this.lstListCompanyCars.Items.Clear();
+            this.carSearchResults.Clear();
+
+            for (int i = 0; i < this.currentCompany.GetAllCars().Count; i++)
+            {
+                this.lstListCompanyCars.Items.Add(this.currentCompany.GetAllCars()[i].PrintSummary());
             }
         }
     }

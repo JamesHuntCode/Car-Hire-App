@@ -23,7 +23,7 @@ namespace SOFT151_Coursework
 
         // Set up StreamReader / StreamWriter:
 
-        //StreamReader mySR;
+        StreamReader mySR;
         //StreamWriter mySW;
 
         public frmMain()
@@ -35,11 +35,11 @@ namespace SOFT151_Coursework
         {
             #region generate a few hard coded cars and companies to work with:
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 30; i++)
             {
-                companies.Add(new Company(i + 1, "Company " + (i + 1), "Example address", "Example postcode")); 
+                companies.Add(new Company(i + 1, "Company " + (i + 1), "Example address", "Example postcode"));
 
-                for (int j = 0; j < 10; j++) 
+                for (int j = 0; j < 30; j++)
                 {
                     companies[i].AddNewCar(new Car(j + 1, "Random Make", "Random Model", "123456", "Petrol", new DateTime(), "No comments yet"));
                 }
@@ -51,19 +51,59 @@ namespace SOFT151_Coursework
 
             #region prepare to read from a file:
 
-            //string path = "filename.txt";
+            string path = @"fileName.txt"; // Location of the file (example name used)
 
+            bool isValid = true;
+
+            // Retrieve file from specified path or catch error if one becomes present:
+
+            try
+            {
+                mySR = new StreamReader(path);
+            }
+            catch (FileNotFoundException err) // Catch exception if the file has not been found
+            {
+                MessageBox.Show(err.Message);
+                isValid = false;
+            }
+            catch (DirectoryNotFoundException err) // Catch exception if the directory cannot be located
+            {
+                MessageBox.Show(err.Message);
+                isValid = false;
+            }
+            catch (PathTooLongException err) // Catch exception if the path specified is too long
+            {
+                MessageBox.Show(err.Message);
+                isValid = false;
+            }
+            catch (Exception err) // Catch general exception if it is not one of the above
+            {
+                MessageBox.Show(err.Message);
+                isValid = false;
+            }
+
+            if (isValid) // No exceptions have been thrown - safe to continue
+            {
+                string firstLine = mySR.ReadLine();
+                MessageBox.Show(firstLine); 
+                
+                // PROGRAM CAN RUN THIS CODE - READING FILES WORKS AS INTENDED 
+            }
+     
             #endregion
 
+            // Prepare page for load:
+
             this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
+            this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
 
             // Set up the color layout of the form:
 
-            Color myBG = ColorTranslator.FromHtml("#333");
+            Color myBG = ColorTranslator.FromHtml("#333"); // Change background color to graphite
 
             this.BackColor = myBG;
 
-            foreach (Label l in Controls.OfType<Label>())
+            foreach (Label l in Controls.OfType<Label>()) // Change all label elements to orange
             {
                 l.ForeColor = Color.Orange;
             }
@@ -87,9 +127,14 @@ namespace SOFT151_Coursework
             }
         }
 
+        public void writeFile(string path) // Method used to write to files where needed
+        {
+            // Control all updating / writing of files from within this method
+        }
+
         // Method used to add notifications to the users' recent activity tab:
 
-        public void CreateNotification(string notificationType, string action, string affectedElement, string theTime)
+        public void CreateNotification(string notificationType, string action, string affectedElement, string theTime, string affectedElement2 = null)
         {
             string generatedNotification = "";
 
@@ -133,6 +178,16 @@ namespace SOFT151_Coursework
                     else
                     {
                         generatedNotification = "You removed a car from the records of '" + affectedElement + "' @ " + theTime + ".";
+                    }
+                    break;
+                case "search": // User has searched for a company / car
+                    if (notificationType == "company")
+                    {
+                        generatedNotification = "You searched for '" + affectedElement + "' in your list of companies @ " + theTime + ".";
+                    }
+                    else
+                    {
+                        generatedNotification = "You searched for '" + affectedElement + "' in the records of '" + affectedElement2 + "' @ " + theTime + "."; 
                     }
                     break;
                 default: // Action performed by the user is unknown
@@ -295,7 +350,7 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].GetName().ToUpper() == userInput.ToUpper())
+                if (list[i].GetName().ToUpper() == userInput.ToUpper() || Convert.ToString(list[i].GetId()) == userInput)
                 {
                     match = true;
 
@@ -328,7 +383,7 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].Contains(userInput))
+                if (list[i].ToUpper().Contains(userInput.ToUpper()))
                 {
                     match = true;
 
@@ -367,6 +422,8 @@ namespace SOFT151_Coursework
             }
 
             this.searchCompanies(userInput, this.companies, this.lstAllCompanies); // Search for a matching element
+
+            this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
         }
 
         private void btnSearchRecentActivity_Click(object sender, EventArgs e) // User wants to search through their recent activity 

@@ -14,6 +14,7 @@ namespace SOFT151_Coursework
         private string name;
         private string address;
         private string postcode;
+        private int numberOfCars;
 
         // Array list used to store information about the companies cars:
 
@@ -47,10 +48,10 @@ namespace SOFT151_Coursework
         {
             this.postcode = companyPostcode;
         }
-        public void AddNewCar(Car newCar) // Method used to add a new car to the company's records
+        public void SetNumberOfCars(int numCars)
         {
-            this.cars.Add(newCar);
-        } 
+            this.numberOfCars = numCars;
+        }
 
         // Getter Methods:
 
@@ -77,10 +78,14 @@ namespace SOFT151_Coursework
         public List<Car> GetAllCars() // Method used to obtain a full list of all of the company's cars
         {
             return this.cars;
-        } 
+        }
 
         // Extra Methods:
-        
+
+        public void AddNewCar(Car newCar) // Method used to add a new car to the company's records
+        {
+            this.cars.Add(newCar);
+        }
         public void removeCar(Car car) // Method used to remove a specific car from the companies records
         {
             this.cars.Remove(car);
