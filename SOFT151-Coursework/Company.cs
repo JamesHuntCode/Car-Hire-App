@@ -88,7 +88,7 @@ namespace SOFT151_Coursework
 
         public string PrintSummary() // Used to retrieve a summary of the company's information
         {
-            return "Company name: " + name + " <-----> (ID number: " + idNumber.ToString() + ")";
+            return name + " - (ID: " + Convert.ToString(idNumber) + ")";
         }
     }
 }

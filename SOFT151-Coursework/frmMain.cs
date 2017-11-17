@@ -16,6 +16,10 @@ namespace SOFT151_Coursework
 
         private List<string> notifications = new List<string>(); // List of all notifications
 
+        private List<Company> companySearchResults = new List<Company>(); // List of all search results (company based)
+
+        private List<string> recentActivitySearchResults = new List<string>(); // List of all search results (notifications)
+
         public frmMain()
         {
             InitializeComponent();
@@ -52,7 +56,7 @@ namespace SOFT151_Coursework
         {
             this.lstRecentActivity.Items.Clear();
 
-            for (int i = 0; i < notifications.Count; i++)
+            for (int i = 0; i < this.notifications.Count; i++)
             {
                 this.lstRecentActivity.Items.Add(list[i]);
             }
@@ -111,9 +115,9 @@ namespace SOFT151_Coursework
                     break;
             }
 
-            notifications.Add(generatedNotification); // Push the new notification into the implemented list
+            this.notifications.Add(generatedNotification); // Push the new notification into the implemented list
 
-            UpdateNotifications(notifications); // Refresh the list 
+            this.UpdateNotifications(notifications); // Refresh the list 
         }
 
         // User is interacting with the different features of the program (buttons):
@@ -132,9 +136,9 @@ namespace SOFT151_Coursework
 
             bool match = false;
 
-            for (int i = 0; i < companies.Count; i++)
+            for (int i = 0; i < this.companies.Count; i++)
             {
-                if (companies[i].GetName().ToUpper() == companyName.ToUpper()) // User has entered a company name that already exists
+                if (this.companies[i].GetName().ToUpper() == companyName.ToUpper()) // User has entered a company name that already exists
                 {
                     match = true;
                 }
@@ -147,11 +151,11 @@ namespace SOFT151_Coursework
                 // Re-display the updated contents of the companies list:
 
                 this.lstAllCompanies.Items.Clear();
-                updateList(companies);
+                this.updateList(companies);
 
                 // Push notification to the user's recent activity:
 
-                CreateNotification("company", "add", companyName);
+                this.CreateNotification("company", "add", companyName);
             }
             else
             {
@@ -192,7 +196,7 @@ namespace SOFT151_Coursework
 
             // Push notification to the user's recent activity:
 
-            CreateNotification("company", "update", oldRecord.GetName());
+            this.CreateNotification("company", "update", oldRecord.GetName());
         }
 
         private void btnOpenCompany_Click(object sender, EventArgs e)
@@ -205,7 +209,7 @@ namespace SOFT151_Coursework
             {
                 // Push notification to user's recent activity:
 
-                CreateNotification("company", "view-info", companies[this.lstAllCompanies.SelectedIndex].GetName());
+                CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName());
 
                 // Generate form allowing the user to view the selected company's full profile:
 
@@ -226,7 +230,7 @@ namespace SOFT151_Coursework
             {
                 // Push notification to the user's recent activity:
 
-                CreateNotification("company", "remove", companies[this.lstAllCompanies.SelectedIndex].GetName());
+                this.CreateNotification("company", "remove", companies[this.lstAllCompanies.SelectedIndex].GetName());
 
                 // Proceed with deletion of selected company:
 
@@ -235,23 +239,74 @@ namespace SOFT151_Coursework
                 //Display the updated company information:
 
                 this.lstAllCompanies.Items.Clear();
-                updateList(companies);
+                this.updateList(companies);
             }
         }
 
-        private void search(string userInput, List<Company> list, ListBox lstBox)
+        private void searchCompanies(string userInput, List<Company> list, ListBox lstBox) // Method used to search through the companies list and dispay results
         {
-            bool match = false; 
+            this.companySearchResults.Clear();
+
+            bool match = false;
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].GetName().ToUpper() == userInput)
+                if (list[i].GetName().ToUpper() == userInput.ToUpper())
                 {
                     match = true;
+
+                    this.companySearchResults.Add(list[i]);
                 }
             }
 
-            // CARRY ON FROM HERE
+            if (!match) // Dispay no results message (there has not been a match)
+            {
+                lstBox.Items.Clear();
+
+                lstBox.Items.Add("Oops! No companies found! Click refresh and try again.");
+            }
+            else
+            {
+                lstBox.Items.Clear();
+
+                for (int j = 0; j < this.companySearchResults.Count; j++)
+                {
+                    lstBox.Items.Add(this.companySearchResults[j].PrintSummary());
+                }
+            }
+        }
+
+        private void searchNotifications(string userInput, List<string> list, ListBox lstBox) // Method used to search through the notifications list and display results
+        {
+            this.recentActivitySearchResults.Clear();
+
+            bool match = false;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].Contains(userInput))
+                {
+                    match = true;
+
+                    this.recentActivitySearchResults.Add(list[i]);
+                }
+            }
+
+            if (!match)
+            {
+                lstBox.Items.Clear();
+
+                lstBox.Items.Add("Oops! No recent activity like that has been found! Click refresh and try again.");
+            }
+            else
+            {
+                lstBox.Items.Clear();
+
+                for (int j = 0; j < this.recentActivitySearchResults.Count; j++)
+                {
+                    lstBox.Items.Add(this.recentActivitySearchResults[j]);
+                }
+            }
         }
 
         private void btnSearchCompanies_Click(object sender, EventArgs e) // User wants to search for a company
@@ -267,7 +322,7 @@ namespace SOFT151_Coursework
                 MessageBox.Show(err.Message);
             }
 
-            this.search(userInput, this.companies, this.lstAllCompanies); // Search for a matching element
+            this.searchCompanies(userInput, this.companies, this.lstAllCompanies); // Search for a matching element
         }
 
         private void btnSearchRecentActivity_Click(object sender, EventArgs e) // User wants to search through their recent activity 
@@ -283,7 +338,29 @@ namespace SOFT151_Coursework
                 MessageBox.Show(err.Message);
             }
 
-            this.search(userInput, this.companies, this.lstRecentActivity); // Search for a matching element
+            this.searchNotifications(userInput, this.notifications, this.lstRecentActivity); // Search for a matching element
+        }
+
+        private void btnRefreshCompanies_Click(object sender, EventArgs e) // User wants to refresh their list of companies
+        {
+            this.lstAllCompanies.Items.Clear();
+            this.companySearchResults.Clear();
+
+            for (int i = 0; i < this.companies.Count; i++)
+            {
+                this.lstAllCompanies.Items.Add(this.companies[i].PrintSummary());
+            }
+        }
+
+        private void btnRefreshNotifications_Click(object sender, EventArgs e) // User wants to refresh their notifications tab
+        {
+            this.lstRecentActivity.Items.Clear();
+            this.recentActivitySearchResults.Clear();
+
+            for (int i = 0; i < this.notifications.Count; i++)
+            {
+                this.lstRecentActivity.Items.Add(this.notifications[i]);
+            }
         }
     }
 }
