@@ -45,6 +45,7 @@
             this.btnRefreshCompanies = new System.Windows.Forms.Button();
             this.btnRefreshNotifications = new System.Windows.Forms.Button();
             this.picMainLogo = new System.Windows.Forms.PictureBox();
+            this.lblDisplayDate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -216,11 +217,23 @@
             this.picMainLogo.TabIndex = 23;
             this.picMainLogo.TabStop = false;
             // 
+            // lblDisplayDate
+            // 
+            this.lblDisplayDate.AutoSize = true;
+            this.lblDisplayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDisplayDate.ForeColor = System.Drawing.Color.Black;
+            this.lblDisplayDate.Location = new System.Drawing.Point(1170, 9);
+            this.lblDisplayDate.Name = "lblDisplayDate";
+            this.lblDisplayDate.Size = new System.Drawing.Size(102, 20);
+            this.lblDisplayDate.TabIndex = 24;
+            this.lblDisplayDate.Text = "Todays\' Date";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1277, 596);
+            this.Controls.Add(this.lblDisplayDate);
             this.Controls.Add(this.picMainLogo);
             this.Controls.Add(this.btnRefreshNotifications);
             this.Controls.Add(this.btnRefreshCompanies);
@@ -265,6 +278,7 @@
         private System.Windows.Forms.Button btnRefreshCompanies;
         private System.Windows.Forms.Button btnRefreshNotifications;
         private System.Windows.Forms.PictureBox picMainLogo;
+        private System.Windows.Forms.Label lblDisplayDate;
     }
 }
 

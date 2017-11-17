@@ -55,7 +55,9 @@ namespace SOFT151_Coursework
 
             #endregion
 
-            // Set up the color layout of the application:
+            this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
+
+            // Set up the color layout of the form:
 
             Color myBG = ColorTranslator.FromHtml("#333");
 
@@ -161,7 +163,7 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < this.companies.Count; i++)
             {
-                if (this.companies[i].GetName().ToUpper() == companyName.ToUpper()) // User has entered a company name that already exists
+                if (this.companies[i].GetName().ToUpper() == companyName.ToUpper() || this.companies[i].GetId() == companyID) // User has entered a company name or ID that already exists
                 {
                     match = true;
                 }
@@ -182,7 +184,7 @@ namespace SOFT151_Coursework
             }
             else
             {
-                MessageBox.Show("It looks like you already have a company with that name stored!"); // Alert the user that they may have a duplicate entry 
+                MessageBox.Show("It looks like you already have a company with that name or ID stored!"); // Alert the user that they may have a duplicate entry 
             }
         }
 
@@ -205,21 +207,40 @@ namespace SOFT151_Coursework
 
         public void UpdateCompany(Company oldRecord, int newCompanyID, string newCompanyName, string newCompanyAddress, string newCompanyPostcode)
         {
-            // Update old records:
+            //Check to see if a company with that name or ID already exists:
 
-            oldRecord.SetId(newCompanyID);
-            oldRecord.SetName(newCompanyName);
-            oldRecord.SetAddress(newCompanyAddress);
-            oldRecord.SetPostcode(newCompanyPostcode);
+            bool match = false;
 
-            //Display the updated company information:
+            for (int i = 0; i < companies.Count; i++)
+            {
+                if ((this.companies[i].GetName() == newCompanyName && newCompanyName != oldRecord.GetName()) || (this.companies[i].GetId() == newCompanyID && newCompanyID != oldRecord.GetId()))
+                {
+                    match = true;
+                }
+            }
 
-            this.lstAllCompanies.Items.Clear();
-            updateList(companies);
+            if (!match) // There is not a match - safe to proceed with update of company information
+            {
+                // Update old records:
 
-            // Push notification to the user's recent activity:
+                oldRecord.SetId(newCompanyID);
+                oldRecord.SetName(newCompanyName);
+                oldRecord.SetAddress(newCompanyAddress);
+                oldRecord.SetPostcode(newCompanyPostcode);
 
-            this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
+                //Display the updated company information:
+
+                this.lstAllCompanies.Items.Clear();
+                updateList(companies);
+
+                // Push notification to the user's recent activity:
+
+                this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
+            }
+            else
+            {
+                MessageBox.Show("It looks like you already have a company with that name or ID stored!"); // Alert the user that they may have a duplicate entry 
+            }
         }
 
         private void btnOpenCompany_Click(object sender, EventArgs e)

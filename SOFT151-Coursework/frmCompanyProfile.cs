@@ -39,6 +39,17 @@ namespace SOFT151_Coursework
             }
 
             currentCompany = company;
+
+            // Set up the color layout of the form:
+
+            Color myBG = ColorTranslator.FromHtml("#333");
+
+            this.BackColor = myBG;
+
+            foreach (Label l in Controls.OfType<Label>())
+            {
+                l.ForeColor = Color.Orange;
+            }
         }
 
         private void updateList(List<Car> list) // Method used to loop over the contents of the companies list and display all contents
@@ -61,18 +72,37 @@ namespace SOFT151_Coursework
 
         public void AddNew(Car car)
         {
-            this.currentCompany.AddNewCar(car); // Add the new car to the company's list of cars
+            // Check to see if a car with the same ID already exists:
 
-            // Re-display the updated contents of the company's car list:
+            bool match = false;
 
-            this.lstListCompanyCars.Items.Clear();
-            updateList(this.currentCompany.GetAllCars());
+            for (int i = 0; i < this.currentCompany.GetAllCars().Count; i++)
+            {
+                if (this.currentCompany.GetAllCars()[i].GetId() == car.GetId())
+                {
+                    match = true;
+                }
+            }
 
-            // Push notification to the user's recent activity:
+            if (!match) // There is not a match - safe to proceed with upload of new car
+            {
+                this.currentCompany.AddNewCar(car); // Add the new car to the company's list of cars
 
-            mainForm = (frmMain)this.Owner;
+                // Re-display the updated contents of the company's car list:
 
-            mainForm.CreateNotification("car", "add", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
+                this.lstListCompanyCars.Items.Clear();
+                updateList(this.currentCompany.GetAllCars());
+
+                // Push notification to the user's recent activity:
+
+                mainForm = (frmMain)this.Owner;
+
+                mainForm.CreateNotification("car", "add", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
+            }
+            else
+            {
+                MessageBox.Show("It looks like you already have a car with that ID stored!"); // Alert the user that they may have a duplicate entry 
+            }
         }
 
         private void btnUpdateCar_Click(object sender, EventArgs e) // User wants to update a car's details
@@ -94,26 +124,45 @@ namespace SOFT151_Coursework
 
         public void UpdateCar(Car oldCar, int newCarId, string newCarMake, string newCarModel, string newCarReg, string newFuelType, DateTime newLastServiced, string newComments)
         {
-            // Update old records:
+            // Check to see if a car with the same ID already exists:
 
-            oldCar.SetId(newCarId);
-            oldCar.SetMake(newCarMake);
-            oldCar.SetModel(newCarModel);
-            oldCar.SetRegistration(newCarReg);
-            oldCar.SetFuelType(newFuelType);
-            oldCar.SetDateLastServiced(newLastServiced);
-            oldCar.SetComments(newComments);
+            bool match = false;
 
-            //Display the updated company information:
+            for (int i = 0; i < this.currentCompany.GetAllCars().Count; i++)
+            {
+                if (this.currentCompany.GetAllCars()[i].GetId() == newCarId && newCarId != oldCar.GetId())
+                {
+                    match = true;
+                }
+            }
 
-            this.lstListCompanyCars.Items.Clear();
-            updateList(this.currentCompany.GetAllCars());
+            if (!match) // There is not a match - safe to proceed with upload of new car information
+            {
+                // Update old records:
 
-            // Push notification to the user's recent activity:
+                oldCar.SetId(newCarId);
+                oldCar.SetMake(newCarMake);
+                oldCar.SetModel(newCarModel);
+                oldCar.SetRegistration(newCarReg);
+                oldCar.SetFuelType(newFuelType);
+                oldCar.SetDateLastServiced(newLastServiced);
+                oldCar.SetComments(newComments);
 
-            mainForm = (frmMain)this.Owner;
+                //Display the updated company information:
 
-            mainForm.CreateNotification("car", "update", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
+                this.lstListCompanyCars.Items.Clear();
+                updateList(this.currentCompany.GetAllCars());
+
+                // Push notification to the user's recent activity:
+
+                mainForm = (frmMain)this.Owner;
+
+                mainForm.CreateNotification("car", "update", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
+            }
+            else
+            {
+                MessageBox.Show("It looks like you already have a car with that ID stored!"); // Alert the user that they may have a duplicate entry 
+            }
         }
 
         private void btnDeleteCar_Click(object sender, EventArgs e) // User wants to remove a car from the company's records

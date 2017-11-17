@@ -36,6 +36,17 @@ namespace SOFT151_Coursework
                 this.dtpLastServiced.Value = DateTime.Today; 
                 this.txtComments.Text = car.GetComments();
             }
+
+            // Set up the color layout of the form:
+
+            Color myBG = ColorTranslator.FromHtml("#333");
+
+            this.BackColor = myBG;
+
+            foreach (Label l in Controls.OfType<Label>())
+            {
+                l.ForeColor = Color.Orange;
+            }
         }
 
         // Button Controls:
