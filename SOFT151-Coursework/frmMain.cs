@@ -85,7 +85,8 @@ namespace SOFT151_Coursework
             if (isValid) // No exceptions have been thrown - safe to continue
             {
                 string firstLine = mySR.ReadLine();
-                MessageBox.Show(firstLine); 
+                MessageBox.Show(firstLine);
+                mySR.Close();
                 
                 // PROGRAM CAN RUN THIS CODE - READING FILES WORKS AS INTENDED 
             }
