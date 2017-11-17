@@ -1,0 +1,67 @@
+Southway Library
+23 
+Education Street
+Plymouth
+Devon
+PL69YT
+southway@pcc.gov.uk
+5
+Mr Johnny Sitherley
+The Hobbit
+2002
+3
+123456789
+Mr William shakespeare
+England and its people
+1805
+100
+1235497812
+Mr Green Greenman
+Green is the colour in the world
+1988
+1
+214578565122
+Mr Baggy PussinBoots
+Bagpuss and the Temple of Zoom
+2001
+3
+12354778784
+Miss Liz Shopaholic
+Saturdays are not for working
+2007
+1
+12345744131
+Plymouth Central Library
+212
+Mayflower Road
+Plymouth
+Devon
+PL11RS
+central@pcc.gov.uk
+5
+Mr Johnny Sitherley
+The Hobbit
+2002
+3
+123456789
+Miss Liz Stuart
+The Rabbit and the Fox
+2007
+1
+456789123
+Miss Jane Austin
+C# best programming ever!
+2005
+2
+4567812221
+Mr John C Morgan
+Why is the world round?
+1998
+22
+45789621
+Mrs Gilly Spicer
+Who framed Roger Rabbit?
+2005
+2
+456987125
+

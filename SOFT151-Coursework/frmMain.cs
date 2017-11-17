@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace SOFT151_Coursework
 {
@@ -19,6 +20,11 @@ namespace SOFT151_Coursework
         private List<Company> companySearchResults = new List<Company>(); // List of all search results (company based)
 
         private List<string> recentActivitySearchResults = new List<string>(); // List of all search results (notifications)
+
+        // Set up StreamReader / StreamWriter:
+
+        //StreamReader mySR;
+        //StreamWriter mySW;
 
         public frmMain()
         {
@@ -43,9 +49,15 @@ namespace SOFT151_Coursework
 
             #endregion
 
+            #region prepare to read from a file:
+
+            //string path = "filename.txt";
+
+            #endregion
+
             // Set up the color layout of the application:
 
-            System.Drawing.Color myBG = System.Drawing.ColorTranslator.FromHtml("#333");
+            Color myBG = ColorTranslator.FromHtml("#333");
 
             this.BackColor = myBG;
 
@@ -118,7 +130,7 @@ namespace SOFT151_Coursework
                     }
                     else
                     {
-                        generatedNotification = "You removed a car from the records of '" + affectedElement + "'.";
+                        generatedNotification = "You removed a car from the records of '" + affectedElement + "' @ " + theTime + ".";
                     }
                     break;
                 default: // Action performed by the user is unknown
