@@ -72,7 +72,7 @@ namespace SOFT151_Coursework
 
             mainForm = (frmMain)this.Owner;
 
-            mainForm.CreateNotification("car", "add", currentCompany.GetName());
+            mainForm.CreateNotification("car", "add", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
         }
 
         private void btnUpdateCar_Click(object sender, EventArgs e) // User wants to update a car's details
@@ -113,7 +113,7 @@ namespace SOFT151_Coursework
 
             mainForm = (frmMain)this.Owner;
 
-            mainForm.CreateNotification("car", "update", currentCompany.GetName());
+            mainForm.CreateNotification("car", "update", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
         }
 
         private void btnDeleteCar_Click(object sender, EventArgs e) // User wants to remove a car from the company's records
@@ -130,7 +130,7 @@ namespace SOFT151_Coursework
 
                 mainForm = (frmMain)this.Owner;
 
-                this.mainForm.CreateNotification("car", "remove", this.currentCompany.GetName());
+                this.mainForm.CreateNotification("car", "remove", this.currentCompany.GetName(), DateTime.Now.ToShortTimeString());
 
                 // Proceed with deletion of selected company:
 
@@ -162,7 +162,7 @@ namespace SOFT151_Coursework
 
                 mainForm = (frmMain)this.Owner;
 
-                mainForm.CreateNotification("car", "view-info", currentCompany.GetName());
+                mainForm.CreateNotification("car", "view-info", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
             }
         }
     }

@@ -64,7 +64,7 @@ namespace SOFT151_Coursework
 
         // Method used to add notifications to the users' recent activity tab:
 
-        public void CreateNotification(string notificationType, string action, string affectedElement)
+        public void CreateNotification(string notificationType, string action, string affectedElement, string theTime)
         {
             string generatedNotification = "";
 
@@ -73,37 +73,37 @@ namespace SOFT151_Coursework
                 case "add": // User has added a new company / car
                     if (notificationType == "company")
                     {
-                        generatedNotification = "You added '" + affectedElement + "' to your company records.";
+                        generatedNotification = "You added '" + affectedElement + "' to your company records @ " + theTime + ".";
                     }
                     else
                     {
-                        generatedNotification = "You added a new car to '" + affectedElement + "'.";
+                        generatedNotification = "You added a new car to '" + affectedElement + "' @ " + theTime + ".";
                     }
                     break;
                 case "update": // User has updated a company / car
                     if (notificationType == "company")
                     {
-                        generatedNotification = "You updated '" + affectedElement + "' in your company records.";
+                        generatedNotification = "You updated '" + affectedElement + "' in your company records @ " + theTime + ".";
                     }
                     else
                     {
-                        generatedNotification = "You updated a car which belongs to '" + affectedElement + "'.";
+                        generatedNotification = "You updated a car which belongs to '" + affectedElement + "' @ " + theTime + ".";
                     }
                     break;
                 case "view-info": // User has viewed a company's / car's full profile
                     if (notificationType == "company")
                     {
-                        generatedNotification = "You viewed the full profile of '" + affectedElement + "'.";
+                        generatedNotification = "You viewed the full profile of '" + affectedElement + "' @ " + theTime + ".";
                     }
                     else
                     {
-                        generatedNotification = "You viewed the full profile of a car which belongs to '" + affectedElement + "'.";
+                        generatedNotification = "You viewed the full profile of a car which belongs to '" + affectedElement + "' @ " + theTime + ".";
                     }
                     break;
                 case "remove": // User has removed a company / car
                     if (notificationType == "company")
                     {
-                        generatedNotification = "You removed '" + affectedElement + "' from your company records.";
+                        generatedNotification = "You removed '" + affectedElement + "' from your company records @ " + theTime + ".";
                     }
                     else
                     {
@@ -111,7 +111,7 @@ namespace SOFT151_Coursework
                     }
                     break;
                 default: // Action performed by the user is unknown
-                    generatedNotification = "Unidentified action performed.";
+                    generatedNotification = "Unidentified action performed @ " + theTime + ".";
                     break;
             }
 
@@ -155,7 +155,7 @@ namespace SOFT151_Coursework
 
                 // Push notification to the user's recent activity:
 
-                this.CreateNotification("company", "add", companyName);
+                this.CreateNotification("company", "add", companyName, DateTime.Now.ToShortTimeString());
             }
             else
             {
@@ -196,7 +196,7 @@ namespace SOFT151_Coursework
 
             // Push notification to the user's recent activity:
 
-            this.CreateNotification("company", "update", oldRecord.GetName());
+            this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
         }
 
         private void btnOpenCompany_Click(object sender, EventArgs e)
@@ -209,7 +209,7 @@ namespace SOFT151_Coursework
             {
                 // Push notification to user's recent activity:
 
-                CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName());
+                CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
                 // Generate form allowing the user to view the selected company's full profile:
 
@@ -230,7 +230,7 @@ namespace SOFT151_Coursework
             {
                 // Push notification to the user's recent activity:
 
-                this.CreateNotification("company", "remove", companies[this.lstAllCompanies.SelectedIndex].GetName());
+                this.CreateNotification("company", "remove", companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
                 // Proceed with deletion of selected company:
 
