@@ -54,6 +54,8 @@ namespace SOFT151_Coursework
             DateTime newDateLastServiced = new DateTime();
             string newComments = "";
 
+            bool isValid = true;
+
             try
             {
                 newCarId = Convert.ToInt32(this.txtCarID.Text);
@@ -66,22 +68,28 @@ namespace SOFT151_Coursework
             }
             catch (Exception err)
             {
+                isValid = false;
+                
                 MessageBox.Show(err.Message); // Display error message to the user
 
                 this.Close(); // Close form to stop uploading incomplete information
             }
 
-            if (this.Text == "Add New Car") // Add new company 
+            if (isValid)
             {
-                frmViewCompanyInfo.AddNew(new Car(newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments));
 
-                this.Close(); // Close the form after adding new car details
-            }
-            else if (this.Text == "Update Car Information") // Edit previous company 
-            {
-                frmViewCompanyInfo.UpdateCar(currentCar, newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments);
+                if (this.Text == "Add New Car") // Add new company 
+                {
+                    frmViewCompanyInfo.AddNew(new Car(newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments));
 
-                this.Close(); // Close the form after updating car details
+                    this.Close(); // Close the form after adding new car details
+                }
+                else if (this.Text == "Update Car Information") // Edit previous company 
+                {
+                    frmViewCompanyInfo.UpdateCar(currentCar, newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments);
+
+                    this.Close(); // Close the form after updating car details
+                }
             }
         }
 

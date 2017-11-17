@@ -48,6 +48,8 @@ namespace SOFT151_Coursework
             string newCompanyAddress = "";
             string newCompanyPostcode = "";
 
+            bool isValid = true;
+
             try
             {
                 newCompanyId = Convert.ToInt32(this.txtNewID.Text);
@@ -57,22 +59,28 @@ namespace SOFT151_Coursework
             }
             catch (Exception err)
             {
+                isValid = false;
+
                 MessageBox.Show(err.Message); // Display error message to the user
 
                 this.Close(); // Close form to stop uploading incomplete information
             }
 
-            if (this.Text == "Add New Company") // Add new company 
+            if (isValid)
             {
-                frmMain.AddNew(newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
-                this.Close(); // Close the form after adding new company details
-            }
-            else if (this.Text == "Update Company Information") // Edit previous company 
-            {
-                frmMain.UpdateCompany(currentCompany, newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
+                if (this.Text == "Add New Company") // Add new company 
+                {
+                    frmMain.AddNew(newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
-                this.Close(); // Close the form after updating company details
+                    this.Close(); // Close the form after adding new company details
+                }
+                else if (this.Text == "Update Company Information") // Edit previous company 
+                {
+                    frmMain.UpdateCompany(currentCompany, newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
+
+                    this.Close(); // Close the form after updating company details
+                }
             }
         }
 

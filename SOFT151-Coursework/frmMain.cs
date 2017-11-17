@@ -42,6 +42,17 @@ namespace SOFT151_Coursework
             updateList(companies);
 
             #endregion
+
+            // Set up the color layout of the application:
+
+            System.Drawing.Color myBG = System.Drawing.ColorTranslator.FromHtml("#333");
+
+            this.BackColor = myBG;
+
+            foreach (Label l in Controls.OfType<Label>())
+            {
+                l.ForeColor = Color.Orange;
+            }
         }
 
         private void updateList(List<Company> list) // Method used to loop over the contents of the companies list and display all contents
