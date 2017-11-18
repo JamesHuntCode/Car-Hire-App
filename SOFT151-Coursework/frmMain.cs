@@ -142,6 +142,7 @@ namespace SOFT151_Coursework
             switch (action)
             {
                 case "add": // User has added a new company / car
+
                     if (notificationType == "company")
                     {
                         generatedNotification = "You added '" + affectedElement + "' to your company records @ " + theTime + ".";
@@ -150,8 +151,10 @@ namespace SOFT151_Coursework
                     {
                         generatedNotification = "You added a new car to '" + affectedElement + "' @ " + theTime + ".";
                     }
+
                     break;
                 case "update": // User has updated a company / car
+
                     if (notificationType == "company")
                     {
                         generatedNotification = "You updated '" + affectedElement + "' in your company records @ " + theTime + ".";
@@ -160,8 +163,10 @@ namespace SOFT151_Coursework
                     {
                         generatedNotification = "You updated a car which belongs to '" + affectedElement + "' @ " + theTime + ".";
                     }
+
                     break;
                 case "view-info": // User has viewed a company's / car's full profile
+
                     if (notificationType == "company")
                     {
                         generatedNotification = "You viewed the full profile of '" + affectedElement + "' @ " + theTime + ".";
@@ -170,8 +175,10 @@ namespace SOFT151_Coursework
                     {
                         generatedNotification = "You viewed the full profile of a car which belongs to '" + affectedElement + "' @ " + theTime + ".";
                     }
+
                     break;
                 case "remove": // User has removed a company / car
+
                     if (notificationType == "company")
                     {
                         generatedNotification = "You removed '" + affectedElement + "' from your company records @ " + theTime + ".";
@@ -180,8 +187,10 @@ namespace SOFT151_Coursework
                     {
                         generatedNotification = "You removed a car from the records of '" + affectedElement + "' @ " + theTime + ".";
                     }
+
                     break;
                 case "search": // User has searched for a company / car
+
                     if (notificationType == "company")
                     {
                         generatedNotification = "You searched for '" + affectedElement + "' in your list of companies @ " + theTime + ".";
@@ -190,9 +199,12 @@ namespace SOFT151_Coursework
                     {
                         generatedNotification = "You searched for '" + affectedElement + "' in the records of '" + affectedElement2 + "' @ " + theTime + "."; 
                     }
+
                     break;
                 default: // Action performed by the user is unknown
+
                     generatedNotification = "Unidentified action performed @ " + theTime + ".";
+
                     break;
             }
 
@@ -287,7 +299,7 @@ namespace SOFT151_Coursework
                 //Display the updated company information:
 
                 this.lstAllCompanies.Items.Clear();
-                updateList(companies);
+                this.updateList(companies);
 
                 // Push notification to the user's recent activity:
 
@@ -309,7 +321,7 @@ namespace SOFT151_Coursework
             {
                 // Push notification to user's recent activity:
 
-                CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
+                this.CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
                 // Generate form allowing the user to view the selected company's full profile:
 
@@ -320,6 +332,8 @@ namespace SOFT151_Coursework
 
         private void btnRemoveCompany_Click(object sender, EventArgs e)
         {
+            string companySummary = "";
+
             // Make sure the user has selected a company to remove:
 
             if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
@@ -328,19 +342,36 @@ namespace SOFT151_Coursework
             }
             else
             {
-                // Push notification to the user's recent activity:
+                companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
 
-                this.CreateNotification("company", "remove", companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
+                for (int i = 0; i < this.companies.Count; i++)
+                {
+                    if (companySummary == this.companies[i].PrintSummary())
+                    {
+                        // Push notification to the user's recent activity:
 
-                // Proceed with deletion of selected company:
+                        this.CreateNotification("company", "remove", companies[i].GetName(), DateTime.Now.ToShortTimeString());
 
-                this.companies.Remove(companies[this.lstAllCompanies.SelectedIndex]);
+                        // Proceed with deletion of selected company:
+
+                        this.companies.Remove(companies[i]);
+
+                        break;
+                    }
+                }
 
                 //Display the updated company information:
 
                 this.lstAllCompanies.Items.Clear();
                 this.updateList(companies);
             }
+        }
+
+        private int locateCorrectTarget(string checkFor, List<Company> list) // Method used to locate the correct company in the list of companies
+        {
+            // Come back to this method 
+            // Return index of matched element
+            return 1;
         }
 
         private void searchCompanies(string userInput, List<Company> list, ListBox lstBox) // Method used to search through the companies list and dispay results
