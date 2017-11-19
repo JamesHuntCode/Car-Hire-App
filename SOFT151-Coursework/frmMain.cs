@@ -84,11 +84,12 @@ namespace SOFT151_Coursework
 
             if (isValid) // No exceptions have been thrown - safe to continue
             {
-                string firstLine = mySR.ReadLine();
-                MessageBox.Show(firstLine);
-                mySR.Close();
-                
-                // PROGRAM CAN RUN THIS CODE - READING FILES WORKS AS INTENDED 
+                using (mySR)
+                {
+                    string firstLine = mySR.ReadLine();
+                    MessageBox.Show(firstLine);
+                    // PROGRAM CAN RUN THIS CODE - READING FILES WORKS AS INTENDED 
+                }
             }
      
             #endregion
@@ -161,7 +162,7 @@ namespace SOFT151_Coursework
                     }
                     else
                     {
-                        generatedNotification = "You updated a car which belongs to '" + affectedElement + "' @ " + theTime + ".";
+                        generatedNotification = "You updated a car (ID: " + affectedElement + ") which belongs to '" + affectedElement2 + "' @ " + theTime + ".";
                     }
 
                     break;
@@ -185,7 +186,7 @@ namespace SOFT151_Coursework
                     }
                     else
                     {
-                        generatedNotification = "You removed a car from the records of '" + affectedElement + "' @ " + theTime + ".";
+                        generatedNotification = "You removed a car (ID: " + affectedElement + ") from the records of '" + affectedElement2 + "' @ " + theTime + ".";
                     }
 
                     break;
@@ -258,6 +259,8 @@ namespace SOFT151_Coursework
 
         private void btnUpdateCompany_Click(object sender, EventArgs e)
         {
+            string companySummary = "";
+
             // Make sure the user has selected a company to update:
 
             if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
@@ -266,9 +269,13 @@ namespace SOFT151_Coursework
             }
             else
             {
+                companySummary = companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+
+                int matchedIndex = this.locateCorrectTarget(companySummary, this.companies);
+
                 // Generate a new dynamic for allowing the user to edit a previous company's information:
 
-                frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information", companies[lstAllCompanies.SelectedIndex]);
+                frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information", companies[matchedIndex]);
                 popup.ShowDialog(this);
             }
         }
@@ -313,19 +320,27 @@ namespace SOFT151_Coursework
 
         private void btnOpenCompany_Click(object sender, EventArgs e)
         {
+            string companySummary = "";
+
+            // Make sure the user has selected a company to view:
+
             if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a compay's profile to view 
             {
                 MessageBox.Show("Make sure you select a company to view."); // Alert the user
             }
             else 
             {
+                companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+
+                int matchedIndex = this.locateCorrectTarget(companySummary, this.companies);
+
                 // Push notification to user's recent activity:
 
-                this.CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
+                this.CreateNotification("company", "view-info", this.companies[matchedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
                 // Generate form allowing the user to view the selected company's full profile:
 
-                frmCompanyProfile popup = new frmCompanyProfile(companies[this.lstAllCompanies.SelectedIndex]);
+                frmCompanyProfile popup = new frmCompanyProfile(companies[matchedIndex]);
                 popup.Show(this);
             }
         }
@@ -344,21 +359,15 @@ namespace SOFT151_Coursework
             {
                 companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
 
-                for (int i = 0; i < this.companies.Count; i++)
-                {
-                    if (companySummary == this.companies[i].PrintSummary())
-                    {
-                        // Push notification to the user's recent activity:
+                int matchedIndex = this.locateCorrectTarget(companySummary, this.companies);
 
-                        this.CreateNotification("company", "remove", companies[i].GetName(), DateTime.Now.ToShortTimeString());
+                // Push notification to the user's recent activity:
 
-                        // Proceed with deletion of selected company:
+                this.CreateNotification("company", "remove", companies[matchedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
-                        this.companies.Remove(companies[i]);
+                // Proceed with deletion of selected company:
 
-                        break;
-                    }
-                }
+                this.companies.Remove(companies[matchedIndex]);
 
                 //Display the updated company information:
 
@@ -369,9 +378,15 @@ namespace SOFT151_Coursework
 
         private int locateCorrectTarget(string checkFor, List<Company> list) // Method used to locate the correct company in the list of companies
         {
-            // Come back to this method 
-            // Return index of matched element
-            return 1;
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (checkFor == list[i].PrintSummary())
+                {
+                    return i; // Return the matched index
+                }
+            }
+
+            return 0;
         }
 
         private void searchCompanies(string userInput, List<Company> list, ListBox lstBox) // Method used to search through the companies list and dispay results
@@ -453,9 +468,16 @@ namespace SOFT151_Coursework
                 MessageBox.Show(err.Message);
             }
 
-            this.searchCompanies(userInput, this.companies, this.lstAllCompanies); // Search for a matching element
+            if (userInput == "") // Validate user input
+            {
+                MessageBox.Show("Make sure to type in what you want to search for.");
+            }
+            else
+            {
+                this.searchCompanies(userInput, this.companies, this.lstAllCompanies); // Search for a matching element
 
-            this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
+                this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
+            }
         }
 
         private void btnSearchRecentActivity_Click(object sender, EventArgs e) // User wants to search through their recent activity 
@@ -471,7 +493,14 @@ namespace SOFT151_Coursework
                 MessageBox.Show(err.Message);
             }
 
-            this.searchNotifications(userInput, this.notifications, this.lstRecentActivity); // Search for a matching element
+            if (userInput == "") // Validate user input
+            {
+                MessageBox.Show("Make sure to type in what you want to search for.");
+            }
+            else
+            {
+                this.searchNotifications(userInput, this.notifications, this.lstRecentActivity); // Search for a matching element
+            }
         }
 
         private void btnRefreshCompanies_Click(object sender, EventArgs e) // User wants to refresh their list of companies

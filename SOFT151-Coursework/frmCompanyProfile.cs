@@ -61,6 +61,19 @@ namespace SOFT151_Coursework
             }
         }
 
+        private int locateCorrectTarget(string checkFor, List<Car> list) // Method used to locate the correct car in the list of this compay's cars
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (checkFor == list[i].PrintSummary())
+                {
+                    return i; // Return the matched index
+                }
+            }
+
+            return 0;
+        }
+
         // User is interacting with the buttons on the form:
 
         private void btnAddNewCar_Click(object sender, EventArgs e) // User wants to add a new car to the company's records
@@ -107,7 +120,9 @@ namespace SOFT151_Coursework
         }
 
         private void btnUpdateCar_Click(object sender, EventArgs e) // User wants to update a car's details
-        { 
+        {
+            string carSummary = "";
+
             // Make sure the user has selected a company to update:
 
             if (this.lstListCompanyCars.SelectedIndex == -1) // User has not selected a company
@@ -116,9 +131,13 @@ namespace SOFT151_Coursework
             }
             else
             {
+                carSummary = this.lstListCompanyCars.Items[this.lstListCompanyCars.SelectedIndex].ToString();
+
+                int matchedIndex = this.locateCorrectTarget(carSummary, this.currentCompany.GetAllCars());
+
                 // Generate a new dynamic form allowing the user to add a new car:
-                
-                frmDynamicAddOrUpdateCar popup = new frmDynamicAddOrUpdateCar("Update Car Information", currentCompany.GetAllCars()[this.lstListCompanyCars.SelectedIndex]);
+
+                frmDynamicAddOrUpdateCar popup = new frmDynamicAddOrUpdateCar("Update Car Information", currentCompany.GetAllCars()[matchedIndex]);
                 popup.ShowDialog(this);
             }
         }
@@ -158,7 +177,7 @@ namespace SOFT151_Coursework
 
                 mainForm = (frmMain)this.Owner;
 
-                mainForm.CreateNotification("car", "update", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
+                mainForm.CreateNotification("car", "update", Convert.ToString(oldCar.GetId()), DateTime.Now.ToShortTimeString(), currentCompany.GetName());
             }
             else
             {
@@ -168,6 +187,8 @@ namespace SOFT151_Coursework
 
         private void btnDeleteCar_Click(object sender, EventArgs e) // User wants to remove a car from the company's records
         {
+            string carSummary = "";
+
             // Make sure the user has selected a car to remove:
 
             if (this.lstListCompanyCars.SelectedIndex == -1) // User has not selected a car
@@ -176,15 +197,19 @@ namespace SOFT151_Coursework
             }
             else
             {
+                carSummary = this.lstListCompanyCars.Items[this.lstListCompanyCars.SelectedIndex].ToString();
+
+                int matchedIndex = this.locateCorrectTarget(carSummary, this.currentCompany.GetAllCars());
+
                 // Push notification to the user's recent activity:
 
                 mainForm = (frmMain)this.Owner;
 
-                this.mainForm.CreateNotification("car", "remove", this.currentCompany.GetName(), DateTime.Now.ToShortTimeString());
+                this.mainForm.CreateNotification("car", "remove", Convert.ToString(this.currentCompany.GetAllCars()[matchedIndex].GetId()), DateTime.Now.ToShortTimeString(), currentCompany.GetName());
 
                 // Proceed with deletion of selected company:
 
-                this.currentCompany.removeCar(this.currentCompany.GetAllCars()[this.lstListCompanyCars.SelectedIndex]);
+                this.currentCompany.removeCar(this.currentCompany.GetAllCars()[matchedIndex]);
 
                 //Display the updated company information:
 
@@ -195,6 +220,8 @@ namespace SOFT151_Coursework
 
         private void btnViewCarInfo_Click(object sender, EventArgs e) // User wants to see a car's full information breakdown
         {
+            string carSummary = "";
+
             // Make sure the user has selected a car to remove:
 
             if (this.lstListCompanyCars.SelectedIndex == -1) // User has not selected a car
@@ -203,9 +230,13 @@ namespace SOFT151_Coursework
             }
             else
             {
+                carSummary = this.lstListCompanyCars.Items[this.lstListCompanyCars.SelectedIndex].ToString();
+
+                int matchedIndex = this.locateCorrectTarget(carSummary, this.currentCompany.GetAllCars());
+                
                 // Generate form allowing the user to view the selected car's full profile:
 
-                frmCarProfile popup = new frmCarProfile(this.currentCompany.GetAllCars()[this.lstListCompanyCars.SelectedIndex]);
+                frmCarProfile popup = new frmCarProfile(this.currentCompany.GetAllCars()[matchedIndex]);
                 popup.ShowDialog(this);
 
                 // Push notification to the user's recent activity:
@@ -262,13 +293,20 @@ namespace SOFT151_Coursework
                 MessageBox.Show(err.Message);
             }
 
-            this.searchCar(userInput, this.currentCompany.GetAllCars(), this.lstListCompanyCars); // Search for a matching element
+            if (userInput == "") // Validate user input
+            {
+                MessageBox.Show("Make sure to type in what you want to search for.");
+            }
+            else
+            {
+                this.searchCar(userInput, this.currentCompany.GetAllCars(), this.lstListCompanyCars); // Search for a matching element
 
-            // Push notification to the user's recent activity: 
+                // Push notification to the user's recent activity: 
 
-            mainForm = (frmMain)this.Owner;
+                mainForm = (frmMain)this.Owner;
 
-            mainForm.CreateNotification("car", "search", userInput, DateTime.Now.ToShortTimeString(), this.currentCompany.GetName());
+                mainForm.CreateNotification("car", "search", userInput, DateTime.Now.ToShortTimeString(), this.currentCompany.GetName());
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e) // User wants to bring back up the whole list of cars

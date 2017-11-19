@@ -34,7 +34,6 @@
             this.txtSearchCompanies = new System.Windows.Forms.TextBox();
             this.btnAddNewCompany = new System.Windows.Forms.Button();
             this.btnUpdateCompany = new System.Windows.Forms.Button();
-            this.lblOptions = new System.Windows.Forms.Label();
             this.lstRecentActivity = new System.Windows.Forms.ListBox();
             this.txtSearchRecentActivity = new System.Windows.Forms.TextBox();
             this.lblRecentActivityHeader = new System.Windows.Forms.Label();
@@ -46,6 +45,9 @@
             this.btnRefreshNotifications = new System.Windows.Forms.Button();
             this.picMainLogo = new System.Windows.Forms.PictureBox();
             this.lblDisplayDate = new System.Windows.Forms.Label();
+            this.btnClearAllCompanies = new System.Windows.Forms.Button();
+            this.btnClearAllNotifications = new System.Windows.Forms.Button();
+            this.btnAbout = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,7 +56,7 @@
             this.lstAllCompanies.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstAllCompanies.FormattingEnabled = true;
             this.lstAllCompanies.ItemHeight = 18;
-            this.lstAllCompanies.Location = new System.Drawing.Point(182, 298);
+            this.lstAllCompanies.Location = new System.Drawing.Point(6, 301);
             this.lstAllCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.lstAllCompanies.Name = "lstAllCompanies";
             this.lstAllCompanies.Size = new System.Drawing.Size(543, 292);
@@ -64,7 +66,7 @@
             // 
             this.lblCompaniesHeader.AutoSize = true;
             this.lblCompaniesHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompaniesHeader.Location = new System.Drawing.Point(178, 248);
+            this.lblCompaniesHeader.Location = new System.Drawing.Point(2, 251);
             this.lblCompaniesHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCompaniesHeader.Name = "lblCompaniesHeader";
             this.lblCompaniesHeader.Size = new System.Drawing.Size(176, 24);
@@ -73,7 +75,7 @@
             // 
             // txtSearchCompanies
             // 
-            this.txtSearchCompanies.Location = new System.Drawing.Point(182, 274);
+            this.txtSearchCompanies.Location = new System.Drawing.Point(6, 277);
             this.txtSearchCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCompanies.Name = "txtSearchCompanies";
             this.txtSearchCompanies.Size = new System.Drawing.Size(275, 20);
@@ -81,7 +83,7 @@
             // 
             // btnAddNewCompany
             // 
-            this.btnAddNewCompany.Location = new System.Drawing.Point(5, 452);
+            this.btnAddNewCompany.Location = new System.Drawing.Point(350, 597);
             this.btnAddNewCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddNewCompany.Name = "btnAddNewCompany";
             this.btnAddNewCompany.Size = new System.Drawing.Size(168, 67);
@@ -92,7 +94,7 @@
             // 
             // btnUpdateCompany
             // 
-            this.btnUpdateCompany.Location = new System.Drawing.Point(5, 345);
+            this.btnUpdateCompany.Location = new System.Drawing.Point(178, 597);
             this.btnUpdateCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateCompany.Name = "btnUpdateCompany";
             this.btnUpdateCompany.Size = new System.Drawing.Size(168, 67);
@@ -101,23 +103,12 @@
             this.btnUpdateCompany.UseVisualStyleBackColor = true;
             this.btnUpdateCompany.Click += new System.EventHandler(this.btnUpdateCompany_Click);
             // 
-            // lblOptions
-            // 
-            this.lblOptions.AutoSize = true;
-            this.lblOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOptions.Location = new System.Drawing.Point(55, 248);
-            this.lblOptions.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblOptions.Name = "lblOptions";
-            this.lblOptions.Size = new System.Drawing.Size(64, 24);
-            this.lblOptions.TabIndex = 12;
-            this.lblOptions.Text = "Menu:";
-            // 
             // lstRecentActivity
             // 
             this.lstRecentActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstRecentActivity.FormattingEnabled = true;
             this.lstRecentActivity.ItemHeight = 18;
-            this.lstRecentActivity.Location = new System.Drawing.Point(729, 298);
+            this.lstRecentActivity.Location = new System.Drawing.Point(553, 301);
             this.lstRecentActivity.Margin = new System.Windows.Forms.Padding(2);
             this.lstRecentActivity.Name = "lstRecentActivity";
             this.lstRecentActivity.Size = new System.Drawing.Size(543, 292);
@@ -125,7 +116,7 @@
             // 
             // txtSearchRecentActivity
             // 
-            this.txtSearchRecentActivity.Location = new System.Drawing.Point(729, 274);
+            this.txtSearchRecentActivity.Location = new System.Drawing.Point(553, 277);
             this.txtSearchRecentActivity.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchRecentActivity.Name = "txtSearchRecentActivity";
             this.txtSearchRecentActivity.Size = new System.Drawing.Size(275, 20);
@@ -135,7 +126,7 @@
             // 
             this.lblRecentActivityHeader.AutoSize = true;
             this.lblRecentActivityHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecentActivityHeader.Location = new System.Drawing.Point(725, 248);
+            this.lblRecentActivityHeader.Location = new System.Drawing.Point(549, 251);
             this.lblRecentActivityHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRecentActivityHeader.Name = "lblRecentActivityHeader";
             this.lblRecentActivityHeader.Size = new System.Drawing.Size(202, 24);
@@ -144,7 +135,7 @@
             // 
             // btnOpenCompany
             // 
-            this.btnOpenCompany.Location = new System.Drawing.Point(5, 274);
+            this.btnOpenCompany.Location = new System.Drawing.Point(6, 597);
             this.btnOpenCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnOpenCompany.Name = "btnOpenCompany";
             this.btnOpenCompany.Size = new System.Drawing.Size(168, 67);
@@ -155,7 +146,7 @@
             // 
             // btnRemoveCompany
             // 
-            this.btnRemoveCompany.Location = new System.Drawing.Point(5, 523);
+            this.btnRemoveCompany.Location = new System.Drawing.Point(522, 597);
             this.btnRemoveCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveCompany.Name = "btnRemoveCompany";
             this.btnRemoveCompany.Size = new System.Drawing.Size(168, 67);
@@ -166,7 +157,7 @@
             // 
             // btnSearchCompanies
             // 
-            this.btnSearchCompanies.Location = new System.Drawing.Point(461, 274);
+            this.btnSearchCompanies.Location = new System.Drawing.Point(285, 277);
             this.btnSearchCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearchCompanies.Name = "btnSearchCompanies";
             this.btnSearchCompanies.Size = new System.Drawing.Size(130, 20);
@@ -177,7 +168,7 @@
             // 
             // btnSearchRecentActivity
             // 
-            this.btnSearchRecentActivity.Location = new System.Drawing.Point(1008, 274);
+            this.btnSearchRecentActivity.Location = new System.Drawing.Point(832, 277);
             this.btnSearchRecentActivity.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearchRecentActivity.Name = "btnSearchRecentActivity";
             this.btnSearchRecentActivity.Size = new System.Drawing.Size(130, 20);
@@ -188,7 +179,7 @@
             // 
             // btnRefreshCompanies
             // 
-            this.btnRefreshCompanies.Location = new System.Drawing.Point(595, 274);
+            this.btnRefreshCompanies.Location = new System.Drawing.Point(419, 277);
             this.btnRefreshCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.btnRefreshCompanies.Name = "btnRefreshCompanies";
             this.btnRefreshCompanies.Size = new System.Drawing.Size(130, 20);
@@ -199,7 +190,7 @@
             // 
             // btnRefreshNotifications
             // 
-            this.btnRefreshNotifications.Location = new System.Drawing.Point(1142, 274);
+            this.btnRefreshNotifications.Location = new System.Drawing.Point(966, 277);
             this.btnRefreshNotifications.Margin = new System.Windows.Forms.Padding(2);
             this.btnRefreshNotifications.Name = "btnRefreshNotifications";
             this.btnRefreshNotifications.Size = new System.Drawing.Size(130, 20);
@@ -211,7 +202,7 @@
             // picMainLogo
             // 
             this.picMainLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picMainLogo.BackgroundImage")));
-            this.picMainLogo.Location = new System.Drawing.Point(236, 12);
+            this.picMainLogo.Location = new System.Drawing.Point(154, 9);
             this.picMainLogo.Name = "picMainLogo";
             this.picMainLogo.Size = new System.Drawing.Size(808, 208);
             this.picMainLogo.TabIndex = 23;
@@ -222,17 +213,50 @@
             this.lblDisplayDate.AutoSize = true;
             this.lblDisplayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisplayDate.ForeColor = System.Drawing.Color.Black;
-            this.lblDisplayDate.Location = new System.Drawing.Point(1170, 9);
+            this.lblDisplayDate.Location = new System.Drawing.Point(994, 9);
             this.lblDisplayDate.Name = "lblDisplayDate";
             this.lblDisplayDate.Size = new System.Drawing.Size(102, 20);
             this.lblDisplayDate.TabIndex = 24;
             this.lblDisplayDate.Text = "Todays\' Date";
             // 
+            // btnClearAllCompanies
+            // 
+            this.btnClearAllCompanies.Location = new System.Drawing.Point(694, 597);
+            this.btnClearAllCompanies.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClearAllCompanies.Name = "btnClearAllCompanies";
+            this.btnClearAllCompanies.Size = new System.Drawing.Size(168, 67);
+            this.btnClearAllCompanies.TabIndex = 25;
+            this.btnClearAllCompanies.Text = "Remove All Companies";
+            this.btnClearAllCompanies.UseVisualStyleBackColor = true;
+            // 
+            // btnClearAllNotifications
+            // 
+            this.btnClearAllNotifications.Location = new System.Drawing.Point(866, 597);
+            this.btnClearAllNotifications.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClearAllNotifications.Name = "btnClearAllNotifications";
+            this.btnClearAllNotifications.Size = new System.Drawing.Size(168, 67);
+            this.btnClearAllNotifications.TabIndex = 26;
+            this.btnClearAllNotifications.Text = "Clear All Notifications";
+            this.btnClearAllNotifications.UseVisualStyleBackColor = true;
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.Location = new System.Drawing.Point(1038, 597);
+            this.btnAbout.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(58, 67);
+            this.btnAbout.TabIndex = 27;
+            this.btnAbout.Text = "About";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1277, 596);
+            this.ClientSize = new System.Drawing.Size(1101, 669);
+            this.Controls.Add(this.btnAbout);
+            this.Controls.Add(this.btnClearAllNotifications);
+            this.Controls.Add(this.btnClearAllCompanies);
             this.Controls.Add(this.lblDisplayDate);
             this.Controls.Add(this.picMainLogo);
             this.Controls.Add(this.btnRefreshNotifications);
@@ -244,7 +268,6 @@
             this.Controls.Add(this.lblRecentActivityHeader);
             this.Controls.Add(this.txtSearchRecentActivity);
             this.Controls.Add(this.lstRecentActivity);
-            this.Controls.Add(this.lblOptions);
             this.Controls.Add(this.btnUpdateCompany);
             this.Controls.Add(this.btnAddNewCompany);
             this.Controls.Add(this.txtSearchCompanies);
@@ -267,7 +290,6 @@
         private System.Windows.Forms.TextBox txtSearchCompanies;
         private System.Windows.Forms.Button btnAddNewCompany;
         private System.Windows.Forms.Button btnUpdateCompany;
-        private System.Windows.Forms.Label lblOptions;
         private System.Windows.Forms.ListBox lstRecentActivity;
         private System.Windows.Forms.TextBox txtSearchRecentActivity;
         private System.Windows.Forms.Label lblRecentActivityHeader;
@@ -279,6 +301,9 @@
         private System.Windows.Forms.Button btnRefreshNotifications;
         private System.Windows.Forms.PictureBox picMainLogo;
         private System.Windows.Forms.Label lblDisplayDate;
+        private System.Windows.Forms.Button btnClearAllCompanies;
+        private System.Windows.Forms.Button btnClearAllNotifications;
+        private System.Windows.Forms.Button btnAbout;
     }
 }
 
