@@ -306,6 +306,8 @@ namespace SOFT151_Coursework
                 mainForm = (frmMain)this.Owner;
 
                 mainForm.CreateNotification("car", "search", userInput, DateTime.Now.ToShortTimeString(), this.currentCompany.GetName());
+
+                this.txtSearchCars.Text = "";
             }
         }
 

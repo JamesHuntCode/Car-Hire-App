@@ -33,6 +33,15 @@ namespace SOFT151_Coursework
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Set up a timer to display the current time to the user:
+
+            Timer myTimer = new Timer();
+            myTimer.Interval = 1000;
+            myTimer.Tick += new EventHandler(timer_Tick);
+            myTimer.Start();
+
+            // Import test data:
+
             #region generate a few hard coded cars and companies to work with:
 
             for (int i = 0; i < 30; i++)
@@ -45,9 +54,11 @@ namespace SOFT151_Coursework
                 }
             }
 
-            updateList(companies);
+            updateCompaniesList(companies);
 
             #endregion
+
+            // Read initial data into program:
 
             #region prepare to read from a file:
 
@@ -111,7 +122,12 @@ namespace SOFT151_Coursework
             }
         }
 
-        private void updateList(List<Company> list) // Method used to loop over the contents of the companies list and display all contents
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            this.lblTheTime.Text = Convert.ToString(DateTime.Now.ToShortTimeString());
+        }
+
+        private void updateCompaniesList(List<Company> list) // Method used to loop over the contents of the companies list and display all contents
         {
             for (int i = 0; i < list.Count; i++)
             {
@@ -126,6 +142,11 @@ namespace SOFT151_Coursework
             for (int i = 0; i < this.notifications.Count; i++)
             {
                 this.lstRecentActivity.Items.Add(list[i]);
+            }
+
+            if (list.Count == 0)
+            {
+                this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
             }
         }
 
@@ -245,7 +266,7 @@ namespace SOFT151_Coursework
                 // Re-display the updated contents of the companies list:
 
                 this.lstAllCompanies.Items.Clear();
-                this.updateList(companies);
+                this.updateCompaniesList(companies);
 
                 // Push notification to the user's recent activity:
 
@@ -306,7 +327,7 @@ namespace SOFT151_Coursework
                 //Display the updated company information:
 
                 this.lstAllCompanies.Items.Clear();
-                this.updateList(companies);
+                this.updateCompaniesList(companies);
 
                 // Push notification to the user's recent activity:
 
@@ -372,7 +393,7 @@ namespace SOFT151_Coursework
                 //Display the updated company information:
 
                 this.lstAllCompanies.Items.Clear();
-                this.updateList(companies);
+                this.updateCompaniesList(companies);
             }
         }
 
@@ -477,6 +498,8 @@ namespace SOFT151_Coursework
                 this.searchCompanies(userInput, this.companies, this.lstAllCompanies); // Search for a matching element
 
                 this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
+
+                this.txtSearchCompanies.Text = "";
             }
         }
 
@@ -500,6 +523,7 @@ namespace SOFT151_Coursework
             else
             {
                 this.searchNotifications(userInput, this.notifications, this.lstRecentActivity); // Search for a matching element
+                this.txtSearchRecentActivity.Text = "";
             }
         }
 
@@ -523,6 +547,22 @@ namespace SOFT151_Coursework
             {
                 this.lstRecentActivity.Items.Add(this.notifications[i]);
             }
+        }
+
+        private void btnClearAllCompanies_Click(object sender, EventArgs e) // User wants to remove all of their company data (require a confirmation before doing so)
+        {
+
+        }
+
+        private void btnClearAllNotifications_Click(object sender, EventArgs e) // User wants to clear all of their notifications
+        {
+            this.notifications.Clear();
+            this.UpdateNotifications(this.notifications);
+        }
+
+        private void btnAbout_Click(object sender, EventArgs e) // User wants to learn about the program
+        {
+
         }
     }
 }

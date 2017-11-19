@@ -48,6 +48,7 @@
             this.btnClearAllCompanies = new System.Windows.Forms.Button();
             this.btnClearAllNotifications = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
+            this.lblTheTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,7 +84,7 @@
             // 
             // btnAddNewCompany
             // 
-            this.btnAddNewCompany.Location = new System.Drawing.Point(350, 597);
+            this.btnAddNewCompany.Location = new System.Drawing.Point(522, 597);
             this.btnAddNewCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddNewCompany.Name = "btnAddNewCompany";
             this.btnAddNewCompany.Size = new System.Drawing.Size(168, 67);
@@ -146,7 +147,7 @@
             // 
             // btnRemoveCompany
             // 
-            this.btnRemoveCompany.Location = new System.Drawing.Point(522, 597);
+            this.btnRemoveCompany.Location = new System.Drawing.Point(350, 597);
             this.btnRemoveCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveCompany.Name = "btnRemoveCompany";
             this.btnRemoveCompany.Size = new System.Drawing.Size(168, 67);
@@ -213,7 +214,7 @@
             this.lblDisplayDate.AutoSize = true;
             this.lblDisplayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisplayDate.ForeColor = System.Drawing.Color.Black;
-            this.lblDisplayDate.Location = new System.Drawing.Point(994, 9);
+            this.lblDisplayDate.Location = new System.Drawing.Point(2, 9);
             this.lblDisplayDate.Name = "lblDisplayDate";
             this.lblDisplayDate.Size = new System.Drawing.Size(102, 20);
             this.lblDisplayDate.TabIndex = 24;
@@ -228,6 +229,7 @@
             this.btnClearAllCompanies.TabIndex = 25;
             this.btnClearAllCompanies.Text = "Remove All Companies";
             this.btnClearAllCompanies.UseVisualStyleBackColor = true;
+            this.btnClearAllCompanies.Click += new System.EventHandler(this.btnClearAllCompanies_Click);
             // 
             // btnClearAllNotifications
             // 
@@ -238,6 +240,7 @@
             this.btnClearAllNotifications.TabIndex = 26;
             this.btnClearAllNotifications.Text = "Clear All Notifications";
             this.btnClearAllNotifications.UseVisualStyleBackColor = true;
+            this.btnClearAllNotifications.Click += new System.EventHandler(this.btnClearAllNotifications_Click);
             // 
             // btnAbout
             // 
@@ -248,12 +251,25 @@
             this.btnAbout.TabIndex = 27;
             this.btnAbout.Text = "About";
             this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
+            // lblTheTime
+            // 
+            this.lblTheTime.AutoSize = true;
+            this.lblTheTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTheTime.ForeColor = System.Drawing.Color.Black;
+            this.lblTheTime.Location = new System.Drawing.Point(1046, 9);
+            this.lblTheTime.Name = "lblTheTime";
+            this.lblTheTime.Size = new System.Drawing.Size(43, 20);
+            this.lblTheTime.TabIndex = 28;
+            this.lblTheTime.Text = "Time";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1101, 669);
+            this.Controls.Add(this.lblTheTime);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnClearAllNotifications);
             this.Controls.Add(this.btnClearAllCompanies);
@@ -304,6 +320,7 @@
         private System.Windows.Forms.Button btnClearAllCompanies;
         private System.Windows.Forms.Button btnClearAllNotifications;
         private System.Windows.Forms.Button btnAbout;
+        private System.Windows.Forms.Label lblTheTime;
     }
 }
 
