@@ -261,7 +261,7 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].GetMake().ToUpper().Contains(userInput.ToUpper()))
+                if (list[i].PrintSummary().ToUpper().Contains(userInput.ToUpper()))
                 {
                     match = true;
 
@@ -312,8 +312,6 @@ namespace SOFT151_Coursework
                 mainForm = (frmMain)this.Owner;
 
                 mainForm.CreateNotification("car", "search", userInput, DateTime.Now.ToShortTimeString(), this.currentCompany.GetName());
-
-                this.txtSearchCars.Text = "";
             }
         }
 
@@ -321,6 +319,7 @@ namespace SOFT151_Coursework
         {
             this.lstListCompanyCars.Items.Clear();
             this.carSearchResults.Clear();
+            this.txtSearchCars.Text = "";
 
             for (int i = 0; i < this.currentCompany.GetAllCars().Count; i++)
             {

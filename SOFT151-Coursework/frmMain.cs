@@ -498,8 +498,6 @@ namespace SOFT151_Coursework
                 this.searchCompanies(userInput, this.companies, this.lstAllCompanies); // Search for a matching element
 
                 this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
-
-                this.txtSearchCompanies.Text = "";
             }
         }
 
@@ -523,7 +521,6 @@ namespace SOFT151_Coursework
             else
             {
                 this.searchNotifications(userInput, this.notifications, this.lstRecentActivity); // Search for a matching element
-                this.txtSearchRecentActivity.Text = "";
             }
         }
 
@@ -531,6 +528,7 @@ namespace SOFT151_Coursework
         {
             this.lstAllCompanies.Items.Clear();
             this.companySearchResults.Clear();
+            this.txtSearchCompanies.Text = "";
 
             for (int i = 0; i < this.companies.Count; i++)
             {
@@ -542,6 +540,7 @@ namespace SOFT151_Coursework
         {
             this.lstRecentActivity.Items.Clear();
             this.recentActivitySearchResults.Clear();
+            this.txtSearchRecentActivity.Text = "";
 
             for (int i = 0; i < this.notifications.Count; i++)
             {
