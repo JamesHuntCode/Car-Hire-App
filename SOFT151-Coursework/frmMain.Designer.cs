@@ -218,7 +218,7 @@
             this.btnClearAllCompanies.Name = "btnClearAllCompanies";
             this.btnClearAllCompanies.Size = new System.Drawing.Size(168, 67);
             this.btnClearAllCompanies.TabIndex = 25;
-            this.btnClearAllCompanies.Text = "Remove All Data";
+            this.btnClearAllCompanies.Text = "Remove All Data\r\n(Not Recommended)";
             this.btnClearAllCompanies.UseVisualStyleBackColor = true;
             this.btnClearAllCompanies.Click += new System.EventHandler(this.btnClearAllCompanies_Click);
             // 

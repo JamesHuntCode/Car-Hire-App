@@ -129,9 +129,16 @@ namespace SOFT151_Coursework
 
         private void updateCompaniesList(List<Company> list) // Method used to loop over the contents of the companies list and display all contents
         {
+            this.lstAllCompanies.Items.Clear(); 
+
             for (int i = 0; i < list.Count; i++)
             {
                 this.lstAllCompanies.Items.Add(list[i].PrintSummary());
+            }
+
+            if (this.companies.Count == 0)
+            {
+                this.lstAllCompanies.Items.Add("You currently have no companies in your records.");
             }
         }
 
@@ -552,9 +559,16 @@ namespace SOFT151_Coursework
             }
         }
 
+        public void RemoveAllData() // Method used to wipe all user data
+        {
+            this.companies.Clear();
+            this.updateCompaniesList(this.companies);
+        }
+
         private void btnClearAllCompanies_Click(object sender, EventArgs e) // User wants to remove all of their company data (require a confirmation before doing so)
         {
-
+            frmConfirmation confirm = new frmConfirmation();
+            confirm.ShowDialog(this);
         }
 
         private void btnClearAllNotifications_Click(object sender, EventArgs e) // User wants to clear all of their notifications
@@ -565,7 +579,8 @@ namespace SOFT151_Coursework
 
         private void btnAbout_Click(object sender, EventArgs e) // User wants to learn about the program
         {
-
+            frmAboutProgram popup = new frmAboutProgram();
+            popup.ShowDialog(this);
         }
     }
 }

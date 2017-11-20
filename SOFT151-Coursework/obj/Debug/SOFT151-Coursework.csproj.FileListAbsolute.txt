@@ -61,3 +61,5 @@ D:\SOFT151 CW\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\o
 D:\SOFT151 CW\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.frmMain.resources
 D:\SOFT151 CW\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.Properties.Resources.resources
 D:\SOFT151 CW\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151-Coursework.csproj.GenerateResource.Cache
+C:\Users\jhunt8\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.frmConfirmation.resources
+C:\Users\jhunt8\Downloads\Car-Hire-System-master\Car-Hire-System-master\SOFT151-Coursework\obj\Debug\SOFT151_Coursework.frmAboutProgram.resources
