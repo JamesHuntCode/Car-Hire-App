@@ -155,7 +155,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(130, 20);
             this.btnRefresh.TabIndex = 24;
-            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Text = "Cancel Search";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -208,6 +208,8 @@
             this.Controls.Add(this.lblCompanyId);
             this.Controls.Add(this.lstListCompanyCars);
             this.Controls.Add(this.lblCompanyName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmCompanyProfile";
             this.Text = "frmCompanyProfile";
             this.ResumeLayout(false);

@@ -185,7 +185,7 @@
             this.btnRefreshCompanies.Name = "btnRefreshCompanies";
             this.btnRefreshCompanies.Size = new System.Drawing.Size(130, 20);
             this.btnRefreshCompanies.TabIndex = 21;
-            this.btnRefreshCompanies.Text = "Refresh";
+            this.btnRefreshCompanies.Text = "Cancel Search";
             this.btnRefreshCompanies.UseVisualStyleBackColor = true;
             this.btnRefreshCompanies.Click += new System.EventHandler(this.btnRefreshCompanies_Click);
             // 
@@ -196,7 +196,7 @@
             this.btnRefreshNotifications.Name = "btnRefreshNotifications";
             this.btnRefreshNotifications.Size = new System.Drawing.Size(130, 20);
             this.btnRefreshNotifications.TabIndex = 22;
-            this.btnRefreshNotifications.Text = "Refresh";
+            this.btnRefreshNotifications.Text = "Cancel Search";
             this.btnRefreshNotifications.UseVisualStyleBackColor = true;
             this.btnRefreshNotifications.Click += new System.EventHandler(this.btnRefreshNotifications_Click);
             // 
@@ -222,7 +222,7 @@
             // 
             // btnClearAllCompanies
             // 
-            this.btnClearAllCompanies.Location = new System.Drawing.Point(694, 597);
+            this.btnClearAllCompanies.Location = new System.Drawing.Point(866, 597);
             this.btnClearAllCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearAllCompanies.Name = "btnClearAllCompanies";
             this.btnClearAllCompanies.Size = new System.Drawing.Size(168, 67);
@@ -233,7 +233,7 @@
             // 
             // btnClearAllNotifications
             // 
-            this.btnClearAllNotifications.Location = new System.Drawing.Point(866, 597);
+            this.btnClearAllNotifications.Location = new System.Drawing.Point(694, 597);
             this.btnClearAllNotifications.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearAllNotifications.Name = "btnClearAllNotifications";
             this.btnClearAllNotifications.Size = new System.Drawing.Size(168, 67);
@@ -289,7 +289,9 @@
             this.Controls.Add(this.txtSearchCompanies);
             this.Controls.Add(this.lblCompaniesHeader);
             this.Controls.Add(this.lstAllCompanies);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "Hire Car Maintenance Inc";
             this.Load += new System.EventHandler(this.Form1_Load);

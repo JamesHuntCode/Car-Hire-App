@@ -39,12 +39,13 @@
             this.lblCarModel = new System.Windows.Forms.Label();
             this.lblCarReg = new System.Windows.Forms.Label();
             this.lblCarId = new System.Windows.Forms.Label();
-            this.txtCarFuelType = new System.Windows.Forms.TextBox();
             this.lblCarFuelType = new System.Windows.Forms.Label();
             this.lblLastService = new System.Windows.Forms.Label();
             this.lblComments = new System.Windows.Forms.Label();
             this.txtComments = new System.Windows.Forms.RichTextBox();
             this.dtpLastServiced = new System.Windows.Forms.DateTimePicker();
+            this.radDiesel = new System.Windows.Forms.RadioButton();
+            this.radPetrol = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -147,13 +148,6 @@
             this.lblCarId.TabIndex = 13;
             this.lblCarId.Text = "Car ID:";
             // 
-            // txtCarFuelType
-            // 
-            this.txtCarFuelType.Location = new System.Drawing.Point(185, 209);
-            this.txtCarFuelType.Name = "txtCarFuelType";
-            this.txtCarFuelType.Size = new System.Drawing.Size(221, 20);
-            this.txtCarFuelType.TabIndex = 25;
-            // 
             // lblCarFuelType
             // 
             this.lblCarFuelType.AutoSize = true;
@@ -199,15 +193,39 @@
             this.dtpLastServiced.Size = new System.Drawing.Size(220, 20);
             this.dtpLastServiced.TabIndex = 29;
             // 
+            // radDiesel
+            // 
+            this.radDiesel.AutoSize = true;
+            this.radDiesel.ForeColor = System.Drawing.Color.Orange;
+            this.radDiesel.Location = new System.Drawing.Point(185, 207);
+            this.radDiesel.Name = "radDiesel";
+            this.radDiesel.Size = new System.Drawing.Size(54, 17);
+            this.radDiesel.TabIndex = 30;
+            this.radDiesel.TabStop = true;
+            this.radDiesel.Text = "Diesel";
+            this.radDiesel.UseVisualStyleBackColor = true;
+            // 
+            // radPetrol
+            // 
+            this.radPetrol.AutoSize = true;
+            this.radPetrol.ForeColor = System.Drawing.Color.Orange;
+            this.radPetrol.Location = new System.Drawing.Point(245, 207);
+            this.radPetrol.Name = "radPetrol";
+            this.radPetrol.Size = new System.Drawing.Size(52, 17);
+            this.radPetrol.TabIndex = 31;
+            this.radPetrol.Text = "Petrol";
+            this.radPetrol.UseVisualStyleBackColor = true;
+            // 
             // frmDynamicAddOrUpdateCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 480);
+            this.Controls.Add(this.radPetrol);
+            this.Controls.Add(this.radDiesel);
             this.Controls.Add(this.dtpLastServiced);
             this.Controls.Add(this.txtComments);
             this.Controls.Add(this.lblComments);
-            this.Controls.Add(this.txtCarFuelType);
             this.Controls.Add(this.lblCarFuelType);
             this.Controls.Add(this.lblLastService);
             this.Controls.Add(this.btnCancelUpdate);
@@ -221,6 +239,8 @@
             this.Controls.Add(this.lblCarReg);
             this.Controls.Add(this.lblCarId);
             this.Controls.Add(this.lblHeader);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmDynamicAddOrUpdateCar";
             this.Text = "frmDynamicAddOrUpdateCar";
             this.ResumeLayout(false);
@@ -241,11 +261,12 @@
         private System.Windows.Forms.Label lblCarModel;
         private System.Windows.Forms.Label lblCarReg;
         private System.Windows.Forms.Label lblCarId;
-        private System.Windows.Forms.TextBox txtCarFuelType;
         private System.Windows.Forms.Label lblCarFuelType;
         private System.Windows.Forms.Label lblLastService;
         private System.Windows.Forms.Label lblComments;
         private System.Windows.Forms.RichTextBox txtComments;
         private System.Windows.Forms.DateTimePicker dtpLastServiced;
+        private System.Windows.Forms.RadioButton radDiesel;
+        private System.Windows.Forms.RadioButton radPetrol;
     }
 }

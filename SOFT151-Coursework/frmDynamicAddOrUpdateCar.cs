@@ -21,6 +21,7 @@ namespace SOFT151_Coursework
 
             this.Text = formName;
             this.lblHeader.Text = formName;
+            this.dtpLastServiced.MaxDate = DateTime.Today; // Stop the user entering a date that has not taken place yet
 
             currentCar = car;
 
@@ -32,7 +33,14 @@ namespace SOFT151_Coursework
                 this.txtCarMake.Text = car.GetMake();
                 this.txtCarModel.Text = car.GetModel();
                 this.txtCarReg.Text = car.GetReg();
-                this.txtCarFuelType.Text = car.GetFuelType();
+                if (car.GetFuelType().ToUpper() == "PETROL")
+                {
+                    this.radPetrol.Select();
+                }
+                else if (car.GetFuelType().ToUpper() == "DIESEL")
+                {
+                    this.radDiesel.Select();
+                }
                 this.dtpLastServiced.Value = DateTime.Today; 
                 this.txtComments.Text = car.GetComments();
             }
@@ -73,7 +81,14 @@ namespace SOFT151_Coursework
                 newCarMake = this.txtCarMake.Text;
                 newCarModel = this.txtCarModel.Text;
                 newCarReg = this.txtCarReg.Text;
-                newCarFuelType = this.txtCarFuelType.Text;
+                if (this.radPetrol.Checked)
+                {
+                    newCarFuelType = "petrol";
+                }
+                else if (this.radDiesel.Checked)
+                {
+                    newCarFuelType = "diesel";
+                }
                 newDateLastServiced = this.dtpLastServiced.Value;
                 newComments = this.txtComments.Text;
             }

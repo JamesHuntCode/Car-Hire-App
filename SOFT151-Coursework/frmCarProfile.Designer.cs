@@ -130,6 +130,8 @@
             this.Controls.Add(this.lblCarModel);
             this.Controls.Add(this.lblCarMake);
             this.Controls.Add(this.lblCarId);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmCarProfile";
             this.Text = "frmCarProfile";
             this.ResumeLayout(false);

@@ -157,6 +157,8 @@
             this.Controls.Add(this.lblCompanyPostcode);
             this.Controls.Add(this.lblCompanyId);
             this.Controls.Add(this.lblHeader);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmDynamicAddOrUpdate";
             this.Text = "DynamicAddOrUpdate";
             this.ResumeLayout(false);

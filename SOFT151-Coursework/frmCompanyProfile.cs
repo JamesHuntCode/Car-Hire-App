@@ -102,6 +102,9 @@ namespace SOFT151_Coursework
             {
                 this.currentCompany.AddNewCar(car); // Add the new car to the company's list of cars
 
+                this.currentCompany.SetNumberOfCars(this.currentCompany.GetNumberOfCars() + 1);
+                this.lblCarCount.Text = "Cars rented: " + Convert.ToString(this.currentCompany.GetNumberOfCars());
+
                 // Re-display the updated contents of the company's car list:
 
                 this.lstListCompanyCars.Items.Clear();
@@ -115,7 +118,7 @@ namespace SOFT151_Coursework
             }
             else
             {
-                MessageBox.Show("It looks like you already have a car with that ID stored!"); // Alert the user that they may have a duplicate entry 
+                MessageBox.Show("Error: Duplicate entry of ID."); // Alert the user of the issue
             }
         }
 
@@ -211,6 +214,9 @@ namespace SOFT151_Coursework
 
                 this.currentCompany.removeCar(this.currentCompany.GetAllCars()[matchedIndex]);
 
+                this.currentCompany.SetNumberOfCars(this.currentCompany.GetNumberOfCars() - 1);
+                this.lblCarCount.Text = "Cars rented: " + Convert.ToString(this.currentCompany.GetNumberOfCars());
+
                 //Display the updated company information:
 
                 this.lstListCompanyCars.Items.Clear();
@@ -255,7 +261,7 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].GetMake().ToUpper() == userInput.ToUpper() || Convert.ToString(list[i].GetId()) == userInput || list[i].GetModel().ToUpper() == userInput.ToUpper())
+                if (list[i].GetMake().ToUpper().Contains(userInput.ToUpper()))
                 {
                     match = true;
 
@@ -267,7 +273,7 @@ namespace SOFT151_Coursework
             {
                 lstBox.Items.Clear();
 
-                lstBox.Items.Add("Oops! No cars found! Click refresh and try again.");
+                lstBox.Items.Add("No cars have been found!");
             }
             else
             {

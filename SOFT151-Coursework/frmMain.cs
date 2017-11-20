@@ -50,7 +50,7 @@ namespace SOFT151_Coursework
 
                 for (int j = 0; j < 30; j++)
                 {
-                    companies[i].AddNewCar(new Car(j + 1, "Random Make", "Random Model", "123456", "Petrol", new DateTime(), "No comments yet"));
+                    companies[i].AddNewCar(new Car(j + 1, "Random Make", "Random Model", "123456", "petrol", new DateTime(), "No comments yet"));
                 }
             }
 
@@ -418,7 +418,7 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].GetName().ToUpper() == userInput.ToUpper() || Convert.ToString(list[i].GetId()) == userInput)
+                if (list[i].GetName().ToUpper().Contains(userInput.ToUpper()))
                 {
                     match = true;
 
@@ -430,7 +430,7 @@ namespace SOFT151_Coursework
             {
                 lstBox.Items.Clear();
 
-                lstBox.Items.Add("Oops! No companies found! Click refresh and try again.");
+                lstBox.Items.Add("No companies have been found!");
             }
             else
             {
@@ -463,7 +463,7 @@ namespace SOFT151_Coursework
             {
                 lstBox.Items.Clear();
 
-                lstBox.Items.Add("Oops! No recent activity like that has been found! Click refresh and try again.");
+                lstBox.Items.Add("No recent activity like that has been found!");
             }
             else
             {

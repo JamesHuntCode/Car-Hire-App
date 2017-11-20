@@ -70,11 +70,9 @@ namespace SOFT151_Coursework
             }
             catch (Exception err)
             {
-                isValid = false;
-
                 MessageBox.Show(err.Message); // Display error message to the user
 
-                this.Close(); // Close form to stop uploading incomplete information
+                isValid = false;
             }
 
             if (isValid)
