@@ -37,7 +37,7 @@ namespace SOFT151_Coursework
 
             foreach (Label l in Controls.OfType<Label>())
             {
-                l.ForeColor = Color.Orange;
+                l.ForeColor = Color.DarkOrange;
             }
         }
     }

@@ -42,7 +42,7 @@ namespace SOFT151_Coursework
 
             foreach (Label l in Controls.OfType<Label>())
             {
-                l.ForeColor = Color.Orange;
+                l.ForeColor = Color.DarkOrange;
             }
         }
 
@@ -80,15 +80,21 @@ namespace SOFT151_Coursework
 
                 if (this.Text == "Add New Company") // Add new company 
                 {
-                    frmMain.AddNew(newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
+                   bool added = frmMain.AddNew(newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
-                    this.Close(); // Close the form after adding new company details
+                    if (added)
+                    {
+                        this.Close(); // Close the form after adding new company details
+                    }
                 }
                 else if (this.Text == "Update Company Information") // Edit previous company 
                 {
-                    frmMain.UpdateCompany(currentCompany, newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
+                    bool updated = frmMain.UpdateCompany(currentCompany, newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
-                    this.Close(); // Close the form after updating company details
+                    if (updated)
+                    {
+                        this.Close(); // Close the form after updating company details
+                    }
                 }
             }
         }

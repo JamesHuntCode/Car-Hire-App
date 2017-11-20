@@ -43,13 +43,13 @@
             this.btnSearchRecentActivity = new System.Windows.Forms.Button();
             this.btnRefreshCompanies = new System.Windows.Forms.Button();
             this.btnRefreshNotifications = new System.Windows.Forms.Button();
-            this.picMainLogo = new System.Windows.Forms.PictureBox();
             this.lblDisplayDate = new System.Windows.Forms.Label();
             this.btnClearAllCompanies = new System.Windows.Forms.Button();
             this.btnClearAllNotifications = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.lblTheTime = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
+            this.picBanner = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picBanner)).BeginInit();
             this.SuspendLayout();
             // 
             // lstAllCompanies
@@ -200,15 +200,6 @@
             this.btnRefreshNotifications.UseVisualStyleBackColor = true;
             this.btnRefreshNotifications.Click += new System.EventHandler(this.btnRefreshNotifications_Click);
             // 
-            // picMainLogo
-            // 
-            this.picMainLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picMainLogo.BackgroundImage")));
-            this.picMainLogo.Location = new System.Drawing.Point(154, 9);
-            this.picMainLogo.Name = "picMainLogo";
-            this.picMainLogo.Size = new System.Drawing.Size(808, 208);
-            this.picMainLogo.TabIndex = 23;
-            this.picMainLogo.TabStop = false;
-            // 
             // lblDisplayDate
             // 
             this.lblDisplayDate.AutoSize = true;
@@ -227,7 +218,7 @@
             this.btnClearAllCompanies.Name = "btnClearAllCompanies";
             this.btnClearAllCompanies.Size = new System.Drawing.Size(168, 67);
             this.btnClearAllCompanies.TabIndex = 25;
-            this.btnClearAllCompanies.Text = "Remove All Companies";
+            this.btnClearAllCompanies.Text = "Remove All Data";
             this.btnClearAllCompanies.UseVisualStyleBackColor = true;
             this.btnClearAllCompanies.Click += new System.EventHandler(this.btnClearAllCompanies_Click);
             // 
@@ -258,23 +249,32 @@
             this.lblTheTime.AutoSize = true;
             this.lblTheTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTheTime.ForeColor = System.Drawing.Color.Black;
-            this.lblTheTime.Location = new System.Drawing.Point(1046, 9);
+            this.lblTheTime.Location = new System.Drawing.Point(1034, 9);
             this.lblTheTime.Name = "lblTheTime";
             this.lblTheTime.Size = new System.Drawing.Size(43, 20);
             this.lblTheTime.TabIndex = 28;
             this.lblTheTime.Text = "Time";
+            // 
+            // picBanner
+            // 
+            this.picBanner.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picBanner.BackgroundImage")));
+            this.picBanner.Location = new System.Drawing.Point(178, 9);
+            this.picBanner.Name = "picBanner";
+            this.picBanner.Size = new System.Drawing.Size(750, 201);
+            this.picBanner.TabIndex = 29;
+            this.picBanner.TabStop = false;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1101, 669);
+            this.Controls.Add(this.picBanner);
             this.Controls.Add(this.lblTheTime);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnClearAllNotifications);
             this.Controls.Add(this.btnClearAllCompanies);
             this.Controls.Add(this.lblDisplayDate);
-            this.Controls.Add(this.picMainLogo);
             this.Controls.Add(this.btnRefreshNotifications);
             this.Controls.Add(this.btnRefreshCompanies);
             this.Controls.Add(this.btnSearchRecentActivity);
@@ -295,7 +295,7 @@
             this.Name = "frmMain";
             this.Text = "Hire Car Maintenance Inc";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBanner)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,12 +317,12 @@
         private System.Windows.Forms.Button btnSearchRecentActivity;
         private System.Windows.Forms.Button btnRefreshCompanies;
         private System.Windows.Forms.Button btnRefreshNotifications;
-        private System.Windows.Forms.PictureBox picMainLogo;
         private System.Windows.Forms.Label lblDisplayDate;
         private System.Windows.Forms.Button btnClearAllCompanies;
         private System.Windows.Forms.Button btnClearAllNotifications;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.Label lblTheTime;
+        private System.Windows.Forms.PictureBox picBanner;
     }
 }
 

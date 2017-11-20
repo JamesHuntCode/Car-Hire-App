@@ -118,7 +118,7 @@ namespace SOFT151_Coursework
 
             foreach (Label l in Controls.OfType<Label>()) // Change all label elements to orange
             {
-                l.ForeColor = Color.Orange;
+                l.ForeColor = Color.DarkOrange;
             }
         }
 
@@ -245,7 +245,7 @@ namespace SOFT151_Coursework
             popup.ShowDialog(this);
         }
 
-        public void AddNew(int companyID, string companyName, string companyAddress, string companyPostcode) 
+        public bool AddNew(int companyID, string companyName, string companyAddress, string companyPostcode) 
         {
             // Check to see if the list already contains that company:
 
@@ -271,10 +271,12 @@ namespace SOFT151_Coursework
                 // Push notification to the user's recent activity:
 
                 this.CreateNotification("company", "add", companyName, DateTime.Now.ToShortTimeString());
+                return true;
             }
             else
             {
                 MessageBox.Show("It looks like you already have a company with that name or ID stored!"); // Alert the user that they may have a duplicate entry 
+                return false;
             }
         }
 
@@ -301,7 +303,7 @@ namespace SOFT151_Coursework
             }
         }
 
-        public void UpdateCompany(Company oldRecord, int newCompanyID, string newCompanyName, string newCompanyAddress, string newCompanyPostcode)
+        public bool UpdateCompany(Company oldRecord, int newCompanyID, string newCompanyName, string newCompanyAddress, string newCompanyPostcode)
         {
             //Check to see if a company with that name or ID already exists:
 
@@ -332,10 +334,12 @@ namespace SOFT151_Coursework
                 // Push notification to the user's recent activity:
 
                 this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
+                return true;
             }
             else
             {
                 MessageBox.Show("It looks like you already have a company with that name or ID stored!"); // Alert the user that they may have a duplicate entry 
+                return false;
             }
         }
 

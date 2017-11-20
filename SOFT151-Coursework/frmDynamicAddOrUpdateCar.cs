@@ -53,7 +53,7 @@ namespace SOFT151_Coursework
 
             foreach (Label l in Controls.OfType<Label>())
             {
-                l.ForeColor = Color.Orange;
+                l.ForeColor = Color.DarkOrange;
             }
         }
 
@@ -97,8 +97,6 @@ namespace SOFT151_Coursework
                 isValid = false;
                 
                 MessageBox.Show(err.Message); // Display error message to the user
-
-                this.Close(); // Close form to stop uploading incomplete information
             }
 
             if (isValid)
@@ -106,15 +104,21 @@ namespace SOFT151_Coursework
 
                 if (this.Text == "Add New Car") // Add new company 
                 {
-                    frmViewCompanyInfo.AddNew(new Car(newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments));
+                    bool added = frmViewCompanyInfo.AddNew(new Car(newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments));
 
-                    this.Close(); // Close the form after adding new car details
+                    if (added)
+                    {
+                        this.Close(); // Close the form after adding new car details
+                    }
                 }
                 else if (this.Text == "Update Car Information") // Edit previous company 
                 {
-                    frmViewCompanyInfo.UpdateCar(currentCar, newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments);
+                    bool updated = frmViewCompanyInfo.UpdateCar(currentCar, newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments);
 
-                    this.Close(); // Close the form after updating car details
+                    if (updated)
+                    {
+                        this.Close(); // Close the form after updating car details
+                    }
                 }
             }
         }

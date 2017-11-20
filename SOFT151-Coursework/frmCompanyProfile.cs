@@ -49,7 +49,7 @@ namespace SOFT151_Coursework
 
             foreach (Label l in Controls.OfType<Label>())
             {
-                l.ForeColor = Color.Orange;
+                l.ForeColor = Color.DarkOrange;
             }
         }
 
@@ -84,7 +84,7 @@ namespace SOFT151_Coursework
             popup.ShowDialog(this);
         }
 
-        public void AddNew(Car car)
+        public bool AddNew(Car car)
         {
             // Check to see if a car with the same ID already exists:
 
@@ -115,10 +115,12 @@ namespace SOFT151_Coursework
                 mainForm = (frmMain)this.Owner;
 
                 mainForm.CreateNotification("car", "add", currentCompany.GetName(), DateTime.Now.ToShortTimeString());
+                return true;
             }
             else
             {
                 MessageBox.Show("Error: Duplicate entry of ID."); // Alert the user of the issue
+                return false;
             }
         }
 
@@ -145,7 +147,7 @@ namespace SOFT151_Coursework
             }
         }
 
-        public void UpdateCar(Car oldCar, int newCarId, string newCarMake, string newCarModel, string newCarReg, string newFuelType, DateTime newLastServiced, string newComments)
+        public bool UpdateCar(Car oldCar, int newCarId, string newCarMake, string newCarModel, string newCarReg, string newFuelType, DateTime newLastServiced, string newComments)
         {
             // Check to see if a car with the same ID already exists:
 
@@ -181,10 +183,12 @@ namespace SOFT151_Coursework
                 mainForm = (frmMain)this.Owner;
 
                 mainForm.CreateNotification("car", "update", Convert.ToString(oldCar.GetId()), DateTime.Now.ToShortTimeString(), currentCompany.GetName());
+                return true;
             }
             else
             {
                 MessageBox.Show("It looks like you already have a car with that ID stored!"); // Alert the user that they may have a duplicate entry 
+                return false;
             }
         }
 
