@@ -38,7 +38,7 @@ namespace SOFT151_Coursework
             // Set up a timer to display the current time to the user:
 
             Timer myTimer = new Timer();
-            myTimer.Interval = 1000;
+            myTimer.Interval = 100;
             myTimer.Tick += new EventHandler(timer_Tick);
             myTimer.Start();
 
@@ -46,7 +46,7 @@ namespace SOFT151_Coursework
 
             #region generate a few hard coded cars and companies to work with:
 
-            /*for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 30; i++)
             {
                 companies.Add(new Company(i + 1, "Company " + (i + 1), "Example address", "Example postcode"));
 
@@ -56,7 +56,7 @@ namespace SOFT151_Coursework
                 }
             }
 
-            updateCompaniesList(companies);*/
+            updateCompaniesList(companies);
 
             #endregion
 
@@ -64,7 +64,7 @@ namespace SOFT151_Coursework
 
             #region prepare to read from a file:
 
-            string filePath = Environment.CurrentDirectory + @"\exampleFile.txt"; // Location of the file (example name used)
+            /*string filePath = Environment.CurrentDirectory + @"\exampleFile.txt"; // Location of the file (example name used)
 
             bool isValid = true;
 
@@ -131,11 +131,14 @@ namespace SOFT151_Coursework
                 }
                 // Display company 
                 updateCompaniesList(companies);
-            }
-     
+            }*/
+
             #endregion
 
             // Prepare page for load:
+
+            this.radNotificationsOff.Select();
+            this.Height = 712; // Full height is 941 / shortened height is 712
 
             this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
@@ -149,11 +152,11 @@ namespace SOFT151_Coursework
                 l.ForeColor = Color.DarkOrange;
             }
 
-            foreach(Button b in Controls.OfType<Button>())
+            /*foreach(Button b in Controls.OfType<Button>())
             {
                 b.BackColor = ColorTranslator.FromHtml("#333");
                 b.ForeColor = Color.White;
-            }
+            }*/
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -637,6 +640,20 @@ namespace SOFT151_Coursework
         {
             frmAboutProgram popup = new frmAboutProgram();
             popup.ShowDialog(this);
+        }
+
+        // Notification controls:
+
+        // Turn notifications on
+        private void radNotificationsOn_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Height = 941;
+        }
+
+        // Turn notifications off
+        private void radNotificationsOff_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Height = 712;
         }
     }
 }
