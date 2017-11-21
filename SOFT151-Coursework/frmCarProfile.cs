@@ -31,9 +31,7 @@ namespace SOFT151_Coursework
 
             // Set up the color layout of the form:
 
-            Color myBG = ColorTranslator.FromHtml("#333");
-
-            this.BackColor = myBG;
+            this.BackColor = ColorTranslator.FromHtml("#333"); // Change background color to graphite
 
             foreach (Label l in Controls.OfType<Label>())
             {

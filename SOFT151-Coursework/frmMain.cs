@@ -13,18 +13,20 @@ namespace SOFT151_Coursework
 {
     public partial class frmMain : Form
     {
-        private List<Company> companies = new List<Company>(); // List of all companies
+        // Set up lists:
 
-        private List<string> notifications = new List<string>(); // List of all notifications
+        private List<Company> companies = new List<Company>(); 
 
-        private List<Company> companySearchResults = new List<Company>(); // List of all search results (company based)
+        private List<string> notifications = new List<string>(); 
 
-        private List<string> recentActivitySearchResults = new List<string>(); // List of all search results (notifications)
+        private List<Company> companySearchResults = new List<Company>(); 
+
+        private List<string> recentActivitySearchResults = new List<string>(); 
 
         // Set up StreamReader / StreamWriter:
 
         StreamReader mySR;
-        //StreamWriter mySW;
+        StreamWriter mySW;
 
         public frmMain()
         {
@@ -44,7 +46,7 @@ namespace SOFT151_Coursework
 
             #region generate a few hard coded cars and companies to work with:
 
-            for (int i = 0; i < 30; i++)
+            /*for (int i = 0; i < 30; i++)
             {
                 companies.Add(new Company(i + 1, "Company " + (i + 1), "Example address", "Example postcode"));
 
@@ -54,7 +56,7 @@ namespace SOFT151_Coursework
                 }
             }
 
-            updateCompaniesList(companies);
+            updateCompaniesList(companies);*/
 
             #endregion
 
@@ -62,7 +64,7 @@ namespace SOFT151_Coursework
 
             #region prepare to read from a file:
 
-            string path = @"fileName.txt"; // Location of the file (example name used)
+            string filePath = Environment.CurrentDirectory + @"\exampleFile.txt"; // Location of the file (example name used)
 
             bool isValid = true;
 
@@ -70,26 +72,26 @@ namespace SOFT151_Coursework
 
             try
             {
-                mySR = new StreamReader(path);
+                mySR = new StreamReader(filePath);
             }
-            catch (FileNotFoundException err) // Catch exception if the file has not been found
+            catch (FileNotFoundException err) 
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Your file has not been found! Error Message: " + err.Message);
                 isValid = false;
             }
-            catch (DirectoryNotFoundException err) // Catch exception if the directory cannot be located
+            catch (DirectoryNotFoundException err) 
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Your directory has not been found! Error Message: " + err.Message);
                 isValid = false;
             }
-            catch (PathTooLongException err) // Catch exception if the path specified is too long
+            catch (PathTooLongException err)
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Your specified file path is too long! Error Message: " + err.Message);
                 isValid = false;
             }
             catch (Exception err) // Catch general exception if it is not one of the above
             {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("There has been an error! Error Message: " + err.Message);
                 isValid = false;
             }
 
@@ -97,10 +99,38 @@ namespace SOFT151_Coursework
             {
                 using (mySR)
                 {
-                    string firstLine = mySR.ReadLine();
-                    MessageBox.Show(firstLine);
-                    // PROGRAM CAN RUN THIS CODE - READING FILES WORKS AS INTENDED 
+                    while (mySR.Peek() >= 0) // Check for remaining data (chars) in the file
+                    {
+                        // Load comoany data:
+                        int companyID = Convert.ToInt32(mySR.ReadLine());
+                        string companyName = mySR.ReadLine();
+                        string companyAddress = mySR.ReadLine();
+                        string companyPostcode = mySR.ReadLine();
+                        int numberOfCars = Convert.ToInt32(mySR.ReadLine());
+
+                        Company newCompany = new Company(companyID, companyName, companyAddress, companyPostcode);
+
+                        // Load car data:
+                        for (int i = 0; i < numberOfCars; i++)
+                        {
+                            int carID = Convert.ToInt32(mySR.ReadLine()); 
+                            string carMake = mySR.ReadLine();
+                            string carModel = mySR.ReadLine();
+                            string carReg = mySR.ReadLine();
+                            string fuelType = mySR.ReadLine();
+                            DateTime lastServiced = Convert.ToDateTime(mySR.ReadLine());
+                            string comments = mySR.ReadLine();
+
+                            // Add new car to company 
+                            Car newCar = new Car(carID, carMake, carModel, carReg, fuelType, lastServiced, comments);
+                            newCompany.AddNewCar(newCar);
+                        }
+                        // Add new company to list of companies
+                        this.companies.Add(newCompany);
+                    }
                 }
+                // Display company 
+                updateCompaniesList(companies);
             }
      
             #endregion
@@ -110,15 +140,19 @@ namespace SOFT151_Coursework
             this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
 
-            // Set up the color layout of the form:
+            // Set up the color layout of the form - (#333 = graphite):
 
-            Color myBG = ColorTranslator.FromHtml("#333"); // Change background color to graphite
+            this.BackColor = ColorTranslator.FromHtml("#333"); 
 
-            this.BackColor = myBG;
-
-            foreach (Label l in Controls.OfType<Label>()) // Change all label elements to orange
+            foreach (Label l in Controls.OfType<Label>()) 
             {
                 l.ForeColor = Color.DarkOrange;
+            }
+
+            foreach(Button b in Controls.OfType<Button>())
+            {
+                b.BackColor = ColorTranslator.FromHtml("#333");
+                b.ForeColor = Color.White;
             }
         }
 
@@ -127,7 +161,8 @@ namespace SOFT151_Coursework
             this.lblTheTime.Text = Convert.ToString(DateTime.Now.ToShortTimeString());
         }
 
-        private void updateCompaniesList(List<Company> list) // Method used to loop over the contents of the companies list and display all contents
+        // Method used to loop over the contents of the companies list and display all contents
+        private void updateCompaniesList(List<Company> list)
         {
             this.lstAllCompanies.Items.Clear(); 
 
@@ -142,7 +177,8 @@ namespace SOFT151_Coursework
             }
         }
 
-        public void UpdateNotifications(List<string> list) // Method used to update the notifications and keep the user up to date
+        // Method used to update the notifications and keep the user up to date
+        public void UpdateNotifications(List<string> list)
         {
             this.lstRecentActivity.Items.Clear();
 
@@ -157,20 +193,49 @@ namespace SOFT151_Coursework
             }
         }
 
-        public void writeFile(string path) // Method used to write to files where needed
+        // Method used to error handle files
+        private bool checkFile(string path)
         {
-            // Control all updating / writing of files from within this method
+            // Come back to this
+            return true;
         }
 
-        // Method used to add notifications to the users' recent activity tab:
+        // Method used to write to files
+        public void WriteFile(string path) 
+        {
+            string filePath = Environment.CurrentDirectory + @"\exampleFile.txt";
 
+            bool isValid = true;
+
+            try
+            {
+                mySW = new StreamWriter(filePath);
+            }
+            catch (FileNotFoundException err)
+            {
+                MessageBox.Show("Your file has not been found! Error Message: " + err.Message);
+                isValid = false;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("There has been an error! Error Message: " + err.Message);
+                isValid = false;
+            }
+
+            if (isValid) // Everything checked - proceed to write to the specified file
+            {
+
+            }
+        }
+
+        // Method used to add notifications to the users' recent activity tab
         public void CreateNotification(string notificationType, string action, string affectedElement, string theTime, string affectedElement2 = null)
         {
             string generatedNotification = "";
 
             switch (action)
             {
-                case "add": // User has added a new company / car
+                case "add": // Add new company / car
 
                     if (notificationType == "company")
                     {
@@ -182,7 +247,7 @@ namespace SOFT151_Coursework
                     }
 
                     break;
-                case "update": // User has updated a company / car
+                case "update": // Update company / car 
 
                     if (notificationType == "company")
                     {
@@ -194,7 +259,7 @@ namespace SOFT151_Coursework
                     }
 
                     break;
-                case "view-info": // User has viewed a company's / car's full profile
+                case "view-info": // View company / car
 
                     if (notificationType == "company")
                     {
@@ -206,7 +271,7 @@ namespace SOFT151_Coursework
                     }
 
                     break;
-                case "remove": // User has removed a company / car
+                case "remove": // Remove company / car
 
                     if (notificationType == "company")
                     {
@@ -218,7 +283,7 @@ namespace SOFT151_Coursework
                     }
 
                     break;
-                case "search": // User has searched for a company / car
+                case "search": // Search company / car 
 
                     if (notificationType == "company")
                     {
@@ -230,33 +295,30 @@ namespace SOFT151_Coursework
                     }
 
                     break;
-                default: // Action performed by the user is unknown
+                default: // Action unidentified
 
                     generatedNotification = "Unidentified action performed @ " + theTime + ".";
 
                     break;
             }
 
-            this.notifications.Add(generatedNotification); // Push the new notification into the implemented list
+            this.notifications.Add(generatedNotification); 
 
-            this.UpdateNotifications(notifications); // Refresh the list 
+            this.UpdateNotifications(notifications); 
         }
 
         // User is interacting with the different features of the program (buttons):
-
         private void btnAddNewCompany_Click(object sender, EventArgs e)
         {
             // Generate a new dynamic form allowing the user to add a new company:
-
             frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Add New Company");
             popup.ShowDialog(this);
         }
 
+        // Method used to add new company 
         public bool AddNew(int companyID, string companyName, string companyAddress, string companyPostcode) 
         {
-            // Check to see if the list already contains that company:
-
-            bool match = false;
+            bool match = false; // Check to see if the list already contains that company
 
             for (int i = 0; i < this.companies.Count; i++)
             {
@@ -271,12 +333,10 @@ namespace SOFT151_Coursework
                 this.companies.Add(new Company(companyID, companyName, companyAddress, companyPostcode)); // Add a new company to the list of companies
 
                 // Re-display the updated contents of the companies list:
-
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
 
                 // Push notification to the user's recent activity:
-
                 this.CreateNotification("company", "add", companyName, DateTime.Now.ToShortTimeString());
                 return true;
             }
@@ -292,7 +352,6 @@ namespace SOFT151_Coursework
             string companySummary = "";
 
             // Make sure the user has selected a company to update:
-
             if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
             {
                 MessageBox.Show("Make sure you select a company to edit."); // Alert the user
@@ -304,17 +363,15 @@ namespace SOFT151_Coursework
                 int matchedIndex = this.locateCorrectTarget(companySummary, this.companies);
 
                 // Generate a new dynamic for allowing the user to edit a previous company's information:
-
                 frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information", companies[matchedIndex]);
                 popup.ShowDialog(this);
             }
         }
 
+        // Method used to update company 
         public bool UpdateCompany(Company oldRecord, int newCompanyID, string newCompanyName, string newCompanyAddress, string newCompanyPostcode)
         {
-            //Check to see if a company with that name or ID already exists:
-
-            bool match = false;
+            bool match = false; //Check to see if a company with that name or ID already exists
 
             for (int i = 0; i < companies.Count; i++)
             {
@@ -327,19 +384,16 @@ namespace SOFT151_Coursework
             if (!match) // There is not a match - safe to proceed with update of company information
             {
                 // Update old records:
-
                 oldRecord.SetId(newCompanyID);
                 oldRecord.SetName(newCompanyName);
                 oldRecord.SetAddress(newCompanyAddress);
                 oldRecord.SetPostcode(newCompanyPostcode);
 
                 //Display the updated company information:
-
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
 
                 // Push notification to the user's recent activity:
-
                 this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
                 return true;
             }
@@ -355,7 +409,6 @@ namespace SOFT151_Coursework
             string companySummary = "";
 
             // Make sure the user has selected a company to view:
-
             if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a compay's profile to view 
             {
                 MessageBox.Show("Make sure you select a company to view."); // Alert the user
@@ -367,11 +420,9 @@ namespace SOFT151_Coursework
                 int matchedIndex = this.locateCorrectTarget(companySummary, this.companies);
 
                 // Push notification to user's recent activity:
-
                 this.CreateNotification("company", "view-info", this.companies[matchedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
                 // Generate form allowing the user to view the selected company's full profile:
-
                 frmCompanyProfile popup = new frmCompanyProfile(companies[matchedIndex]);
                 popup.Show(this);
             }
@@ -382,7 +433,6 @@ namespace SOFT151_Coursework
             string companySummary = "";
 
             // Make sure the user has selected a company to remove:
-
             if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
             {
                 MessageBox.Show("Make sure you select a company to remove."); // Alert the user
@@ -394,21 +444,19 @@ namespace SOFT151_Coursework
                 int matchedIndex = this.locateCorrectTarget(companySummary, this.companies);
 
                 // Push notification to the user's recent activity:
-
                 this.CreateNotification("company", "remove", companies[matchedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
                 // Proceed with deletion of selected company:
-
                 this.companies.Remove(companies[matchedIndex]);
 
                 //Display the updated company information:
-
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
             }
         }
 
-        private int locateCorrectTarget(string checkFor, List<Company> list) // Method used to locate the correct company in the list of companies
+        // Method used to locate the correct company in the list of companies
+        private int locateCorrectTarget(string checkFor, List<Company> list)
         {
             for (int i = 0; i < list.Count; i++)
             {
@@ -421,7 +469,8 @@ namespace SOFT151_Coursework
             return 0;
         }
 
-        private void searchCompanies(string userInput, List<Company> list, ListBox lstBox) // Method used to search through the companies list and dispay results
+        // Method used to search through the companies list and dispay results
+        private void searchCompanies(string userInput, List<Company> list, ListBox lstBox)
         {
             this.companySearchResults.Clear();
 
@@ -454,7 +503,8 @@ namespace SOFT151_Coursework
             }
         }
 
-        private void searchNotifications(string userInput, List<string> list, ListBox lstBox) // Method used to search through the notifications list and display results
+        // Method used to search through the notifications list and display results
+        private void searchNotifications(string userInput, List<string> list, ListBox lstBox) 
         {
             this.recentActivitySearchResults.Clear();
 
@@ -487,7 +537,8 @@ namespace SOFT151_Coursework
             }
         }
 
-        private void btnSearchCompanies_Click(object sender, EventArgs e) // User wants to search for a company
+        // Method used to search for a company 
+        private void btnSearchCompanies_Click(object sender, EventArgs e)
         {
             string userInput = "";
 
@@ -506,13 +557,14 @@ namespace SOFT151_Coursework
             }
             else
             {
-                this.searchCompanies(userInput, this.companies, this.lstAllCompanies); // Search for a matching element
+                this.searchCompanies(userInput, this.companies, this.lstAllCompanies); 
 
                 this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
             }
         }
 
-        private void btnSearchRecentActivity_Click(object sender, EventArgs e) // User wants to search through their recent activity 
+        // Method used to search through notifications
+        private void btnSearchRecentActivity_Click(object sender, EventArgs e)
         {
             string userInput = "";
 
@@ -531,11 +583,12 @@ namespace SOFT151_Coursework
             }
             else
             {
-                this.searchNotifications(userInput, this.notifications, this.lstRecentActivity); // Search for a matching element
+                this.searchNotifications(userInput, this.notifications, this.lstRecentActivity); 
             }
         }
 
-        private void btnRefreshCompanies_Click(object sender, EventArgs e) // User wants to refresh their list of companies
+        // Method used to refresh list of companies
+        private void btnRefreshCompanies_Click(object sender, EventArgs e) 
         {
             this.lstAllCompanies.Items.Clear();
             this.companySearchResults.Clear();
@@ -547,7 +600,8 @@ namespace SOFT151_Coursework
             }
         }
 
-        private void btnRefreshNotifications_Click(object sender, EventArgs e) // User wants to refresh their notifications tab
+        // Method used to refresh all notifiations
+        private void btnRefreshNotifications_Click(object sender, EventArgs e) 
         {
             this.lstRecentActivity.Items.Clear();
             this.recentActivitySearchResults.Clear();
@@ -559,25 +613,27 @@ namespace SOFT151_Coursework
             }
         }
 
-        public void RemoveAllData() // Method used to wipe all user data
+        // Method used to wipe all imported data
+        public void RemoveAllData() 
         {
             this.companies.Clear();
             this.updateCompaniesList(this.companies);
         }
 
-        private void btnClearAllCompanies_Click(object sender, EventArgs e) // User wants to remove all of their company data (require a confirmation before doing so)
+        private void btnClearAllCompanies_Click(object sender, EventArgs e) 
         {
             frmConfirmation confirm = new frmConfirmation();
             confirm.ShowDialog(this);
         }
 
-        private void btnClearAllNotifications_Click(object sender, EventArgs e) // User wants to clear all of their notifications
+        // Clear all user recent activity 
+        private void btnClearAllNotifications_Click(object sender, EventArgs e) 
         {
             this.notifications.Clear();
             this.UpdateNotifications(this.notifications);
         }
 
-        private void btnAbout_Click(object sender, EventArgs e) // User wants to learn about the program
+        private void btnAbout_Click(object sender, EventArgs e) 
         {
             frmAboutProgram popup = new frmAboutProgram();
             popup.ShowDialog(this);

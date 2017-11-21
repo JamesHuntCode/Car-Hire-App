@@ -43,9 +43,7 @@ namespace SOFT151_Coursework
 
             // Set up the color layout of the form:
 
-            Color myBG = ColorTranslator.FromHtml("#333");
-
-            this.BackColor = myBG;
+            this.BackColor = ColorTranslator.FromHtml("#333"); 
 
             foreach (Label l in Controls.OfType<Label>())
             {
@@ -53,7 +51,8 @@ namespace SOFT151_Coursework
             }
         }
 
-        private void updateList(List<Car> list) // Method used to loop over the contents of the companies list and display all contents
+        // Method used to loop over the contents of the companies list and display all contents
+        private void updateList(List<Car> list)
         {
             for (int i = 0; i < list.Count; i++)
             {
@@ -129,7 +128,6 @@ namespace SOFT151_Coursework
             string carSummary = "";
 
             // Make sure the user has selected a company to update:
-
             if (this.lstListCompanyCars.SelectedIndex == -1) // User has not selected a company
             {
                 MessageBox.Show("Make sure you select a car to edit."); // Alert the user
@@ -141,7 +139,6 @@ namespace SOFT151_Coursework
                 int matchedIndex = this.locateCorrectTarget(carSummary, this.currentCompany.GetAllCars());
 
                 // Generate a new dynamic form allowing the user to add a new car:
-
                 frmDynamicAddOrUpdateCar popup = new frmDynamicAddOrUpdateCar("Update Car Information", currentCompany.GetAllCars()[matchedIndex]);
                 popup.ShowDialog(this);
             }
@@ -150,7 +147,6 @@ namespace SOFT151_Coursework
         public bool UpdateCar(Car oldCar, int newCarId, string newCarMake, string newCarModel, string newCarReg, string newFuelType, DateTime newLastServiced, string newComments)
         {
             // Check to see if a car with the same ID already exists:
-
             bool match = false;
 
             for (int i = 0; i < this.currentCompany.GetAllCars().Count; i++)
@@ -164,7 +160,6 @@ namespace SOFT151_Coursework
             if (!match) // There is not a match - safe to proceed with upload of new car information
             {
                 // Update old records:
-
                 oldCar.SetId(newCarId);
                 oldCar.SetMake(newCarMake);
                 oldCar.SetModel(newCarModel);

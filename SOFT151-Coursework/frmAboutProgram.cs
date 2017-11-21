@@ -16,9 +16,7 @@ namespace SOFT151_Coursework
         {
             InitializeComponent();
 
-            Color myBG = ColorTranslator.FromHtml("#333"); // Change background color to graphite
-
-            this.BackColor = myBG;
+            this.BackColor = ColorTranslator.FromHtml("#333"); // Change background color to graphite
 
             foreach (Label l in Controls.OfType<Label>()) // Change all label elements to orange
             {
