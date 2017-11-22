@@ -59,7 +59,7 @@ namespace SOFT151_Coursework
 
         private void btnSaveAndUpdate_Click(object sender, EventArgs e)
         {
-            frmCompanyProfile frmViewCompanyInfo = (frmCompanyProfile)this.Owner; // Set company summary form as parent form
+            frmMain mainForm = (frmMain)this.Owner; // Set company summary form as parent form
 
             // Gather user inputs and catch any exceptions:
 
@@ -102,7 +102,7 @@ namespace SOFT151_Coursework
 
                 if (this.Text == "Add New Car") // Add new company 
                 {
-                    bool added = frmViewCompanyInfo.AddNew(new Car(newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments));
+                    bool added = mainForm.AddNewCar(new Car(newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments));
 
                     if (added)
                     {
@@ -111,7 +111,7 @@ namespace SOFT151_Coursework
                 }
                 else if (this.Text == "Update Car Information") // Edit previous company 
                 {
-                    bool updated = frmViewCompanyInfo.UpdateCar(currentCar, newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments);
+                    bool updated = mainForm.UpdateCar(currentCar, newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments);
 
                     if (updated)
                     {

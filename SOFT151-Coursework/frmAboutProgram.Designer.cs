@@ -30,7 +30,7 @@
         {
             this.lblHeader = new System.Windows.Forms.Label();
             this.lblCreationDate = new System.Windows.Forms.Label();
-            this.lblCommits = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.lblCodedIn = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -51,19 +51,19 @@
             this.lblCreationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCreationDate.Location = new System.Drawing.Point(12, 60);
             this.lblCreationDate.Name = "lblCreationDate";
-            this.lblCreationDate.Size = new System.Drawing.Size(126, 20);
+            this.lblCreationDate.Size = new System.Drawing.Size(185, 20);
             this.lblCreationDate.TabIndex = 1;
-            this.lblCreationDate.Text = "Created in: 2017";
+            this.lblCreationDate.Text = "Project Started: 14/11/17";
             // 
-            // lblCommits
+            // lblVersion
             // 
-            this.lblCommits.AutoSize = true;
-            this.lblCommits.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCommits.Location = new System.Drawing.Point(12, 98);
-            this.lblCommits.Name = "lblCommits";
-            this.lblCommits.Size = new System.Drawing.Size(213, 20);
-            this.lblCommits.TabIndex = 2;
-            this.lblCommits.Text = "GitHub Commits To Date: 40";
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVersion.Location = new System.Drawing.Point(12, 98);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(170, 20);
+            this.lblVersion.TabIndex = 2;
+            this.lblVersion.Text = "Program Version: 2.1.1";
             // 
             // lblCodedIn
             // 
@@ -91,7 +91,7 @@
             this.ClientSize = new System.Drawing.Size(346, 174);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblCodedIn);
-            this.Controls.Add(this.lblCommits);
+            this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblCreationDate);
             this.Controls.Add(this.lblHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -107,7 +107,7 @@
 
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Label lblCreationDate;
-        private System.Windows.Forms.Label lblCommits;
+        private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblCodedIn;
         private System.Windows.Forms.Label label5;
     }

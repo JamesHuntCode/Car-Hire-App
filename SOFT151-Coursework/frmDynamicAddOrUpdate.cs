@@ -78,7 +78,7 @@ namespace SOFT151_Coursework
 
                 if (this.Text == "Add New Company") // Add new company 
                 {
-                   bool added = frmMain.AddNew(newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
+                   bool added = frmMain.AddNewCompany(newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
                     if (added)
                     {
