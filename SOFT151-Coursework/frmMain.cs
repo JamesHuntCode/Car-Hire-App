@@ -117,13 +117,10 @@ namespace SOFT151_Coursework
 
             // Prepare page for load:
 
-            this.grpCompanySummary.Enabled = false;
-            this.grpCarSummary.Enabled = false;
-            this.Height = 941;
+            //this.Height = 941;
 
             this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
-            this.lstCars.Items.Add("Select a company to see their cars.");
 
             // Set up the color layout of the form - (#333 = graphite):
 
@@ -133,12 +130,6 @@ namespace SOFT151_Coursework
             {
                 l.ForeColor = Color.DarkOrange;
             }
-
-            /*foreach(Button b in Controls.OfType<Button>())
-            {
-                b.BackColor = ColorTranslator.FromHtml("#333");
-                b.ForeColor = Color.White;
-            }*/
         }
 
         #region code dealing with reading from / writing to files
@@ -225,6 +216,11 @@ namespace SOFT151_Coursework
                 this.searchCompanies(userInput, this.companies, this.lstAllCompanies);
 
                 this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
+
+                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+                this.lstCars.Items.Clear();
+
             }
         }
 
@@ -238,8 +234,6 @@ namespace SOFT151_Coursework
             // Remove profile of currently selected car:
             this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
             this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
-            this.grpCarSummary.Enabled = false;
-            this.grpCompanySummary.Enabled = false;
             this.lstCars.Items.Clear();
 
             for (int i = 0; i < this.companies.Count; i++)
@@ -259,56 +253,60 @@ namespace SOFT151_Coursework
         // Update an existing company 
         private void btnUpdateCompany_Click(object sender, EventArgs e)
         {
-            string companySummary = "";
-
-            // Make sure the user has selected a company to update:
-            if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
+            if (this.lstAllCompanies.Items[0].ToString() != "No companies have been found!")
             {
-                MessageBox.Show("Make sure you select a company to edit."); // Alert the user
-            }
-            else
-            {
-                companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+                string companySummary = "";
 
-                int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
+                // Make sure the user has selected a company to update:
+                if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
+                {
+                    MessageBox.Show("Make sure you select a company to edit."); // Alert the user
+                }
+                else
+                {
+                    companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
 
-                // Generate a new dynamic for allowing the user to edit a previous company's information:
-                frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information", companies[matchedIndex]);
-                popup.ShowDialog(this);
+                    int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
+
+                    // Generate a new dynamic for allowing the user to edit a previous company's information:
+                    frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information", companies[matchedIndex]);
+                    popup.ShowDialog(this);
+                }
             }
         }
 
         // Remove an existing company 
         private void btnRemoveCompany_Click(object sender, EventArgs e)
         {
-            string companySummary = "";
-
-            // Make sure the user has selected a company to remove:
-            if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
+            if (this.lstAllCompanies.Items[0].ToString() != "No companies have been found!")
             {
-                MessageBox.Show("Make sure you select a company to remove."); // Alert the user
-            }
-            else
-            {
-                companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+                string companySummary = "";
 
-                int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
+                // Make sure the user has selected a company to remove:
+                if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
+                {
+                    MessageBox.Show("Make sure you select a company to remove."); // Alert the user
+                }
+                else
+                {
+                    companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
 
-                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
-                this.grpCarSummary.Enabled = false;
-                this.grpCompanySummary.Enabled = false;
-                this.lstCars.Items.Clear();
+                    int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
 
-                this.CreateNotification("company", "remove", companies[matchedIndex].GetName(), DateTime.Now.ToShortTimeString());
+                    this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+                    this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+                    this.lstCars.Items.Clear();
 
-                this.companies.Remove(companies[matchedIndex]);
+                    this.CreateNotification("company", "remove", companies[matchedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
-                //Display the updated company information:
-                this.lstAllCompanies.Items.Clear();
-                this.updateCompaniesList(companies);
+                    this.companies.Remove(companies[matchedIndex]);
 
-                this.lstCars.Items.Clear();
+                    //Display the updated company information:
+                    this.lstAllCompanies.Items.Clear();
+                    this.updateCompaniesList(companies);
+
+                    this.lstCars.Items.Clear();
+                }
             }
         }
 
@@ -332,11 +330,6 @@ namespace SOFT151_Coursework
             for (int i = 0; i < list.Count; i++)
             {
                 this.lstAllCompanies.Items.Add(list[i].PrintSummary());
-            }
-
-            if (this.companies.Count == 0)
-            {
-                this.lstAllCompanies.Items.Add("You currently have no companies in your records.");
             }
         }
 
@@ -412,8 +405,6 @@ namespace SOFT151_Coursework
 
                 this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
                 this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
-                this.grpCarSummary.Enabled = false;
-                this.grpCompanySummary.Enabled = false;
                 this.lstCars.Items.Clear();
                 
                 return true;
@@ -447,9 +438,9 @@ namespace SOFT151_Coursework
                 this.updateCompaniesList(companies);
 
                 this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
-                this.grpCarSummary.Enabled = false;
-                this.grpCompanySummary.Enabled = false;
+
+                this.displayCompanyInformation(null, newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode, this.currentSelectedCompany.GetNumberOfCars());
+
                 this.lstCars.Items.Clear();
 
                 this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
@@ -473,7 +464,6 @@ namespace SOFT151_Coursework
 
             // Remove profile of currently selected car:
             this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-            this.grpCarSummary.Enabled = false;
         }
 
         #endregion
@@ -483,9 +473,8 @@ namespace SOFT151_Coursework
         // Method used to bring up company car information
         private void lstAllCompanies_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.companies.Count != 0)
+            if (this.companies.Count != 0 && this.lstAllCompanies.Items[0].ToString() != "No companies have been found!")
             {
-                this.grpCompanySummary.Enabled = true;
                 this.lstCars.Items.Clear();
 
                 // Open information for the correct company
@@ -498,7 +487,6 @@ namespace SOFT151_Coursework
 
                 // Remove profile of currently selected car:
                 this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-                this.grpCarSummary.Enabled = false;
 
                 for (int i = 0; i < this.companies[this.lstAllCompanies.SelectedIndex].GetNumberOfCars(); i++)
                 {
@@ -510,7 +498,6 @@ namespace SOFT151_Coursework
         // Method used to bring up summary of selected car
         private void lstCars_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.grpCarSummary.Enabled = true;
             this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
 
             // Open information for the correct car
@@ -606,7 +593,7 @@ namespace SOFT151_Coursework
 
             if (this.lstCars.SelectedIndex == -1)
             {
-                MessageBox.Show("Make sure you select the company you want to add a car to."); // Alert the user
+                MessageBox.Show("Make sure you select which car you want to update."); // Alert the user
             }
             else
             {
@@ -862,11 +849,11 @@ namespace SOFT151_Coursework
 
                     if (notificationType == "company")
                     {
-                        generatedNotification = "You viewed the full profile of '" + affectedElement + "' @ " + theTime + ".";
+                        generatedNotification = "You viewed '" + affectedElement + "' @ " + theTime + ".";
                     }
                     else
                     {
-                        generatedNotification = "You viewed the full profile of a car which belongs to '" + affectedElement + "' @ " + theTime + ".";
+                        generatedNotification = "You viewed a car which belongs to '" + affectedElement + "' @ " + theTime + ".";
                     }
 
                     break;
@@ -1012,9 +999,6 @@ namespace SOFT151_Coursework
             this.companies.Clear();
             this.updateCompaniesList(this.companies);
             this.lstCars.Items.Clear();
-
-            this.grpCompanySummary.Enabled = false;
-            this.grpCarSummary.Enabled = false;
 
             this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
             this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
