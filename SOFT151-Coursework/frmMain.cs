@@ -121,6 +121,7 @@ namespace SOFT151_Coursework
 
             this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
+            this.lstCars.Items.Add("Select a company to see their cars.");
 
             // Set up the color layout of the form - (#333 = graphite):
 
@@ -193,7 +194,52 @@ namespace SOFT151_Coursework
             }
         }
 
-        // User is interacting with the different features of the program (buttons):
+        #endregion
+
+        #region code dealing with the companies
+
+        // BUTTON CLICKS:
+
+        // Search for a specific company 
+        private void btnSearchCompanies_Click(object sender, EventArgs e)
+        {
+            string userInput = "";
+
+            try
+            {
+                userInput = this.txtSearchCompanies.Text;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+
+            if (userInput == "") // Validate user input
+            {
+                MessageBox.Show("Make sure to type in what you want to search for.");
+            }
+            else
+            {
+                this.searchCompanies(userInput, this.companies, this.lstAllCompanies);
+
+                this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
+            }
+        }
+
+        // Refresh the list of companies after a search
+        private void btnRefreshCompanies_Click(object sender, EventArgs e)
+        {
+            this.lstAllCompanies.Items.Clear();
+            this.companySearchResults.Clear();
+            this.txtSearchCompanies.Text = "";
+
+            for (int i = 0; i < this.companies.Count; i++)
+            {
+                this.lstAllCompanies.Items.Add(this.companies[i].PrintSummary());
+            }
+        }
+
+        // Add a new company 
         private void btnAddNewCompany_Click(object sender, EventArgs e)
         {
             // Generate a new dynamic form allowing the user to add a new company:
@@ -201,12 +247,7 @@ namespace SOFT151_Coursework
             popup.ShowDialog(this);
         }
 
-        #endregion
-
-        #region code dealing with the companies
-
-        // BUTTON CLICKS:
-
+        // Update an existing company 
         private void btnUpdateCompany_Click(object sender, EventArgs e)
         {
             string companySummary = "";
@@ -228,6 +269,7 @@ namespace SOFT151_Coursework
             }
         }
 
+        // Remove an existing company 
         private void btnRemoveCompany_Click(object sender, EventArgs e)
         {
             string companySummary = "";
@@ -255,43 +297,6 @@ namespace SOFT151_Coursework
 
                 // Clear the deleted company's cars:
                 this.lstCars.Items.Clear();
-            }
-        }
-
-        private void btnSearchCompanies_Click(object sender, EventArgs e)
-        {
-            string userInput = "";
-
-            try
-            {
-                userInput = this.txtSearchCompanies.Text;
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
-
-            if (userInput == "") // Validate user input
-            {
-                MessageBox.Show("Make sure to type in what you want to search for.");
-            }
-            else
-            {
-                this.searchCompanies(userInput, this.companies, this.lstAllCompanies);
-
-                this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
-            }
-        }
-
-        private void btnRefreshCompanies_Click(object sender, EventArgs e)
-        {
-            this.lstAllCompanies.Items.Clear();
-            this.companySearchResults.Clear();
-            this.txtSearchCompanies.Text = "";
-
-            for (int i = 0; i < this.companies.Count; i++)
-            {
-                this.lstAllCompanies.Items.Add(this.companies[i].PrintSummary());
             }
         }
 
@@ -408,11 +413,8 @@ namespace SOFT151_Coursework
 
             if (!match) // There is not a match - safe to proceed with update of company information
             {
-                // Update old records:
-                oldRecord.SetId(newCompanyID);
-                oldRecord.SetName(newCompanyName);
-                oldRecord.SetAddress(newCompanyAddress);
-                oldRecord.SetPostcode(newCompanyPostcode);
+                // Finilize the update
+                this.CompleteCompanyUpdate(oldRecord, newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
                 //Display the updated company information:
                 this.lstAllCompanies.Items.Clear();
@@ -429,6 +431,16 @@ namespace SOFT151_Coursework
             }
         }
 
+        // Method implemented to finilize the update 
+        public void CompleteCompanyUpdate(Company changeMe, int ID, string name, string address, string postcode)
+        {
+            // Update old records:
+            changeMe.SetId(ID);
+            changeMe.SetName(name);
+            changeMe.SetAddress(address);
+            changeMe.SetPostcode(postcode);
+        }
+
         #endregion
 
         #region code dealing with the cars
@@ -436,6 +448,8 @@ namespace SOFT151_Coursework
         // Method used to bring up company car information
         private void lstAllCompanies_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.lstCars.Items.Clear();
+
             for (int i = 0; i < this.companies[this.lstAllCompanies.SelectedIndex].GetNumberOfCars(); i++)
             {
                 this.lstCars.Items.Add(this.companies[this.lstAllCompanies.SelectedIndex].GetAllCars()[i].PrintSummary());
@@ -446,33 +460,47 @@ namespace SOFT151_Coursework
 
         // BUTTON CLICKS:
 
+        // Search for a specific car
         private void btnSearchCar_Click(object sender, EventArgs e)
         {
             string userInput = "";
 
-            try
+            bool proceed = true;
+
+            if (this.lstAllCompanies.SelectedIndex == -1)
             {
-                userInput = this.txtSearchCars.Text;
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
+                MessageBox.Show("Make sure to select a company before searching.");
+                proceed = false;
             }
 
-            if (userInput == "") // Validate user input
+            if (proceed)
             {
-                MessageBox.Show("Make sure to type in what you want to search for.");
-            }
-            else
-            {
-                this.searchCar(userInput, this.currentSelectedCompany.GetAllCars(), this.lstCars); // Search for a matching element
+                try
+                {
+                    userInput = this.txtSearchCars.Text;
+                }
+                catch (Exception err)
+                {
+                    MessageBox.Show(err.Message);
+                }
 
-                // Push notification to the user's recent activity: 
+                if (userInput == "") // Validate user input
+                {
+                    MessageBox.Show("Make sure to type in what you want to search for.");
+                }
+                else
+                {
+                    this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
+                    this.searchCar(userInput, this.currentSelectedCompany.GetAllCars(), this.lstCars); // Search for a matching element
 
-                this.CreateNotification("car", "search", userInput, DateTime.Now.ToShortTimeString(), this.currentSelectedCompany.GetName());
+                    // Push notification to the user's recent activity: 
+
+                    this.CreateNotification("car", "search", userInput, DateTime.Now.ToShortTimeString(), this.currentSelectedCompany.GetName());
+                }
             }
         }
-
+        
+        // Refresh the list of all company cars after a search
         private void btnRefreshCars_Click(object sender, EventArgs e)
         {
             this.lstCars.Items.Clear();
@@ -485,6 +513,7 @@ namespace SOFT151_Coursework
             }
         }
 
+        // Add new car
         private void btnAddNewCar_Click(object sender, EventArgs e)
         {
             if (this.lstAllCompanies.SelectedIndex == -1)
@@ -502,11 +531,12 @@ namespace SOFT151_Coursework
             }
         }
 
+        // Update an existing car
         private void btnUpdateCar_Click(object sender, EventArgs e)
         {
             string carSummary = "";
 
-            if (this.lstAllCompanies.SelectedIndex == -1)
+            if (this.lstCars.SelectedIndex == -1)
             {
                 MessageBox.Show("Make sure you select the company you want to add a car to."); // Alert the user
             }
@@ -525,6 +555,7 @@ namespace SOFT151_Coursework
             }
         }
 
+        // Remove existing car
         private void btnRemoveCar_Click(object sender, EventArgs e)
         {
             string carSummary = "";
@@ -563,19 +594,7 @@ namespace SOFT151_Coursework
 
         // METHODS:
 
-        // Method used to locate the correct car in the list of cars
-        private int locateCorrectCar(string checkFor, List<Car> list)
-        {
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (checkFor == list[i].PrintSummary())
-                {
-                    return i; // Return the matched index
-                }
-            }
-
-            return 0;
-        }
+        // Method used to re-display the list of cars (after a change)
         private void updateCarList(List<Car> list)
         {
             for (int i = 0; i < list.Count; i++)
@@ -589,6 +608,19 @@ namespace SOFT151_Coursework
             }
         }
 
+        // Method used to locate the correct car in the list of cars
+        private int locateCorrectCar(string checkFor, List<Car> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (checkFor == list[i].PrintSummary())
+                {
+                    return i; // Return the matched index
+                }
+            }
+
+            return 0;
+        }
 
         // Method used to search through the company's list of cars and display a result (if present)
         private void searchCar(string userInput, List<Car> list, ListBox lstBox)
@@ -679,14 +711,8 @@ namespace SOFT151_Coursework
 
             if (!match) // There is not a match - safe to proceed with upload of new car information
             {
-                // Update old records:
-                oldCar.SetId(newCarId);
-                oldCar.SetMake(newCarMake);
-                oldCar.SetModel(newCarModel);
-                oldCar.SetRegistration(newCarReg);
-                oldCar.SetFuelType(newFuelType);
-                oldCar.SetDateLastServiced(newLastServiced);
-                oldCar.SetComments(newComments);
+                // Finilize the update
+
 
                 //Display the updated company information:
 
@@ -703,6 +729,18 @@ namespace SOFT151_Coursework
                 MessageBox.Show("It looks like you already have a car with that ID stored!"); // Alert the user that they may have a duplicate entry 
                 return false;
             }
+        }
+
+        // Method implemented to finilaze the update
+        public void CompleteCarUpdate(Car changeMe, int ID, string make, string model, string reg, string fuel, DateTime lastServiced, string comments)
+        {
+            changeMe.SetId(ID);
+            changeMe.SetMake(make);
+            changeMe.SetModel(model);
+            changeMe.SetRegistration(reg);
+            changeMe.SetFuelType(fuel);
+            changeMe.SetDateLastServiced(lastServiced);
+            changeMe.SetComments(comments);
         }
 
         #endregion
@@ -920,6 +958,7 @@ namespace SOFT151_Coursework
         }
 
         #endregion
+
     }
 }
 
