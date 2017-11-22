@@ -26,6 +26,7 @@ namespace SOFT151_Coursework
         private List<Car> carSearchResults = new List<Car>(); 
 
         private Company currentSelectedCompany;
+        private Car currentSelectedCar;
 
         // Set up StreamReader / StreamWriter:
 
@@ -116,8 +117,9 @@ namespace SOFT151_Coursework
 
             // Prepare page for load:
 
-            this.radNotificationsOff.Select();
-            this.Height = 707; // Full height is 941 / shortened height is 707
+            this.grpCompanySummary.Enabled = false;
+            this.grpCarSummary.Enabled = false;
+            this.Height = 941;
 
             this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
@@ -233,6 +235,13 @@ namespace SOFT151_Coursework
             this.companySearchResults.Clear();
             this.txtSearchCompanies.Text = "";
 
+            // Remove profile of currently selected car:
+            this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+            this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+            this.grpCarSummary.Enabled = false;
+            this.grpCompanySummary.Enabled = false;
+            this.lstCars.Items.Clear();
+
             for (int i = 0; i < this.companies.Count; i++)
             {
                 this.lstAllCompanies.Items.Add(this.companies[i].PrintSummary());
@@ -259,7 +268,7 @@ namespace SOFT151_Coursework
             }
             else
             {
-                companySummary = companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+                companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
 
                 int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
 
@@ -285,22 +294,35 @@ namespace SOFT151_Coursework
 
                 int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
 
-                // Push notification to the user's recent activity:
+                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+                this.grpCarSummary.Enabled = false;
+                this.grpCompanySummary.Enabled = false;
+                this.lstCars.Items.Clear();
+
                 this.CreateNotification("company", "remove", companies[matchedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
-                // Proceed with deletion of selected company:
                 this.companies.Remove(companies[matchedIndex]);
 
                 //Display the updated company information:
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
 
-                // Clear the deleted company's cars:
                 this.lstCars.Items.Clear();
             }
         }
 
         // METHODS:
+
+        // Method to display the currently selected company summary
+        private void displayCompanyInformation(Company selectedCompany, int ID, string name, string address, string postcode, int numCars)
+        {
+            this.lblCompID.Text = "ID: " + Convert.ToString(ID);
+            this.lblCompName.Text = "Name: " + name;
+            this.lblCompAddress.Text = "Address: " + address;
+            this.lblCompPostcode.Text = "Postcode: " + postcode;
+            this.lblCompCarCount.Text = "Cars Rented: " + Convert.ToString(numCars);
+        }
 
         // Method used to loop over the contents of the companies list and display all contents
         private void updateCompaniesList(List<Company> list)
@@ -383,12 +405,17 @@ namespace SOFT151_Coursework
             {
                 this.companies.Add(new Company(companyID, companyName, companyAddress, companyPostcode)); // Add a new company to the list of companies
 
-                // Re-display the updated contents of the companies list:
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
 
-                // Push notification to the user's recent activity:
                 this.CreateNotification("company", "add", companyName, DateTime.Now.ToShortTimeString());
+
+                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+                this.grpCarSummary.Enabled = false;
+                this.grpCompanySummary.Enabled = false;
+                this.lstCars.Items.Clear();
+                
                 return true;
             }
             else
@@ -413,14 +440,18 @@ namespace SOFT151_Coursework
 
             if (!match) // There is not a match - safe to proceed with update of company information
             {
-                // Finilize the update
+                // Finilize the update:
                 this.CompleteCompanyUpdate(oldRecord, newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
-                //Display the updated company information:
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
 
-                // Push notification to the user's recent activity:
+                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+                this.grpCarSummary.Enabled = false;
+                this.grpCompanySummary.Enabled = false;
+                this.lstCars.Items.Clear();
+
                 this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
                 return true;
             }
@@ -439,6 +470,10 @@ namespace SOFT151_Coursework
             changeMe.SetName(name);
             changeMe.SetAddress(address);
             changeMe.SetPostcode(postcode);
+
+            // Remove profile of currently selected car:
+            this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+            this.grpCarSummary.Enabled = false;
         }
 
         #endregion
@@ -448,14 +483,43 @@ namespace SOFT151_Coursework
         // Method used to bring up company car information
         private void lstAllCompanies_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.lstCars.Items.Clear();
-
-            for (int i = 0; i < this.companies[this.lstAllCompanies.SelectedIndex].GetNumberOfCars(); i++)
+            if (this.companies.Count != 0)
             {
-                this.lstCars.Items.Add(this.companies[this.lstAllCompanies.SelectedIndex].GetAllCars()[i].PrintSummary());
-            }
+                this.grpCompanySummary.Enabled = true;
+                this.lstCars.Items.Clear();
 
-            this.CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
+                // Open information for the correct company
+                string companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+                int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
+                this.currentSelectedCompany = this.companies[matchedIndex];
+
+                this.displayCompanyInformation(this.currentSelectedCompany, this.currentSelectedCompany.GetId(), this.currentSelectedCompany.GetName(), this.currentSelectedCompany.GetAddress(), this.currentSelectedCompany.GetPostcode(), this.currentSelectedCompany.GetNumberOfCars());
+                this.CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
+
+                // Remove profile of currently selected car:
+                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+                this.grpCarSummary.Enabled = false;
+
+                for (int i = 0; i < this.companies[this.lstAllCompanies.SelectedIndex].GetNumberOfCars(); i++)
+                {
+                    this.lstCars.Items.Add(this.companies[this.lstAllCompanies.SelectedIndex].GetAllCars()[i].PrintSummary());
+                }
+            }
+        }
+
+        // Method used to bring up summary of selected car
+        private void lstCars_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.grpCarSummary.Enabled = true;
+            this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
+
+            // Open information for the correct car
+            string carSummary = this.lstCars.Items[this.lstCars.SelectedIndex].ToString();
+            int matchedIndex = this.locateCorrectCar(carSummary, this.currentSelectedCompany.GetAllCars());
+            this.currentSelectedCar = this.currentSelectedCompany.GetAllCars()[matchedIndex];
+
+            this.displayCarInformation(this.currentSelectedCar, this.currentSelectedCar.GetId(), this.currentSelectedCar.GetMake(), this.currentSelectedCar.GetModel(), this.currentSelectedCar.GetReg(), this.currentSelectedCar.GetFuelType(), Convert.ToDateTime(this.currentSelectedCar.GetDateLastServiced().ToShortDateString()), this.currentSelectedCar.GetComments());
+            this.CreateNotification("car", "view-info", this.currentSelectedCompany.GetName(), DateTime.Now.ToShortTimeString());
         }
 
         // BUTTON CLICKS:
@@ -507,9 +571,13 @@ namespace SOFT151_Coursework
             this.carSearchResults.Clear();
             this.txtSearchCars.Text = "";
 
-            for (int i = 0; i < this.currentSelectedCompany.GetAllCars().Count; i++)
+            if (this.lstAllCompanies.SelectedIndex != -1)
             {
-                this.lstCars.Items.Add(this.currentSelectedCompany.GetAllCars()[i].PrintSummary());
+                this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
+                for (int i = 0; i < this.currentSelectedCompany.GetAllCars().Count; i++)
+                {
+                    this.lstCars.Items.Add(this.currentSelectedCompany.GetAllCars()[i].PrintSummary());
+                }
             }
         }
 
@@ -593,6 +661,18 @@ namespace SOFT151_Coursework
         }
 
         // METHODS:
+
+        // Method used to display selected car summary
+        private void displayCarInformation(Car selectedCar, int ID, string make, string model, string reg, string fuel, DateTime lastServiced, string comments)
+        {
+            this.lblCarID.Text = "ID: " + Convert.ToString(ID);
+            this.lblCarMake.Text = "Make: " + make;
+            this.lblCarModel.Text = "Model: " + model;
+            this.lblCarReg.Text = "Registration: " + reg;
+            this.lblFuelType.Text = "Fuel Type: " + fuel;
+            this.lblLastServiced.Text = "Last Serviced: " + lastServiced;
+            this.txtDisplayCarComments.Text = comments;
+        }
 
         // Method used to re-display the list of cars (after a change)
         private void updateCarList(List<Car> list)
@@ -746,18 +826,6 @@ namespace SOFT151_Coursework
         #endregion
 
         #region code dealing with the notification system
-
-        // Turn notifications on
-        private void radNotificationsOn_CheckedChanged(object sender, EventArgs e)
-        {
-            this.Height = 941;
-        }
-
-        // Turn notifications off
-        private void radNotificationsOff_CheckedChanged(object sender, EventArgs e)
-        {
-            this.Height = 707;
-        }
 
         // Method used to add notifications to the users' recent activity tab
         public void CreateNotification(string notificationType, string action, string affectedElement, string theTime, string affectedElement2 = null)
@@ -943,6 +1011,13 @@ namespace SOFT151_Coursework
         {
             this.companies.Clear();
             this.updateCompaniesList(this.companies);
+            this.lstCars.Items.Clear();
+
+            this.grpCompanySummary.Enabled = false;
+            this.grpCarSummary.Enabled = false;
+
+            this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+            this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
         }
 
         private void btnClearAllCompanies_Click(object sender, EventArgs e)
