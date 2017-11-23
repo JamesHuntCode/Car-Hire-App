@@ -86,7 +86,7 @@
             this.lstAllCompanies.Location = new System.Drawing.Point(8, 248);
             this.lstAllCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.lstAllCompanies.Name = "lstAllCompanies";
-            this.lstAllCompanies.Size = new System.Drawing.Size(539, 274);
+            this.lstAllCompanies.Size = new System.Drawing.Size(539, 292);
             this.lstAllCompanies.TabIndex = 0;
             this.lstAllCompanies.SelectedIndexChanged += new System.EventHandler(this.lstAllCompanies_SelectedIndexChanged);
             // 
@@ -279,7 +279,7 @@
             this.lstCars.Location = new System.Drawing.Point(551, 248);
             this.lstCars.Margin = new System.Windows.Forms.Padding(2);
             this.lstCars.Name = "lstCars";
-            this.lstCars.Size = new System.Drawing.Size(537, 274);
+            this.lstCars.Size = new System.Drawing.Size(537, 292);
             this.lstCars.TabIndex = 30;
             this.lstCars.SelectedIndexChanged += new System.EventHandler(this.lstCars_SelectedIndexChanged);
             // 

@@ -38,25 +38,6 @@ namespace SOFT151_Coursework
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Import test data (remove this when possible)
-            #region generate a few hard coded cars and companies to work with
-
-            Random rnd = new Random();
-
-            for (int i = 0; i < 30; i++)
-            {
-                companies.Add(new Company(rnd.Next(0, 1000), Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000))));
-
-                for (int j = 0; j < 30; j++)
-                {
-                    companies[i].AddNewCar(new Car(j + 1, Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000)), new DateTime(), Convert.ToString(rnd.Next(0, 1000))));
-                }
-            }
-
-            this.updateCompaniesList(companies);
-
-            #endregion
-
             // Read initial data into program
             this.readFile(Environment.CurrentDirectory + @"\exampleFile.txt");
 
@@ -152,7 +133,7 @@ namespace SOFT151_Coursework
         }
 
         // Method used to write to files
-        private void writeFile(string filePath)
+        private bool writeFile(string filePath)
         {
             bool isValid = this.checkFile(filePath, "write");
 
@@ -163,23 +144,39 @@ namespace SOFT151_Coursework
                     for (int i = 0; i < this.companies.Count; i++)
                     {
                         // Write all company based information:
-
+                        mySW.WriteLine(this.companies[i].GetId());
+                        mySW.WriteLine(this.companies[i].GetName());
+                        mySW.WriteLine(this.companies[i].GetAddress());
+                        mySW.WriteLine(this.companies[i].GetPostcode());
+                        mySW.WriteLine(this.companies[i].GetNumberOfCars());
 
                         for (int j = 0; j < this.companies[i].GetAllCars().Count; j++)
                         {
                             // Write all car based information:
-
-                            
+                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetId());
+                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetMake() + " " + this.companies[i].GetAllCars()[j].GetModel());
+                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetReg());
+                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetFuelType());
+                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetDateLastServiced());
+                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetComments());
                         }
                     }
+                    return true;
                 }
             }
+            return false;
         }
 
         // Method to save user work (when clicked)
         private void btnSaveWork_Click(object sender, EventArgs e)
         {
-
+            bool hasSaved = this.writeFile(Environment.CurrentDirectory + @"\exampleFile.txt");
+            
+            if (hasSaved)
+            {
+                //this.CreateNotification("save", "autosave", null, DateTime.Now.ToShortTimeString()); COME BACK TO THIS
+                MessageBox.Show("Your work has been saved!");
+            }
         }
 
         // Method used to check data has been saved (prompt user if not)
@@ -190,6 +187,7 @@ namespace SOFT151_Coursework
                 // Remind user to save their work...
             }
             
+            // Autosave work if error becomes present
             if (e.CloseReason == CloseReason.WindowsShutDown)
             {
                 this.autoSave();
