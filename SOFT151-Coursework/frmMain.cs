@@ -28,11 +28,6 @@ namespace SOFT151_Coursework
         private Company currentSelectedCompany;
         private Car currentSelectedCar;
 
-        // Set up StreamReader / StreamWriter:
-
-        StreamReader mySR;
-        StreamWriter mySW;
-
         #endregion
 
         public frmMain()
@@ -53,71 +48,30 @@ namespace SOFT151_Coursework
 
             #region generate a few hard coded cars and companies to work with
 
+            Random rnd = new Random();
+
             for (int i = 0; i < 30; i++)
             {
-                companies.Add(new Company(i + 1, "Company " + (i + 1), "Example address", "Example postcode"));
+                companies.Add(new Company(rnd.Next(0, 1000), Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000))));
 
                 for (int j = 0; j < 30; j++)
                 {
-                    companies[i].AddNewCar(new Car(j + 1, "Random Make", "Random Model", "123456", "petrol", new DateTime(), "No comments yet"));
+                    companies[i].AddNewCar(new Car(j + 1, Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000)), Convert.ToString(rnd.Next(0, 1000)), new DateTime(), Convert.ToString(rnd.Next(0, 1000))));
                 }
             }
 
-            updateCompaniesList(companies);
+            this.updateCompaniesList(companies);
 
             #endregion
 
             // Read initial data into program:
 
-            #region read initial file data into program
-
-            /*string filePath = Environment.CurrentDirectory + @"\exampleFile.txt"; // Location of the file
-
-            bool isValid = this.checkFile(filePath, mySR, null);
-
-            if (isValid) // No exceptions have been thrown - safe to continue
-            {
-                using (mySR)
-                {
-                    while (mySR.Peek() >= 0) // Check for remaining data (chars) in the file
-                    {
-                        // Load comoany data:
-                        int companyID = Convert.ToInt32(mySR.ReadLine());
-                        string companyName = mySR.ReadLine();
-                        string companyAddress = mySR.ReadLine();
-                        string companyPostcode = mySR.ReadLine();
-                        int numberOfCars = Convert.ToInt32(mySR.ReadLine());
-
-                        Company newCompany = new Company(companyID, companyName, companyAddress, companyPostcode);
-
-                        // Load car data:
-                        for (int i = 0; i < numberOfCars; i++)
-                        {
-                            int carID = Convert.ToInt32(mySR.ReadLine()); 
-                            string carMake = mySR.ReadLine();
-                            string carModel = mySR.ReadLine();
-                            string carReg = mySR.ReadLine();
-                            string fuelType = mySR.ReadLine();
-                            DateTime lastServiced = Convert.ToDateTime(mySR.ReadLine());
-                            string comments = mySR.ReadLine();
-
-                            // Add new car to company 
-                            Car newCar = new Car(carID, carMake, carModel, carReg, fuelType, lastServiced, comments);
-                            newCompany.AddNewCar(newCar);
-                        }
-                        // Add new company to list of companies
-                        this.companies.Add(newCompany);
-                    }
-                }
-                // Display company 
-                updateCompaniesList(companies);
-            }*/
-
-            #endregion
+            this.readFile(Environment.CurrentDirectory + @"\exampleFile.txt");
 
             // Prepare page for load:
 
-            //this.Height = 941;
+            this.Height = 887;
+            this.Width = 1404;
 
             this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
@@ -171,18 +125,79 @@ namespace SOFT151_Coursework
             return true;
         }
 
+        // Method used to read from file
+        private void readFile(string filePath)
+        {
+            StreamReader mySR = new StreamReader(filePath);
+
+            bool isValid = this.checkFile(filePath, mySR, null);
+
+            if (isValid)
+            {
+                using (mySR)
+                {
+                    while (mySR.Peek() > -1) 
+                    {
+                        // Load comoany data:
+                        int companyID = Convert.ToInt32(mySR.ReadLine());
+                        string companyName = mySR.ReadLine();
+                        string companyAddress = mySR.ReadLine();
+                        string companyPostcode = mySR.ReadLine();
+                        int numberOfCars = Convert.ToInt32(mySR.ReadLine());
+
+                        Company newCompany = new Company(companyID, companyName, companyAddress, companyPostcode);
+
+                        // Load car data:
+                        for (int i = 0; i < numberOfCars; i++)
+                        {
+                            int carID = Convert.ToInt32(mySR.ReadLine());
+
+                            // Split the car make from the model 
+                            string[] carMakeAndModel = mySR.ReadLine().Split(null);
+                            string carMake = carMakeAndModel[0];
+                            string carModel = carMakeAndModel[1];
+
+                            string carReg = mySR.ReadLine();
+                            string fuelType = mySR.ReadLine();
+                            DateTime lastServiced = Convert.ToDateTime(mySR.ReadLine());
+                            string comments = mySR.ReadLine();
+
+                            // Add new car to company 
+                            Car newCar = new Car(carID, carMake, carModel, carReg, fuelType, lastServiced, comments);
+                            newCompany.AddNewCar(newCar);
+                        }
+                        this.companies.Add(newCompany);
+                    }
+                }
+                this.updateCompaniesList(companies);
+            }
+        }
+
         // Method used to write to files
-        public void WriteFile(string path)
+        private void writeFile()
         {
             string filePath = Environment.CurrentDirectory + @"\exampleFile.txt";
 
+            StreamWriter mySW = new StreamWriter(filePath);
+            
             bool isValid = this.checkFile(filePath, null, mySW);
 
             if (isValid)
             {
                 using (mySW)
                 {
+                    for (int i = 0; i < this.companies.Count; i++)
+                    {
+                        // Write all company based information:
 
+
+                        for (int j = 0; j < this.companies[i].GetAllCars().Count; j++)
+                        {
+                            // Write all car based information:
+
+                            
+                        }
+                    }
                 }
             }
         }
@@ -217,10 +232,7 @@ namespace SOFT151_Coursework
 
                 this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
 
-                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
-                this.lstCars.Items.Clear();
-
+                this.nullAllFields();
             }
         }
 
@@ -231,10 +243,7 @@ namespace SOFT151_Coursework
             this.companySearchResults.Clear();
             this.txtSearchCompanies.Text = "";
 
-            // Remove profile of currently selected car:
-            this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-            this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
-            this.lstCars.Items.Clear();
+            this.nullAllFields();
 
             for (int i = 0; i < this.companies.Count; i++)
             {
@@ -293,9 +302,7 @@ namespace SOFT151_Coursework
 
                     int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
 
-                    this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-                    this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
-                    this.lstCars.Items.Clear();
+                    this.nullAllFields();
 
                     this.CreateNotification("company", "remove", companies[matchedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
@@ -304,8 +311,6 @@ namespace SOFT151_Coursework
                     //Display the updated company information:
                     this.lstAllCompanies.Items.Clear();
                     this.updateCompaniesList(companies);
-
-                    this.lstCars.Items.Clear();
                 }
             }
         }
@@ -403,9 +408,7 @@ namespace SOFT151_Coursework
 
                 this.CreateNotification("company", "add", companyName, DateTime.Now.ToShortTimeString());
 
-                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
-                this.lstCars.Items.Clear();
+                this.nullAllFields();
                 
                 return true;
             }
@@ -638,7 +641,7 @@ namespace SOFT151_Coursework
                 this.currentSelectedCompany.removeCar(this.currentSelectedCompany.GetAllCars()[matchedIndex]);
 
                 this.currentSelectedCompany.SetNumberOfCars(this.currentSelectedCompany.GetNumberOfCars() - 1);
-                //this.lblCarCount.Text = "Cars rented: " + Convert.ToString(this.currentSelectedCompany.GetNumberOfCars());  COME BACK TO THIS
+                this.lblCompCarCount.Text = "Cars Rented: " + Convert.ToString(this.currentSelectedCompany.GetNumberOfCars());
 
                 //Display the updated company information:
 
@@ -667,11 +670,6 @@ namespace SOFT151_Coursework
             for (int i = 0; i < list.Count; i++)
             {
                 this.lstCars.Items.Add(list[i].PrintSummary());
-            }
-
-            if (list.Count == 0)
-            {
-                this.lstCars.Items.Add("This company currently has no cars.");
             }
         }
 
@@ -743,7 +741,7 @@ namespace SOFT151_Coursework
                 this.currentSelectedCompany.AddNewCar(car); // Add the new car to the company's list of cars
 
                 this.currentSelectedCompany.SetNumberOfCars(this.currentSelectedCompany.GetNumberOfCars() + 1);
-                //this.lblCarCount.Text = "Cars rented: " + Convert.ToString(this.currentSelectedCompany.GetNumberOfCars()); COME BACK TO THIS
+                this.lblCompCarCount.Text = "Cars Rented: " + Convert.ToString(this.currentSelectedCompany.GetNumberOfCars());
 
                 // Re-display the updated contents of the company's car list:
 
@@ -779,15 +777,14 @@ namespace SOFT151_Coursework
             if (!match) // There is not a match - safe to proceed with upload of new car information
             {
                 // Finilize the update
+                this.CompleteCarUpdate(oldCar, newCarId, newCarMake, newCarModel, newCarReg, newFuelType, newLastServiced, newComments);
 
-
-                //Display the updated company information:
-
+                // Display the updated car information:
+                this.displayCarInformation(null, newCarId, newCarMake, newCarModel, newCarReg, newFuelType, newLastServiced, newComments);
                 this.lstCars.Items.Clear();
                 updateCarList(this.currentSelectedCompany.GetAllCars());
 
                 // Push notification to the user's recent activity:
-
                 this.CreateNotification("car", "update", Convert.ToString(oldCar.GetId()), DateTime.Now.ToShortTimeString(), this.currentSelectedCompany.GetName());
                 return true;
             }
@@ -837,7 +834,7 @@ namespace SOFT151_Coursework
 
                     if (notificationType == "company")
                     {
-                        generatedNotification = "You updated '" + affectedElement + "' in your company records @ " + theTime + ".";
+                        generatedNotification = "You updated the records of '" + affectedElement + "' in your company records @ " + theTime + ".";
                     }
                     else
                     {
@@ -992,8 +989,10 @@ namespace SOFT151_Coursework
         // Method called every 1/10 second to perform routine tasks
         private void timer_Tick(object sender, EventArgs e)
         {
+            // Display time (top right corner of app)
             this.lblTheTime.Text = Convert.ToString(DateTime.Now.ToShortTimeString());
 
+            // Auto check selectable fields
             if (this.lstAllCompanies.SelectedIndex == -1)
             {
                 this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
@@ -1012,8 +1011,7 @@ namespace SOFT151_Coursework
             this.updateCompaniesList(this.companies);
             this.lstCars.Items.Clear();
 
-            this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
-            this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+            this.nullAllFields();
         }
 
         private void btnClearAllCompanies_Click(object sender, EventArgs e)
@@ -1022,10 +1020,19 @@ namespace SOFT151_Coursework
             confirm.ShowDialog(this);
         }
 
+        // Method used to bring up a summary of the program
         private void btnAbout_Click(object sender, EventArgs e)
         {
             frmAboutProgram popup = new frmAboutProgram();
             popup.ShowDialog(this);
+        }
+
+        // Method used to null 'about' fields when not in use
+        private void nullAllFields()
+        {
+            this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+            this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+            this.lstCars.Items.Clear();
         }
 
         #endregion
