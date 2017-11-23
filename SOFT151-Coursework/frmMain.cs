@@ -989,11 +989,23 @@ namespace SOFT151_Coursework
 
         #region code dealing with extra features
 
+        // Method called every 1/10 second to perform routine tasks
         private void timer_Tick(object sender, EventArgs e)
         {
             this.lblTheTime.Text = Convert.ToString(DateTime.Now.ToShortTimeString());
+
+            if (this.lstAllCompanies.SelectedIndex == -1)
+            {
+                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+            }
+
+            if (this.lstCars.SelectedIndex == -1)
+            {
+                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+            }
         }
 
+        // Method used to remove all user data
         public void RemoveAllData()
         {
             this.companies.Clear();
