@@ -72,6 +72,7 @@
             this.grpCarSummary = new System.Windows.Forms.GroupBox();
             this.lblLastServiced = new System.Windows.Forms.Label();
             this.picBanner = new System.Windows.Forms.PictureBox();
+            this.btnSaveWork = new System.Windows.Forms.Button();
             this.grpCompanySummary.SuspendLayout();
             this.grpCarSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBanner)).BeginInit();
@@ -220,7 +221,7 @@
             this.lblDisplayDate.AutoSize = true;
             this.lblDisplayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisplayDate.ForeColor = System.Drawing.Color.Black;
-            this.lblDisplayDate.Location = new System.Drawing.Point(1279, 9);
+            this.lblDisplayDate.Location = new System.Drawing.Point(2, 29);
             this.lblDisplayDate.Name = "lblDisplayDate";
             this.lblDisplayDate.Size = new System.Drawing.Size(102, 20);
             this.lblDisplayDate.TabIndex = 24;
@@ -552,11 +553,22 @@
             this.picBanner.TabIndex = 62;
             this.picBanner.TabStop = false;
             // 
+            // btnSaveWork
+            // 
+            this.btnSaveWork.Location = new System.Drawing.Point(1284, 6);
+            this.btnSaveWork.Name = "btnSaveWork";
+            this.btnSaveWork.Size = new System.Drawing.Size(99, 43);
+            this.btnSaveWork.TabIndex = 63;
+            this.btnSaveWork.Text = "Save Work";
+            this.btnSaveWork.UseVisualStyleBackColor = true;
+            this.btnSaveWork.Click += new System.EventHandler(this.btnSaveWork_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1388, 848);
+            this.Controls.Add(this.btnSaveWork);
             this.Controls.Add(this.picBanner);
             this.Controls.Add(this.grpCarSummary);
             this.Controls.Add(this.grpCompanySummary);
@@ -647,6 +659,7 @@
         private System.Windows.Forms.GroupBox grpCarSummary;
         private System.Windows.Forms.Label lblLastServiced;
         private System.Windows.Forms.PictureBox picBanner;
+        private System.Windows.Forms.Button btnSaveWork;
     }
 }
 

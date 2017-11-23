@@ -21,6 +21,7 @@ namespace SOFT151_Coursework
             this.BackColor = myBG;
 
             this.lblHeader.ForeColor = Color.DarkOrange;
+            this.lblExtraInfo.ForeColor = Color.DarkOrange;
         }
 
         private void button1_Click(object sender, EventArgs e) // User wants to clear their data

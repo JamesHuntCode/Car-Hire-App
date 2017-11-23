@@ -33,19 +33,12 @@ namespace SOFT151_Coursework
         public frmMain()
         {
             InitializeComponent();
+            this.FormClosing += this.frmMain_FormClosing;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Set up a timer to display the current time to the user:
-
-            Timer myTimer = new Timer();
-            myTimer.Interval = 100;
-            myTimer.Tick += new EventHandler(timer_Tick);
-            myTimer.Start();
-
-            // Import test data:
-
+            // Import test data (remove this when possible)
             #region generate a few hard coded cars and companies to work with
 
             Random rnd = new Random();
@@ -64,62 +57,49 @@ namespace SOFT151_Coursework
 
             #endregion
 
-            // Read initial data into program:
-
+            // Read initial data into program
             this.readFile(Environment.CurrentDirectory + @"\exampleFile.txt");
 
-            // Prepare page for load:
-
-            this.Height = 887;
-            this.Width = 1404;
-
-            this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
-            this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
-
-            // Set up the color layout of the form - (#333 = graphite):
-
-            this.BackColor = ColorTranslator.FromHtml("#333"); 
-
-            foreach (Label l in Controls.OfType<Label>()) 
-            {
-                l.ForeColor = Color.DarkOrange;
-            }
+            // Prepare program for load
+            this.initiateProgram();
         }
 
         #region code dealing with reading from / writing to files
 
         // Method used to error handle files
-        private bool checkFile(string path, StreamReader SR = null, StreamWriter SW = null)
+        private bool checkFile(string path, string action)
         {
             try
             {
-                if (SR != null)
+                if (action == "read")
                 {
-                    SR = new StreamReader(path);
+                    StreamReader tstRead = new StreamReader(path);
+                    tstRead.Close();
                 }
-                else if (SW != null)
+                else
                 {
-                    SW = new StreamWriter(path);
+                    StreamWriter tstWrite = new StreamWriter(path);
+                    tstWrite.Close();
                 }
             }
             catch (FileNotFoundException err)
             {
-                MessageBox.Show("Your file has not been found! Error Message: " + err.Message);
+                MessageBox.Show("Your file has not been found! Error Message: " + err.Message + "\nSorry for any inconvenience caused.");
                 return false;
             }
             catch (DirectoryNotFoundException err)
             {
-                MessageBox.Show("Your directory has not been found! Error Message: " + err.Message);
+                MessageBox.Show("Your directory has not been found! Error Message: " + err.Message + "\nSorry for any inconvenience caused.");
                 return false;
             }
             catch (PathTooLongException err)
             {
-                MessageBox.Show("Your specified file path is too long! Error Message: " + err.Message);
+                MessageBox.Show("Your specified file path is too long! Error Message: " + err.Message + "\nSorry for any inconvenience caused.");
                 return false;
             }
             catch (Exception err)
             {
-                MessageBox.Show("There has been an error! Error Message: " + err.Message);
+                MessageBox.Show("There has been an error! Error Message: " + err.Message + "\nSorry for any inconvenience caused.");
                 return false;
             }
             return true;
@@ -128,17 +108,15 @@ namespace SOFT151_Coursework
         // Method used to read from file
         private void readFile(string filePath)
         {
-            StreamReader mySR = new StreamReader(filePath);
-
-            bool isValid = this.checkFile(filePath, mySR, null);
+            bool isValid = this.checkFile(filePath, "read");
 
             if (isValid)
             {
-                using (mySR)
+                using (StreamReader mySR = new StreamReader(filePath))
                 {
-                    while (mySR.Peek() > -1) 
+                    while (mySR.Peek() > -1)
                     {
-                        // Load comoany data:
+                        // Load company data:
                         int companyID = Convert.ToInt32(mySR.ReadLine());
                         string companyName = mySR.ReadLine();
                         string companyAddress = mySR.ReadLine();
@@ -174,17 +152,13 @@ namespace SOFT151_Coursework
         }
 
         // Method used to write to files
-        private void writeFile()
+        private void writeFile(string filePath)
         {
-            string filePath = Environment.CurrentDirectory + @"\exampleFile.txt";
-
-            StreamWriter mySW = new StreamWriter(filePath);
-            
-            bool isValid = this.checkFile(filePath, null, mySW);
+            bool isValid = this.checkFile(filePath, "write");
 
             if (isValid)
             {
-                using (mySW)
+                using (StreamWriter mySW = new StreamWriter(filePath))
                 {
                     for (int i = 0; i < this.companies.Count; i++)
                     {
@@ -200,6 +174,37 @@ namespace SOFT151_Coursework
                     }
                 }
             }
+        }
+
+        // Method to save user work (when clicked)
+        private void btnSaveWork_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // Method used to check data has been saved (prompt user if not)
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                // Remind user to save their work...
+            }
+            
+            if (e.CloseReason == CloseReason.WindowsShutDown)
+            {
+                this.autoSave();
+            }
+
+            if (e.CloseReason == CloseReason.TaskManagerClosing)
+            {
+                this.autoSave();
+            }
+        }
+
+        // Method used to autosave user data (called every 5 minutes)
+        private void autoSave()
+        {
+
         }
 
         #endregion
@@ -440,8 +445,6 @@ namespace SOFT151_Coursework
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
 
-                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-
                 this.displayCompanyInformation(null, newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode, this.currentSelectedCompany.GetNumberOfCars());
 
                 this.lstCars.Items.Clear();
@@ -464,9 +467,6 @@ namespace SOFT151_Coursework
             changeMe.SetName(name);
             changeMe.SetAddress(address);
             changeMe.SetPostcode(postcode);
-
-            // Remove profile of currently selected car:
-            this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
         }
 
         #endregion
@@ -487,9 +487,6 @@ namespace SOFT151_Coursework
 
                 this.displayCompanyInformation(this.currentSelectedCompany, this.currentSelectedCompany.GetId(), this.currentSelectedCompany.GetName(), this.currentSelectedCompany.GetAddress(), this.currentSelectedCompany.GetPostcode(), this.currentSelectedCompany.GetNumberOfCars());
                 this.CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
-
-                // Remove profile of currently selected car:
-                this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
 
                 for (int i = 0; i < this.companies[this.lstAllCompanies.SelectedIndex].GetNumberOfCars(); i++)
                 {
@@ -987,7 +984,40 @@ namespace SOFT151_Coursework
         #region code dealing with extra features
 
         // Method called every 1/10 second to perform routine tasks
-        private void timer_Tick(object sender, EventArgs e)
+
+        // Method called on program load
+        private void initiateProgram()
+        {
+            // Timer to display the current time to the user & check fields:
+            Timer timeAndCheckFields = new Timer();
+            timeAndCheckFields.Interval = 100;
+            timeAndCheckFields.Tick += new EventHandler(check_Timer_Tick);
+            timeAndCheckFields.Start();
+
+            // Timer to autosave user's work:
+            Timer autoSaveWork = new Timer();
+            autoSaveWork.Interval = ((1000 * 60) * 5); // every 5 mins
+            autoSaveWork.Tick += new EventHandler(autoSave_Timer_Tick);
+            autoSaveWork.Start();
+
+            // Prepare page for load:
+            this.Height = 887;
+            this.Width = 1404;
+            this.lstAllCompanies.SetSelected(0, true);
+            this.lstCars.SetSelected(0, true);
+            this.notifications.Clear();
+            this.lstRecentActivity.Items.Clear();
+            this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
+            this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
+
+            // Set up the color layout of the form - (#333 = graphite):
+            this.BackColor = ColorTranslator.FromHtml("#333");
+            foreach (Label l in Controls.OfType<Label>())
+            {
+                l.ForeColor = Color.DarkOrange;
+            }
+        }
+        private void check_Timer_Tick(object sender, EventArgs e)
         {
             // Display time (top right corner of app)
             this.lblTheTime.Text = Convert.ToString(DateTime.Now.ToShortTimeString());
@@ -1002,6 +1032,12 @@ namespace SOFT151_Coursework
             {
                 this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
             }
+        }
+
+        private void autoSave_Timer_Tick(object sender, EventArgs e)
+        {
+            this.autoSave();
+            //this.CreateNotification("save", "autosave", null, DateTime.Now.ToShortTimeString()); EXAMPLE - COME BACK and update the notification feature to support this functionality
         }
 
         // Method used to remove all user data
