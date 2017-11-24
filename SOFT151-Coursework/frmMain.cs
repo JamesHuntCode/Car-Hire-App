@@ -175,6 +175,7 @@ namespace SOFT151_Coursework
             if (hasSaved)
             {
                 this.CreateNotification("self-saved", "save", "exampleFile.txt", DateTime.Now.ToShortTimeString());
+                this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
             }
         }
 
@@ -183,7 +184,7 @@ namespace SOFT151_Coursework
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                this.save();
+                // Ask user if they want to close without saving
             }
             
             // Autosave work if error becomes present
@@ -201,6 +202,7 @@ namespace SOFT151_Coursework
         private void save()
         {
             this.autoSave();
+            this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
             MessageBox.Show("All of your work has been saved.");
         }
 
@@ -1023,6 +1025,7 @@ namespace SOFT151_Coursework
             // Prepare page for load:
             this.Height = 887;
             this.Width = 1404;
+            this.radAutoSaveOn.Select();
             this.lstAllCompanies.SetSelected(0, true);
             this.lstCars.SetSelected(0, true);
             this.notifications.Clear();
@@ -1064,7 +1067,11 @@ namespace SOFT151_Coursework
         // Method used to invoke auto-save method every 5 minutes
         private void autoSave_Timer_Tick(object sender, EventArgs e)
         {
-            this.autoSave();
+            if (this.radAutoSaveOn.Checked)
+            {
+                this.autoSave();
+                this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
+            }
         }
 
         // Method used to remove all user data

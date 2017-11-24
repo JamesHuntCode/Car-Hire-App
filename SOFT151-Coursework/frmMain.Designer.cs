@@ -73,6 +73,10 @@
             this.lblLastServiced = new System.Windows.Forms.Label();
             this.picBanner = new System.Windows.Forms.PictureBox();
             this.btnSaveWork = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.radAutoSaveOn = new System.Windows.Forms.RadioButton();
+            this.radAutoSaveOff = new System.Windows.Forms.RadioButton();
+            this.lblLastSaved = new System.Windows.Forms.Label();
             this.grpCompanySummary.SuspendLayout();
             this.grpCarSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBanner)).BeginInit();
@@ -555,19 +559,69 @@
             // 
             // btnSaveWork
             // 
-            this.btnSaveWork.Location = new System.Drawing.Point(1284, 6);
+            this.btnSaveWork.Location = new System.Drawing.Point(1220, 29);
             this.btnSaveWork.Name = "btnSaveWork";
-            this.btnSaveWork.Size = new System.Drawing.Size(99, 23);
+            this.btnSaveWork.Size = new System.Drawing.Size(163, 23);
             this.btnSaveWork.TabIndex = 63;
             this.btnSaveWork.Text = "Save Work";
             this.btnSaveWork.UseVisualStyleBackColor = true;
             this.btnSaveWork.Click += new System.EventHandler(this.btnSaveWork_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1217, 9);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 18);
+            this.label1.TabIndex = 51;
+            this.label1.Text = "Auto-Save:";
+            // 
+            // radAutoSaveOn
+            // 
+            this.radAutoSaveOn.AutoSize = true;
+            this.radAutoSaveOn.ForeColor = System.Drawing.Color.DarkOrange;
+            this.radAutoSaveOn.Location = new System.Drawing.Point(1302, 10);
+            this.radAutoSaveOn.Name = "radAutoSaveOn";
+            this.radAutoSaveOn.Size = new System.Drawing.Size(39, 17);
+            this.radAutoSaveOn.TabIndex = 64;
+            this.radAutoSaveOn.TabStop = true;
+            this.radAutoSaveOn.Text = "On";
+            this.radAutoSaveOn.UseVisualStyleBackColor = true;
+            // 
+            // radAutoSaveOff
+            // 
+            this.radAutoSaveOff.AutoSize = true;
+            this.radAutoSaveOff.ForeColor = System.Drawing.Color.DarkOrange;
+            this.radAutoSaveOff.Location = new System.Drawing.Point(1344, 9);
+            this.radAutoSaveOff.Name = "radAutoSaveOff";
+            this.radAutoSaveOff.Size = new System.Drawing.Size(39, 17);
+            this.radAutoSaveOff.TabIndex = 65;
+            this.radAutoSaveOff.TabStop = true;
+            this.radAutoSaveOff.Text = "Off";
+            this.radAutoSaveOff.UseVisualStyleBackColor = true;
+            // 
+            // lblLastSaved
+            // 
+            this.lblLastSaved.AutoSize = true;
+            this.lblLastSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastSaved.Location = new System.Drawing.Point(1217, 55);
+            this.lblLastSaved.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLastSaved.Name = "lblLastSaved";
+            this.lblLastSaved.Size = new System.Drawing.Size(89, 18);
+            this.lblLastSaved.TabIndex = 66;
+            this.lblLastSaved.Text = "Last Saved: ";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1388, 848);
+            this.Controls.Add(this.lblLastSaved);
+            this.Controls.Add(this.radAutoSaveOff);
+            this.Controls.Add(this.radAutoSaveOn);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSaveWork);
             this.Controls.Add(this.picBanner);
             this.Controls.Add(this.grpCarSummary);
@@ -660,6 +714,10 @@
         private System.Windows.Forms.Label lblLastServiced;
         private System.Windows.Forms.PictureBox picBanner;
         private System.Windows.Forms.Button btnSaveWork;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton radAutoSaveOn;
+        private System.Windows.Forms.RadioButton radAutoSaveOff;
+        private System.Windows.Forms.Label lblLastSaved;
     }
 }
 
