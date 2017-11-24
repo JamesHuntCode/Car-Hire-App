@@ -16,12 +16,19 @@ namespace SOFT151_Coursework
         {
             InitializeComponent();
 
-            this.BackColor = ColorTranslator.FromHtml("#333"); // Change background color to graphite
-
-            foreach (Label l in Controls.OfType<Label>()) // Change all label elements to orange
+            // Set up the color layout of the form - (#333 = graphite):
+            this.BackColor = ColorTranslator.FromHtml("#333");
+            foreach (Label l in Controls.OfType<Label>())
             {
                 l.ForeColor = Color.DarkOrange;
             }
+
+            // Optional code (run if in Smeaton)
+
+            /*foreach (Button b in Controls.OfType<Button>())
+            {
+                b.ForeColor = Color.White;
+            }*/
         }
     }
 }

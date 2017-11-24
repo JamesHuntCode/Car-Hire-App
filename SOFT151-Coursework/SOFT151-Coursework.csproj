@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Car.cs" />
     <Compile Include="Company.cs" />
+    <Compile Include="FileServices.cs" />
     <Compile Include="frmAboutProgram.cs">
       <SubType>Form</SubType>
     </Compile>

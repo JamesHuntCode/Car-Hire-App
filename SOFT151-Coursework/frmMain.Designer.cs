@@ -557,7 +557,7 @@
             // 
             this.btnSaveWork.Location = new System.Drawing.Point(1284, 6);
             this.btnSaveWork.Name = "btnSaveWork";
-            this.btnSaveWork.Size = new System.Drawing.Size(99, 43);
+            this.btnSaveWork.Size = new System.Drawing.Size(99, 23);
             this.btnSaveWork.TabIndex = 63;
             this.btnSaveWork.Text = "Save Work";
             this.btnSaveWork.UseVisualStyleBackColor = true;

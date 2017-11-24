@@ -174,8 +174,7 @@ namespace SOFT151_Coursework
             
             if (hasSaved)
             {
-                //this.CreateNotification("save", "autosave", null, DateTime.Now.ToShortTimeString()); COME BACK TO THIS
-                MessageBox.Show("Your work has been saved!");
+                this.CreateNotification("self-saved", "save", "exampleFile.txt", DateTime.Now.ToShortTimeString());
             }
         }
 
@@ -184,25 +183,36 @@ namespace SOFT151_Coursework
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                // Remind user to save their work...
+                this.save();
             }
             
             // Autosave work if error becomes present
             if (e.CloseReason == CloseReason.WindowsShutDown)
             {
-                this.autoSave();
+                this.save();
             }
 
             if (e.CloseReason == CloseReason.TaskManagerClosing)
             {
-                this.autoSave();
+                this.save();
             }
+        }
+
+        private void save()
+        {
+            this.autoSave();
+            MessageBox.Show("All of your work has been saved.");
         }
 
         // Method used to autosave user data (called every 5 minutes)
         private void autoSave()
         {
+            bool hasSaved = this.writeFile(Environment.CurrentDirectory + @"\exampleFile.txt");
 
+            if (hasSaved)
+            {
+                this.CreateNotification("auto-saved", "save", "exampleFile.txt", DateTime.Now.ToShortTimeString());
+            }
         }
 
         #endregion
@@ -438,7 +448,7 @@ namespace SOFT151_Coursework
             if (!match) // There is not a match - safe to proceed with update of company information
             {
                 // Finilize the update:
-                this.CompleteCompanyUpdate(oldRecord, newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode);
+                this.completeCompanyUpdate(oldRecord, newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode);
 
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
@@ -458,7 +468,7 @@ namespace SOFT151_Coursework
         }
 
         // Method implemented to finilize the update 
-        public void CompleteCompanyUpdate(Company changeMe, int ID, string name, string address, string postcode)
+        private void completeCompanyUpdate(Company changeMe, int ID, string name, string address, string postcode)
         {
             // Update old records:
             changeMe.SetId(ID);
@@ -772,7 +782,7 @@ namespace SOFT151_Coursework
             if (!match) // There is not a match - safe to proceed with upload of new car information
             {
                 // Finilize the update
-                this.CompleteCarUpdate(oldCar, newCarId, newCarMake, newCarModel, newCarReg, newFuelType, newLastServiced, newComments);
+                this.completeCarUpdate(oldCar, newCarId, newCarMake, newCarModel, newCarReg, newFuelType, newLastServiced, newComments);
 
                 // Display the updated car information:
                 this.displayCarInformation(null, newCarId, newCarMake, newCarModel, newCarReg, newFuelType, newLastServiced, newComments);
@@ -791,7 +801,7 @@ namespace SOFT151_Coursework
         }
 
         // Method implemented to finilaze the update
-        public void CompleteCarUpdate(Car changeMe, int ID, string make, string model, string reg, string fuel, DateTime lastServiced, string comments)
+        private void completeCarUpdate(Car changeMe, int ID, string make, string model, string reg, string fuel, DateTime lastServiced, string comments)
         {
             changeMe.SetId(ID);
             changeMe.SetMake(make);
@@ -807,7 +817,7 @@ namespace SOFT151_Coursework
         #region code dealing with the notification system
 
         // Method used to add notifications to the users' recent activity tab
-        public void CreateNotification(string notificationType, string action, string affectedElement, string theTime, string affectedElement2 = null)
+        private void CreateNotification(string notificationType, string action, string affectedElement, string theTime, string affectedElement2 = null)
         {
             string generatedNotification = "";
 
@@ -870,6 +880,18 @@ namespace SOFT151_Coursework
                     else
                     {
                         generatedNotification = "You searched for '" + affectedElement + "' in the records of '" + affectedElement2 + "' @ " + theTime + ".";
+                    }
+
+                    break;
+                case "save": // Save all work 
+
+                    if (notificationType == "self-saved") // User has saved their work
+                    {
+                        generatedNotification = "Your work has successfully been saved to '" + affectedElement + "' @ " + theTime + ".";
+                    }
+                    else // User's work has been auto saved
+                    {
+                        generatedNotification = "Auto-save has successfully saved your work to '" + affectedElement + "' @ " + theTime + ".";
                     }
 
                     break;
@@ -962,7 +984,7 @@ namespace SOFT151_Coursework
         }
 
         // Method used to update the notifications and keep the user up to date
-        public void UpdateNotifications(List<string> list)
+        private void UpdateNotifications(List<string> list)
         {
             this.lstRecentActivity.Items.Clear();
 
@@ -1014,6 +1036,13 @@ namespace SOFT151_Coursework
             {
                 l.ForeColor = Color.DarkOrange;
             }
+
+            // Optional code (run if in Smeaton)
+
+            /*foreach (Button b in Controls.OfType<Button>())
+            {
+                b.ForeColor = Color.White;
+            }*/
         }
         private void check_Timer_Tick(object sender, EventArgs e)
         {
@@ -1032,10 +1061,10 @@ namespace SOFT151_Coursework
             }
         }
 
+        // Method used to invoke auto-save method every 5 minutes
         private void autoSave_Timer_Tick(object sender, EventArgs e)
         {
             this.autoSave();
-            //this.CreateNotification("save", "autosave", null, DateTime.Now.ToShortTimeString()); EXAMPLE - COME BACK and update the notification feature to support this functionality
         }
 
         // Method used to remove all user data
