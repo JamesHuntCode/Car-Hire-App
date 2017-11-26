@@ -42,11 +42,9 @@
             this.btnSearchRecentActivity = new System.Windows.Forms.Button();
             this.btnRefreshCompanies = new System.Windows.Forms.Button();
             this.btnRefreshNotifications = new System.Windows.Forms.Button();
-            this.lblDisplayDate = new System.Windows.Forms.Label();
             this.btnClearAllCompanies = new System.Windows.Forms.Button();
             this.btnClearAllNotifications = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
-            this.lblTheTime = new System.Windows.Forms.Label();
             this.lstCars = new System.Windows.Forms.ListBox();
             this.btnRefreshCars = new System.Windows.Forms.Button();
             this.btnSearchCar = new System.Windows.Forms.Button();
@@ -77,6 +75,9 @@
             this.radAutoSaveOn = new System.Windows.Forms.RadioButton();
             this.radAutoSaveOff = new System.Windows.Forms.RadioButton();
             this.lblLastSaved = new System.Windows.Forms.Label();
+            this.lblFileBeingRead = new System.Windows.Forms.Label();
+            this.txtInputFileName = new System.Windows.Forms.TextBox();
+            this.btnLoadFile = new System.Windows.Forms.Button();
             this.grpCompanySummary.SuspendLayout();
             this.grpCarSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBanner)).BeginInit();
@@ -220,17 +221,6 @@
             this.btnRefreshNotifications.UseVisualStyleBackColor = true;
             this.btnRefreshNotifications.Click += new System.EventHandler(this.btnRefreshNotifications_Click);
             // 
-            // lblDisplayDate
-            // 
-            this.lblDisplayDate.AutoSize = true;
-            this.lblDisplayDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisplayDate.ForeColor = System.Drawing.Color.Black;
-            this.lblDisplayDate.Location = new System.Drawing.Point(2, 29);
-            this.lblDisplayDate.Name = "lblDisplayDate";
-            this.lblDisplayDate.Size = new System.Drawing.Size(102, 20);
-            this.lblDisplayDate.TabIndex = 24;
-            this.lblDisplayDate.Text = "Todays\' Date";
-            // 
             // btnClearAllCompanies
             // 
             this.btnClearAllCompanies.Location = new System.Drawing.Point(729, 650);
@@ -263,17 +253,6 @@
             this.btnAbout.Text = "About";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
-            // 
-            // lblTheTime
-            // 
-            this.lblTheTime.AutoSize = true;
-            this.lblTheTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTheTime.ForeColor = System.Drawing.Color.Black;
-            this.lblTheTime.Location = new System.Drawing.Point(2, 9);
-            this.lblTheTime.Name = "lblTheTime";
-            this.lblTheTime.Size = new System.Drawing.Size(43, 20);
-            this.lblTheTime.TabIndex = 28;
-            this.lblTheTime.Text = "Time";
             // 
             // lstCars
             // 
@@ -421,7 +400,7 @@
             this.txtDisplayCarComments.Enabled = false;
             this.txtDisplayCarComments.Location = new System.Drawing.Point(6, 255);
             this.txtDisplayCarComments.Name = "txtDisplayCarComments";
-            this.txtDisplayCarComments.Size = new System.Drawing.Size(278, 125);
+            this.txtDisplayCarComments.Size = new System.Drawing.Size(335, 125);
             this.txtDisplayCarComments.TabIndex = 59;
             this.txtDisplayCarComments.Text = "";
             // 
@@ -512,7 +491,7 @@
             this.grpCompanySummary.ForeColor = System.Drawing.Color.DarkOrange;
             this.grpCompanySummary.Location = new System.Drawing.Point(1093, 224);
             this.grpCompanySummary.Name = "grpCompanySummary";
-            this.grpCompanySummary.Size = new System.Drawing.Size(290, 217);
+            this.grpCompanySummary.Size = new System.Drawing.Size(347, 217);
             this.grpCompanySummary.TabIndex = 60;
             this.grpCompanySummary.TabStop = false;
             this.grpCompanySummary.Text = "Company Summary";
@@ -532,7 +511,7 @@
             this.grpCarSummary.ForeColor = System.Drawing.Color.DarkOrange;
             this.grpCarSummary.Location = new System.Drawing.Point(1093, 456);
             this.grpCarSummary.Name = "grpCarSummary";
-            this.grpCarSummary.Size = new System.Drawing.Size(290, 386);
+            this.grpCarSummary.Size = new System.Drawing.Size(347, 386);
             this.grpCarSummary.TabIndex = 61;
             this.grpCarSummary.TabStop = false;
             this.grpCarSummary.Text = "Car Summary";
@@ -551,7 +530,7 @@
             // picBanner
             // 
             this.picBanner.Image = ((System.Drawing.Image)(resources.GetObject("picBanner.Image")));
-            this.picBanner.Location = new System.Drawing.Point(372, 26);
+            this.picBanner.Location = new System.Drawing.Point(421, 29);
             this.picBanner.Name = "picBanner";
             this.picBanner.Size = new System.Drawing.Size(591, 116);
             this.picBanner.TabIndex = 62;
@@ -559,9 +538,9 @@
             // 
             // btnSaveWork
             // 
-            this.btnSaveWork.Location = new System.Drawing.Point(1220, 29);
+            this.btnSaveWork.Location = new System.Drawing.Point(1274, 7);
             this.btnSaveWork.Name = "btnSaveWork";
-            this.btnSaveWork.Size = new System.Drawing.Size(163, 23);
+            this.btnSaveWork.Size = new System.Drawing.Size(166, 23);
             this.btnSaveWork.TabIndex = 63;
             this.btnSaveWork.Text = "Save Work";
             this.btnSaveWork.UseVisualStyleBackColor = true;
@@ -571,7 +550,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1217, 9);
+            this.label1.Location = new System.Drawing.Point(1271, 33);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 18);
@@ -582,7 +561,7 @@
             // 
             this.radAutoSaveOn.AutoSize = true;
             this.radAutoSaveOn.ForeColor = System.Drawing.Color.DarkOrange;
-            this.radAutoSaveOn.Location = new System.Drawing.Point(1302, 10);
+            this.radAutoSaveOn.Location = new System.Drawing.Point(1357, 34);
             this.radAutoSaveOn.Name = "radAutoSaveOn";
             this.radAutoSaveOn.Size = new System.Drawing.Size(39, 17);
             this.radAutoSaveOn.TabIndex = 64;
@@ -594,7 +573,7 @@
             // 
             this.radAutoSaveOff.AutoSize = true;
             this.radAutoSaveOff.ForeColor = System.Drawing.Color.DarkOrange;
-            this.radAutoSaveOff.Location = new System.Drawing.Point(1344, 9);
+            this.radAutoSaveOff.Location = new System.Drawing.Point(1402, 34);
             this.radAutoSaveOff.Name = "radAutoSaveOff";
             this.radAutoSaveOff.Size = new System.Drawing.Size(39, 17);
             this.radAutoSaveOff.TabIndex = 65;
@@ -606,18 +585,49 @@
             // 
             this.lblLastSaved.AutoSize = true;
             this.lblLastSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastSaved.Location = new System.Drawing.Point(1217, 55);
+            this.lblLastSaved.Location = new System.Drawing.Point(1271, 55);
             this.lblLastSaved.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastSaved.Name = "lblLastSaved";
-            this.lblLastSaved.Size = new System.Drawing.Size(89, 18);
+            this.lblLastSaved.Size = new System.Drawing.Size(125, 18);
             this.lblLastSaved.TabIndex = 66;
-            this.lblLastSaved.Text = "Last Saved: ";
+            this.lblLastSaved.Text = "Last Saved: 88:88";
+            // 
+            // lblFileBeingRead
+            // 
+            this.lblFileBeingRead.AutoSize = true;
+            this.lblFileBeingRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileBeingRead.Location = new System.Drawing.Point(3, 9);
+            this.lblFileBeingRead.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFileBeingRead.Name = "lblFileBeingRead";
+            this.lblFileBeingRead.Size = new System.Drawing.Size(79, 18);
+            this.lblFileBeingRead.TabIndex = 67;
+            this.lblFileBeingRead.Text = "File Name:";
+            // 
+            // txtInputFileName
+            // 
+            this.txtInputFileName.Location = new System.Drawing.Point(87, 9);
+            this.txtInputFileName.Name = "txtInputFileName";
+            this.txtInputFileName.Size = new System.Drawing.Size(110, 20);
+            this.txtInputFileName.TabIndex = 68;
+            // 
+            // btnLoadFile
+            // 
+            this.btnLoadFile.Location = new System.Drawing.Point(203, 8);
+            this.btnLoadFile.Name = "btnLoadFile";
+            this.btnLoadFile.Size = new System.Drawing.Size(99, 23);
+            this.btnLoadFile.TabIndex = 69;
+            this.btnLoadFile.Text = "Load File";
+            this.btnLoadFile.UseVisualStyleBackColor = true;
+            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1388, 848);
+            this.ClientSize = new System.Drawing.Size(1452, 848);
+            this.Controls.Add(this.btnLoadFile);
+            this.Controls.Add(this.txtInputFileName);
+            this.Controls.Add(this.lblFileBeingRead);
             this.Controls.Add(this.lblLastSaved);
             this.Controls.Add(this.radAutoSaveOff);
             this.Controls.Add(this.radAutoSaveOn);
@@ -634,11 +644,9 @@
             this.Controls.Add(this.txtSearchCars);
             this.Controls.Add(this.lblCarsHeader);
             this.Controls.Add(this.lstCars);
-            this.Controls.Add(this.lblTheTime);
             this.Controls.Add(this.btnAbout);
             this.Controls.Add(this.btnClearAllNotifications);
             this.Controls.Add(this.btnClearAllCompanies);
-            this.Controls.Add(this.lblDisplayDate);
             this.Controls.Add(this.btnRefreshNotifications);
             this.Controls.Add(this.btnRefreshCompanies);
             this.Controls.Add(this.btnSearchRecentActivity);
@@ -683,11 +691,9 @@
         private System.Windows.Forms.Button btnSearchRecentActivity;
         private System.Windows.Forms.Button btnRefreshCompanies;
         private System.Windows.Forms.Button btnRefreshNotifications;
-        private System.Windows.Forms.Label lblDisplayDate;
         private System.Windows.Forms.Button btnClearAllCompanies;
         private System.Windows.Forms.Button btnClearAllNotifications;
         private System.Windows.Forms.Button btnAbout;
-        private System.Windows.Forms.Label lblTheTime;
         private System.Windows.Forms.ListBox lstCars;
         private System.Windows.Forms.Button btnRefreshCars;
         private System.Windows.Forms.Button btnSearchCar;
@@ -718,6 +724,9 @@
         private System.Windows.Forms.RadioButton radAutoSaveOn;
         private System.Windows.Forms.RadioButton radAutoSaveOff;
         private System.Windows.Forms.Label lblLastSaved;
+        private System.Windows.Forms.Label lblFileBeingRead;
+        private System.Windows.Forms.TextBox txtInputFileName;
+        private System.Windows.Forms.Button btnLoadFile;
     }
 }
 

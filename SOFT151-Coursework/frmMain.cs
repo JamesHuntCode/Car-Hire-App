@@ -27,6 +27,7 @@ namespace SOFT151_Coursework
 
         private Company currentSelectedCompany;
         private Car currentSelectedCar;
+        private string currentSelectedFile;
 
         #endregion
 
@@ -39,13 +40,21 @@ namespace SOFT151_Coursework
         private void Form1_Load(object sender, EventArgs e)
         {
             // Read initial data into program
-            this.readFile(Environment.CurrentDirectory + @"\exampleFile.txt");
+            this.currentSelectedFile = Environment.CurrentDirectory + @"\exampleFile.txt";
+            
+            this.readFile(this.currentSelectedFile);
 
             // Prepare program for load
             this.initiateProgram();
         }
 
         #region code dealing with reading from / writing to files
+
+        // Method used to load user file into program
+        private void btnLoadFile_Click(object sender, EventArgs e)
+        {
+
+        }
 
         // Method used to error handle files
         private bool checkFile(string path, string action)
@@ -456,8 +465,7 @@ namespace SOFT151_Coursework
                 this.updateCompaniesList(companies);
 
                 this.displayCompanyInformation(null, newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode, this.currentSelectedCompany.GetNumberOfCars());
-
-                this.lstCars.Items.Clear();
+                this.lstAllCompanies.SetSelected(this.locateCorrectCompany(this.currentSelectedCompany.PrintSummary(), this.companies), true);
 
                 this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
                 return true;
@@ -790,6 +798,7 @@ namespace SOFT151_Coursework
                 this.displayCarInformation(null, newCarId, newCarMake, newCarModel, newCarReg, newFuelType, newLastServiced, newComments);
                 this.lstCars.Items.Clear();
                 updateCarList(this.currentSelectedCompany.GetAllCars());
+                this.lstCars.SetSelected(this.locateCorrectCar(this.currentSelectedCar.PrintSummary(), this.currentSelectedCompany.GetAllCars()), true);
 
                 // Push notification to the user's recent activity:
                 this.CreateNotification("car", "update", Convert.ToString(oldCar.GetId()), DateTime.Now.ToShortTimeString(), this.currentSelectedCompany.GetName());
@@ -1010,9 +1019,9 @@ namespace SOFT151_Coursework
         // Method called on program load
         private void initiateProgram()
         {
-            // Timer to display the current time to the user & check fields:
+            // Timer to check selected fields:
             Timer timeAndCheckFields = new Timer();
-            timeAndCheckFields.Interval = 100;
+            timeAndCheckFields.Interval = 10;
             timeAndCheckFields.Tick += new EventHandler(check_Timer_Tick);
             timeAndCheckFields.Start();
 
@@ -1024,13 +1033,13 @@ namespace SOFT151_Coursework
 
             // Prepare page for load:
             this.Height = 887;
-            this.Width = 1404;
+            this.Width = 1464;
             this.radAutoSaveOn.Select();
             this.lstAllCompanies.SetSelected(0, true);
             this.lstCars.SetSelected(0, true);
             this.notifications.Clear();
             this.lstRecentActivity.Items.Clear();
-            this.lblDisplayDate.Text = Convert.ToString(DateTime.Today.ToShortDateString());
+            this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
 
             // Set up the color layout of the form - (#333 = graphite):
@@ -1049,9 +1058,6 @@ namespace SOFT151_Coursework
         }
         private void check_Timer_Tick(object sender, EventArgs e)
         {
-            // Display time (top right corner of app)
-            this.lblTheTime.Text = Convert.ToString(DateTime.Now.ToShortTimeString());
-
             // Auto check selectable fields
             if (this.lstAllCompanies.SelectedIndex == -1)
             {
@@ -1099,7 +1105,7 @@ namespace SOFT151_Coursework
 
         // Method used to null 'about' fields when not in use
         private void nullAllFields()
-        {
+        { 
             this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
             this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
             this.lstCars.Items.Clear();

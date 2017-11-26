@@ -211,9 +211,9 @@
             this.radPetrol.ForeColor = System.Drawing.Color.Orange;
             this.radPetrol.Location = new System.Drawing.Point(245, 207);
             this.radPetrol.Name = "radPetrol";
-            this.radPetrol.Size = new System.Drawing.Size(52, 17);
+            this.radPetrol.Size = new System.Drawing.Size(71, 17);
             this.radPetrol.TabIndex = 31;
-            this.radPetrol.Text = "Petrol";
+            this.radPetrol.Text = "Unleaded";
             this.radPetrol.UseVisualStyleBackColor = true;
             // 
             // frmDynamicAddOrUpdateCar

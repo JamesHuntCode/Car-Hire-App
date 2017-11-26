@@ -33,7 +33,7 @@ namespace SOFT151_Coursework
                 this.txtCarMake.Text = car.GetMake();
                 this.txtCarModel.Text = car.GetModel();
                 this.txtCarReg.Text = car.GetReg();
-                if (car.GetFuelType().ToUpper() == "PETROL")
+                if (car.GetFuelType().ToUpper() == "UNLEADED")
                 {
                     this.radPetrol.Select();
                 }
