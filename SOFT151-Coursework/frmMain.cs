@@ -29,11 +29,12 @@ namespace SOFT151_Coursework
         private Car currentSelectedCar;
 
         private string defaultFile = Environment.CurrentDirectory + @"\exampleFile.txt";
-        private string currentSelectedFile;
 
         FileServices myServices = new FileServices();
 
         #endregion
+
+        #region frmLoading methods
 
         public frmMain()
         {
@@ -45,18 +46,29 @@ namespace SOFT151_Coursework
         {
             // Read initial data into program
             this.readFile(this.defaultFile);
-            this.txtInputFileName.Text = "exampleFile.txt";
 
             // Prepare program for load
             this.initiateProgram();
         }
+
+        #endregion
 
         #region code dealing with reading from / writing to files
 
         // Method used to load user file into program
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            this.currentSelectedFile = Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text;
+            bool isValid = myServices.checkFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, "read");
+            if (isValid)
+            {
+                this.companies.Clear();
+                myServices.readFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, this.companies);
+            }
+            this.updateCompaniesList(this.companies);
+            this.lstAllCompanies.SetSelected(0, true);
+            this.lstCars.SetSelected(0, true);
+            this.notifications.Clear();
+            this.UpdateNotifications(this.notifications);
         }
 
         // Method used to read from file
@@ -68,7 +80,7 @@ namespace SOFT151_Coursework
             {
                 myServices.readFile(filePath, this.companies);
                 this.updateCompaniesList(companies);
-            }
+            } 
         }
 
         // Method used to write to files
@@ -78,30 +90,7 @@ namespace SOFT151_Coursework
 
             if (isValid)
             {
-                using (StreamWriter mySW = new StreamWriter(filePath))
-                {
-                    for (int i = 0; i < this.companies.Count; i++)
-                    {
-                        // Write all company based information:
-                        mySW.WriteLine(this.companies[i].GetId());
-                        mySW.WriteLine(this.companies[i].GetName());
-                        mySW.WriteLine(this.companies[i].GetAddress());
-                        mySW.WriteLine(this.companies[i].GetPostcode());
-                        mySW.WriteLine(this.companies[i].GetNumberOfCars());
-
-                        for (int j = 0; j < this.companies[i].GetAllCars().Count; j++)
-                        {
-                            // Write all car based information:
-                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetId());
-                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetMake() + " " + this.companies[i].GetAllCars()[j].GetModel());
-                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetReg());
-                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetFuelType());
-                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetDateLastServiced());
-                            mySW.WriteLine(this.companies[i].GetAllCars()[j].GetComments());
-                        }
-                    }
-                    return true;
-                }
+                myServices.writeFile(filePath, this.companies);
             }
             return false;
         }
@@ -109,11 +98,12 @@ namespace SOFT151_Coursework
         // Method to save user work (when clicked)
         private void btnSaveWork_Click(object sender, EventArgs e)
         {
-            bool hasSaved = this.writeFile(Environment.CurrentDirectory + @"\exampleFile.txt");
+            string filePath = Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text;
+            bool hasSaved = myServices.writeFile(filePath, this.companies);
             
             if (hasSaved)
             {
-                this.CreateNotification("self-saved", "save", "exampleFile.txt", DateTime.Now.ToShortTimeString());
+                this.CreateNotification("self-saved", "save", this.txtInputFileName.Text, DateTime.Now.ToShortTimeString());
                 this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
             }
         }
@@ -123,18 +113,19 @@ namespace SOFT151_Coursework
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                // Ask user if they want to close without saving
+                // PROMPT USER TO SAVE THEIR CHANGES
+                // COME BACK TO THIS (MAYBE)
             }
             
             // Autosave work if error becomes present
             if (e.CloseReason == CloseReason.WindowsShutDown)
             {
-                this.invokeAutoSave();
+                this.autoSave();
             }
 
             if (e.CloseReason == CloseReason.TaskManagerClosing)
             {
-                this.invokeAutoSave();
+                this.autoSave();
             }
         }
 
@@ -143,13 +134,12 @@ namespace SOFT151_Coursework
         {
             this.autoSave();
             this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
-            MessageBox.Show("All of your work has been saved.");
         }
 
         // Method used to autosave user data (called every 5 minutes)
         private void autoSave()
         {
-            bool hasSaved = this.writeFile(Environment.CurrentDirectory + @"\exampleFile.txt");
+            bool hasSaved = myServices.writeFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, this.companies);
 
             if (hasSaved)
             {
@@ -972,6 +962,7 @@ namespace SOFT151_Coursework
             this.lstRecentActivity.Items.Clear();
             this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
+            this.txtInputFileName.Text = "exampleFile.txt";
 
             // Set up the color layout of the form - (#333 = graphite):
             this.BackColor = ColorTranslator.FromHtml("#333");
@@ -993,6 +984,7 @@ namespace SOFT151_Coursework
             if (this.lstAllCompanies.SelectedIndex == -1)
             {
                 this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+                this.lstCars.Items.Clear();
             }
 
             if (this.lstCars.SelectedIndex == -1)

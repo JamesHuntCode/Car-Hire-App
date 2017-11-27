@@ -56,7 +56,7 @@ namespace SOFT151_Coursework
             {
                 while (mySR.Peek() > -1)
                 {
-                    // Load company data: MOVE TO SUB FUNCTION BELOW
+                    // Load company data
                     int companyID = Convert.ToInt32(mySR.ReadLine());
                     string companyName = mySR.ReadLine();
                     string companyAddress = mySR.ReadLine();
@@ -65,7 +65,7 @@ namespace SOFT151_Coursework
 
                     Company newCompany = new Company(companyID, companyName, companyAddress, companyPostcode);
 
-                    // Load car data: MOVE TO SUB FUNCTION BELOW
+                    // Load car data
                     for (int i = 0; i < numberOfCars; i++)
                     {
                         int carID = Convert.ToInt32(mySR.ReadLine());
@@ -89,34 +89,33 @@ namespace SOFT151_Coursework
             }
         }
 
-        // Subset of readFile (used to read company data)
-        private void readCompanyData()
-        {
-
-        }
-
-        // Subset of readFile (used to read a company's car data)
-        private void readCarData()
-        {
-
-        }
-
         // Method used to write to file
-        public void writeFile(string path)
+        public bool writeFile(string filePath, List<Company> companies)
         {
+            using (StreamWriter mySW = new StreamWriter(filePath))
+            {
+                for (int i = 0; i < companies.Count; i++)
+                {
+                    // Write all company based information:
+                    mySW.WriteLine(companies[i].GetId());
+                    mySW.WriteLine(companies[i].GetName());
+                    mySW.WriteLine(companies[i].GetAddress());
+                    mySW.WriteLine(companies[i].GetPostcode());
+                    mySW.WriteLine(companies[i].GetNumberOfCars());
 
-        }
-
-        // Method called when the program closes due to unknown reason
-        public void invokeAutoSave(string path)
-        {
-
-        }
-
-        // Method used to autosave user data (called every 5 minutes if active)
-        public void autoSave(string path)
-        {
-
+                    for (int j = 0; j < companies[i].GetAllCars().Count; j++)
+                    {
+                        // Write all car based information:
+                        mySW.WriteLine(companies[i].GetAllCars()[j].GetId());
+                        mySW.WriteLine(companies[i].GetAllCars()[j].GetMake() + " " + companies[i].GetAllCars()[j].GetModel());
+                        mySW.WriteLine(companies[i].GetAllCars()[j].GetReg());
+                        mySW.WriteLine(companies[i].GetAllCars()[j].GetFuelType());
+                        mySW.WriteLine(companies[i].GetAllCars()[j].GetDateLastServiced());
+                        mySW.WriteLine(companies[i].GetAllCars()[j].GetComments());
+                    }
+                }
+                return true;
+            }
         }
     }
 }
