@@ -27,7 +27,11 @@ namespace SOFT151_Coursework
 
         private Company currentSelectedCompany;
         private Car currentSelectedCar;
+
+        private string defaultFile = Environment.CurrentDirectory + @"\exampleFile.txt";
         private string currentSelectedFile;
+
+        FileServices myServices = new FileServices();
 
         #endregion
 
@@ -40,9 +44,8 @@ namespace SOFT151_Coursework
         private void Form1_Load(object sender, EventArgs e)
         {
             // Read initial data into program
-            this.currentSelectedFile = Environment.CurrentDirectory + @"\exampleFile.txt";
-            
-            this.readFile(this.currentSelectedFile);
+            this.readFile(this.defaultFile);
+            this.txtInputFileName.Text = "exampleFile.txt";
 
             // Prepare program for load
             this.initiateProgram();
@@ -53,90 +56,17 @@ namespace SOFT151_Coursework
         // Method used to load user file into program
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-
-        }
-
-        // Method used to error handle files
-        private bool checkFile(string path, string action)
-        {
-            try
-            {
-                if (action == "read")
-                {
-                    StreamReader tstRead = new StreamReader(path);
-                    tstRead.Close();
-                }
-                else
-                {
-                    StreamWriter tstWrite = new StreamWriter(path);
-                    tstWrite.Close();
-                }
-            }
-            catch (FileNotFoundException err)
-            {
-                MessageBox.Show("Your file has not been found! Error Message: " + err.Message + "\nSorry for any inconvenience caused.");
-                return false;
-            }
-            catch (DirectoryNotFoundException err)
-            {
-                MessageBox.Show("Your directory has not been found! Error Message: " + err.Message + "\nSorry for any inconvenience caused.");
-                return false;
-            }
-            catch (PathTooLongException err)
-            {
-                MessageBox.Show("Your specified file path is too long! Error Message: " + err.Message + "\nSorry for any inconvenience caused.");
-                return false;
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show("There has been an error! Error Message: " + err.Message + "\nSorry for any inconvenience caused.");
-                return false;
-            }
-            return true;
+            this.currentSelectedFile = Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text;
         }
 
         // Method used to read from file
         private void readFile(string filePath)
         {
-            bool isValid = this.checkFile(filePath, "read");
+            bool isValid = myServices.checkFile(filePath, "read");
 
             if (isValid)
             {
-                using (StreamReader mySR = new StreamReader(filePath))
-                {
-                    while (mySR.Peek() > -1)
-                    {
-                        // Load company data:
-                        int companyID = Convert.ToInt32(mySR.ReadLine());
-                        string companyName = mySR.ReadLine();
-                        string companyAddress = mySR.ReadLine();
-                        string companyPostcode = mySR.ReadLine();
-                        int numberOfCars = Convert.ToInt32(mySR.ReadLine());
-
-                        Company newCompany = new Company(companyID, companyName, companyAddress, companyPostcode);
-
-                        // Load car data:
-                        for (int i = 0; i < numberOfCars; i++)
-                        {
-                            int carID = Convert.ToInt32(mySR.ReadLine());
-
-                            // Split the car make from the model 
-                            string[] carMakeAndModel = mySR.ReadLine().Split(null);
-                            string carMake = carMakeAndModel[0];
-                            string carModel = carMakeAndModel[1];
-
-                            string carReg = mySR.ReadLine();
-                            string fuelType = mySR.ReadLine();
-                            DateTime lastServiced = Convert.ToDateTime(mySR.ReadLine());
-                            string comments = mySR.ReadLine();
-
-                            // Add new car to company 
-                            Car newCar = new Car(carID, carMake, carModel, carReg, fuelType, lastServiced, comments);
-                            newCompany.AddNewCar(newCar);
-                        }
-                        this.companies.Add(newCompany);
-                    }
-                }
+                myServices.readFile(filePath, this.companies);
                 this.updateCompaniesList(companies);
             }
         }
@@ -144,7 +74,7 @@ namespace SOFT151_Coursework
         // Method used to write to files
         private bool writeFile(string filePath)
         {
-            bool isValid = this.checkFile(filePath, "write");
+            bool isValid = myServices.checkFile(filePath, "write");
 
             if (isValid)
             {
@@ -199,16 +129,17 @@ namespace SOFT151_Coursework
             // Autosave work if error becomes present
             if (e.CloseReason == CloseReason.WindowsShutDown)
             {
-                this.save();
+                this.invokeAutoSave();
             }
 
             if (e.CloseReason == CloseReason.TaskManagerClosing)
             {
-                this.save();
+                this.invokeAutoSave();
             }
         }
 
-        private void save()
+        // Method called when the program closes due to unknown reason
+        private void invokeAutoSave()
         {
             this.autoSave();
             this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
