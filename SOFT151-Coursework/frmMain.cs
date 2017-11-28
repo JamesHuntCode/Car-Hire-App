@@ -608,7 +608,7 @@ namespace SOFT151_Coursework
             this.lblCarModel.Text = "Model: " + model;
             this.lblCarReg.Text = "Registration: " + reg;
             this.lblFuelType.Text = "Fuel Type: " + fuel;
-            this.lblLastServiced.Text = "Last Serviced: " + lastServiced;
+            this.lblLastServiced.Text = "Last Serviced: " + lastServiced.ToShortDateString();
             this.txtDisplayCarComments.Text = comments;
         }
 
