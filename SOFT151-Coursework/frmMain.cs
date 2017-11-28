@@ -977,8 +977,9 @@ namespace SOFT151_Coursework
             autoSaveWork.Start();
 
             // Prepare page for load:
-            this.Height = 887;
-            this.Width = 1464;
+            //this.Height = ?
+            //this.Width = ?
+            this.picMainLogo.Location = new Point((this.Width/2) - (this.picMainLogo.Width / 2), 25);
             this.radAutoSaveOn.Select();
             this.lstAllCompanies.SetSelected(0, true);
             this.lstCars.SetSelected(0, true);
@@ -988,18 +989,24 @@ namespace SOFT151_Coursework
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
             this.txtInputFileName.Text = "exampleFile.txt";
 
-            // Set up the color layout of the form - (#333 = graphite):
+            // Set up the color layout of the form:
             this.BackColor = ColorTranslator.FromHtml("#333");
+            this.grpCompanySummary.ForeColor = ColorTranslator.FromHtml("#ffffff");
+            this.grpCarSummary.ForeColor = ColorTranslator.FromHtml("#ffffff");
             foreach (Label l in Controls.OfType<Label>())
             {
-                l.ForeColor = Color.DarkOrange;
+                l.ForeColor = ColorTranslator.FromHtml("#66FCF1");
             }
-
-            // Optional code (run if in Smeaton)
-
+            
             foreach (Button b in Controls.OfType<Button>())
             {
-                b.ForeColor = Color.White;
+                b.ForeColor = ColorTranslator.FromHtml("#333");
+                b.BackColor = ColorTranslator.FromHtml("#45A29E");
+            }
+
+            foreach (RadioButton r in Controls.OfType<RadioButton>())
+            {
+                r.ForeColor = ColorTranslator.FromHtml("#66FCF1");
             }
         }
         private void check_Timer_Tick(object sender, EventArgs e)
