@@ -616,7 +616,7 @@
             this.btnLoadFile.Name = "btnLoadFile";
             this.btnLoadFile.Size = new System.Drawing.Size(99, 23);
             this.btnLoadFile.TabIndex = 69;
-            this.btnLoadFile.Text = "Load File";
+            this.btnLoadFile.Text = "Use This File";
             this.btnLoadFile.UseVisualStyleBackColor = true;
             this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 

@@ -344,6 +344,12 @@ namespace SOFT151_Coursework
                 }
             }
 
+            if (companyID < 0) // Only accept positive ID 
+            {
+                MessageBox.Show("Please enter a positive ID.");
+                return false;
+            }
+
             if (!match) // There is not a match - safe to proceed with upload of new company
             {
                 this.companies.Add(new Company(companyID, companyName, companyAddress, companyPostcode)); // Add a new company to the list of companies
@@ -359,7 +365,7 @@ namespace SOFT151_Coursework
             }
             else
             {
-                MessageBox.Show("It looks like you already have a company with that name or ID stored!"); // Alert the user that they may have a duplicate entry 
+                MessageBox.Show("It looks like you already have a company with that name or ID stored!"); 
                 return false;
             }
         }
@@ -375,6 +381,12 @@ namespace SOFT151_Coursework
                 {
                     match = true;
                 }
+            }
+
+            if (newCompanyID < 0) // Only accept positive ID 
+            {
+                MessageBox.Show("Please enter a positive ID.");
+                return false;
             }
 
             if (!match) // There is not a match - safe to proceed with update of company information
@@ -672,6 +684,12 @@ namespace SOFT151_Coursework
                 }
             }
 
+            if (car.GetId() < 0) // Only accept positive ID 
+            {
+                MessageBox.Show("Please enter a positive ID.");
+                return false;
+            }
+
             if (!match) // There is not a match - safe to proceed with upload of new car
             {
                 this.currentSelectedCompany.AddNewCar(car); // Add the new car to the company's list of cars
@@ -708,6 +726,12 @@ namespace SOFT151_Coursework
                 {
                     match = true;
                 }
+            }
+
+            if (newCarId < 0) // Only accept positive ID 
+            {
+                MessageBox.Show("Please enter a positive ID.");
+                return false;
             }
 
             if (!match) // There is not a match - safe to proceed with upload of new car information
@@ -973,10 +997,10 @@ namespace SOFT151_Coursework
 
             // Optional code (run if in Smeaton)
 
-            /*foreach (Button b in Controls.OfType<Button>())
+            foreach (Button b in Controls.OfType<Button>())
             {
                 b.ForeColor = Color.White;
-            }*/
+            }
         }
         private void check_Timer_Tick(object sender, EventArgs e)
         {

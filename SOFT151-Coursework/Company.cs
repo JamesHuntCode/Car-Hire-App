@@ -8,8 +8,7 @@ namespace SOFT151_Coursework
 {
     public class Company
     {
-        // Object Properties:
-
+        // Class Properties:
         private int idNumber;
         private string name;
         private string address;
@@ -17,11 +16,9 @@ namespace SOFT151_Coursework
         private int numberOfCars;
 
         // Array list used to store information about the companies cars:
-
         private List<Car> cars = new List<Car>();
 
         // Constructor:
-
         public Company(int id, string companyName, string companyAddress, string companyPostcode)
         {
             this.idNumber = id;

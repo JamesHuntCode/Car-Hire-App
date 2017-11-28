@@ -8,8 +8,7 @@ namespace SOFT151_Coursework
 {
     public class Car
     {
-        // Object Properties:
-
+        // Class Properties:
         private int idNumber;
         private string make;
         private string model;
@@ -19,7 +18,6 @@ namespace SOFT151_Coursework
         private string comments;
 
         // Constructor:
-
         public Car(int id, string carMake, string carModel, string carReg, string fuel, DateTime lastService, string commentsMade)
         {
             this.idNumber = id;
