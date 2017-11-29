@@ -990,23 +990,23 @@ namespace SOFT151_Coursework
             this.txtInputFileName.Text = "exampleFile.txt";
 
             // Set up the color layout of the form:
-            this.BackColor = ColorTranslator.FromHtml("#333");
-            this.grpCompanySummary.ForeColor = ColorTranslator.FromHtml("#ffffff");
-            this.grpCarSummary.ForeColor = ColorTranslator.FromHtml("#ffffff");
+            this.BackColor = ColorTranslator.FromHtml("#EAEAEA");
+            this.grpCompanySummary.ForeColor = ColorTranslator.FromHtml("#333");
+            this.grpCarSummary.ForeColor = ColorTranslator.FromHtml("#333");
             foreach (Label l in Controls.OfType<Label>())
             {
-                l.ForeColor = ColorTranslator.FromHtml("#66FCF1");
+                l.ForeColor = ColorTranslator.FromHtml("#333");
             }
             
             foreach (Button b in Controls.OfType<Button>())
             {
-                b.ForeColor = ColorTranslator.FromHtml("#333");
-                b.BackColor = ColorTranslator.FromHtml("#45A29E");
+                b.ForeColor = ColorTranslator.FromHtml("#ffffff");
+                b.BackColor = ColorTranslator.FromHtml("#31708E");
             }
 
             foreach (RadioButton r in Controls.OfType<RadioButton>())
             {
-                r.ForeColor = ColorTranslator.FromHtml("#66FCF1");
+                r.ForeColor = ColorTranslator.FromHtml("#333");
             }
         }
         private void check_Timer_Tick(object sender, EventArgs e)

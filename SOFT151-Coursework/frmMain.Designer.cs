@@ -616,7 +616,7 @@
             this.picMainLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picMainLogo.BackgroundImage")));
             this.picMainLogo.Location = new System.Drawing.Point(427, 12);
             this.picMainLogo.Name = "picMainLogo";
-            this.picMainLogo.Size = new System.Drawing.Size(587, 119);
+            this.picMainLogo.Size = new System.Drawing.Size(579, 119);
             this.picMainLogo.TabIndex = 70;
             this.picMainLogo.TabStop = false;
             // 
