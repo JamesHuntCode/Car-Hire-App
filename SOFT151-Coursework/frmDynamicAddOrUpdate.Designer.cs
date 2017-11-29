@@ -55,7 +55,7 @@
             // 
             this.lblCompanyId.AutoSize = true;
             this.lblCompanyId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompanyId.Location = new System.Drawing.Point(12, 83);
+            this.lblCompanyId.Location = new System.Drawing.Point(54, 85);
             this.lblCompanyId.Name = "lblCompanyId";
             this.lblCompanyId.Size = new System.Drawing.Size(101, 20);
             this.lblCompanyId.TabIndex = 1;
@@ -65,7 +65,7 @@
             // 
             this.lblCompanyPostcode.AutoSize = true;
             this.lblCompanyPostcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompanyPostcode.Location = new System.Drawing.Point(12, 181);
+            this.lblCompanyPostcode.Location = new System.Drawing.Point(4, 181);
             this.lblCompanyPostcode.Name = "lblCompanyPostcode";
             this.lblCompanyPostcode.Size = new System.Drawing.Size(151, 20);
             this.lblCompanyPostcode.TabIndex = 3;
@@ -85,7 +85,7 @@
             // 
             this.lblCompanyName.AutoSize = true;
             this.lblCompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompanyName.Location = new System.Drawing.Point(12, 115);
+            this.lblCompanyName.Location = new System.Drawing.Point(29, 115);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(126, 20);
             this.lblCompanyName.TabIndex = 5;
@@ -93,30 +93,30 @@
             // 
             // txtNewID
             // 
-            this.txtNewID.Location = new System.Drawing.Point(183, 85);
+            this.txtNewID.Location = new System.Drawing.Point(161, 85);
             this.txtNewID.Name = "txtNewID";
-            this.txtNewID.Size = new System.Drawing.Size(221, 20);
+            this.txtNewID.Size = new System.Drawing.Size(243, 20);
             this.txtNewID.TabIndex = 6;
             // 
             // txtNewAddress
             // 
-            this.txtNewAddress.Location = new System.Drawing.Point(183, 150);
+            this.txtNewAddress.Location = new System.Drawing.Point(161, 150);
             this.txtNewAddress.Name = "txtNewAddress";
-            this.txtNewAddress.Size = new System.Drawing.Size(221, 20);
+            this.txtNewAddress.Size = new System.Drawing.Size(243, 20);
             this.txtNewAddress.TabIndex = 8;
             // 
             // txtNewPostcode
             // 
-            this.txtNewPostcode.Location = new System.Drawing.Point(183, 183);
+            this.txtNewPostcode.Location = new System.Drawing.Point(161, 183);
             this.txtNewPostcode.Name = "txtNewPostcode";
-            this.txtNewPostcode.Size = new System.Drawing.Size(221, 20);
+            this.txtNewPostcode.Size = new System.Drawing.Size(243, 20);
             this.txtNewPostcode.TabIndex = 9;
             // 
             // txtNewName
             // 
-            this.txtNewName.Location = new System.Drawing.Point(183, 117);
+            this.txtNewName.Location = new System.Drawing.Point(161, 117);
             this.txtNewName.Name = "txtNewName";
-            this.txtNewName.Size = new System.Drawing.Size(221, 20);
+            this.txtNewName.Size = new System.Drawing.Size(243, 20);
             this.txtNewName.TabIndex = 10;
             // 
             // btnSaveAndUpdate
@@ -145,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(421, 327);
+            this.ClientSize = new System.Drawing.Size(414, 321);
             this.Controls.Add(this.btnCancelUpdate);
             this.Controls.Add(this.btnSaveAndUpdate);
             this.Controls.Add(this.txtNewName);

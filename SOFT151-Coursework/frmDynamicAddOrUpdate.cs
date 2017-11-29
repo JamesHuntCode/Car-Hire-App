@@ -18,14 +18,12 @@ namespace SOFT151_Coursework
             InitializeComponent();
 
             //  Update form information:
-
             this.Text = formName;
             this.lblHeader.Text = formName;
 
             currentCompany = company;
 
             // Load pre-loaded information if the user wants to edit:
-
             if (formName == "Update Company Information") // Load in current company's information
             {
                 this.txtNewID.Text = Convert.ToString(company.GetId());
@@ -34,21 +32,34 @@ namespace SOFT151_Coursework
                 this.txtNewPostcode.Text = company.GetPostcode();
             }
 
-            // Set up the color layout of the form:
+            // Apply color change:
+            this.colorForm();
+        }
 
-            // Set up the color layout of the form - (#333 = graphite):
-            this.BackColor = ColorTranslator.FromHtml("#333");
+        // Method used to apply correct color scheme to form
+        private void colorForm()
+        {
+            // #EAEAEA = Light Grey
+            // #333 = Graphite
+            // #ffffff = White
+            // #31708E = Light Blue
+
+            this.BackColor = ColorTranslator.FromHtml("#EAEAEA");
             foreach (Label l in Controls.OfType<Label>())
             {
-                l.ForeColor = Color.DarkOrange;
+                l.ForeColor = ColorTranslator.FromHtml("#333");
             }
 
-            // Optional code (run if in Smeaton)
-
-            /*foreach (Button b in Controls.OfType<Button>())
+            foreach (Button b in Controls.OfType<Button>())
             {
-                b.ForeColor = Color.White;
-            }*/
+                b.ForeColor = ColorTranslator.FromHtml("#ffffff");
+                b.BackColor = ColorTranslator.FromHtml("#31708E");
+            }
+
+            foreach (RadioButton r in Controls.OfType<RadioButton>())
+            {
+                r.ForeColor = ColorTranslator.FromHtml("#333");
+            }
         }
 
         // Button Controls:
@@ -58,7 +69,6 @@ namespace SOFT151_Coursework
             frmMain frmMain = (frmMain)this.Owner; // Set main form as parent form
 
             // Gather user inputs and catch any exceptions:
-
             int newCompanyId = 0;
             string newCompanyName = "";
             string newCompanyAddress = "";
@@ -75,7 +85,7 @@ namespace SOFT151_Coursework
             }
             catch (Exception err)
             {
-                MessageBox.Show(err.Message); // Display error message to the user
+                MessageBox.Show(err.Message); 
 
                 isValid = false;
             }

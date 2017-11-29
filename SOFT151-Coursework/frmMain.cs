@@ -111,12 +111,6 @@ namespace SOFT151_Coursework
         // Method used to check data has been saved (prompt user if not)
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                // PROMPT USER TO SAVE THEIR CHANGES
-                // COME BACK TO THIS (MAYBE)
-            }
-            
             // Autosave work if error becomes present
             if (e.CloseReason == CloseReason.WindowsShutDown)
             {
@@ -127,13 +121,6 @@ namespace SOFT151_Coursework
             {
                 this.autoSave();
             }
-        }
-
-        // Method called when the program closes due to unknown reason
-        private void invokeAutoSave()
-        {
-            this.autoSave();
-            this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
         }
 
         // Method used to autosave user data (called every 5 minutes)
@@ -977,8 +964,6 @@ namespace SOFT151_Coursework
             autoSaveWork.Start();
 
             // Prepare page for load:
-            //this.Height = ?
-            //this.Width = ?
             this.picMainLogo.Location = new Point((this.Width/2) - (this.picMainLogo.Width / 2), 25);
             this.radAutoSaveOn.Select();
             this.lstAllCompanies.SetSelected(0, true);
@@ -989,7 +974,18 @@ namespace SOFT151_Coursework
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
             this.txtInputFileName.Text = "exampleFile.txt";
 
-            // Set up the color layout of the form:
+            // Apply color change:
+            this.colorForm();
+        }
+
+        // Method used to apply correct color scheme to form
+        private void colorForm()
+        {
+            // #EAEAEA = Light Grey
+            // #333 = Graphite
+            // #ffffff = White
+            // #31708E = Light Blue
+
             this.BackColor = ColorTranslator.FromHtml("#EAEAEA");
             this.grpCompanySummary.ForeColor = ColorTranslator.FromHtml("#333");
             this.grpCarSummary.ForeColor = ColorTranslator.FromHtml("#333");
@@ -997,7 +993,7 @@ namespace SOFT151_Coursework
             {
                 l.ForeColor = ColorTranslator.FromHtml("#333");
             }
-            
+
             foreach (Button b in Controls.OfType<Button>())
             {
                 b.ForeColor = ColorTranslator.FromHtml("#ffffff");
@@ -1009,6 +1005,7 @@ namespace SOFT151_Coursework
                 r.ForeColor = ColorTranslator.FromHtml("#333");
             }
         }
+
         private void check_Timer_Tick(object sender, EventArgs e)
         {
             // Auto check selectable fields

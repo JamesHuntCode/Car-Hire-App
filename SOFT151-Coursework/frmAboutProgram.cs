@@ -16,19 +16,34 @@ namespace SOFT151_Coursework
         {
             InitializeComponent();
 
-            // Set up the color layout of the form - (#333 = graphite):
-            this.BackColor = ColorTranslator.FromHtml("#333");
+            // Apply color change:
+            this.colorForm();
+        }
+
+        // Method used to apply correct color scheme to form
+        private void colorForm()
+        {
+            // #EAEAEA = Light Grey
+            // #333 = Graphite
+            // #ffffff = White
+            // #31708E = Light Blue
+
+            this.BackColor = ColorTranslator.FromHtml("#EAEAEA");
             foreach (Label l in Controls.OfType<Label>())
             {
-                l.ForeColor = Color.DarkOrange;
+                l.ForeColor = ColorTranslator.FromHtml("#333");
             }
 
-            // Optional code (run if in Smeaton)
-
-            /*foreach (Button b in Controls.OfType<Button>())
+            foreach (Button b in Controls.OfType<Button>())
             {
-                b.ForeColor = Color.White;
-            }*/
+                b.ForeColor = ColorTranslator.FromHtml("#ffffff");
+                b.BackColor = ColorTranslator.FromHtml("#31708E");
+            }
+
+            foreach (RadioButton r in Controls.OfType<RadioButton>())
+            {
+                r.ForeColor = ColorTranslator.FromHtml("#333");
+            }
         }
     }
 }
