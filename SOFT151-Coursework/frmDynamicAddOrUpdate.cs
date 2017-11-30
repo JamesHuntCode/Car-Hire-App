@@ -24,7 +24,7 @@ namespace SOFT151_Coursework
             currentCompany = company;
 
             // Load pre-loaded information if the user wants to edit:
-            if (formName == "Update Company Information") // Load in current company's information
+            if (formName == "Update Company Information") 
             {
                 this.txtNewID.Text = Convert.ToString(company.GetId());
                 this.txtNewName.Text = company.GetName();

@@ -26,7 +26,6 @@ namespace SOFT151_Coursework
             currentCar = car;
 
             // Load pre-loaded information if the user wants to edit:
-
             if (formName == "Update Car Information") // Load in current car's information
             {
                 this.txtCarID.Text = Convert.ToString(car.GetId());
@@ -79,10 +78,9 @@ namespace SOFT151_Coursework
 
         private void btnSaveAndUpdate_Click(object sender, EventArgs e)
         {
-            frmMain mainForm = (frmMain)this.Owner; // Set company summary form as parent form
+            frmMain mainForm = (frmMain)this.Owner;
 
             // Gather user inputs and catch any exceptions:
-
             int newCarId = 0;
             string newCarMake = "";
             string newCarModel = "";
@@ -114,7 +112,7 @@ namespace SOFT151_Coursework
             {
                 isValid = false;
                 
-                MessageBox.Show(err.Message); // Display error message to the user
+                MessageBox.Show(err.Message);
             }
 
             if (isValid)

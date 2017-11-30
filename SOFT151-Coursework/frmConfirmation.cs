@@ -47,7 +47,7 @@ namespace SOFT151_Coursework
 
         private void button1_Click(object sender, EventArgs e) // User wants to clear their data
         {
-            frmMain frmMain = (frmMain)this.Owner; // Set main form as parent form
+            frmMain frmMain = (frmMain)this.Owner; 
 
             frmMain.RemoveAllData(); 
 

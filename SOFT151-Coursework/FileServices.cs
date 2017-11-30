@@ -56,35 +56,39 @@ namespace SOFT151_Coursework
             {
                 while (mySR.Peek() > -1)
                 {
-                    // Load company data
-                    int companyID = Convert.ToInt32(mySR.ReadLine());
-                    string companyName = mySR.ReadLine();
-                    string companyAddress = mySR.ReadLine();
-                    string companyPostcode = mySR.ReadLine();
-                    int numberOfCars = Convert.ToInt32(mySR.ReadLine());
-
-                    Company newCompany = new Company(companyID, companyName, companyAddress, companyPostcode);
-
-                    // Load car data
-                    for (int i = 0; i < numberOfCars; i++)
+                    try
                     {
-                        int carID = Convert.ToInt32(mySR.ReadLine());
+                        // Load company data
+                        int companyID = Convert.ToInt32(mySR.ReadLine());
+                        string companyName = mySR.ReadLine();
+                        string companyAddress = mySR.ReadLine();
+                        string companyPostcode = mySR.ReadLine();
+                        int numberOfCars = Convert.ToInt32(mySR.ReadLine());
 
-                        // Split the car make from the model 
-                        string[] carMakeAndModel = mySR.ReadLine().Split(null);
-                        string carMake = carMakeAndModel[0];
-                        string carModel = carMakeAndModel[1];
+                        Company newCompany = new Company(companyID, companyName, companyAddress, companyPostcode);
 
-                        string carReg = mySR.ReadLine();
-                        string fuelType = mySR.ReadLine();
-                        DateTime lastServiced = Convert.ToDateTime(mySR.ReadLine());
-                        string comments = mySR.ReadLine();
+                        // Load car data
+                        for (int i = 0; i < numberOfCars; i++)
+                        {
+                            int carID = Convert.ToInt32(mySR.ReadLine());
+                            string[] carMakeAndModel = mySR.ReadLine().Split(null); // Split the car make from the model 
+                            string carMake = carMakeAndModel[0];
+                            string carModel = carMakeAndModel[1];
+                            string carReg = mySR.ReadLine();
+                            string fuelType = mySR.ReadLine();
+                            DateTime lastServiced = Convert.ToDateTime(mySR.ReadLine());
+                            string comments = mySR.ReadLine();
 
-                        // Add new car to company 
-                        Car newCar = new Car(carID, carMake, carModel, carReg, fuelType, lastServiced, comments);
-                        newCompany.AddNewCar(newCar);
+                            // Add new car to company 
+                            Car newCar = new Car(carID, carMake, carModel, carReg, fuelType, lastServiced, comments);
+                            newCompany.AddNewCar(newCar);
+                        }
+                        companies.Add(newCompany);
                     }
-                    companies.Add(newCompany);
+                    catch (Exception err)
+                    {
+                        MessageBox.Show("Error detected! Error Code: " + err.Message + "\nSorry for any inconvenience caused.");
+                    }
                 }
             }
         }
