@@ -102,22 +102,30 @@ namespace SOFT151_Coursework
             {
                 for (int i = 0; i < companies.Count; i++)
                 {
-                    // Write all company based information:
-                    mySW.WriteLine(companies[i].GetId());
-                    mySW.WriteLine(companies[i].GetName());
-                    mySW.WriteLine(companies[i].GetAddress());
-                    mySW.WriteLine(companies[i].GetPostcode());
-                    mySW.WriteLine(companies[i].GetNumberOfCars());
-
-                    for (int j = 0; j < companies[i].GetAllCars().Count; j++)
+                    try
                     {
-                        // Write all car based information:
-                        mySW.WriteLine(companies[i].GetAllCars()[j].GetId());
-                        mySW.WriteLine(companies[i].GetAllCars()[j].GetMake() + " " + companies[i].GetAllCars()[j].GetModel());
-                        mySW.WriteLine(companies[i].GetAllCars()[j].GetReg());
-                        mySW.WriteLine(companies[i].GetAllCars()[j].GetFuelType());
-                        mySW.WriteLine(companies[i].GetAllCars()[j].GetDateLastServiced());
-                        mySW.WriteLine(companies[i].GetAllCars()[j].GetComments());
+                        // Write all company based information:
+                        mySW.WriteLine(companies[i].GetId());
+                        mySW.WriteLine(companies[i].GetName());
+                        mySW.WriteLine(companies[i].GetAddress());
+                        mySW.WriteLine(companies[i].GetPostcode());
+                        mySW.WriteLine(companies[i].GetNumberOfCars());
+
+                        for (int j = 0; j < companies[i].GetAllCars().Count; j++)
+                        {
+                            // Write all car based information:
+                            mySW.WriteLine(companies[i].GetAllCars()[j].GetId());
+                            mySW.WriteLine(companies[i].GetAllCars()[j].GetMake() + " " + companies[i].GetAllCars()[j].GetModel());
+                            mySW.WriteLine(companies[i].GetAllCars()[j].GetReg());
+                            mySW.WriteLine(companies[i].GetAllCars()[j].GetFuelType());
+                            mySW.WriteLine(companies[i].GetAllCars()[j].GetDateLastServiced());
+                            mySW.WriteLine(companies[i].GetAllCars()[j].GetComments());
+                        }
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show("Error Detected! Error Code: " + err.Message + "\nSorry for any inconvenience cased.");
+                        return false;
                     }
                 }
                 return true;

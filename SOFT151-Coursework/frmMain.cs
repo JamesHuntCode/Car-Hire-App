@@ -70,7 +70,13 @@ namespace SOFT151_Coursework
             if (hasRead)
             {
                 this.updateCompaniesList(this.companies);
-                this.setSelectedFields();
+
+                // Check items are present to select:
+                if (this.lstAllCompanies.Items.Count > 0)
+                {
+                    this.setSelectedFields();
+                }
+
                 this.notifications.Clear();
                 this.UpdateNotifications(this.notifications);
             }
