@@ -59,16 +59,21 @@ namespace SOFT151_Coursework
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
             bool isValid = myServices.checkFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, "read");
+            bool hasRead = false;
+
             if (isValid)
             {
                 this.companies.Clear();
-                myServices.readFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, this.companies);
+                hasRead = myServices.readFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, this.companies);
             }
-            this.updateCompaniesList(this.companies);
-            this.lstAllCompanies.SetSelected(0, true);
-            this.lstCars.SetSelected(0, true);
-            this.notifications.Clear();
-            this.UpdateNotifications(this.notifications);
+            
+            if (hasRead)
+            {
+                this.updateCompaniesList(this.companies);
+                this.setSelectedFields();
+                this.notifications.Clear();
+                this.UpdateNotifications(this.notifications);
+            }
         }
 
         // Method used to read from file
@@ -966,9 +971,14 @@ namespace SOFT151_Coursework
             // Prepare page for load:
             this.picMainLogo.Location = new Point((this.Width/2) - (this.picMainLogo.Width / 2), 25);
             this.radAutoSaveOn.Select();
-            this.lstAllCompanies.SetSelected(0, true);
-            this.lstCars.SetSelected(0, true);
             this.notifications.Clear();
+
+            // Check items are present to select:
+            if (this.lstAllCompanies.Items.Count > 0)
+            {
+                this.setSelectedFields();
+            }
+
             this.lstRecentActivity.Items.Clear();
             this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
             this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
@@ -1060,6 +1070,12 @@ namespace SOFT151_Coursework
             this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
             this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
             this.lstCars.Items.Clear();
+        }
+
+        private void setSelectedFields()
+        {
+            this.lstAllCompanies.SetSelected(0, true);
+            this.lstCars.SetSelected(0, true);
         }
 
         #endregion

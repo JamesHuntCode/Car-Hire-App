@@ -50,7 +50,7 @@ namespace SOFT151_Coursework
         }
 
         // Method used to read from file
-        public void readFile(string filePath, List<Company> companies)
+        public bool readFile(string filePath, List<Company> companies)
         {
             using (StreamReader mySR = new StreamReader(filePath))
             {
@@ -88,8 +88,10 @@ namespace SOFT151_Coursework
                     catch (Exception err)
                     {
                         MessageBox.Show("Error detected! Error Code: " + err.Message + "\nSorry for any inconvenience caused.");
+                        return false;
                     }
                 }
+                return true;
             }
         }
 
