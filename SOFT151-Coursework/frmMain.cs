@@ -263,11 +263,11 @@ namespace SOFT151_Coursework
         // Method to display the currently selected company summary
         private void displayCompanyInformation(Company selectedCompany, int ID, string name, string address, string postcode, int numCars)
         {
-            this.lblCompID.Text = "ID: " + Convert.ToString(ID);
-            this.lblCompName.Text = "Name: " + name;
-            this.lblCompAddress.Text = "Address: " + address;
-            this.lblCompPostcode.Text = "Postcode: " + postcode;
-            this.lblCompCarCount.Text = "Cars Rented: " + Convert.ToString(numCars);
+            this.txtCompID.Text = Convert.ToString(ID);
+            this.txtCompName.Text = name;
+            this.txtCompAddress.Text = address;
+            this.txtCompPostcode.Text = postcode;
+            this.txtCompCarCount.Text = Convert.ToString(numCars);
         }
 
         // Method used to loop over the contents of the companies list and display all contents
@@ -601,12 +601,12 @@ namespace SOFT151_Coursework
         // Method used to display selected car summary
         private void displayCarInformation(Car selectedCar, int ID, string make, string model, string reg, string fuel, DateTime lastServiced, string comments)
         {
-            this.lblCarID.Text = "ID: " + Convert.ToString(ID);
-            this.lblCarMake.Text = "Make: " + make;
-            this.lblCarModel.Text = "Model: " + model;
-            this.lblCarReg.Text = "Registration: " + reg;
-            this.lblFuelType.Text = "Fuel Type: " + fuel;
-            this.lblLastServiced.Text = "Last Serviced: " + lastServiced.ToShortDateString();
+            this.txtCarID.Text = Convert.ToString(ID);
+            this.txtCarMake.Text = make;
+            this.txtCarModel.Text = model;
+            this.txtCarReg.Text = reg;
+            this.txtCarFuelType.Text = fuel;
+            this.dtpLastServiced.Value = lastServiced;
             this.txtDisplayCarComments.Text = comments;
         }
 
