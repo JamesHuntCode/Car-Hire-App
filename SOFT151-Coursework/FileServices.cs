@@ -54,7 +54,7 @@ namespace SOFT151_Coursework
         {
             using (StreamReader mySR = new StreamReader(filePath))
             {
-                while (mySR.Peek() > -1)
+                while (!mySR.EndOfStream) // Or use mySR.Peek()
                 {
                     try
                     {

@@ -116,6 +116,7 @@
             // 
             // btnAddNewCompany
             // 
+            this.btnAddNewCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewCompany.Location = new System.Drawing.Point(5, 454);
             this.btnAddNewCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddNewCompany.Name = "btnAddNewCompany";
@@ -127,12 +128,13 @@
             // 
             // btnUpdateCompany
             // 
+            this.btnUpdateCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateCompany.Location = new System.Drawing.Point(183, 454);
             this.btnUpdateCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateCompany.Name = "btnUpdateCompany";
             this.btnUpdateCompany.Size = new System.Drawing.Size(181, 67);
             this.btnUpdateCompany.TabIndex = 11;
-            this.btnUpdateCompany.Text = "Update Selected Company";
+            this.btnUpdateCompany.Text = "Edit Selected Company";
             this.btnUpdateCompany.UseVisualStyleBackColor = true;
             this.btnUpdateCompany.Click += new System.EventHandler(this.btnUpdateCompany_Click);
             // 
@@ -168,6 +170,7 @@
             // 
             // btnRemoveCompany
             // 
+            this.btnRemoveCompany.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemoveCompany.Location = new System.Drawing.Point(368, 454);
             this.btnRemoveCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveCompany.Name = "btnRemoveCompany";
@@ -179,6 +182,7 @@
             // 
             // btnSearchCompanies
             // 
+            this.btnSearchCompanies.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchCompanies.Location = new System.Drawing.Point(321, 224);
             this.btnSearchCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearchCompanies.Name = "btnSearchCompanies";
@@ -223,6 +227,7 @@
             // 
             // btnClearAllCompanies
             // 
+            this.btnClearAllCompanies.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearAllCompanies.Location = new System.Drawing.Point(1207, 778);
             this.btnClearAllCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearAllCompanies.Name = "btnClearAllCompanies";
@@ -234,6 +239,7 @@
             // 
             // btnClearAllNotifications
             // 
+            this.btnClearAllNotifications.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearAllNotifications.Location = new System.Drawing.Point(1029, 778);
             this.btnClearAllNotifications.Margin = new System.Windows.Forms.Padding(2);
             this.btnClearAllNotifications.Name = "btnClearAllNotifications";
@@ -245,6 +251,7 @@
             // 
             // btnAbout
             // 
+            this.btnAbout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAbout.Location = new System.Drawing.Point(902, 778);
             this.btnAbout.Margin = new System.Windows.Forms.Padding(2);
             this.btnAbout.Name = "btnAbout";
@@ -309,6 +316,7 @@
             // 
             // btnRemoveCar
             // 
+            this.btnRemoveCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemoveCar.Location = new System.Drawing.Point(368, 782);
             this.btnRemoveCar.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoveCar.Name = "btnRemoveCar";
@@ -320,17 +328,19 @@
             // 
             // btnUpdateCar
             // 
+            this.btnUpdateCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateCar.Location = new System.Drawing.Point(183, 782);
             this.btnUpdateCar.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateCar.Name = "btnUpdateCar";
             this.btnUpdateCar.Size = new System.Drawing.Size(181, 67);
             this.btnUpdateCar.TabIndex = 36;
-            this.btnUpdateCar.Text = "Update Selected Car";
+            this.btnUpdateCar.Text = "Edit Selected Car";
             this.btnUpdateCar.UseVisualStyleBackColor = true;
             this.btnUpdateCar.Click += new System.EventHandler(this.btnUpdateCar_Click);
             // 
             // btnAddNewCar
             // 
+            this.btnAddNewCar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewCar.Location = new System.Drawing.Point(6, 782);
             this.btnAddNewCar.Margin = new System.Windows.Forms.Padding(2);
             this.btnAddNewCar.Name = "btnAddNewCar";
@@ -529,6 +539,7 @@
             // 
             // btnSaveWork
             // 
+            this.btnSaveWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveWork.Location = new System.Drawing.Point(1275, 7);
             this.btnSaveWork.Name = "btnSaveWork";
             this.btnSaveWork.Size = new System.Drawing.Size(166, 23);
@@ -603,6 +614,7 @@
             // 
             // btnLoadFile
             // 
+            this.btnLoadFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadFile.Location = new System.Drawing.Point(203, 8);
             this.btnLoadFile.Name = "btnLoadFile";
             this.btnLoadFile.Size = new System.Drawing.Size(99, 23);
