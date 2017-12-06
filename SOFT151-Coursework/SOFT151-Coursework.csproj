@@ -56,12 +56,6 @@
     <Compile Include="frmAboutProgram.Designer.cs">
       <DependentUpon>frmAboutProgram.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConfirmation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmConfirmation.Designer.cs">
-      <DependentUpon>frmConfirmation.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmDynamicAddOrUpdate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,9 +78,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAboutProgram.resx">
       <DependentUpon>frmAboutProgram.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmConfirmation.resx">
-      <DependentUpon>frmConfirmation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDynamicAddOrUpdate.resx">
       <DependentUpon>frmDynamicAddOrUpdate.cs</DependentUpon>

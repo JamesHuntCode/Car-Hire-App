@@ -208,34 +208,62 @@ namespace SOFT151_Coursework
         // Update an existing company 
         private void btnUpdateCompany_Click(object sender, EventArgs e)
         {
-            /*if (this.lstAllCompanies.Items[0].ToString() != "No companies have been found!")
-            {
-                string companySummary = "";
-
-                // Make sure the user has selected a company to update:
-                if (this.lstAllCompanies.SelectedIndex == -1) // User has not selected a company
-                {
-                    MessageBox.Show("Make sure you select a company to edit."); // Alert the user
-                }
-                else
-                {
-                    companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
-
-                    int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
-
-                    // Generate a new dynamic for allowing the user to edit a previous company's information:
-                    frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information", companies[matchedIndex]);
-                    popup.ShowDialog(this);
-                }
-            }*/
             this.companyEditingMode = true;
-            // stop all other fields from working here
+        }
+
+        // Save changes made to company
+        private void btnSaveCompanyChanges_Click(object sender, EventArgs e)
+        {
+            // Set company to update
+            string companySummary = "";
+
+            // Gather user inputs and catch any exceptions thrown:
+            int newCompanyId = 0;
+            string newCompanyName = "";
+            string newCompanyAddress = "";
+            string newCompanyPostcode = "";
+
+            bool isValid = true;
+
+            try
+            {
+                newCompanyId = Convert.ToInt32(this.txtCompID.Text);
+                newCompanyName = this.txtCompName.Text;
+                newCompanyAddress = this.txtCompAddress.Text;
+                newCompanyPostcode = this.txtCompPostcode.Text;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Error Detected! Error: " + err.Message + "\nSorry for any inconvenience caused.");
+                isValid = false;
+            }
+
+            if (isValid)
+            {
+                companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+                int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
+
+                bool updated = this.UpdateCompany(this.companies[matchedIndex], newCompanyId, newCompanyName, newCompanyAddress, newCompanyPostcode);
+
+                if (updated)
+                {
+                    this.companyEditingMode = false;
+                }
+            }
         }
 
         // Cancel changes made to company
         private void btnCancelCompanyUpdate_Click(object sender, EventArgs e)
         {
+            this.reDisplayOldCompanyData();
             this.companyEditingMode = false;
+        }
+
+        // Display old data when user cancels update
+        private void reDisplayOldCompanyData()
+        {
+            int oldRecord = this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies);
+            this.displayCompanyInformation(this.companies[oldRecord].GetId(), this.companies[oldRecord].GetName(), this.companies[oldRecord].GetAddress(), this.companies[oldRecord].GetPostcode(), this.companies[oldRecord].GetNumberOfCars());
         }
 
         // Remove an existing company 
@@ -272,7 +300,7 @@ namespace SOFT151_Coursework
         // METHODS:
 
         // Method to display the currently selected company summary
-        private void displayCompanyInformation(Company selectedCompany, int ID, string name, string address, string postcode, int numCars)
+        private void displayCompanyInformation(int ID, string name, string address, string postcode, int numCars)
         {
             this.txtCompID.Text = Convert.ToString(ID);
             this.txtCompName.Text = name;
@@ -406,7 +434,7 @@ namespace SOFT151_Coursework
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
 
-                this.displayCompanyInformation(null, newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode, this.currentSelectedCompany.GetNumberOfCars());
+                this.displayCompanyInformation(newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode, this.currentSelectedCompany.GetNumberOfCars());
                 this.lstAllCompanies.SetSelected(this.locateCorrectCompany(this.currentSelectedCompany.PrintSummary(), this.companies), true);
 
                 this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
@@ -445,7 +473,7 @@ namespace SOFT151_Coursework
                 int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
                 this.currentSelectedCompany = this.companies[matchedIndex];
 
-                this.displayCompanyInformation(this.currentSelectedCompany, this.currentSelectedCompany.GetId(), this.currentSelectedCompany.GetName(), this.currentSelectedCompany.GetAddress(), this.currentSelectedCompany.GetPostcode(), this.currentSelectedCompany.GetNumberOfCars());
+                this.displayCompanyInformation(this.currentSelectedCompany.GetId(), this.currentSelectedCompany.GetName(), this.currentSelectedCompany.GetAddress(), this.currentSelectedCompany.GetPostcode(), this.currentSelectedCompany.GetNumberOfCars());
                 this.CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
                 for (int i = 0; i < this.companies[this.lstAllCompanies.SelectedIndex].GetNumberOfCars(); i++)
@@ -1063,7 +1091,7 @@ namespace SOFT151_Coursework
             // Check selected company:
             if (this.lstAllCompanies.SelectedIndex == -1)
             {
-                this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+                this.displayCompanyInformation(Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
                 this.btnUpdateCompany.Enabled = false;
                 this.btnRemoveCompany.Enabled = false;
                 this.grpCompanySummary.Enabled = false;
@@ -1130,22 +1158,6 @@ namespace SOFT151_Coursework
             }
         }
 
-        // Method used to remove all user data
-        public void RemoveAllData()
-        {
-            this.companies.Clear();
-            this.updateCompaniesList(this.companies);
-            this.lstCars.Items.Clear();
-
-            this.nullAllFields();
-        }
-
-        private void btnClearAllCompanies_Click(object sender, EventArgs e)
-        {
-            frmConfirmation confirm = new frmConfirmation();
-            confirm.ShowDialog(this);
-        }
-
         // Method used to bring up a summary of the program
         private void btnAbout_Click(object sender, EventArgs e)
         {
@@ -1157,7 +1169,7 @@ namespace SOFT151_Coursework
         private void nullAllFields()
         { 
             this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
-            this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+            this.displayCompanyInformation(Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
             this.lstCars.Items.Clear();
         }
 
@@ -1213,6 +1225,7 @@ namespace SOFT151_Coursework
         }
 
         #endregion
+
     }
 }
 
