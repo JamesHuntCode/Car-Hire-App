@@ -608,7 +608,23 @@ namespace SOFT151_Coursework
             this.txtCarMake.Text = make;
             this.txtCarModel.Text = model;
             this.txtCarReg.Text = reg;
-            this.txtCarFuelType.Text = fuel;
+
+            if (fuel != null)
+            {
+                if (fuel.ToUpper() == "UNLEADED")
+                {
+                    this.radUnleaded.Select();
+                }
+                else if (fuel.ToUpper() == "DIESEL")
+                {
+                    this.radDiesel.Select();
+                }
+            }
+            else
+            {
+                this.radUnleaded.Checked = false;
+                this.radDiesel.Checked = false;
+            }
 
             if (lastServiced == Convert.ToDateTime(null))
             {
@@ -883,13 +899,13 @@ namespace SOFT151_Coursework
         // Method used to refresh all notifiations
         private void btnRefreshNotifications_Click(object sender, EventArgs e)
         {
-            this.lstRecentActivity.Items.Clear();
+            //this.lstRecentActivity.Items.Clear();
             this.recentActivitySearchResults.Clear();
-            this.txtSearchRecentActivity.Text = "";
+            //this.txtSearchRecentActivity.Text = "";
 
             for (int i = 0; i < this.notifications.Count; i++)
             {
-                this.lstRecentActivity.Items.Add(this.notifications[i]);
+                //this.lstRecentActivity.Items.Add(this.notifications[i]);
             }
         }
         private void btnSearchRecentActivity_Click(object sender, EventArgs e)
@@ -898,7 +914,7 @@ namespace SOFT151_Coursework
 
             try
             {
-                userInput = this.txtSearchRecentActivity.Text;
+                //userInput = this.txtSearchRecentActivity.Text;
             }
             catch (Exception err)
             {
@@ -911,7 +927,7 @@ namespace SOFT151_Coursework
             }
             else
             {
-                this.searchNotifications(userInput, this.notifications, this.lstRecentActivity);
+                //this.searchNotifications(userInput, this.notifications, this.lstRecentActivity);
             }
         }
 
@@ -952,16 +968,16 @@ namespace SOFT151_Coursework
         // Method used to update the notifications and keep the user up to date
         private void UpdateNotifications(List<string> list)
         {
-            this.lstRecentActivity.Items.Clear();
+            //this.lstRecentActivity.Items.Clear();
 
             for (int i = 0; i < this.notifications.Count; i++)
             {
-                this.lstRecentActivity.Items.Add(list[i]);
+                //this.lstRecentActivity.Items.Add(list[i]);
             }
 
             if (list.Count == 0)
             {
-                this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
+                //this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
             }
         }
 
@@ -997,9 +1013,9 @@ namespace SOFT151_Coursework
                 this.setSelectedFields();
             }
 
-            this.lstRecentActivity.Items.Clear();
+            //this.lstRecentActivity.Items.Clear();
             this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
-            this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
+            //this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
             this.txtInputFileName.Text = "exampleFile.txt";
 
             // Apply color change:
@@ -1015,11 +1031,11 @@ namespace SOFT151_Coursework
             // #31708E = Light Blue
 
             this.BackColor = ColorTranslator.FromHtml("#EAEAEA");
-            this.grpCompanySummary.ForeColor = ColorTranslator.FromHtml("#333");
-            this.grpCarSummary.ForeColor = ColorTranslator.FromHtml("#333");
+            this.grpCompanySummary.ForeColor = ColorTranslator.FromHtml("#000000");
+            this.grpCarSummary.ForeColor = ColorTranslator.FromHtml("#000000");
             foreach (Label l in Controls.OfType<Label>())
             {
-                l.ForeColor = ColorTranslator.FromHtml("#333");
+                l.ForeColor = ColorTranslator.FromHtml("#000000");
             }
 
             foreach (Button b in Controls.OfType<Button>())
@@ -1030,7 +1046,7 @@ namespace SOFT151_Coursework
 
             foreach (RadioButton r in Controls.OfType<RadioButton>())
             {
-                r.ForeColor = ColorTranslator.FromHtml("#333");
+                r.ForeColor = ColorTranslator.FromHtml("#000000");
             }
         }
 
@@ -1071,20 +1087,24 @@ namespace SOFT151_Coursework
             if (this.companyEditingMode == true)
             {
                 this.enableCompanyFields();
+                this.btnCancelCompanyUpdate.Enabled = true;
             }
             else
             {
                 this.limitCompanyFields();
+                this.btnCancelCompanyUpdate.Enabled = false;
             }
 
             // Check user is editing a car
             if (this.carEditingMode == true)
             {
                 this.enableCarFields();
+                this.btnCancelCarUpdate.Enabled = true;
             }
             else
             {
                 this.limitCarFields();
+                this.btnCancelCarUpdate.Enabled = false;
             }
         }
 
@@ -1145,7 +1165,8 @@ namespace SOFT151_Coursework
             this.txtCarMake.Enabled = true;
             this.txtCarModel.Enabled = true;
             this.txtCarReg.Enabled = true;
-            this.txtCarFuelType.Enabled = true;
+            this.radDiesel.Enabled = true;
+            this.radUnleaded.Enabled = true;
             this.dtpLastServiced.Enabled = true;
             this.txtDisplayCarComments.Enabled = true;
         }
@@ -1166,7 +1187,8 @@ namespace SOFT151_Coursework
             this.txtCarMake.Enabled = false;
             this.txtCarModel.Enabled = false;
             this.txtCarReg.Enabled = false;
-            this.txtCarFuelType.Enabled = false;
+            this.radDiesel.Enabled = false;
+            this.radUnleaded.Enabled = false;
             this.dtpLastServiced.Enabled = false;
             this.txtDisplayCarComments.Enabled = false;
         }

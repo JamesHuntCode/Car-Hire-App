@@ -34,16 +34,10 @@
             this.txtSearchCompanies = new System.Windows.Forms.TextBox();
             this.btnAddNewCompany = new System.Windows.Forms.Button();
             this.btnUpdateCompany = new System.Windows.Forms.Button();
-            this.lstRecentActivity = new System.Windows.Forms.ListBox();
-            this.txtSearchRecentActivity = new System.Windows.Forms.TextBox();
-            this.lblRecentActivityHeader = new System.Windows.Forms.Label();
             this.btnRemoveCompany = new System.Windows.Forms.Button();
             this.btnSearchCompanies = new System.Windows.Forms.Button();
-            this.btnSearchRecentActivity = new System.Windows.Forms.Button();
             this.btnRefreshCompanies = new System.Windows.Forms.Button();
-            this.btnRefreshNotifications = new System.Windows.Forms.Button();
             this.btnClearAllCompanies = new System.Windows.Forms.Button();
-            this.btnClearAllNotifications = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.lstCars = new System.Windows.Forms.ListBox();
             this.btnRefreshCars = new System.Windows.Forms.Button();
@@ -72,11 +66,12 @@
             this.txtCompAddress = new System.Windows.Forms.TextBox();
             this.txtCompName = new System.Windows.Forms.TextBox();
             this.grpCarSummary = new System.Windows.Forms.GroupBox();
+            this.radDiesel = new System.Windows.Forms.RadioButton();
+            this.radUnleaded = new System.Windows.Forms.RadioButton();
             this.dtpLastServiced = new System.Windows.Forms.DateTimePicker();
             this.txtCarMake = new System.Windows.Forms.TextBox();
             this.txtCarModel = new System.Windows.Forms.TextBox();
             this.txtCarReg = new System.Windows.Forms.TextBox();
-            this.txtCarFuelType = new System.Windows.Forms.TextBox();
             this.txtCarID = new System.Windows.Forms.TextBox();
             this.lblLastServiced = new System.Windows.Forms.Label();
             this.btnSaveWork = new System.Windows.Forms.Button();
@@ -88,6 +83,8 @@
             this.txtInputFileName = new System.Windows.Forms.TextBox();
             this.btnLoadFile = new System.Windows.Forms.Button();
             this.picMainLogo = new System.Windows.Forms.PictureBox();
+            this.btnCancelCompanyUpdate = new System.Windows.Forms.Button();
+            this.btnCancelCarUpdate = new System.Windows.Forms.Button();
             this.grpCompanySummary.SuspendLayout();
             this.grpCarSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
@@ -142,41 +139,11 @@
             this.btnUpdateCompany.Location = new System.Drawing.Point(1030, 296);
             this.btnUpdateCompany.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateCompany.Name = "btnUpdateCompany";
-            this.btnUpdateCompany.Size = new System.Drawing.Size(190, 76);
+            this.btnUpdateCompany.Size = new System.Drawing.Size(190, 39);
             this.btnUpdateCompany.TabIndex = 11;
             this.btnUpdateCompany.Text = "Edit Selected Company";
             this.btnUpdateCompany.UseVisualStyleBackColor = true;
             this.btnUpdateCompany.Click += new System.EventHandler(this.btnUpdateCompany_Click);
-            // 
-            // lstRecentActivity
-            // 
-            this.lstRecentActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstRecentActivity.FormattingEnabled = true;
-            this.lstRecentActivity.ItemHeight = 18;
-            this.lstRecentActivity.Location = new System.Drawing.Point(1386, 248);
-            this.lstRecentActivity.Margin = new System.Windows.Forms.Padding(2);
-            this.lstRecentActivity.Name = "lstRecentActivity";
-            this.lstRecentActivity.Size = new System.Drawing.Size(55, 544);
-            this.lstRecentActivity.TabIndex = 14;
-            // 
-            // txtSearchRecentActivity
-            // 
-            this.txtSearchRecentActivity.Location = new System.Drawing.Point(1351, 195);
-            this.txtSearchRecentActivity.Margin = new System.Windows.Forms.Padding(2);
-            this.txtSearchRecentActivity.Name = "txtSearchRecentActivity";
-            this.txtSearchRecentActivity.Size = new System.Drawing.Size(91, 20);
-            this.txtSearchRecentActivity.TabIndex = 15;
-            // 
-            // lblRecentActivityHeader
-            // 
-            this.lblRecentActivityHeader.AutoSize = true;
-            this.lblRecentActivityHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecentActivityHeader.Location = new System.Drawing.Point(1235, 102);
-            this.lblRecentActivityHeader.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblRecentActivityHeader.Name = "lblRecentActivityHeader";
-            this.lblRecentActivityHeader.Size = new System.Drawing.Size(202, 24);
-            this.lblRecentActivityHeader.TabIndex = 16;
-            this.lblRecentActivityHeader.Text = "Search Recent Activity:";
             // 
             // btnRemoveCompany
             // 
@@ -202,17 +169,6 @@
             this.btnSearchCompanies.UseVisualStyleBackColor = true;
             this.btnSearchCompanies.Click += new System.EventHandler(this.btnSearchCompanies_Click);
             // 
-            // btnSearchRecentActivity
-            // 
-            this.btnSearchRecentActivity.Location = new System.Drawing.Point(1351, 128);
-            this.btnSearchRecentActivity.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSearchRecentActivity.Name = "btnSearchRecentActivity";
-            this.btnSearchRecentActivity.Size = new System.Drawing.Size(56, 22);
-            this.btnSearchRecentActivity.TabIndex = 20;
-            this.btnSearchRecentActivity.Text = "Search";
-            this.btnSearchRecentActivity.UseVisualStyleBackColor = true;
-            this.btnSearchRecentActivity.Click += new System.EventHandler(this.btnSearchRecentActivity_Click);
-            // 
             // btnRefreshCompanies
             // 
             this.btnRefreshCompanies.Location = new System.Drawing.Point(436, 224);
@@ -223,17 +179,6 @@
             this.btnRefreshCompanies.Text = "Cancel Search";
             this.btnRefreshCompanies.UseVisualStyleBackColor = true;
             this.btnRefreshCompanies.Click += new System.EventHandler(this.btnRefreshCompanies_Click);
-            // 
-            // btnRefreshNotifications
-            // 
-            this.btnRefreshNotifications.Location = new System.Drawing.Point(1352, 154);
-            this.btnRefreshNotifications.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRefreshNotifications.Name = "btnRefreshNotifications";
-            this.btnRefreshNotifications.Size = new System.Drawing.Size(90, 22);
-            this.btnRefreshNotifications.TabIndex = 22;
-            this.btnRefreshNotifications.Text = "Cancel Search";
-            this.btnRefreshNotifications.UseVisualStyleBackColor = true;
-            this.btnRefreshNotifications.Click += new System.EventHandler(this.btnRefreshNotifications_Click);
             // 
             // btnClearAllCompanies
             // 
@@ -246,18 +191,6 @@
             this.btnClearAllCompanies.Text = "Remove All Data \r\n(Not Recommended)\r\n";
             this.btnClearAllCompanies.UseVisualStyleBackColor = true;
             this.btnClearAllCompanies.Click += new System.EventHandler(this.btnClearAllCompanies_Click);
-            // 
-            // btnClearAllNotifications
-            // 
-            this.btnClearAllNotifications.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearAllNotifications.Location = new System.Drawing.Point(1386, 797);
-            this.btnClearAllNotifications.Margin = new System.Windows.Forms.Padding(2);
-            this.btnClearAllNotifications.Name = "btnClearAllNotifications";
-            this.btnClearAllNotifications.Size = new System.Drawing.Size(55, 53);
-            this.btnClearAllNotifications.TabIndex = 26;
-            this.btnClearAllNotifications.Text = "Clear All Notifications";
-            this.btnClearAllNotifications.UseVisualStyleBackColor = true;
-            this.btnClearAllNotifications.Click += new System.EventHandler(this.btnClearAllNotifications_Click);
             // 
             // btnAbout
             // 
@@ -342,7 +275,7 @@
             this.btnUpdateCar.Location = new System.Drawing.Point(1030, 540);
             this.btnUpdateCar.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdateCar.Name = "btnUpdateCar";
-            this.btnUpdateCar.Size = new System.Drawing.Size(190, 77);
+            this.btnUpdateCar.Size = new System.Drawing.Size(190, 43);
             this.btnUpdateCar.TabIndex = 36;
             this.btnUpdateCar.Text = "Edit Selected Car";
             this.btnUpdateCar.UseVisualStyleBackColor = true;
@@ -557,11 +490,12 @@
             // 
             // grpCarSummary
             // 
+            this.grpCarSummary.Controls.Add(this.radDiesel);
+            this.grpCarSummary.Controls.Add(this.radUnleaded);
             this.grpCarSummary.Controls.Add(this.dtpLastServiced);
             this.grpCarSummary.Controls.Add(this.txtCarMake);
             this.grpCarSummary.Controls.Add(this.txtCarModel);
             this.grpCarSummary.Controls.Add(this.txtCarReg);
-            this.grpCarSummary.Controls.Add(this.txtCarFuelType);
             this.grpCarSummary.Controls.Add(this.txtCarID);
             this.grpCarSummary.Controls.Add(this.lblLastServiced);
             this.grpCarSummary.Controls.Add(this.lblCarComments);
@@ -580,6 +514,32 @@
             this.grpCarSummary.TabIndex = 61;
             this.grpCarSummary.TabStop = false;
             this.grpCarSummary.Text = "Car Summary";
+            // 
+            // radDiesel
+            // 
+            this.radDiesel.AutoSize = true;
+            this.radDiesel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDiesel.ForeColor = System.Drawing.Color.Black;
+            this.radDiesel.Location = new System.Drawing.Point(201, 168);
+            this.radDiesel.Name = "radDiesel";
+            this.radDiesel.Size = new System.Drawing.Size(65, 20);
+            this.radDiesel.TabIndex = 83;
+            this.radDiesel.TabStop = true;
+            this.radDiesel.Text = "Diesel";
+            this.radDiesel.UseVisualStyleBackColor = true;
+            // 
+            // radUnleaded
+            // 
+            this.radUnleaded.AutoSize = true;
+            this.radUnleaded.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radUnleaded.ForeColor = System.Drawing.Color.Black;
+            this.radUnleaded.Location = new System.Drawing.Point(103, 168);
+            this.radUnleaded.Name = "radUnleaded";
+            this.radUnleaded.Size = new System.Drawing.Size(86, 20);
+            this.radUnleaded.TabIndex = 72;
+            this.radUnleaded.TabStop = true;
+            this.radUnleaded.Text = "Unleaded";
+            this.radUnleaded.UseVisualStyleBackColor = true;
             // 
             // dtpLastServiced
             // 
@@ -616,15 +576,6 @@
             this.txtCarReg.Size = new System.Drawing.Size(366, 22);
             this.txtCarReg.TabIndex = 79;
             // 
-            // txtCarFuelType
-            // 
-            this.txtCarFuelType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCarFuelType.Location = new System.Drawing.Point(103, 167);
-            this.txtCarFuelType.Margin = new System.Windows.Forms.Padding(2);
-            this.txtCarFuelType.Name = "txtCarFuelType";
-            this.txtCarFuelType.Size = new System.Drawing.Size(366, 22);
-            this.txtCarFuelType.TabIndex = 78;
-            // 
             // txtCarID
             // 
             this.txtCarID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -648,7 +599,7 @@
             // btnSaveWork
             // 
             this.btnSaveWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveWork.Location = new System.Drawing.Point(1275, 7);
+            this.btnSaveWork.Location = new System.Drawing.Point(1054, 4);
             this.btnSaveWork.Name = "btnSaveWork";
             this.btnSaveWork.Size = new System.Drawing.Size(166, 23);
             this.btnSaveWork.TabIndex = 63;
@@ -660,7 +611,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1272, 33);
+            this.label1.Location = new System.Drawing.Point(1051, 30);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 18);
@@ -671,7 +622,7 @@
             // 
             this.radAutoSaveOn.AutoSize = true;
             this.radAutoSaveOn.ForeColor = System.Drawing.Color.Black;
-            this.radAutoSaveOn.Location = new System.Drawing.Point(1358, 34);
+            this.radAutoSaveOn.Location = new System.Drawing.Point(1137, 31);
             this.radAutoSaveOn.Name = "radAutoSaveOn";
             this.radAutoSaveOn.Size = new System.Drawing.Size(39, 17);
             this.radAutoSaveOn.TabIndex = 64;
@@ -683,7 +634,7 @@
             // 
             this.radAutoSaveOff.AutoSize = true;
             this.radAutoSaveOff.ForeColor = System.Drawing.Color.Black;
-            this.radAutoSaveOff.Location = new System.Drawing.Point(1403, 34);
+            this.radAutoSaveOff.Location = new System.Drawing.Point(1181, 31);
             this.radAutoSaveOff.Name = "radAutoSaveOff";
             this.radAutoSaveOff.Size = new System.Drawing.Size(39, 17);
             this.radAutoSaveOff.TabIndex = 65;
@@ -695,7 +646,7 @@
             // 
             this.lblLastSaved.AutoSize = true;
             this.lblLastSaved.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastSaved.Location = new System.Drawing.Point(1272, 55);
+            this.lblLastSaved.Location = new System.Drawing.Point(1051, 52);
             this.lblLastSaved.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastSaved.Name = "lblLastSaved";
             this.lblLastSaved.Size = new System.Drawing.Size(125, 18);
@@ -734,18 +685,42 @@
             // picMainLogo
             // 
             this.picMainLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("picMainLogo.BackgroundImage")));
-            this.picMainLogo.Location = new System.Drawing.Point(427, 12);
+            this.picMainLogo.Location = new System.Drawing.Point(337, 9);
             this.picMainLogo.Name = "picMainLogo";
             this.picMainLogo.Size = new System.Drawing.Size(579, 119);
             this.picMainLogo.TabIndex = 70;
             this.picMainLogo.TabStop = false;
+            // 
+            // btnCancelCompanyUpdate
+            // 
+            this.btnCancelCompanyUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelCompanyUpdate.Location = new System.Drawing.Point(1030, 339);
+            this.btnCancelCompanyUpdate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelCompanyUpdate.Name = "btnCancelCompanyUpdate";
+            this.btnCancelCompanyUpdate.Size = new System.Drawing.Size(190, 33);
+            this.btnCancelCompanyUpdate.TabIndex = 71;
+            this.btnCancelCompanyUpdate.Text = "Cancel Update";
+            this.btnCancelCompanyUpdate.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelCarUpdate
+            // 
+            this.btnCancelCarUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelCarUpdate.Location = new System.Drawing.Point(1030, 587);
+            this.btnCancelCarUpdate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelCarUpdate.Name = "btnCancelCarUpdate";
+            this.btnCancelCarUpdate.Size = new System.Drawing.Size(190, 30);
+            this.btnCancelCarUpdate.TabIndex = 72;
+            this.btnCancelCarUpdate.Text = "Cancel Update";
+            this.btnCancelCarUpdate.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1448, 854);
+            this.ClientSize = new System.Drawing.Size(1226, 854);
+            this.Controls.Add(this.btnCancelCarUpdate);
+            this.Controls.Add(this.btnCancelCompanyUpdate);
             this.Controls.Add(this.picMainLogo);
             this.Controls.Add(this.btnLoadFile);
             this.Controls.Add(this.txtInputFileName);
@@ -766,16 +741,10 @@
             this.Controls.Add(this.lblCarsHeader);
             this.Controls.Add(this.lstCars);
             this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.btnClearAllNotifications);
             this.Controls.Add(this.btnClearAllCompanies);
-            this.Controls.Add(this.btnRefreshNotifications);
             this.Controls.Add(this.btnRefreshCompanies);
-            this.Controls.Add(this.btnSearchRecentActivity);
             this.Controls.Add(this.btnSearchCompanies);
             this.Controls.Add(this.btnRemoveCompany);
-            this.Controls.Add(this.lblRecentActivityHeader);
-            this.Controls.Add(this.txtSearchRecentActivity);
-            this.Controls.Add(this.lstRecentActivity);
             this.Controls.Add(this.btnUpdateCompany);
             this.Controls.Add(this.btnAddNewCompany);
             this.Controls.Add(this.txtSearchCompanies);
@@ -804,16 +773,10 @@
         private System.Windows.Forms.TextBox txtSearchCompanies;
         private System.Windows.Forms.Button btnAddNewCompany;
         private System.Windows.Forms.Button btnUpdateCompany;
-        private System.Windows.Forms.ListBox lstRecentActivity;
-        private System.Windows.Forms.TextBox txtSearchRecentActivity;
-        private System.Windows.Forms.Label lblRecentActivityHeader;
         private System.Windows.Forms.Button btnRemoveCompany;
         private System.Windows.Forms.Button btnSearchCompanies;
-        private System.Windows.Forms.Button btnSearchRecentActivity;
         private System.Windows.Forms.Button btnRefreshCompanies;
-        private System.Windows.Forms.Button btnRefreshNotifications;
         private System.Windows.Forms.Button btnClearAllCompanies;
-        private System.Windows.Forms.Button btnClearAllNotifications;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.ListBox lstCars;
         private System.Windows.Forms.Button btnRefreshCars;
@@ -856,8 +819,11 @@
         private System.Windows.Forms.TextBox txtCarMake;
         private System.Windows.Forms.TextBox txtCarModel;
         private System.Windows.Forms.TextBox txtCarReg;
-        private System.Windows.Forms.TextBox txtCarFuelType;
         private System.Windows.Forms.TextBox txtCarID;
+        private System.Windows.Forms.RadioButton radDiesel;
+        private System.Windows.Forms.RadioButton radUnleaded;
+        private System.Windows.Forms.Button btnCancelCompanyUpdate;
+        private System.Windows.Forms.Button btnCancelCarUpdate;
     }
 }
 
