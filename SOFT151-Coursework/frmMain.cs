@@ -208,7 +208,7 @@ namespace SOFT151_Coursework
         // Update an existing company 
         private void btnUpdateCompany_Click(object sender, EventArgs e)
         {
-            if (this.lstAllCompanies.Items[0].ToString() != "No companies have been found!")
+            /*if (this.lstAllCompanies.Items[0].ToString() != "No companies have been found!")
             {
                 string companySummary = "";
 
@@ -227,7 +227,15 @@ namespace SOFT151_Coursework
                     frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Update Company Information", companies[matchedIndex]);
                     popup.ShowDialog(this);
                 }
-            }
+            }*/
+            this.companyEditingMode = true;
+            // stop all other fields from working here
+        }
+
+        // Cancel changes made to company
+        private void btnCancelCompanyUpdate_Click(object sender, EventArgs e)
+        {
+            this.companyEditingMode = false;
         }
 
         // Remove an existing company 
@@ -1026,7 +1034,7 @@ namespace SOFT151_Coursework
         private void colorForm()
         {
             // #EAEAEA = Light Grey
-            // #333 = Graphite
+            // #0000000 = Black
             // #ffffff = White
             // #31708E = Light Blue
 
@@ -1088,11 +1096,13 @@ namespace SOFT151_Coursework
             {
                 this.enableCompanyFields();
                 this.btnCancelCompanyUpdate.Enabled = true;
+                this.btnSaveCompanyChanges.Enabled = true;
             }
             else
             {
                 this.limitCompanyFields();
                 this.btnCancelCompanyUpdate.Enabled = false;
+                this.btnSaveCompanyChanges.Enabled = false;
             }
 
             // Check user is editing a car
@@ -1100,11 +1110,13 @@ namespace SOFT151_Coursework
             {
                 this.enableCarFields();
                 this.btnCancelCarUpdate.Enabled = true;
+                this.btnSaveCarChanges.Enabled = true;
             }
             else
             {
                 this.limitCarFields();
                 this.btnCancelCarUpdate.Enabled = false;
+                this.btnSaveCarChanges.Enabled = false;
             }
         }
 
@@ -1201,7 +1213,6 @@ namespace SOFT151_Coursework
         }
 
         #endregion
-
     }
 }
 
