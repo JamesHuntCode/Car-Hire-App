@@ -309,6 +309,18 @@ namespace SOFT151_Coursework
             this.lblCompCarCount.Text = "Cars Rented: " + Convert.ToString(numCars);
         }
 
+        // Blocks other fields from use during update
+        private void isUpdatingCompany()
+        {
+            
+        }
+
+        // Allows other fields after update complete
+        private void companyUpdateComplete()
+        {
+
+        }
+
         // Method used to loop over the contents of the companies list and display all contents
         private void updateCompaniesList(List<Company> list)
         {
@@ -682,6 +694,18 @@ namespace SOFT151_Coursework
             this.currentSelectedCompany = this.companies[this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies)];
             int oldRecord = this.locateCorrectCar(this.lstCars.Items[this.lstCars.SelectedIndex].ToString(), this.currentSelectedCompany.GetAllCars());
             this.displayCarInformation(this.currentSelectedCompany.GetAllCars()[oldRecord], this.currentSelectedCompany.GetAllCars()[oldRecord].GetId(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetMake(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetModel(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetReg(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetFuelType(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetDateLastServiced(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetComments());
+        }
+
+        // Blocks other fields from use during update
+        private void isUpdatingCar()
+        {
+
+        }
+
+        // Allows other fields after update complete
+        private void carUpdateComplete()
+        {
+
         }
 
         // Method used to display selected car summary
