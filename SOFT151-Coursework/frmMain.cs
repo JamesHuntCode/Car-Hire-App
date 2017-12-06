@@ -30,6 +30,9 @@ namespace SOFT151_Coursework
 
         private string defaultFile = Environment.CurrentDirectory + @"\exampleFile.txt";
 
+        private bool carEditingMode = false;
+        private bool companyEditingMode = false;
+
         FileServices myServices = new FileServices();
 
         #endregion
@@ -267,7 +270,7 @@ namespace SOFT151_Coursework
             this.txtCompName.Text = name;
             this.txtCompAddress.Text = address;
             this.txtCompPostcode.Text = postcode;
-            this.txtCompCarCount.Text = Convert.ToString(numCars);
+            this.lblCompCarCount.Text = "Cars Rented: " + Convert.ToString(numCars);
         }
 
         // Method used to loop over the contents of the companies list and display all contents
@@ -606,7 +609,16 @@ namespace SOFT151_Coursework
             this.txtCarModel.Text = model;
             this.txtCarReg.Text = reg;
             this.txtCarFuelType.Text = fuel;
-            this.dtpLastServiced.Value = lastServiced;
+
+            if (lastServiced == Convert.ToDateTime(null))
+            {
+                this.dtpLastServiced.Value = DateTime.Today;
+            }
+            else
+            {
+                this.dtpLastServiced.Value = lastServiced;
+            }
+
             this.txtDisplayCarComments.Text = comments;
         }
 
@@ -1024,16 +1036,55 @@ namespace SOFT151_Coursework
 
         private void check_Timer_Tick(object sender, EventArgs e)
         {
-            // Auto check selectable fields
+            // Check selected company:
             if (this.lstAllCompanies.SelectedIndex == -1)
             {
                 this.displayCompanyInformation(null, Convert.ToInt32(null), null, null, null, Convert.ToInt32(null));
+                this.btnUpdateCompany.Enabled = false;
+                this.btnRemoveCompany.Enabled = false;
+                this.grpCompanySummary.Enabled = false;
                 this.lstCars.Items.Clear();
             }
+            else
+            {
+                this.btnUpdateCompany.Enabled = true;
+                this.btnRemoveCompany.Enabled = true;
+                this.grpCompanySummary.Enabled = true;
+            }
 
+            // Check selected car:
             if (this.lstCars.SelectedIndex == -1)
             {
                 this.displayCarInformation(null, Convert.ToInt32(null), null, null, null, null, Convert.ToDateTime(null), null);
+                this.btnUpdateCar.Enabled = false;
+                this.btnRemoveCar.Enabled = false;
+                this.grpCarSummary.Enabled = false;
+            }
+            else
+            {
+                this.btnUpdateCar.Enabled = true;
+                this.btnRemoveCar.Enabled = true;
+                this.grpCarSummary.Enabled = true;
+            }
+
+            // Check user is editing a company
+            if (this.companyEditingMode == true)
+            {
+                this.enableCompanyFields();
+            }
+            else
+            {
+                this.limitCompanyFields();
+            }
+
+            // Check user is editing a car
+            if (this.carEditingMode == true)
+            {
+                this.enableCarFields();
+            }
+            else
+            {
+                this.limitCarFields();
             }
         }
 
@@ -1078,6 +1129,49 @@ namespace SOFT151_Coursework
             this.lstCars.Items.Clear();
         }
 
+        // Method used to enable editable company fields
+        private void enableCompanyFields()
+        {
+            this.txtCompID.Enabled = true;
+            this.txtCompName.Enabled = true;
+            this.txtCompAddress.Enabled = true;
+            this.txtCompPostcode.Enabled = true;
+        }
+
+        // Method used to enable editable company fields
+        private void enableCarFields()
+        {
+            this.txtCarID.Enabled = true;
+            this.txtCarMake.Enabled = true;
+            this.txtCarModel.Enabled = true;
+            this.txtCarReg.Enabled = true;
+            this.txtCarFuelType.Enabled = true;
+            this.dtpLastServiced.Enabled = true;
+            this.txtDisplayCarComments.Enabled = true;
+        }
+
+        // Method used to disable editable company fields
+        private void limitCompanyFields()
+        {
+            this.txtCompID.Enabled = false;
+            this.txtCompName.Enabled = false;
+            this.txtCompAddress.Enabled = false;
+            this.txtCompPostcode.Enabled = false;
+        }
+
+        // Method used to disable editable company fields
+        private void limitCarFields()
+        {
+            this.txtCarID.Enabled = false;
+            this.txtCarMake.Enabled = false;
+            this.txtCarModel.Enabled = false;
+            this.txtCarReg.Enabled = false;
+            this.txtCarFuelType.Enabled = false;
+            this.dtpLastServiced.Enabled = false;
+            this.txtDisplayCarComments.Enabled = false;
+        }
+
+        // Method used to select index 0 in company / car list boxes
         private void setSelectedFields()
         {
             this.lstAllCompanies.SetSelected(0, true);
