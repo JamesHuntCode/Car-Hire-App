@@ -577,25 +577,64 @@ namespace SOFT151_Coursework
         // Update an existing car
         private void btnUpdateCar_Click(object sender, EventArgs e)
         {
-            string carSummary = "";
+            this.carEditingMode = true;
+        }
 
-            if (this.lstCars.SelectedIndex == -1)
+        // Save changes made to car
+        private void btnSaveCarChanges_Click(object sender, EventArgs e)
+        {
+            int newCarId = 0;
+            string newCarMake = "";
+            string newCarModel = "";
+            string newCarReg = "";
+            string newCarFuelType = "";
+            DateTime newDateLastServiced = new DateTime();
+            string newComments = "";
+
+            bool isValid = true;
+
+            try
             {
-                MessageBox.Show("Make sure you select which car you want to update."); // Alert the user
+                newCarId = Convert.ToInt32(this.txtCarID.Text);
+                newCarMake = this.txtCarMake.Text;
+                newCarModel = this.txtCarModel.Text;
+                newCarReg = this.txtCarReg.Text;
+                if (this.radUnleaded.Checked)
+                {
+                    newCarFuelType = "petrol";
+                }
+                else if (this.radDiesel.Checked)
+                {
+                    newCarFuelType = "diesel";
+                }
+                newDateLastServiced = this.dtpLastServiced.Value;
+                newComments = this.txtDisplayCarComments.Text;
             }
-            else
+            catch (Exception err)
             {
-                this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
-
-                carSummary = this.lstCars.Items[this.lstCars.SelectedIndex].ToString();
-
-                int matchedIndex = this.locateCorrectCar(carSummary, this.currentSelectedCompany.GetAllCars());
-
-                // Generate a new dynamic form allowing the user to add a new car:
-
-                frmDynamicAddOrUpdateCar popup = new frmDynamicAddOrUpdateCar("Update Car Information", this.currentSelectedCompany.GetAllCars()[matchedIndex]);
-                popup.ShowDialog(this);
+                MessageBox.Show("Error Detected! Error: " + err.Message + "\nSorry for any inconvenience caused.");
+                isValid = false;
             }
+
+            if (isValid)
+            {
+                this.currentSelectedCompany = this.companies[this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies)];
+                int oldRecord = this.locateCorrectCar(this.lstCars.Items[this.lstCars.SelectedIndex].ToString(), this.currentSelectedCompany.GetAllCars());
+
+                bool updated = this.UpdateCar(this.currentSelectedCompany.GetAllCars()[oldRecord], newCarId, newCarMake, newCarModel, newCarReg, newCarFuelType, newDateLastServiced, newComments);
+
+                if (updated)
+                {
+                    this.carEditingMode = false;
+                }
+            }
+        }
+
+        // Cancel changes made to car
+        private void btnCancelCarUpdate_Click(object sender, EventArgs e)
+        {
+            this.reDisplayOldCarData();
+            this.carEditingMode = false;
         }
 
         // Remove existing car
@@ -636,6 +675,14 @@ namespace SOFT151_Coursework
         }
 
         // METHODS:
+
+        // Display old data when user cancels update
+        private void reDisplayOldCarData()
+        {
+            this.currentSelectedCompany = this.companies[this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies)];
+            int oldRecord = this.locateCorrectCar(this.lstCars.Items[this.lstCars.SelectedIndex].ToString(), this.currentSelectedCompany.GetAllCars());
+            this.displayCarInformation(this.currentSelectedCompany.GetAllCars()[oldRecord], this.currentSelectedCompany.GetAllCars()[oldRecord].GetId(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetMake(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetModel(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetReg(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetFuelType(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetDateLastServiced(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetComments());
+        }
 
         // Method used to display selected car summary
         private void displayCarInformation(Car selectedCar, int ID, string make, string model, string reg, string fuel, DateTime lastServiced, string comments)
@@ -1225,7 +1272,6 @@ namespace SOFT151_Coursework
         }
 
         #endregion
-
     }
 }
 
