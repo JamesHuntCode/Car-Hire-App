@@ -39,11 +39,6 @@ namespace SOFT151_Coursework
                 b.ForeColor = ColorTranslator.FromHtml("#ffffff");
                 b.BackColor = ColorTranslator.FromHtml("#31708E");
             }
-
-            foreach (RadioButton r in Controls.OfType<RadioButton>())
-            {
-                r.ForeColor = ColorTranslator.FromHtml("#333");
-            }
         }
     }
 }

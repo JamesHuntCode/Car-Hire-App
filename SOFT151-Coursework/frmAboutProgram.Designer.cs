@@ -39,11 +39,11 @@
             // 
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHeader.Location = new System.Drawing.Point(63, 9);
+            this.lblHeader.Location = new System.Drawing.Point(80, 9);
             this.lblHeader.Name = "lblHeader";
-            this.lblHeader.Size = new System.Drawing.Size(208, 25);
+            this.lblHeader.Size = new System.Drawing.Size(463, 25);
             this.lblHeader.TabIndex = 0;
-            this.lblHeader.Text = "About This Program:";
+            this.lblHeader.Text = "Software Support (FULL PROGRAM MANUAL):";
             // 
             // lblCreationDate
             // 
@@ -59,7 +59,7 @@
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.Location = new System.Drawing.Point(12, 98);
+            this.lblVersion.Location = new System.Drawing.Point(245, 60);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(170, 20);
             this.lblVersion.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             this.lblCodedIn.AutoSize = true;
             this.lblCodedIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCodedIn.Location = new System.Drawing.Point(12, 135);
+            this.lblCodedIn.Location = new System.Drawing.Point(472, 60);
             this.lblCodedIn.Name = "lblCodedIn";
             this.lblCodedIn.Size = new System.Drawing.Size(144, 20);
             this.lblCodedIn.TabIndex = 3;
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(346, 174);
+            this.ClientSize = new System.Drawing.Size(628, 253);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblCodedIn);
             this.Controls.Add(this.lblVersion);

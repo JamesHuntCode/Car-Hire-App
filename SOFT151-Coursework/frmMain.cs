@@ -201,7 +201,7 @@ namespace SOFT151_Coursework
         private void btnAddNewCompany_Click(object sender, EventArgs e)
         {
             // Generate a new dynamic form allowing the user to add a new company:
-            frmDynamicAddOrUpdate popup = new frmDynamicAddOrUpdate("Add New Company");
+            frmAddCompany popup = new frmAddCompany();
             popup.ShowDialog(this);
         }
 
@@ -581,7 +581,7 @@ namespace SOFT151_Coursework
 
                 // Generate a new dynamic form allowing the user to add a new car:
 
-                frmDynamicAddOrUpdateCar popup = new frmDynamicAddOrUpdateCar("Add New Car");
+                frmAddCar popup = new frmAddCar();
                 popup.ShowDialog(this);
             }
         }
@@ -996,32 +996,14 @@ namespace SOFT151_Coursework
             this.UpdateNotifications(notifications);
         }
 
-        // Clear all user recent activity 
-        private void btnClearAllNotifications_Click(object sender, EventArgs e)
-        {
-            this.notifications.Clear();
-            this.UpdateNotifications(this.notifications);
-        }
-
-        // Method used to refresh all notifiations
-        private void btnRefreshNotifications_Click(object sender, EventArgs e)
-        {
-            //this.lstRecentActivity.Items.Clear();
-            this.recentActivitySearchResults.Clear();
-            //this.txtSearchRecentActivity.Text = "";
-
-            for (int i = 0; i < this.notifications.Count; i++)
-            {
-                //this.lstRecentActivity.Items.Add(this.notifications[i]);
-            }
-        }
-        private void btnSearchRecentActivity_Click(object sender, EventArgs e)
+        // Method used to search through notifications
+        private void btnSearchRecentActivity_Click_1(object sender, EventArgs e)
         {
             string userInput = "";
 
             try
             {
-                //userInput = this.txtSearchRecentActivity.Text;
+                userInput = this.txtSearchRecentActivity.Text;
             }
             catch (Exception err)
             {
@@ -1034,7 +1016,20 @@ namespace SOFT151_Coursework
             }
             else
             {
-                //this.searchNotifications(userInput, this.notifications, this.lstRecentActivity);
+                this.searchNotifications(userInput, this.notifications, this.lstRecentActivity);
+            }
+        }
+
+        // Method used to re-display all notifications after search
+        private void btnRefreshNotifications_Click_1(object sender, EventArgs e)
+        {
+            this.lstRecentActivity.Items.Clear();
+            this.recentActivitySearchResults.Clear();
+            this.txtSearchRecentActivity.Text = "";
+
+            for (int i = 0; i < this.notifications.Count; i++)
+            {
+                this.lstRecentActivity.Items.Add(this.notifications[i]);
             }
         }
 
@@ -1075,16 +1070,16 @@ namespace SOFT151_Coursework
         // Method used to update the notifications and keep the user up to date
         private void UpdateNotifications(List<string> list)
         {
-            //this.lstRecentActivity.Items.Clear();
+            this.lstRecentActivity.Items.Clear();
 
             for (int i = 0; i < this.notifications.Count; i++)
             {
-                //this.lstRecentActivity.Items.Add(list[i]);
+                this.lstRecentActivity.Items.Add(list[i]);
             }
 
             if (list.Count == 0)
             {
-                //this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
+                this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
             }
         }
 
@@ -1110,7 +1105,7 @@ namespace SOFT151_Coursework
             autoSaveWork.Start();
 
             // Prepare page for load:
-            this.picMainLogo.Location = new Point((this.Width/2) - (this.picMainLogo.Width / 2), 25);
+            this.radNotificationsOff.Select();
             this.radAutoSaveOn.Select();
             this.notifications.Clear();
 
@@ -1120,9 +1115,9 @@ namespace SOFT151_Coursework
                 this.setSelectedFields();
             }
 
-            //this.lstRecentActivity.Items.Clear();
+            this.lstRecentActivity.Items.Clear();
             this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
-            //this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
+            this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
             this.txtInputFileName.Text = "exampleFile.txt";
 
             // Apply color change:
@@ -1217,6 +1212,16 @@ namespace SOFT151_Coursework
                 this.btnCancelCarUpdate.Enabled = false;
                 this.btnSaveCarChanges.Enabled = false;
             }
+
+            // Check if user wants to display notifications:
+            if (!this.radNotificationsOn.Checked)
+            {
+                this.Width = 1373;
+            }
+            else
+            {
+                this.Width = 1835;
+            }
         }
 
         // Method used to invoke auto-save method every 5 minutes
@@ -1296,6 +1301,7 @@ namespace SOFT151_Coursework
         }
 
         #endregion
+
     }
 }
 
