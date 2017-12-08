@@ -17,9 +17,27 @@ namespace SOFT151_Coursework
             InitializeComponent();
             this.Text = "Add New Company";
             this.lblHeader.Text = "Add New Company:";
+         
+            Timer unlockButton = new Timer();
+            unlockButton.Interval = 10;
+            unlockButton.Tick += new EventHandler(unlockButton_Tick);
+            unlockButton.Start();
      
             // Apply color change:
             this.colorForm();
+        }
+
+        // Timer used to check if all fields are populated
+        private void unlockButton_Tick(object sender, EventArgs e)
+        {
+            if (this.txtNewID.Text.Length < 1 || this.txtNewName.Text.Length < 2 || this.txtNewAddress.Text.Length < 10 || this.txtNewPostcode.Text.Length < 6)
+            {
+                this.btnSaveAndUpdate.Enabled = false;
+            }
+            else
+            {
+                this.btnSaveAndUpdate.Enabled = true;
+            }
         }
 
         // Method used to apply correct color scheme to form

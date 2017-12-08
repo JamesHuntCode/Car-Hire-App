@@ -20,8 +20,26 @@ namespace SOFT151_Coursework
             this.radDiesel.Select();
             this.dtpLastServiced.MaxDate = DateTime.Today; // Limit max date to today
 
+            Timer unlockButton = new Timer();
+            unlockButton.Interval = 10;
+            unlockButton.Tick += new EventHandler(unlockButton_Tick);
+            unlockButton.Start();
+
             // Apply color change:
             this.colorForm();
+        }
+
+        // Timer used to check if all fields are populated
+        private void unlockButton_Tick(object sender, EventArgs e)
+        {
+            if (this.txtCarID.Text.Length < 1 || this.txtCarMake.Text.Length < 3 || this.txtCarModel.Text.Length < 3 || this.txtCarReg.Text.Length < 3 || (!this.radDiesel.Checked && !this.radPetrol.Checked))
+            {
+                this.btnSaveAndUpdate.Enabled = false;
+            }
+            else
+            {
+                this.btnSaveAndUpdate.Enabled = true;
+            }
         }
 
         // Method used to apply correct color scheme to form
