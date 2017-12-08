@@ -13,7 +13,7 @@ namespace SOFT151_Coursework
 {
     public partial class frmMain : Form
     {
-        #region set up arrays / classes required
+        #region setting up arrays / classes required
 
         private List<Company> companies = new List<Company>(); 
 
@@ -119,6 +119,7 @@ namespace SOFT151_Coursework
             {
                 this.CreateNotification("self-saved", "save", this.txtInputFileName.Text, DateTime.Now.ToShortTimeString());
                 this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
+                MessageBox.Show("Your work has saved successfully.");
             }
         }
 
@@ -209,6 +210,8 @@ namespace SOFT151_Coursework
         private void btnUpdateCompany_Click(object sender, EventArgs e)
         {
             this.companyEditingMode = true;
+            string companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+            this.lstRecentActivity.Items.Add("You began editing the profile of: " + this.companies[this.locateCorrectCompany(companySummary, this.companies)].GetName() + " at @ " + DateTime.Now.ToShortTimeString() + ".");
         }
 
         // Save changes made to company
@@ -247,6 +250,7 @@ namespace SOFT151_Coursework
 
                 if (updated)
                 {
+                    this.lstRecentActivity.Items.Add("You successfully updated records and stopped editing @ " + DateTime.Now.ToShortTimeString() + ".");
                     this.companyEditingMode = false;
                 }
             }
@@ -256,6 +260,7 @@ namespace SOFT151_Coursework
         private void btnCancelCompanyUpdate_Click(object sender, EventArgs e)
         {
             this.reDisplayOldCompanyData();
+            this.lstRecentActivity.Items.Add("You canceled your update @ " + DateTime.Now.ToShortTimeString() + ".");
             this.companyEditingMode = false;
         }
 
@@ -309,18 +314,6 @@ namespace SOFT151_Coursework
             this.lblCompCarCount.Text = "Cars Rented: " + Convert.ToString(numCars);
         }
 
-        // Blocks other fields from use during update
-        private void isUpdatingCompany()
-        {
-            
-        }
-
-        // Allows other fields after update complete
-        private void companyUpdateComplete()
-        {
-
-        }
-
         // Method used to loop over the contents of the companies list and display all contents
         private void updateCompaniesList(List<Company> list)
         {
@@ -355,7 +348,7 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].GetName().ToUpper().Contains(userInput.ToUpper()))
+                if (list[i].PrintSummary().ToUpper().Contains(userInput.ToUpper()))
                 {
                     match = true;
 
@@ -449,7 +442,6 @@ namespace SOFT151_Coursework
                 this.displayCompanyInformation(newCompanyID, newCompanyName, newCompanyAddress, newCompanyPostcode, this.currentSelectedCompany.GetNumberOfCars());
                 this.lstAllCompanies.SetSelected(this.locateCorrectCompany(this.currentSelectedCompany.PrintSummary(), this.companies), true);
 
-                this.CreateNotification("company", "update", oldRecord.GetName(), DateTime.Now.ToShortTimeString());
                 return true;
             }
             else
@@ -589,6 +581,8 @@ namespace SOFT151_Coursework
         // Update an existing car
         private void btnUpdateCar_Click(object sender, EventArgs e)
         {
+            string companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+            this.lstRecentActivity.Items.Add("You began editing a car which belongs to: " + this.companies[this.locateCorrectCompany(companySummary, this.companies)].GetName() + " at @ " + DateTime.Now.ToShortTimeString() + ".");
             this.carEditingMode = true;
         }
 
@@ -645,6 +639,7 @@ namespace SOFT151_Coursework
         // Cancel changes made to car
         private void btnCancelCarUpdate_Click(object sender, EventArgs e)
         {
+            this.lstRecentActivity.Items.Add("You canceled your update @ " + DateTime.Now.ToShortTimeString() + ".");
             this.reDisplayOldCarData();
             this.carEditingMode = false;
         }
@@ -694,18 +689,6 @@ namespace SOFT151_Coursework
             this.currentSelectedCompany = this.companies[this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies)];
             int oldRecord = this.locateCorrectCar(this.lstCars.Items[this.lstCars.SelectedIndex].ToString(), this.currentSelectedCompany.GetAllCars());
             this.displayCarInformation(this.currentSelectedCompany.GetAllCars()[oldRecord], this.currentSelectedCompany.GetAllCars()[oldRecord].GetId(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetMake(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetModel(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetReg(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetFuelType(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetDateLastServiced(), this.currentSelectedCompany.GetAllCars()[oldRecord].GetComments());
-        }
-
-        // Blocks other fields from use during update
-        private void isUpdatingCar()
-        {
-
-        }
-
-        // Allows other fields after update complete
-        private void carUpdateComplete()
-        {
-
         }
 
         // Method used to display selected car summary
@@ -879,7 +862,7 @@ namespace SOFT151_Coursework
                 this.lstCars.SetSelected(this.locateCorrectCar(this.currentSelectedCar.PrintSummary(), this.currentSelectedCompany.GetAllCars()), true);
 
                 // Push notification to the user's recent activity:
-                this.CreateNotification("car", "update", Convert.ToString(oldCar.GetId()), DateTime.Now.ToShortTimeString(), this.currentSelectedCompany.GetName());
+                this.lstRecentActivity.Items.Add("You succesfully updated records and stopped editing @ " + DateTime.Now.ToShortTimeString() + ".");
                 return true;
             }
             else
@@ -1085,7 +1068,7 @@ namespace SOFT151_Coursework
 
         #endregion
 
-        #region code dealing with extra features
+        #region code dealing with loading form correctly
 
         // Method called every 1/10 second to perform routine tasks
 
