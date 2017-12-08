@@ -156,48 +156,41 @@ namespace SOFT151_Coursework
         // BUTTON CLICKS:
 
         // Search for a specific company 
-        private void btnSearchCompanies_Click(object sender, EventArgs e)
+        private void txtSearchCompanies_TextChanged(object sender, EventArgs e)
         {
             string userInput = "";
 
             try
             {
+                // Filter companies
                 userInput = this.txtSearchCompanies.Text;
+                this.searchCompanies(userInput, this.companies, this.lstAllCompanies);
+                this.nullAllFields();
+                this.lstAllCompanies.SetSelected(0, true);
+
+                // Display correct cars
+                if (this.companySearchResults.Count > 0)
+                {
+                    this.lstCars.Items.Clear();
+                    int matchedIndex = this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies);
+
+                    for (int i = 0; i < this.companies[matchedIndex].GetNumberOfCars(); i++)
+                    {
+                        this.lstCars.Items.Add(this.companies[matchedIndex].GetAllCars()[i].PrintSummary());
+                    }
+
+                    if (this.lstCars.Items.Count > 0)
+                    {
+                        this.lstCars.SetSelected(0, true);
+                    }
+                }
             }
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
             }
-
-            if (userInput == "") // Validate user input
-            {
-                MessageBox.Show("Make sure to type in what you want to search for.");
-            }
-            else
-            {
-                this.searchCompanies(userInput, this.companies, this.lstAllCompanies);
-
-                this.CreateNotification("company", "search", userInput, DateTime.Now.ToShortTimeString());
-
-                this.nullAllFields();
-            }
         }
-
-        // Refresh the list of companies after a search
-        private void btnRefreshCompanies_Click(object sender, EventArgs e)
-        {
-            this.lstAllCompanies.Items.Clear();
-            this.companySearchResults.Clear();
-            this.txtSearchCompanies.Text = "";
-
-            this.nullAllFields();
-
-            for (int i = 0; i < this.companies.Count; i++)
-            {
-                this.lstAllCompanies.Items.Add(this.companies[i].PrintSummary());
-            }
-        }
-
+        
         // Add a new company 
         private void btnAddNewCompany_Click(object sender, EventArgs e)
         {
@@ -484,6 +477,11 @@ namespace SOFT151_Coursework
                 {
                     this.lstCars.Items.Add(this.companies[this.lstAllCompanies.SelectedIndex].GetAllCars()[i].PrintSummary());
                 }
+
+                if (this.lstCars.Items.Count > 0)
+                {
+                    this.lstCars.SetSelected(0, true);
+                }
             }
         }
 
@@ -504,62 +502,28 @@ namespace SOFT151_Coursework
         // BUTTON CLICKS:
 
         // Search for a specific car
-        private void btnSearchCar_Click(object sender, EventArgs e)
+        private void txtSearchCars_TextChanged(object sender, EventArgs e)
         {
             string userInput = "";
 
-            bool proceed = true;
-
-            if (this.lstAllCompanies.SelectedIndex == -1)
+            try
             {
-                MessageBox.Show("Make sure to select a company before searching.");
-                proceed = false;
+                /*userInput = this.txtSearchCompanies.Text;
+                this.searchCompanies(userInput, this.companies, this.lstAllCompanies);
+                this.nullAllFields();
+                this.lstAllCompanies.SetSelected(0, true);*/
+
+                userInput = this.txtSearchCars.Text;
+                int selectedCompany = this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies);
+                this.searchCar(userInput, this.companies[selectedCompany].GetAllCars(), this.lstCars);
+                this.lstCars.SetSelected(0, true);
             }
-
-            if (proceed)
+            catch (Exception err)
             {
-                try
-                {
-                    userInput = this.txtSearchCars.Text;
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show(err.Message);
-                }
-
-                if (userInput == "") // Validate user input
-                {
-                    MessageBox.Show("Make sure to type in what you want to search for.");
-                }
-                else
-                {
-                    this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
-                    this.searchCar(userInput, this.currentSelectedCompany.GetAllCars(), this.lstCars); // Search for a matching element
-
-                    // Push notification to the user's recent activity: 
-
-                    this.CreateNotification("car", "search", userInput, DateTime.Now.ToShortTimeString(), this.currentSelectedCompany.GetName());
-                }
+                MessageBox.Show(err.Message);
             }
         }
         
-        // Refresh the list of all company cars after a search
-        private void btnRefreshCars_Click(object sender, EventArgs e)
-        {
-            this.lstCars.Items.Clear();
-            this.carSearchResults.Clear();
-            this.txtSearchCars.Text = "";
-
-            if (this.lstAllCompanies.SelectedIndex != -1)
-            {
-                this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
-                for (int i = 0; i < this.currentSelectedCompany.GetAllCars().Count; i++)
-                {
-                    this.lstCars.Items.Add(this.currentSelectedCompany.GetAllCars()[i].PrintSummary());
-                }
-            }
-        }
-
         // Add new car
         private void btnAddNewCar_Click(object sender, EventArgs e)
         {
@@ -1284,7 +1248,6 @@ namespace SOFT151_Coursework
         }
 
         #endregion
-
     }
 }
 

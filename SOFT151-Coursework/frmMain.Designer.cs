@@ -35,12 +35,8 @@
             this.btnAddNewCompany = new System.Windows.Forms.Button();
             this.btnUpdateCompany = new System.Windows.Forms.Button();
             this.btnRemoveCompany = new System.Windows.Forms.Button();
-            this.btnSearchCompanies = new System.Windows.Forms.Button();
-            this.btnRefreshCompanies = new System.Windows.Forms.Button();
             this.btnAbout = new System.Windows.Forms.Button();
             this.lstCars = new System.Windows.Forms.ListBox();
-            this.btnRefreshCars = new System.Windows.Forms.Button();
-            this.btnSearchCar = new System.Windows.Forms.Button();
             this.txtSearchCars = new System.Windows.Forms.TextBox();
             this.lblCarsHeader = new System.Windows.Forms.Label();
             this.btnRemoveCar = new System.Windows.Forms.Button();
@@ -131,8 +127,9 @@
             this.txtSearchCompanies.Location = new System.Drawing.Point(6, 224);
             this.txtSearchCompanies.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCompanies.Name = "txtSearchCompanies";
-            this.txtSearchCompanies.Size = new System.Drawing.Size(311, 20);
+            this.txtSearchCompanies.Size = new System.Drawing.Size(539, 20);
             this.txtSearchCompanies.TabIndex = 5;
+            this.txtSearchCompanies.TextChanged += new System.EventHandler(this.txtSearchCompanies_TextChanged);
             // 
             // btnAddNewCompany
             // 
@@ -170,29 +167,6 @@
             this.btnRemoveCompany.UseVisualStyleBackColor = true;
             this.btnRemoveCompany.Click += new System.EventHandler(this.btnRemoveCompany_Click);
             // 
-            // btnSearchCompanies
-            // 
-            this.btnSearchCompanies.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchCompanies.Location = new System.Drawing.Point(321, 224);
-            this.btnSearchCompanies.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSearchCompanies.Name = "btnSearchCompanies";
-            this.btnSearchCompanies.Size = new System.Drawing.Size(111, 21);
-            this.btnSearchCompanies.TabIndex = 19;
-            this.btnSearchCompanies.Text = "Search";
-            this.btnSearchCompanies.UseVisualStyleBackColor = true;
-            this.btnSearchCompanies.Click += new System.EventHandler(this.btnSearchCompanies_Click);
-            // 
-            // btnRefreshCompanies
-            // 
-            this.btnRefreshCompanies.Location = new System.Drawing.Point(436, 224);
-            this.btnRefreshCompanies.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRefreshCompanies.Name = "btnRefreshCompanies";
-            this.btnRefreshCompanies.Size = new System.Drawing.Size(109, 21);
-            this.btnRefreshCompanies.TabIndex = 21;
-            this.btnRefreshCompanies.Text = "Cancel Search";
-            this.btnRefreshCompanies.UseVisualStyleBackColor = true;
-            this.btnRefreshCompanies.Click += new System.EventHandler(this.btnRefreshCompanies_Click);
-            // 
             // btnAbout
             // 
             this.btnAbout.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -217,35 +191,14 @@
             this.lstCars.TabIndex = 30;
             this.lstCars.SelectedIndexChanged += new System.EventHandler(this.lstCars_SelectedIndexChanged);
             // 
-            // btnRefreshCars
-            // 
-            this.btnRefreshCars.Location = new System.Drawing.Point(446, 551);
-            this.btnRefreshCars.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRefreshCars.Name = "btnRefreshCars";
-            this.btnRefreshCars.Size = new System.Drawing.Size(99, 21);
-            this.btnRefreshCars.TabIndex = 34;
-            this.btnRefreshCars.Text = "Cancel Search";
-            this.btnRefreshCars.UseVisualStyleBackColor = true;
-            this.btnRefreshCars.Click += new System.EventHandler(this.btnRefreshCars_Click);
-            // 
-            // btnSearchCar
-            // 
-            this.btnSearchCar.Location = new System.Drawing.Point(328, 551);
-            this.btnSearchCar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSearchCar.Name = "btnSearchCar";
-            this.btnSearchCar.Size = new System.Drawing.Size(114, 21);
-            this.btnSearchCar.TabIndex = 33;
-            this.btnSearchCar.Text = "Search";
-            this.btnSearchCar.UseVisualStyleBackColor = true;
-            this.btnSearchCar.Click += new System.EventHandler(this.btnSearchCar_Click);
-            // 
             // txtSearchCars
             // 
             this.txtSearchCars.Location = new System.Drawing.Point(6, 552);
             this.txtSearchCars.Margin = new System.Windows.Forms.Padding(2);
             this.txtSearchCars.Name = "txtSearchCars";
-            this.txtSearchCars.Size = new System.Drawing.Size(318, 20);
+            this.txtSearchCars.Size = new System.Drawing.Size(539, 20);
             this.txtSearchCars.TabIndex = 32;
+            this.txtSearchCars.TextChanged += new System.EventHandler(this.txtSearchCars_TextChanged);
             // 
             // lblCarsHeader
             // 
@@ -882,14 +835,10 @@
             this.Controls.Add(this.btnRemoveCar);
             this.Controls.Add(this.btnUpdateCar);
             this.Controls.Add(this.btnAddNewCar);
-            this.Controls.Add(this.btnRefreshCars);
-            this.Controls.Add(this.btnSearchCar);
             this.Controls.Add(this.txtSearchCars);
             this.Controls.Add(this.lblCarsHeader);
             this.Controls.Add(this.lstCars);
             this.Controls.Add(this.btnAbout);
-            this.Controls.Add(this.btnRefreshCompanies);
-            this.Controls.Add(this.btnSearchCompanies);
             this.Controls.Add(this.btnRemoveCompany);
             this.Controls.Add(this.btnUpdateCompany);
             this.Controls.Add(this.btnAddNewCompany);
@@ -924,12 +873,8 @@
         private System.Windows.Forms.Button btnAddNewCompany;
         private System.Windows.Forms.Button btnUpdateCompany;
         private System.Windows.Forms.Button btnRemoveCompany;
-        private System.Windows.Forms.Button btnSearchCompanies;
-        private System.Windows.Forms.Button btnRefreshCompanies;
         private System.Windows.Forms.Button btnAbout;
         private System.Windows.Forms.ListBox lstCars;
-        private System.Windows.Forms.Button btnRefreshCars;
-        private System.Windows.Forms.Button btnSearchCar;
         private System.Windows.Forms.TextBox txtSearchCars;
         private System.Windows.Forms.Label lblCarsHeader;
         private System.Windows.Forms.Button btnRemoveCar;
