@@ -35,10 +35,12 @@ namespace SOFT151_Coursework
             if (this.txtCarID.Text.Length < 1 || this.txtCarMake.Text.Length < 3 || this.txtCarModel.Text.Length < 3 || this.txtCarReg.Text.Length < 3 || (!this.radDiesel.Checked && !this.radPetrol.Checked))
             {
                 this.btnSaveAndUpdate.Enabled = false;
+                this.btnSaveAndUpdate.BackColor = Color.FromArgb(75, ColorTranslator.FromHtml("#31708E"));
             }
             else
             {
                 this.btnSaveAndUpdate.Enabled = true;
+                this.btnSaveAndUpdate.BackColor = ColorTranslator.FromHtml("#31708E");
             }
             // Color code fields
             this.colorFields();

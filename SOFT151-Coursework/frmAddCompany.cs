@@ -35,10 +35,12 @@ namespace SOFT151_Coursework
             if (this.txtNewID.Text.Length < 1 || this.txtNewName.Text.Length < 2 || this.txtNewAddress.Text.Length < 7 || this.txtNewPostcode.Text.Length < 6)
             {
                 this.btnSaveAndUpdate.Enabled = false;
+                this.btnSaveAndUpdate.BackColor = Color.FromArgb(75, ColorTranslator.FromHtml("#31708E"));
             }
             else
             {
                 this.btnSaveAndUpdate.Enabled = true;
+                this.btnSaveAndUpdate.BackColor = ColorTranslator.FromHtml("#31708E");
             }
 
             // Color code fields

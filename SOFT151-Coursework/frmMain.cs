@@ -202,9 +202,12 @@ namespace SOFT151_Coursework
         // Update an existing company 
         private void btnUpdateCompany_Click(object sender, EventArgs e)
         {
-            this.companyEditingMode = true;
-            string companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
-            this.lstRecentActivity.Items.Add("You began editing the profile of: " + this.companies[this.locateCorrectCompany(companySummary, this.companies)].GetName() + " at @ " + DateTime.Now.ToShortTimeString() + ".");
+            if (this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString() != "No companies have been found!")
+            {
+                this.companyEditingMode = true;
+                string companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+                this.lstRecentActivity.Items.Add("You began editing the profile of " + this.companies[this.locateCorrectCompany(companySummary, this.companies)].GetName() + " at @ " + DateTime.Now.ToShortTimeString() + ".");
+            }
         }
 
         // Save changes made to company
@@ -291,6 +294,11 @@ namespace SOFT151_Coursework
                     //Display the updated company information:
                     this.lstAllCompanies.Items.Clear();
                     this.updateCompaniesList(companies);
+
+                    if (this.lstAllCompanies.Items.Count > 0)
+                    {
+                        this.lstAllCompanies.SetSelected(0, true);
+                    }
                 }
             }
         }
@@ -528,7 +536,7 @@ namespace SOFT151_Coursework
         // Add new car
         private void btnAddNewCar_Click(object sender, EventArgs e)
         {
-            if (this.lstAllCompanies.SelectedIndex == -1)
+            if (this.lstAllCompanies.SelectedIndex == -1 || this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString() == "No companies have been found!")
             {
                 MessageBox.Show("Make sure you select the company you want to add a car to."); // Alert the user
             }
@@ -643,6 +651,11 @@ namespace SOFT151_Coursework
 
                 this.lstCars.Items.Clear();
                 this.updateCarList(this.currentSelectedCompany.GetAllCars());
+
+                if (this.lstCars.Items.Count > 0)
+                {
+                    this.lstCars.SetSelected(0, true);
+                }
             }
         }
 
@@ -1090,7 +1103,6 @@ namespace SOFT151_Coursework
 
             foreach (Button b in Controls.OfType<Button>())
             {
-                // check if button is enabled or disabled before assigning color
                 b.ForeColor = ColorTranslator.FromHtml("#ffffff");
                 b.BackColor = ColorTranslator.FromHtml("#31708E");
             }
@@ -1141,7 +1153,16 @@ namespace SOFT151_Coursework
             {
                 this.enableCompanyFields();
                 this.btnCancelCompanyUpdate.Enabled = true;
-                this.btnSaveCompanyChanges.Enabled = true;
+
+                // Check all criteria is met
+                if (this.txtCompID.Text.Length < 1 || this.txtCompName.Text.Length < 2 || this.txtCompAddress.Text.Length < 7 || this.txtCompPostcode.Text.Length < 6)
+                {
+                    this.btnSaveCompanyChanges.Enabled = false;
+                }
+                else
+                {
+                    this.btnSaveCompanyChanges.Enabled = true;
+                }
 
                 // Code for changing ticks and crosses on main form
                 this.checkCompanyFields();
@@ -1164,7 +1185,16 @@ namespace SOFT151_Coursework
             {
                 this.enableCarFields();
                 this.btnCancelCarUpdate.Enabled = true;
-                this.btnSaveCarChanges.Enabled = true;
+
+                // Check all criteria is met
+                if (this.txtCarID.Text.Length < 1 || this.txtCarMake.Text.Length < 3 || this.txtCarModel.Text.Length < 3 || this.txtCarReg.Text.Length < 3)
+                {
+                    this.btnSaveCarChanges.Enabled = false;
+                }
+                else
+                {
+                    this.btnSaveCarChanges.Enabled = true;
+                }
 
                 // Code for changing ticks and crosses on main form
                 this.checkCarFields();
@@ -1190,6 +1220,20 @@ namespace SOFT151_Coursework
             else
             {
                 this.Width = 1835;
+            }
+
+            // Display correct button colors 
+            foreach (Button b in Controls.OfType<Button>())
+            {
+                if (b.Enabled == true)
+                {
+                    b.ForeColor = ColorTranslator.FromHtml("#ffffff");
+                    b.BackColor = ColorTranslator.FromHtml("#31708E");
+                }
+                else
+                {
+                    b.BackColor = Color.FromArgb(75, ColorTranslator.FromHtml("#31708E"));
+                }
             }
         }
 
