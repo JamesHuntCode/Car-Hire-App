@@ -488,7 +488,8 @@ namespace SOFT151_Coursework
         // Method used to bring up summary of selected car
         private void lstCars_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
+            int matchedCompany = this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies);
+            this.currentSelectedCompany = this.companies[matchedCompany];
 
             // Open information for the correct car
             string carSummary = this.lstCars.Items[this.lstCars.SelectedIndex].ToString();
@@ -1099,6 +1100,7 @@ namespace SOFT151_Coursework
             }
         }
 
+        #region maintenance timer system checks
         private void check_Timer_Tick(object sender, EventArgs e)
         {
             // Check selected company:
@@ -1138,12 +1140,19 @@ namespace SOFT151_Coursework
                 this.enableCompanyFields();
                 this.btnCancelCompanyUpdate.Enabled = true;
                 this.btnSaveCompanyChanges.Enabled = true;
+
+                // Code for changing ticks and crosses on main form
+                this.checkCompanyFields();
             }
             else
             {
                 this.limitCompanyFields();
                 this.btnCancelCompanyUpdate.Enabled = false;
                 this.btnSaveCompanyChanges.Enabled = false;
+                this.nullField(this.picCompID);
+                this.nullField(this.picCompName);
+                this.nullField(this.picCompAddress);
+                this.nullField(this.picCompPostcode);
             }
 
             // Check user is editing a car
@@ -1152,6 +1161,9 @@ namespace SOFT151_Coursework
                 this.enableCarFields();
                 this.btnCancelCarUpdate.Enabled = true;
                 this.btnSaveCarChanges.Enabled = true;
+
+                // Code for changing ticks and crosses on main form
+                this.checkCarFields();
             }
             else
             {
@@ -1170,6 +1182,7 @@ namespace SOFT151_Coursework
                 this.Width = 1835;
             }
         }
+        #endregion
 
         // Method used to invoke auto-save method every 5 minutes
         private void autoSave_Timer_Tick(object sender, EventArgs e)
@@ -1186,6 +1199,86 @@ namespace SOFT151_Coursework
         {
             frmAboutProgram popup = new frmAboutProgram();
             popup.ShowDialog(this);
+        }
+
+        // Change image to green tick
+        private void approveField(PictureBox picBox)
+        {
+            picBox.Image = Image.FromFile("green-tick.png");
+        }
+
+        // Do not display image at all (textlength = 0)
+        private void nullField(PictureBox picBox)
+        {
+            picBox.Image = null;
+        }
+
+        // Change image to red cross
+        private void invalidField(PictureBox picBox)
+        {
+            picBox.Image = Image.FromFile("red-cross.png");
+        }
+
+        // Method to check tick/cross for company input fields when editing
+        private void checkCompanyFields()
+        {
+            // ID field
+            if (this.txtCompID.Text.Length >= 1)
+            {
+                this.approveField(this.picCompID);
+            }
+            else
+            {
+                this.nullField(this.picCompID);
+            }
+
+            // Name field
+            if (this.txtCompName.Text.Length >= 2)
+            {
+                this.approveField(this.picCompName);
+            }
+            else if (this.txtCompName.Text.Length != 0 && this.txtCompName.Text.Length < 2)
+            {
+                this.invalidField(this.picCompName);
+            }
+            else
+            {
+                this.nullField(this.picCompName);
+            }
+
+            // Address field
+            if (this.txtCompAddress.Text.Length >= 7)
+            {
+                this.approveField(this.picCompAddress);
+            }
+            else if (this.txtCompAddress.Text.Length != 0 && this.txtCompAddress.Text.Length < 7)
+            {
+                this.invalidField(this.picCompAddress);
+            }
+            else
+            {
+                this.nullField(this.picCompAddress);
+            }
+
+            // Postcode field
+            if (this.txtCompPostcode.Text.Length >= 6)
+            {
+                this.approveField(this.picCompPostcode);
+            }
+            else if (this.txtCompPostcode.Text.Length != 0 && this.txtCompPostcode.Text.Length < 6)
+            {
+                this.invalidField(this.picCompPostcode);
+            }
+            else
+            {
+                this.nullField(this.picCompPostcode);
+            }
+        }
+
+        // Method to check tick/cross for car input fields when editing
+        private void checkCarFields()
+        {
+
         }
 
         // Method used to null 'about' fields when not in use

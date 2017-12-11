@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace SOFT151_Coursework
 {
@@ -30,13 +31,91 @@ namespace SOFT151_Coursework
         // Timer used to check if all fields are populated
         private void unlockButton_Tick(object sender, EventArgs e)
         {
-            if (this.txtNewID.Text.Length < 1 || this.txtNewName.Text.Length < 2 || this.txtNewAddress.Text.Length < 10 || this.txtNewPostcode.Text.Length < 6)
+            // Enable / disable add button
+            if (this.txtNewID.Text.Length < 1 || this.txtNewName.Text.Length < 2 || this.txtNewAddress.Text.Length < 7 || this.txtNewPostcode.Text.Length < 6)
             {
                 this.btnSaveAndUpdate.Enabled = false;
             }
             else
             {
                 this.btnSaveAndUpdate.Enabled = true;
+            }
+
+            // Color code fields
+            this.colorFields();
+        }
+
+        // Display tick when field condition is met
+        private void highlightGreen(PictureBox picBox)
+        {
+            picBox.Image = Image.FromFile("green-tick.png");
+        }
+
+        // Display cross when condition not met
+        private void highlightRed(PictureBox picBox)
+        {
+            picBox.Image = Image.FromFile("red-cross.png");
+        }
+
+        // Display null image when text.length = 0
+        private void nullImage(PictureBox picBox)
+        {
+            picBox.Image = null;
+        }
+
+        // Method to check input fields and inform user
+        private void colorFields()
+        {
+            // ID field
+            if (this.txtNewID.Text.Length >= 1)
+            {
+                this.highlightGreen(this.picID);
+            }
+            else
+            {
+                this.nullImage(this.picID);
+            }
+
+            // Name field
+            if (this.txtNewName.Text.Length >= 2) 
+            {
+                this.highlightGreen(this.picName);
+            }
+            else if (this.txtNewName.Text.Length != 0 && this.txtNewName.Text.Length < 2)
+            {
+                this.highlightRed(this.picName);
+            }
+            else
+            {
+                this.nullImage(this.picName);
+            }
+
+            // Address field
+            if (this.txtNewAddress.Text.Length >= 7)
+            {
+                this.highlightGreen(this.picAddress);
+            }
+            else if (this.txtNewAddress.Text.Length != 0 && this.txtNewAddress.Text.Length < 7)
+            {
+                this.highlightRed(this.picAddress);
+            }
+            else
+            {
+                this.nullImage(this.picAddress);
+            }
+
+            // Postcode field
+            if (this.txtNewPostcode.Text.Length >= 6)
+            {
+                this.highlightGreen(this.picPostcode);
+            }
+            else if (this.txtNewPostcode.Text.Length != 0 && this.txtNewPostcode.Text.Length < 6)
+            {
+                this.highlightRed(this.picPostcode);
+            }
+            else
+            {
+                this.nullImage(this.picPostcode);
             }
         }
 

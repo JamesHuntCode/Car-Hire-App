@@ -46,6 +46,14 @@
             this.dtpLastServiced = new System.Windows.Forms.DateTimePicker();
             this.radDiesel = new System.Windows.Forms.RadioButton();
             this.radPetrol = new System.Windows.Forms.RadioButton();
+            this.picID = new System.Windows.Forms.PictureBox();
+            this.picReg = new System.Windows.Forms.PictureBox();
+            this.picModel = new System.Windows.Forms.PictureBox();
+            this.picManufacturer = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picModel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picManufacturer)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -61,9 +69,9 @@
             // btnCancelUpdate
             // 
             this.btnCancelUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelUpdate.Location = new System.Drawing.Point(219, 381);
+            this.btnCancelUpdate.Location = new System.Drawing.Point(244, 381);
             this.btnCancelUpdate.Name = "btnCancelUpdate";
-            this.btnCancelUpdate.Size = new System.Drawing.Size(188, 50);
+            this.btnCancelUpdate.Size = new System.Drawing.Size(198, 50);
             this.btnCancelUpdate.TabIndex = 22;
             this.btnCancelUpdate.Text = "Cancel";
             this.btnCancelUpdate.UseVisualStyleBackColor = true;
@@ -74,7 +82,7 @@
             this.btnSaveAndUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveAndUpdate.Location = new System.Drawing.Point(12, 381);
             this.btnSaveAndUpdate.Name = "btnSaveAndUpdate";
-            this.btnSaveAndUpdate.Size = new System.Drawing.Size(188, 50);
+            this.btnSaveAndUpdate.Size = new System.Drawing.Size(223, 50);
             this.btnSaveAndUpdate.TabIndex = 21;
             this.btnSaveAndUpdate.Text = "Add Car";
             this.btnSaveAndUpdate.UseVisualStyleBackColor = true;
@@ -182,7 +190,7 @@
             // 
             this.txtComments.Location = new System.Drawing.Point(158, 268);
             this.txtComments.Name = "txtComments";
-            this.txtComments.Size = new System.Drawing.Size(250, 86);
+            this.txtComments.Size = new System.Drawing.Size(281, 86);
             this.txtComments.TabIndex = 28;
             this.txtComments.Text = "";
             // 
@@ -190,7 +198,7 @@
             // 
             this.dtpLastServiced.Location = new System.Drawing.Point(158, 227);
             this.dtpLastServiced.Name = "dtpLastServiced";
-            this.dtpLastServiced.Size = new System.Drawing.Size(249, 20);
+            this.dtpLastServiced.Size = new System.Drawing.Size(281, 20);
             this.dtpLastServiced.TabIndex = 29;
             // 
             // radDiesel
@@ -216,11 +224,51 @@
             this.radPetrol.Text = "Unleaded";
             this.radPetrol.UseVisualStyleBackColor = true;
             // 
+            // picID
+            // 
+            this.picID.Location = new System.Drawing.Point(413, 63);
+            this.picID.Name = "picID";
+            this.picID.Size = new System.Drawing.Size(26, 20);
+            this.picID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picID.TabIndex = 32;
+            this.picID.TabStop = false;
+            // 
+            // picReg
+            // 
+            this.picReg.Location = new System.Drawing.Point(413, 161);
+            this.picReg.Name = "picReg";
+            this.picReg.Size = new System.Drawing.Size(26, 20);
+            this.picReg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picReg.TabIndex = 33;
+            this.picReg.TabStop = false;
+            // 
+            // picModel
+            // 
+            this.picModel.Location = new System.Drawing.Point(413, 128);
+            this.picModel.Name = "picModel";
+            this.picModel.Size = new System.Drawing.Size(26, 20);
+            this.picModel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picModel.TabIndex = 34;
+            this.picModel.TabStop = false;
+            // 
+            // picManufacturer
+            // 
+            this.picManufacturer.Location = new System.Drawing.Point(413, 95);
+            this.picManufacturer.Name = "picManufacturer";
+            this.picManufacturer.Size = new System.Drawing.Size(26, 20);
+            this.picManufacturer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picManufacturer.TabIndex = 35;
+            this.picManufacturer.TabStop = false;
+            // 
             // frmAddCar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 440);
+            this.ClientSize = new System.Drawing.Size(454, 440);
+            this.Controls.Add(this.picManufacturer);
+            this.Controls.Add(this.picModel);
+            this.Controls.Add(this.picReg);
+            this.Controls.Add(this.picID);
             this.Controls.Add(this.radPetrol);
             this.Controls.Add(this.radDiesel);
             this.Controls.Add(this.dtpLastServiced);
@@ -243,6 +291,10 @@
             this.MaximizeBox = false;
             this.Name = "frmAddCar";
             this.Text = "frmDynamicAddOrUpdateCar";
+            ((System.ComponentModel.ISupportInitialize)(this.picID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picReg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picModel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picManufacturer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,5 +320,9 @@
         private System.Windows.Forms.DateTimePicker dtpLastServiced;
         private System.Windows.Forms.RadioButton radDiesel;
         private System.Windows.Forms.RadioButton radPetrol;
+        private System.Windows.Forms.PictureBox picID;
+        private System.Windows.Forms.PictureBox picReg;
+        private System.Windows.Forms.PictureBox picModel;
+        private System.Windows.Forms.PictureBox picManufacturer;
     }
 }

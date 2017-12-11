@@ -40,6 +40,82 @@ namespace SOFT151_Coursework
             {
                 this.btnSaveAndUpdate.Enabled = true;
             }
+            // Color code fields
+            this.colorFields();
+        }
+
+        // Display tick when field condition is met
+        private void highlightGreen(PictureBox picBox)
+        {
+            picBox.Image = Image.FromFile("green-tick.png");
+        }
+
+        // Display cross when condition not met
+        private void highlightRed(PictureBox picBox)
+        {
+            picBox.Image = Image.FromFile("red-cross.png");
+        }
+
+        // Display null image when text.length = 0
+        private void nullImage(PictureBox picBox)
+        {
+            picBox.Image = null;
+        }
+
+        // Method to check input fields and inform user
+        private void colorFields()
+        {
+            // ID field
+            if (this.txtCarID.Text.Length >= 1)
+            {
+                this.highlightGreen(this.picID);
+            }
+            else
+            {
+                this.nullImage(this.picID);
+            }
+
+            // Make field
+            if (this.txtCarMake.Text.Length >= 3)
+            {
+                this.highlightGreen(this.picManufacturer);
+            }
+            else if (this.txtCarMake.Text.Length != 0 && this.txtCarMake.Text.Length < 3)
+            {
+                this.highlightRed(this.picManufacturer);
+            }
+            else
+            {
+                this.nullImage(this.picManufacturer);
+            }
+
+            // Model field
+            if (this.txtCarModel.Text.Length >= 3) 
+            {
+                this.highlightGreen(this.picModel);
+            }
+            else if (this.txtCarModel.Text.Length != 0 && this.txtCarModel.Text.Length < 3)
+            {
+                this.highlightRed(this.picModel);
+            }
+            else
+            {
+                this.nullImage(this.picModel);
+            }
+
+            // Reg field
+            if (this.txtCarReg.Text.Length >= 3)
+            {
+                this.highlightGreen(this.picReg);
+            }
+            else if (this.txtCarReg.Text.Length != 0 && this.txtCarReg.Text.Length < 3)
+            {
+                this.highlightRed(this.picReg);
+            }
+            else
+            {
+                this.nullImage(this.picReg);
+            }
         }
 
         // Method used to apply correct color scheme to form

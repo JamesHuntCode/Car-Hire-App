@@ -56,11 +56,19 @@
             this.lblCarID = new System.Windows.Forms.Label();
             this.lblCarMake = new System.Windows.Forms.Label();
             this.grpCompanySummary = new System.Windows.Forms.GroupBox();
+            this.picCompName = new System.Windows.Forms.PictureBox();
+            this.picCompAddress = new System.Windows.Forms.PictureBox();
+            this.picCompPostcode = new System.Windows.Forms.PictureBox();
+            this.picCompID = new System.Windows.Forms.PictureBox();
             this.txtCompID = new System.Windows.Forms.TextBox();
             this.txtCompPostcode = new System.Windows.Forms.TextBox();
             this.txtCompAddress = new System.Windows.Forms.TextBox();
             this.txtCompName = new System.Windows.Forms.TextBox();
             this.grpCarSummary = new System.Windows.Forms.GroupBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.radDiesel = new System.Windows.Forms.RadioButton();
             this.radUnleaded = new System.Windows.Forms.RadioButton();
             this.dtpLastServiced = new System.Windows.Forms.DateTimePicker();
@@ -93,7 +101,15 @@
             this.grpNotificationSettings = new System.Windows.Forms.GroupBox();
             this.grpSaveSettings = new System.Windows.Forms.GroupBox();
             this.grpCompanySummary.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompPostcode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompID)).BeginInit();
             this.grpCarSummary.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             this.grpNotificationSettings.SuspendLayout();
             this.grpSaveSettings.SuspendLayout();
@@ -389,6 +405,10 @@
             // 
             // grpCompanySummary
             // 
+            this.grpCompanySummary.Controls.Add(this.picCompName);
+            this.grpCompanySummary.Controls.Add(this.picCompAddress);
+            this.grpCompanySummary.Controls.Add(this.picCompPostcode);
+            this.grpCompanySummary.Controls.Add(this.picCompID);
             this.grpCompanySummary.Controls.Add(this.txtCompID);
             this.grpCompanySummary.Controls.Add(this.txtCompPostcode);
             this.grpCompanySummary.Controls.Add(this.txtCompAddress);
@@ -407,13 +427,49 @@
             this.grpCompanySummary.TabStop = false;
             this.grpCompanySummary.Text = "Company Summary";
             // 
+            // picCompName
+            // 
+            this.picCompName.Location = new System.Drawing.Point(525, 82);
+            this.picCompName.Name = "picCompName";
+            this.picCompName.Size = new System.Drawing.Size(26, 22);
+            this.picCompName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCompName.TabIndex = 79;
+            this.picCompName.TabStop = false;
+            // 
+            // picCompAddress
+            // 
+            this.picCompAddress.Location = new System.Drawing.Point(525, 116);
+            this.picCompAddress.Name = "picCompAddress";
+            this.picCompAddress.Size = new System.Drawing.Size(26, 22);
+            this.picCompAddress.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCompAddress.TabIndex = 78;
+            this.picCompAddress.TabStop = false;
+            // 
+            // picCompPostcode
+            // 
+            this.picCompPostcode.Location = new System.Drawing.Point(525, 152);
+            this.picCompPostcode.Name = "picCompPostcode";
+            this.picCompPostcode.Size = new System.Drawing.Size(26, 22);
+            this.picCompPostcode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCompPostcode.TabIndex = 77;
+            this.picCompPostcode.TabStop = false;
+            // 
+            // picCompID
+            // 
+            this.picCompID.Location = new System.Drawing.Point(525, 46);
+            this.picCompID.Name = "picCompID";
+            this.picCompID.Size = new System.Drawing.Size(26, 23);
+            this.picCompID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCompID.TabIndex = 76;
+            this.picCompID.TabStop = false;
+            // 
             // txtCompID
             // 
             this.txtCompID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCompID.Location = new System.Drawing.Point(104, 47);
             this.txtCompID.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompID.Name = "txtCompID";
-            this.txtCompID.Size = new System.Drawing.Size(447, 22);
+            this.txtCompID.Size = new System.Drawing.Size(416, 22);
             this.txtCompID.TabIndex = 75;
             // 
             // txtCompPostcode
@@ -422,7 +478,7 @@
             this.txtCompPostcode.Location = new System.Drawing.Point(104, 152);
             this.txtCompPostcode.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompPostcode.Name = "txtCompPostcode";
-            this.txtCompPostcode.Size = new System.Drawing.Size(447, 22);
+            this.txtCompPostcode.Size = new System.Drawing.Size(416, 22);
             this.txtCompPostcode.TabIndex = 73;
             // 
             // txtCompAddress
@@ -431,7 +487,7 @@
             this.txtCompAddress.Location = new System.Drawing.Point(104, 116);
             this.txtCompAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompAddress.Name = "txtCompAddress";
-            this.txtCompAddress.Size = new System.Drawing.Size(447, 22);
+            this.txtCompAddress.Size = new System.Drawing.Size(416, 22);
             this.txtCompAddress.TabIndex = 72;
             // 
             // txtCompName
@@ -440,11 +496,15 @@
             this.txtCompName.Location = new System.Drawing.Point(104, 82);
             this.txtCompName.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompName.Name = "txtCompName";
-            this.txtCompName.Size = new System.Drawing.Size(447, 22);
+            this.txtCompName.Size = new System.Drawing.Size(416, 22);
             this.txtCompName.TabIndex = 71;
             // 
             // grpCarSummary
             // 
+            this.grpCarSummary.Controls.Add(this.pictureBox7);
+            this.grpCarSummary.Controls.Add(this.pictureBox6);
+            this.grpCarSummary.Controls.Add(this.pictureBox5);
+            this.grpCarSummary.Controls.Add(this.pictureBox4);
             this.grpCarSummary.Controls.Add(this.radDiesel);
             this.grpCarSummary.Controls.Add(this.radUnleaded);
             this.grpCarSummary.Controls.Add(this.dtpLastServiced);
@@ -469,6 +529,42 @@
             this.grpCarSummary.TabIndex = 61;
             this.grpCarSummary.TabStop = false;
             this.grpCarSummary.Text = "Car Summary";
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Location = new System.Drawing.Point(524, 134);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 87;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Location = new System.Drawing.Point(525, 39);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 86;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Location = new System.Drawing.Point(525, 71);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 85;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(525, 103);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 84;
+            this.pictureBox4.TabStop = false;
             // 
             // radDiesel
             // 
@@ -510,7 +606,7 @@
             this.txtCarMake.Location = new System.Drawing.Point(101, 71);
             this.txtCarMake.Margin = new System.Windows.Forms.Padding(2);
             this.txtCarMake.Name = "txtCarMake";
-            this.txtCarMake.Size = new System.Drawing.Size(451, 22);
+            this.txtCarMake.Size = new System.Drawing.Size(419, 22);
             this.txtCarMake.TabIndex = 81;
             // 
             // txtCarModel
@@ -519,7 +615,7 @@
             this.txtCarModel.Location = new System.Drawing.Point(101, 103);
             this.txtCarModel.Margin = new System.Windows.Forms.Padding(2);
             this.txtCarModel.Name = "txtCarModel";
-            this.txtCarModel.Size = new System.Drawing.Size(451, 22);
+            this.txtCarModel.Size = new System.Drawing.Size(419, 22);
             this.txtCarModel.TabIndex = 80;
             // 
             // txtCarReg
@@ -528,7 +624,7 @@
             this.txtCarReg.Location = new System.Drawing.Point(100, 134);
             this.txtCarReg.Margin = new System.Windows.Forms.Padding(2);
             this.txtCarReg.Name = "txtCarReg";
-            this.txtCarReg.Size = new System.Drawing.Size(451, 22);
+            this.txtCarReg.Size = new System.Drawing.Size(420, 22);
             this.txtCarReg.TabIndex = 79;
             // 
             // txtCarID
@@ -537,7 +633,7 @@
             this.txtCarID.Location = new System.Drawing.Point(101, 39);
             this.txtCarID.Margin = new System.Windows.Forms.Padding(2);
             this.txtCarID.Name = "txtCarID";
-            this.txtCarID.Size = new System.Drawing.Size(451, 22);
+            this.txtCarID.Size = new System.Drawing.Size(419, 22);
             this.txtCarID.TabIndex = 76;
             // 
             // lblLastServiced
@@ -853,8 +949,16 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.grpCompanySummary.ResumeLayout(false);
             this.grpCompanySummary.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompPostcode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCompID)).EndInit();
             this.grpCarSummary.ResumeLayout(false);
             this.grpCarSummary.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
             this.grpNotificationSettings.ResumeLayout(false);
             this.grpNotificationSettings.PerformLayout();
@@ -930,6 +1034,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox grpNotificationSettings;
         private System.Windows.Forms.GroupBox grpSaveSettings;
+        private System.Windows.Forms.PictureBox picCompName;
+        private System.Windows.Forms.PictureBox picCompAddress;
+        private System.Windows.Forms.PictureBox picCompPostcode;
+        private System.Windows.Forms.PictureBox picCompID;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
 

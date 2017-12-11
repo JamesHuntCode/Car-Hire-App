@@ -39,6 +39,14 @@
             this.txtNewName = new System.Windows.Forms.TextBox();
             this.btnSaveAndUpdate = new System.Windows.Forms.Button();
             this.btnCancelUpdate = new System.Windows.Forms.Button();
+            this.picID = new System.Windows.Forms.PictureBox();
+            this.picPostcode = new System.Windows.Forms.PictureBox();
+            this.picAddress = new System.Windows.Forms.PictureBox();
+            this.picName = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPostcode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picName)).BeginInit();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -122,9 +130,9 @@
             // btnSaveAndUpdate
             // 
             this.btnSaveAndUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSaveAndUpdate.Location = new System.Drawing.Point(10, 217);
+            this.btnSaveAndUpdate.Location = new System.Drawing.Point(10, 206);
             this.btnSaveAndUpdate.Name = "btnSaveAndUpdate";
-            this.btnSaveAndUpdate.Size = new System.Drawing.Size(188, 48);
+            this.btnSaveAndUpdate.Size = new System.Drawing.Size(209, 48);
             this.btnSaveAndUpdate.TabIndex = 11;
             this.btnSaveAndUpdate.Text = "Add Company";
             this.btnSaveAndUpdate.UseVisualStyleBackColor = true;
@@ -133,25 +141,65 @@
             // btnCancelUpdate
             // 
             this.btnCancelUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelUpdate.Location = new System.Drawing.Point(214, 217);
+            this.btnCancelUpdate.Location = new System.Drawing.Point(225, 206);
             this.btnCancelUpdate.Name = "btnCancelUpdate";
-            this.btnCancelUpdate.Size = new System.Drawing.Size(188, 48);
+            this.btnCancelUpdate.Size = new System.Drawing.Size(212, 48);
             this.btnCancelUpdate.TabIndex = 12;
             this.btnCancelUpdate.Text = "Cancel";
             this.btnCancelUpdate.UseVisualStyleBackColor = true;
             this.btnCancelUpdate.Click += new System.EventHandler(this.btnCancelUpdate_Click);
             // 
+            // picID
+            // 
+            this.picID.Location = new System.Drawing.Point(408, 65);
+            this.picID.Name = "picID";
+            this.picID.Size = new System.Drawing.Size(26, 20);
+            this.picID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picID.TabIndex = 13;
+            this.picID.TabStop = false;
+            // 
+            // picPostcode
+            // 
+            this.picPostcode.Location = new System.Drawing.Point(408, 163);
+            this.picPostcode.Name = "picPostcode";
+            this.picPostcode.Size = new System.Drawing.Size(26, 20);
+            this.picPostcode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPostcode.TabIndex = 14;
+            this.picPostcode.TabStop = false;
+            // 
+            // picAddress
+            // 
+            this.picAddress.Location = new System.Drawing.Point(408, 130);
+            this.picAddress.Name = "picAddress";
+            this.picAddress.Size = new System.Drawing.Size(26, 20);
+            this.picAddress.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picAddress.TabIndex = 15;
+            this.picAddress.TabStop = false;
+            // 
+            // picName
+            // 
+            this.picName.Location = new System.Drawing.Point(408, 97);
+            this.picName.Name = "picName";
+            this.picName.Size = new System.Drawing.Size(26, 20);
+            this.picName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picName.TabIndex = 16;
+            this.picName.TabStop = false;
+            // 
             // frmAddCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 273);
-            this.Controls.Add(this.btnCancelUpdate);
-            this.Controls.Add(this.btnSaveAndUpdate);
-            this.Controls.Add(this.txtNewName);
+            this.ClientSize = new System.Drawing.Size(449, 266);
+            this.Controls.Add(this.picName);
+            this.Controls.Add(this.picAddress);
+            this.Controls.Add(this.picPostcode);
             this.Controls.Add(this.txtNewPostcode);
             this.Controls.Add(this.txtNewAddress);
+            this.Controls.Add(this.txtNewName);
             this.Controls.Add(this.txtNewID);
+            this.Controls.Add(this.picID);
+            this.Controls.Add(this.btnCancelUpdate);
+            this.Controls.Add(this.btnSaveAndUpdate);
             this.Controls.Add(this.lblCompanyName);
             this.Controls.Add(this.lblCompanyAddress);
             this.Controls.Add(this.lblCompanyPostcode);
@@ -161,6 +209,10 @@
             this.MaximizeBox = false;
             this.Name = "frmAddCompany";
             this.Text = "DynamicAddOrUpdate";
+            ((System.ComponentModel.ISupportInitialize)(this.picID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picPostcode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picName)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +231,9 @@
         private System.Windows.Forms.TextBox txtNewName;
         private System.Windows.Forms.Button btnSaveAndUpdate;
         private System.Windows.Forms.Button btnCancelUpdate;
+        private System.Windows.Forms.PictureBox picID;
+        private System.Windows.Forms.PictureBox picPostcode;
+        private System.Windows.Forms.PictureBox picAddress;
+        private System.Windows.Forms.PictureBox picName;
     }
 }
