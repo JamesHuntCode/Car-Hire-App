@@ -70,6 +70,10 @@ namespace SOFT151_Coursework
             {
                 this.highlightGreen(this.picID);
             }
+            else
+            {
+                this.nullImage(this.picID);
+            }
 
             // Make field
             if (this.txtCarMake.Text.Length >= 3)

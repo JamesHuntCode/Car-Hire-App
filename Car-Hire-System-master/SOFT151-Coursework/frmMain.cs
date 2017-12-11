@@ -488,7 +488,8 @@ namespace SOFT151_Coursework
         // Method used to bring up summary of selected car
         private void lstCars_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
+            int matchedCompany = this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies);
+            this.currentSelectedCompany = this.companies[matchedCompany];
 
             // Open information for the correct car
             string carSummary = this.lstCars.Items[this.lstCars.SelectedIndex].ToString();

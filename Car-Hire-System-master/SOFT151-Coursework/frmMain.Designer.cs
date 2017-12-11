@@ -92,11 +92,27 @@
             this.label2 = new System.Windows.Forms.Label();
             this.grpNotificationSettings = new System.Windows.Forms.GroupBox();
             this.grpSaveSettings = new System.Windows.Forms.GroupBox();
+            this.picBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.grpCompanySummary.SuspendLayout();
             this.grpCarSummary.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             this.grpNotificationSettings.SuspendLayout();
             this.grpSaveSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // lstAllCompanies
@@ -389,6 +405,10 @@
             // 
             // grpCompanySummary
             // 
+            this.grpCompanySummary.Controls.Add(this.pictureBox3);
+            this.grpCompanySummary.Controls.Add(this.pictureBox2);
+            this.grpCompanySummary.Controls.Add(this.pictureBox1);
+            this.grpCompanySummary.Controls.Add(this.picBox);
             this.grpCompanySummary.Controls.Add(this.txtCompID);
             this.grpCompanySummary.Controls.Add(this.txtCompPostcode);
             this.grpCompanySummary.Controls.Add(this.txtCompAddress);
@@ -413,7 +433,7 @@
             this.txtCompID.Location = new System.Drawing.Point(104, 47);
             this.txtCompID.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompID.Name = "txtCompID";
-            this.txtCompID.Size = new System.Drawing.Size(447, 22);
+            this.txtCompID.Size = new System.Drawing.Size(416, 22);
             this.txtCompID.TabIndex = 75;
             // 
             // txtCompPostcode
@@ -422,7 +442,7 @@
             this.txtCompPostcode.Location = new System.Drawing.Point(104, 152);
             this.txtCompPostcode.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompPostcode.Name = "txtCompPostcode";
-            this.txtCompPostcode.Size = new System.Drawing.Size(447, 22);
+            this.txtCompPostcode.Size = new System.Drawing.Size(416, 22);
             this.txtCompPostcode.TabIndex = 73;
             // 
             // txtCompAddress
@@ -431,7 +451,7 @@
             this.txtCompAddress.Location = new System.Drawing.Point(104, 116);
             this.txtCompAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompAddress.Name = "txtCompAddress";
-            this.txtCompAddress.Size = new System.Drawing.Size(447, 22);
+            this.txtCompAddress.Size = new System.Drawing.Size(416, 22);
             this.txtCompAddress.TabIndex = 72;
             // 
             // txtCompName
@@ -440,11 +460,15 @@
             this.txtCompName.Location = new System.Drawing.Point(104, 82);
             this.txtCompName.Margin = new System.Windows.Forms.Padding(2);
             this.txtCompName.Name = "txtCompName";
-            this.txtCompName.Size = new System.Drawing.Size(447, 22);
+            this.txtCompName.Size = new System.Drawing.Size(416, 22);
             this.txtCompName.TabIndex = 71;
             // 
             // grpCarSummary
             // 
+            this.grpCarSummary.Controls.Add(this.pictureBox7);
+            this.grpCarSummary.Controls.Add(this.pictureBox6);
+            this.grpCarSummary.Controls.Add(this.pictureBox5);
+            this.grpCarSummary.Controls.Add(this.pictureBox4);
             this.grpCarSummary.Controls.Add(this.radDiesel);
             this.grpCarSummary.Controls.Add(this.radUnleaded);
             this.grpCarSummary.Controls.Add(this.dtpLastServiced);
@@ -510,7 +534,7 @@
             this.txtCarMake.Location = new System.Drawing.Point(101, 71);
             this.txtCarMake.Margin = new System.Windows.Forms.Padding(2);
             this.txtCarMake.Name = "txtCarMake";
-            this.txtCarMake.Size = new System.Drawing.Size(451, 22);
+            this.txtCarMake.Size = new System.Drawing.Size(419, 22);
             this.txtCarMake.TabIndex = 81;
             // 
             // txtCarModel
@@ -519,7 +543,7 @@
             this.txtCarModel.Location = new System.Drawing.Point(101, 103);
             this.txtCarModel.Margin = new System.Windows.Forms.Padding(2);
             this.txtCarModel.Name = "txtCarModel";
-            this.txtCarModel.Size = new System.Drawing.Size(451, 22);
+            this.txtCarModel.Size = new System.Drawing.Size(419, 22);
             this.txtCarModel.TabIndex = 80;
             // 
             // txtCarReg
@@ -528,7 +552,7 @@
             this.txtCarReg.Location = new System.Drawing.Point(100, 134);
             this.txtCarReg.Margin = new System.Windows.Forms.Padding(2);
             this.txtCarReg.Name = "txtCarReg";
-            this.txtCarReg.Size = new System.Drawing.Size(451, 22);
+            this.txtCarReg.Size = new System.Drawing.Size(420, 22);
             this.txtCarReg.TabIndex = 79;
             // 
             // txtCarID
@@ -537,7 +561,7 @@
             this.txtCarID.Location = new System.Drawing.Point(101, 39);
             this.txtCarID.Margin = new System.Windows.Forms.Padding(2);
             this.txtCarID.Name = "txtCarID";
-            this.txtCarID.Size = new System.Drawing.Size(451, 22);
+            this.txtCarID.Size = new System.Drawing.Size(419, 22);
             this.txtCarID.TabIndex = 76;
             // 
             // lblLastServiced
@@ -808,6 +832,78 @@
             this.grpSaveSettings.TabStop = false;
             this.grpSaveSettings.Text = "Save Your Work";
             // 
+            // picBox
+            // 
+            this.picBox.Location = new System.Drawing.Point(525, 46);
+            this.picBox.Name = "picBox";
+            this.picBox.Size = new System.Drawing.Size(26, 23);
+            this.picBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox.TabIndex = 76;
+            this.picBox.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(525, 152);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 77;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(525, 116);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 78;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(525, 82);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 79;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(525, 103);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 84;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Location = new System.Drawing.Point(525, 71);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 85;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Location = new System.Drawing.Point(525, 39);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 86;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Location = new System.Drawing.Point(524, 134);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox7.TabIndex = 87;
+            this.pictureBox7.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -860,6 +956,14 @@
             this.grpNotificationSettings.PerformLayout();
             this.grpSaveSettings.ResumeLayout(false);
             this.grpSaveSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -930,6 +1034,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox grpNotificationSettings;
         private System.Windows.Forms.GroupBox grpSaveSettings;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picBox;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
 
