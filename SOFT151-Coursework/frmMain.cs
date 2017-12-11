@@ -1090,6 +1090,7 @@ namespace SOFT151_Coursework
 
             foreach (Button b in Controls.OfType<Button>())
             {
+                // check if button is enabled or disabled before assigning color
                 b.ForeColor = ColorTranslator.FromHtml("#ffffff");
                 b.BackColor = ColorTranslator.FromHtml("#31708E");
             }
@@ -1101,6 +1102,7 @@ namespace SOFT151_Coursework
         }
 
         #region maintenance timer system checks
+
         private void check_Timer_Tick(object sender, EventArgs e)
         {
             // Check selected company:
@@ -1149,6 +1151,8 @@ namespace SOFT151_Coursework
                 this.limitCompanyFields();
                 this.btnCancelCompanyUpdate.Enabled = false;
                 this.btnSaveCompanyChanges.Enabled = false;
+
+                // Null images when not editing
                 this.nullField(this.picCompID);
                 this.nullField(this.picCompName);
                 this.nullField(this.picCompAddress);
@@ -1170,6 +1174,12 @@ namespace SOFT151_Coursework
                 this.limitCarFields();
                 this.btnCancelCarUpdate.Enabled = false;
                 this.btnSaveCarChanges.Enabled = false;
+
+                // Null images when not editing
+                this.nullField(this.picCarID);
+                this.nullField(this.picCarMake);
+                this.nullField(this.picCarModel);
+                this.nullField(this.picCarReg);
             }
 
             // Check if user wants to display notifications:
@@ -1182,6 +1192,7 @@ namespace SOFT151_Coursework
                 this.Width = 1835;
             }
         }
+
         #endregion
 
         // Method used to invoke auto-save method every 5 minutes
@@ -1218,6 +1229,8 @@ namespace SOFT151_Coursework
         {
             picBox.Image = Image.FromFile("red-cross.png");
         }
+
+        #region company image check
 
         // Method to check tick/cross for company input fields when editing
         private void checkCompanyFields()
@@ -1275,11 +1288,67 @@ namespace SOFT151_Coursework
             }
         }
 
+        #endregion
+
+        #region car image check
+
         // Method to check tick/cross for car input fields when editing
         private void checkCarFields()
         {
+            // ID field
+            if (this.txtCarID.Text.Length >= 1)
+            {
+                this.approveField(this.picCarID);
+            }
+            else
+            {
+                this.nullField(this.picCarID);
+            }
 
+            // Make field
+            if (this.txtCarMake.Text.Length >= 3)
+            {
+                this.approveField(this.picCarMake);
+            }
+            else if (this.txtCarMake.Text.Length != 0 && this.txtCarMake.Text.Length < 3)
+            {
+                this.invalidField(this.picCarMake);
+            }
+            else
+            {
+                this.nullField(this.picCarMake);
+            }
+
+            // Model field
+            if (this.txtCarModel.Text.Length >= 3)
+            {
+                this.approveField(this.picCarModel);
+            }
+            else if (this.txtCarModel.Text.Length != 0 && this.txtCarModel.Text.Length < 3)
+            {
+                this.invalidField(this.picCarModel);
+            }
+            else
+            {
+                this.nullField(this.picCarModel);
+            }
+
+            // Reg field
+            if (this.txtCarReg.Text.Length >= 3)
+            {
+                this.approveField(this.picCarReg);
+            }
+            else if (this.txtCarReg.Text.Length != 0 && this.txtCarReg.Text.Length < 3)
+            {
+                this.invalidField(this.picCarReg);
+            }
+            else
+            {
+                this.nullField(this.picCarReg);
+            }
         }
+
+        #endregion
 
         // Method used to null 'about' fields when not in use
         private void nullAllFields()

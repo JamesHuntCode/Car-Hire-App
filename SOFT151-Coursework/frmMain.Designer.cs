@@ -65,10 +65,10 @@
             this.txtCompAddress = new System.Windows.Forms.TextBox();
             this.txtCompName = new System.Windows.Forms.TextBox();
             this.grpCarSummary = new System.Windows.Forms.GroupBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.picCarReg = new System.Windows.Forms.PictureBox();
+            this.picCarID = new System.Windows.Forms.PictureBox();
+            this.picCarMake = new System.Windows.Forms.PictureBox();
+            this.picCarModel = new System.Windows.Forms.PictureBox();
             this.radDiesel = new System.Windows.Forms.RadioButton();
             this.radUnleaded = new System.Windows.Forms.RadioButton();
             this.dtpLastServiced = new System.Windows.Forms.DateTimePicker();
@@ -106,10 +106,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picCompPostcode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCompID)).BeginInit();
             this.grpCarSummary.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCarReg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCarID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCarMake)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCarModel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).BeginInit();
             this.grpNotificationSettings.SuspendLayout();
             this.grpSaveSettings.SuspendLayout();
@@ -501,10 +501,10 @@
             // 
             // grpCarSummary
             // 
-            this.grpCarSummary.Controls.Add(this.pictureBox7);
-            this.grpCarSummary.Controls.Add(this.pictureBox6);
-            this.grpCarSummary.Controls.Add(this.pictureBox5);
-            this.grpCarSummary.Controls.Add(this.pictureBox4);
+            this.grpCarSummary.Controls.Add(this.picCarReg);
+            this.grpCarSummary.Controls.Add(this.picCarID);
+            this.grpCarSummary.Controls.Add(this.picCarMake);
+            this.grpCarSummary.Controls.Add(this.picCarModel);
             this.grpCarSummary.Controls.Add(this.radDiesel);
             this.grpCarSummary.Controls.Add(this.radUnleaded);
             this.grpCarSummary.Controls.Add(this.dtpLastServiced);
@@ -530,41 +530,41 @@
             this.grpCarSummary.TabStop = false;
             this.grpCarSummary.Text = "Car Summary";
             // 
-            // pictureBox7
+            // picCarReg
             // 
-            this.pictureBox7.Location = new System.Drawing.Point(524, 134);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(26, 22);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox7.TabIndex = 87;
-            this.pictureBox7.TabStop = false;
+            this.picCarReg.Location = new System.Drawing.Point(524, 134);
+            this.picCarReg.Name = "picCarReg";
+            this.picCarReg.Size = new System.Drawing.Size(26, 22);
+            this.picCarReg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCarReg.TabIndex = 87;
+            this.picCarReg.TabStop = false;
             // 
-            // pictureBox6
+            // picCarID
             // 
-            this.pictureBox6.Location = new System.Drawing.Point(525, 39);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(26, 22);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 86;
-            this.pictureBox6.TabStop = false;
+            this.picCarID.Location = new System.Drawing.Point(525, 39);
+            this.picCarID.Name = "picCarID";
+            this.picCarID.Size = new System.Drawing.Size(26, 22);
+            this.picCarID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCarID.TabIndex = 86;
+            this.picCarID.TabStop = false;
             // 
-            // pictureBox5
+            // picCarMake
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(525, 71);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(26, 22);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 85;
-            this.pictureBox5.TabStop = false;
+            this.picCarMake.Location = new System.Drawing.Point(525, 71);
+            this.picCarMake.Name = "picCarMake";
+            this.picCarMake.Size = new System.Drawing.Size(26, 22);
+            this.picCarMake.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCarMake.TabIndex = 85;
+            this.picCarMake.TabStop = false;
             // 
-            // pictureBox4
+            // picCarModel
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(525, 103);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(26, 22);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 84;
-            this.pictureBox4.TabStop = false;
+            this.picCarModel.Location = new System.Drawing.Point(525, 103);
+            this.picCarModel.Name = "picCarModel";
+            this.picCarModel.Size = new System.Drawing.Size(26, 22);
+            this.picCarModel.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picCarModel.TabIndex = 84;
+            this.picCarModel.TabStop = false;
             // 
             // radDiesel
             // 
@@ -955,10 +955,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picCompID)).EndInit();
             this.grpCarSummary.ResumeLayout(false);
             this.grpCarSummary.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCarReg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCarID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCarMake)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCarModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picMainLogo)).EndInit();
             this.grpNotificationSettings.ResumeLayout(false);
             this.grpNotificationSettings.PerformLayout();
@@ -1038,10 +1038,10 @@
         private System.Windows.Forms.PictureBox picCompAddress;
         private System.Windows.Forms.PictureBox picCompPostcode;
         private System.Windows.Forms.PictureBox picCompID;
-        private System.Windows.Forms.PictureBox pictureBox7;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox picCarReg;
+        private System.Windows.Forms.PictureBox picCarID;
+        private System.Windows.Forms.PictureBox picCarMake;
+        private System.Windows.Forms.PictureBox picCarModel;
     }
 }
 
