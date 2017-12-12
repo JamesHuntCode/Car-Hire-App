@@ -349,7 +349,7 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].PrintSummary().ToUpper().Contains(userInput.ToUpper()))
+                if (list[i].PrintSummary().ToUpper().Contains(userInput.ToUpper()) || (list[i].GetAddress().ToUpper().Contains(userInput.ToUpper())) || (list[i].GetPostcode().ToUpper().Contains(userInput.ToUpper())))
                 {
                     match = true;
 
@@ -517,11 +517,6 @@ namespace SOFT151_Coursework
 
             try
             {
-                /*userInput = this.txtSearchCompanies.Text;
-                this.searchCompanies(userInput, this.companies, this.lstAllCompanies);
-                this.nullAllFields();
-                this.lstAllCompanies.SetSelected(0, true);*/
-
                 userInput = this.txtSearchCars.Text;
                 int selectedCompany = this.locateCorrectCompany(this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString(), this.companies);
                 this.searchCar(userInput, this.companies[selectedCompany].GetAllCars(), this.lstCars);
@@ -554,9 +549,12 @@ namespace SOFT151_Coursework
         // Update an existing car
         private void btnUpdateCar_Click(object sender, EventArgs e)
         {
-            string companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
-            this.lstRecentActivity.Items.Add("You began editing a car which belongs to: " + this.companies[this.locateCorrectCompany(companySummary, this.companies)].GetName() + " at @ " + DateTime.Now.ToShortTimeString() + ".");
-            this.carEditingMode = true;
+            if (this.lstCars.Items[this.lstCars.SelectedIndex].ToString() != "No cars have been found!")
+            {
+                string companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
+                this.lstRecentActivity.Items.Add("You began editing a car which belongs to: " + this.companies[this.locateCorrectCompany(companySummary, this.companies)].GetName() + " at @ " + DateTime.Now.ToShortTimeString() + ".");
+                this.carEditingMode = true;
+            }
         }
 
         // Save changes made to car
@@ -620,41 +618,44 @@ namespace SOFT151_Coursework
         // Remove existing car
         private void btnRemoveCar_Click(object sender, EventArgs e)
         {
-            string carSummary = "";
-
-            // Make sure the user has selected a car to remove:
-
-            if (this.lstCars.SelectedIndex == -1) // User has not selected a car
+            if (this.lstCars.Items[this.lstCars.SelectedIndex].ToString() != "No cars have been found!")
             {
-                MessageBox.Show("Make sure you select a car to remove."); // Alert the user
-            }
-            else
-            {
-                this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
+                string carSummary = "";
 
-                carSummary = this.lstCars.Items[this.lstCars.SelectedIndex].ToString();
+                // Make sure the user has selected a car to remove:
 
-                int matchedIndex = this.locateCorrectCar(carSummary, this.currentSelectedCompany.GetAllCars());
-
-                // Push notification to the user's recent activity:
-
-                this.CreateNotification("car", "remove", Convert.ToString(this.currentSelectedCompany.GetAllCars()[matchedIndex].GetId()), DateTime.Now.ToShortTimeString(), this.currentSelectedCompany.GetName());
-
-                // Proceed with deletion of selected company:
-
-                this.currentSelectedCompany.removeCar(this.currentSelectedCompany.GetAllCars()[matchedIndex]);
-
-                this.currentSelectedCompany.SetNumberOfCars(this.currentSelectedCompany.GetNumberOfCars() - 1);
-                this.lblCompCarCount.Text = "Cars Rented: " + Convert.ToString(this.currentSelectedCompany.GetNumberOfCars());
-
-                //Display the updated company information:
-
-                this.lstCars.Items.Clear();
-                this.updateCarList(this.currentSelectedCompany.GetAllCars());
-
-                if (this.lstCars.Items.Count > 0)
+                if (this.lstCars.SelectedIndex == -1) // User has not selected a car
                 {
-                    this.lstCars.SetSelected(0, true);
+                    MessageBox.Show("Make sure you select a car to remove."); // Alert the user
+                }
+                else
+                {
+                    this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
+
+                    carSummary = this.lstCars.Items[this.lstCars.SelectedIndex].ToString();
+
+                    int matchedIndex = this.locateCorrectCar(carSummary, this.currentSelectedCompany.GetAllCars());
+
+                    // Push notification to the user's recent activity:
+
+                    this.CreateNotification("car", "remove", Convert.ToString(this.currentSelectedCompany.GetAllCars()[matchedIndex].GetId()), DateTime.Now.ToShortTimeString(), this.currentSelectedCompany.GetName());
+
+                    // Proceed with deletion of selected company:
+
+                    this.currentSelectedCompany.removeCar(this.currentSelectedCompany.GetAllCars()[matchedIndex]);
+
+                    this.currentSelectedCompany.SetNumberOfCars(this.currentSelectedCompany.GetNumberOfCars() - 1);
+                    this.lblCompCarCount.Text = "Cars Rented: " + Convert.ToString(this.currentSelectedCompany.GetNumberOfCars());
+
+                    //Display the updated company information:
+
+                    this.lstCars.Items.Clear();
+                    this.updateCarList(this.currentSelectedCompany.GetAllCars());
+
+                    if (this.lstCars.Items.Count > 0)
+                    {
+                        this.lstCars.SetSelected(0, true);
+                    }
                 }
             }
         }
@@ -738,7 +739,7 @@ namespace SOFT151_Coursework
 
             for (int i = 0; i < list.Count; i++)
             {
-                if (list[i].PrintSummary().ToUpper().Contains(userInput.ToUpper()))
+                if (list[i].PrintSummary().ToUpper().Contains(userInput.ToUpper()) || (list[i].GetReg().ToUpper().Contains(userInput.ToUpper())) || (list[i].GetFuelType().ToUpper().Contains(userInput.ToUpper())))
                 {
                     match = true;
 
@@ -749,7 +750,6 @@ namespace SOFT151_Coursework
             if (!match) // Dispay no results message (there has not been a match)
             {
                 lstBox.Items.Clear();
-
                 lstBox.Items.Add("No cars have been found!");
             }
             else
