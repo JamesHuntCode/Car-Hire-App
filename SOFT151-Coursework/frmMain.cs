@@ -680,7 +680,7 @@ namespace SOFT151_Coursework
 
             if (fuel != null)
             {
-                if (fuel.ToUpper() == "UNLEADED")
+                if (fuel.ToUpper() == "PETROL")
                 {
                     this.radUnleaded.Select();
                 }
@@ -688,11 +688,6 @@ namespace SOFT151_Coursework
                 {
                     this.radDiesel.Select();
                 }
-            }
-            else
-            {
-                this.radUnleaded.Checked = false;
-                this.radDiesel.Checked = false;
             }
 
             if (lastServiced == Convert.ToDateTime(null))

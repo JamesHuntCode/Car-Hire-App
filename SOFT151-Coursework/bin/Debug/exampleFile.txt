@@ -6,13 +6,13 @@ BT2 7TR
 1
 Ford Fiesta
 TRZ5466
-diesel
+petrol
 07/11/2017 00:00:00
 Nice clean car!
 2
-Ford Kaa
+Ford Ka
 JUZ2345
-petrol
+diesel
 15/05/2017 00:00:00
 Some rust spotted under car!
 3
@@ -35,7 +35,7 @@ BT23STA
 1
 Fiat 500
 B749BFV
-diesel
+petrol
 02/04/2017 00:00:00
 No comments to add
 2
