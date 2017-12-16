@@ -1187,7 +1187,7 @@ namespace SOFT151_Coursework
                 this.btnCancelCarUpdate.Enabled = true;
 
                 // Check all criteria is met
-                if (this.txtCarID.Text.Length < 1 || this.txtCarMake.Text.Length < 3 || this.txtCarModel.Text.Length < 3 || this.txtCarReg.Text.Length < 3)
+                if (this.txtCarID.Text.Length < 1 || this.txtCarMake.Text.Length < 3 || this.txtCarModel.Text.Length < 2 || this.txtCarReg.Text.Length < 3)
                 {
                     this.btnSaveCarChanges.Enabled = false;
                 }
@@ -1364,7 +1364,7 @@ namespace SOFT151_Coursework
             }
 
             // Model field
-            if (this.txtCarModel.Text.Length >= 3)
+            if (this.txtCarModel.Text.Length >= 2)
             {
                 this.approveField(this.picCarModel);
             }

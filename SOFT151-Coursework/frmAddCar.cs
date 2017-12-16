@@ -32,7 +32,7 @@ namespace SOFT151_Coursework
         // Timer used to check if all fields are populated
         private void unlockButton_Tick(object sender, EventArgs e)
         {
-            if (this.txtCarID.Text.Length < 1 || this.txtCarMake.Text.Length < 3 || this.txtCarModel.Text.Length < 3 || this.txtCarReg.Text.Length < 3 || (!this.radDiesel.Checked && !this.radPetrol.Checked))
+            if (this.txtCarID.Text.Length < 1 || this.txtCarMake.Text.Length < 3 || this.txtCarModel.Text.Length < 2 || this.txtCarReg.Text.Length < 3 || (!this.radDiesel.Checked && !this.radPetrol.Checked))
             {
                 this.btnSaveAndUpdate.Enabled = false;
                 this.btnSaveAndUpdate.BackColor = Color.FromArgb(75, ColorTranslator.FromHtml("#31708E"));
@@ -92,7 +92,7 @@ namespace SOFT151_Coursework
             }
 
             // Model field
-            if (this.txtCarModel.Text.Length >= 3) 
+            if (this.txtCarModel.Text.Length >= 2) 
             {
                 this.highlightGreen(this.picModel);
             }
