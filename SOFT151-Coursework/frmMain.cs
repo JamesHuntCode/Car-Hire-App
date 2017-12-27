@@ -831,7 +831,7 @@ namespace SOFT151_Coursework
                 // Display the updated car information:
                 this.displayCarInformation(null, newCarId, newCarMake, newCarModel, newCarReg, newFuelType, newLastServiced, newComments);
                 this.lstCars.Items.Clear();
-                updateCarList(this.currentSelectedCompany.GetAllCars());
+                this.updateCarList(this.currentSelectedCompany.GetAllCars());
                 this.lstCars.SetSelected(this.locateCorrectCar(this.currentSelectedCar.PrintSummary(), this.currentSelectedCompany.GetAllCars()), true);
 
                 // Push notification to the user's recent activity:
