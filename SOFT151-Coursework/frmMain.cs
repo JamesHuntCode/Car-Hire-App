@@ -57,13 +57,13 @@ namespace SOFT151_Coursework
         // Method used to load user file into program
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            bool isValid = myServices.checkFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, "read");
+            bool isValid = myServices.checkFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text + ".txt", "read");
             bool hasRead = false;
 
             if (isValid)
             {
                 this.companies.Clear();
-                hasRead = myServices.readFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, this.companies);
+                hasRead = myServices.readFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text + ".txt", this.companies);
             }
             
             if (hasRead)
@@ -110,7 +110,7 @@ namespace SOFT151_Coursework
         private void btnSaveWork_Click(object sender, EventArgs e)
         {
             if (this.txtInputFileName.Text != "") {
-                string filePath = Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text;
+                string filePath = Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text + ".txt";
                 bool hasSaved = myServices.writeFile(filePath, this.companies);
 
                 if (hasSaved)
@@ -148,7 +148,7 @@ namespace SOFT151_Coursework
         {
             if (this.txtInputFileName.Text != "")
             {
-                bool hasSaved = myServices.writeFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, this.companies);
+                bool hasSaved = myServices.writeFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text + ".txt", this.companies);
 
                 if (hasSaved)
                 {
@@ -868,7 +868,7 @@ namespace SOFT151_Coursework
             }
 
             this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
-            this.txtInputFileName.Text = "exampleFile.txt";
+            this.txtInputFileName.Text = "exampleFile";
 
             // Apply color change:
             this.colorForm();
