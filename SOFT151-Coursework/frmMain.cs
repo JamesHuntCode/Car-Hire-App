@@ -76,6 +76,10 @@ namespace SOFT151_Coursework
                     this.setSelectedFields();
                 }
             }
+            else
+            {
+                this.txtInputFileName.Text = "";
+            }
         }
 
         // Method used to read from file
@@ -105,39 +109,51 @@ namespace SOFT151_Coursework
         // Method to save user work (when clicked)
         private void btnSaveWork_Click(object sender, EventArgs e)
         {
-            string filePath = Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text;
-            bool hasSaved = myServices.writeFile(filePath, this.companies);
-            
-            if (hasSaved)
+            if (this.txtInputFileName.Text != "") {
+                string filePath = Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text;
+                bool hasSaved = myServices.writeFile(filePath, this.companies);
+
+                if (hasSaved)
+                {
+                    this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
+                    MessageBox.Show("Your work has saved successfully.");
+                }
+            }
+            else
             {
-                this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
-                MessageBox.Show("Your work has saved successfully.");
+                MessageBox.Show("Please make sure you input the file you wish to save to.");
             }
         }
 
         // Method used to check data has been saved (prompt user if not)
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Autosave work if error becomes present
-            if (e.CloseReason == CloseReason.WindowsShutDown)
+            if (this.txtInputFileName.Text != "")
             {
-                this.autoSave();
-            }
+                // Autosave work if error becomes present
+                if (e.CloseReason == CloseReason.WindowsShutDown)
+                {
+                    this.autoSave();
+                }
 
-            if (e.CloseReason == CloseReason.TaskManagerClosing)
-            {
-                this.autoSave();
+                if (e.CloseReason == CloseReason.TaskManagerClosing)
+                {
+                    this.autoSave();
+                }
             }
         }
 
         // Method used to autosave user data (called every 5 minutes)
         private void autoSave()
         {
-            bool hasSaved = myServices.writeFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, this.companies);
-
-            if (hasSaved)
+            if (this.txtInputFileName.Text != "")
             {
-                MessageBox.Show("Auto-save has successfully saved your work.");
+                bool hasSaved = myServices.writeFile(Environment.CurrentDirectory + @"\" + this.txtInputFileName.Text, this.companies);
+
+                if (hasSaved)
+                {
+                    MessageBox.Show("Auto-save has successfully saved your work.");
+                }
             }
         }
 
