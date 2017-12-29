@@ -17,11 +17,7 @@ namespace SOFT151_Coursework
 
         private List<Company> companies = new List<Company>(); 
 
-        private List<string> notifications = new List<string>(); 
-
         private List<Company> companySearchResults = new List<Company>(); 
-
-        private List<string> recentActivitySearchResults = new List<string>();
 
         private List<Car> carSearchResults = new List<Car>(); 
 
@@ -79,9 +75,6 @@ namespace SOFT151_Coursework
                 {
                     this.setSelectedFields();
                 }
-
-                this.notifications.Clear();
-                this.UpdateNotifications(this.notifications);
             }
         }
 
@@ -117,7 +110,6 @@ namespace SOFT151_Coursework
             
             if (hasSaved)
             {
-                this.CreateNotification("self-saved", "save", this.txtInputFileName.Text, DateTime.Now.ToShortTimeString());
                 this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
                 MessageBox.Show("Your work has saved successfully.");
             }
@@ -145,7 +137,7 @@ namespace SOFT151_Coursework
 
             if (hasSaved)
             {
-                this.CreateNotification("auto-saved", "save", "exampleFile.txt", DateTime.Now.ToShortTimeString());
+                MessageBox.Show("Auto-save has successfully saved your work.");
             }
         }
 
@@ -206,7 +198,6 @@ namespace SOFT151_Coursework
             {
                 this.companyEditingMode = true;
                 string companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
-                this.lstRecentActivity.Items.Add("You began editing the profile of " + this.companies[this.locateCorrectCompany(companySummary, this.companies)].GetName() + " at @ " + DateTime.Now.ToShortTimeString() + ".");
             }
         }
 
@@ -246,7 +237,6 @@ namespace SOFT151_Coursework
 
                 if (updated)
                 {
-                    this.lstRecentActivity.Items.Add("You successfully updated records and stopped editing @ " + DateTime.Now.ToShortTimeString() + ".");
                     this.companyEditingMode = false;
                 }
             }
@@ -256,7 +246,6 @@ namespace SOFT151_Coursework
         private void btnCancelCompanyUpdate_Click(object sender, EventArgs e)
         {
             this.reDisplayOldCompanyData();
-            this.lstRecentActivity.Items.Add("You canceled your update @ " + DateTime.Now.ToShortTimeString() + ".");
             this.companyEditingMode = false;
         }
 
@@ -282,13 +271,8 @@ namespace SOFT151_Coursework
                 else
                 {
                     companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
-
                     int matchedIndex = this.locateCorrectCompany(companySummary, this.companies);
-
                     this.nullAllFields();
-
-                    this.CreateNotification("company", "remove", companies[matchedIndex].GetName(), DateTime.Now.ToShortTimeString());
-
                     this.companies.Remove(companies[matchedIndex]);
 
                     //Display the updated company information:
@@ -399,11 +383,7 @@ namespace SOFT151_Coursework
 
                 this.lstAllCompanies.Items.Clear();
                 this.updateCompaniesList(companies);
-
-                this.CreateNotification("company", "add", companyName, DateTime.Now.ToShortTimeString());
-
                 this.nullAllFields();
-                
                 return true;
             }
             else
@@ -479,7 +459,6 @@ namespace SOFT151_Coursework
                 this.currentSelectedCompany = this.companies[matchedIndex];
 
                 this.displayCompanyInformation(this.currentSelectedCompany.GetId(), this.currentSelectedCompany.GetName(), this.currentSelectedCompany.GetAddress(), this.currentSelectedCompany.GetPostcode(), this.currentSelectedCompany.GetNumberOfCars());
-                this.CreateNotification("company", "view-info", this.companies[this.lstAllCompanies.SelectedIndex].GetName(), DateTime.Now.ToShortTimeString());
 
                 for (int i = 0; i < this.companies[this.lstAllCompanies.SelectedIndex].GetNumberOfCars(); i++)
                 {
@@ -505,7 +484,6 @@ namespace SOFT151_Coursework
             this.currentSelectedCar = this.currentSelectedCompany.GetAllCars()[matchedIndex];
 
             this.displayCarInformation(this.currentSelectedCar, this.currentSelectedCar.GetId(), this.currentSelectedCar.GetMake(), this.currentSelectedCar.GetModel(), this.currentSelectedCar.GetReg(), this.currentSelectedCar.GetFuelType(), Convert.ToDateTime(this.currentSelectedCar.GetDateLastServiced().ToShortDateString()), this.currentSelectedCar.GetComments());
-            this.CreateNotification("car", "view-info", this.currentSelectedCompany.GetName(), DateTime.Now.ToShortTimeString());
         }
 
         // BUTTON CLICKS:
@@ -552,7 +530,6 @@ namespace SOFT151_Coursework
             if (this.lstCars.Items[this.lstCars.SelectedIndex].ToString() != "No cars have been found!")
             {
                 string companySummary = this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString();
-                this.lstRecentActivity.Items.Add("You began editing a car which belongs to: " + this.companies[this.locateCorrectCompany(companySummary, this.companies)].GetName() + " at @ " + DateTime.Now.ToShortTimeString() + ".");
                 this.carEditingMode = true;
             }
         }
@@ -610,7 +587,6 @@ namespace SOFT151_Coursework
         // Cancel changes made to car
         private void btnCancelCarUpdate_Click(object sender, EventArgs e)
         {
-            this.lstRecentActivity.Items.Add("You canceled your update @ " + DateTime.Now.ToShortTimeString() + ".");
             this.reDisplayOldCarData();
             this.carEditingMode = false;
         }
@@ -635,10 +611,6 @@ namespace SOFT151_Coursework
                     carSummary = this.lstCars.Items[this.lstCars.SelectedIndex].ToString();
 
                     int matchedIndex = this.locateCorrectCar(carSummary, this.currentSelectedCompany.GetAllCars());
-
-                    // Push notification to the user's recent activity:
-
-                    this.CreateNotification("car", "remove", Convert.ToString(this.currentSelectedCompany.GetAllCars()[matchedIndex].GetId()), DateTime.Now.ToShortTimeString(), this.currentSelectedCompany.GetName());
 
                     // Proceed with deletion of selected company:
 
@@ -791,9 +763,6 @@ namespace SOFT151_Coursework
                 this.lstCars.Items.Clear();
                 this.updateCarList(this.currentSelectedCompany.GetAllCars());
 
-                // Push notification to the user's recent activity:
-
-                this.CreateNotification("car", "add", currentSelectedCompany.GetName(), DateTime.Now.ToShortTimeString());
                 return true;
             }
             else
@@ -833,9 +802,6 @@ namespace SOFT151_Coursework
                 this.lstCars.Items.Clear();
                 this.updateCarList(this.currentSelectedCompany.GetAllCars());
                 this.lstCars.SetSelected(this.locateCorrectCar(this.currentSelectedCar.PrintSummary(), this.currentSelectedCompany.GetAllCars()), true);
-
-                // Push notification to the user's recent activity:
-                this.lstRecentActivity.Items.Add("You succesfully updated records and stopped editing @ " + DateTime.Now.ToShortTimeString() + ".");
                 return true;
             }
             else
@@ -859,191 +825,7 @@ namespace SOFT151_Coursework
 
         #endregion
 
-        #region code dealing with the notification system
-
-        // Method used to add notifications to the users' recent activity tab
-        private void CreateNotification(string notificationType, string action, string affectedElement, string theTime, string affectedElement2 = null)
-        {
-            string generatedNotification = "";
-
-            switch (action)
-            {
-                case "add": // Add new company / car
-
-                    if (notificationType == "company")
-                    {
-                        generatedNotification = "You added '" + affectedElement + "' to your company records @ " + theTime + ".";
-                    }
-                    else
-                    {
-                        generatedNotification = "You added a new car to '" + affectedElement + "' @ " + theTime + ".";
-                    }
-
-                    break;
-                case "update": // Update company / car 
-
-                    if (notificationType == "company")
-                    {
-                        generatedNotification = "You updated the records of '" + affectedElement + "' in your company records @ " + theTime + ".";
-                    }
-                    else
-                    {
-                        generatedNotification = "You updated a car (ID: " + affectedElement + ") which belongs to '" + affectedElement2 + "' @ " + theTime + ".";
-                    }
-
-                    break;
-                case "view-info": // View company / car
-
-                    if (notificationType == "company")
-                    {
-                        generatedNotification = "You viewed '" + affectedElement + "' @ " + theTime + ".";
-                    }
-                    else
-                    {
-                        generatedNotification = "You viewed a car which belongs to '" + affectedElement + "' @ " + theTime + ".";
-                    }
-
-                    break;
-                case "remove": // Remove company / car
-
-                    if (notificationType == "company")
-                    {
-                        generatedNotification = "You removed '" + affectedElement + "' from your company records @ " + theTime + ".";
-                    }
-                    else
-                    {
-                        generatedNotification = "You removed a car (ID: " + affectedElement + ") from the records of '" + affectedElement2 + "' @ " + theTime + ".";
-                    }
-
-                    break;
-                case "search": // Search company / car 
-
-                    if (notificationType == "company")
-                    {
-                        generatedNotification = "You searched for '" + affectedElement + "' in your list of companies @ " + theTime + ".";
-                    }
-                    else
-                    {
-                        generatedNotification = "You searched for '" + affectedElement + "' in the records of '" + affectedElement2 + "' @ " + theTime + ".";
-                    }
-
-                    break;
-                case "save": // Save all work 
-
-                    if (notificationType == "self-saved") // User has saved their work
-                    {
-                        generatedNotification = "Your work has successfully been saved to '" + affectedElement + "' @ " + theTime + ".";
-                    }
-                    else // User's work has been auto saved
-                    {
-                        generatedNotification = "Auto-save has successfully saved your work to '" + affectedElement + "' @ " + theTime + ".";
-                    }
-
-                    break;
-                default: // Action unidentified
-
-                    generatedNotification = "Unidentified action performed @ " + theTime + ".";
-
-                    break;
-            }
-
-            this.notifications.Add(generatedNotification);
-
-            this.UpdateNotifications(notifications);
-        }
-
-        // Method used to search through notifications
-        private void btnSearchRecentActivity_Click_1(object sender, EventArgs e)
-        {
-            string userInput = "";
-
-            try
-            {
-                userInput = this.txtSearchRecentActivity.Text;
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }
-
-            if (userInput == "") // Validate user input
-            {
-                MessageBox.Show("Make sure to type in what you want to search for.");
-            }
-            else
-            {
-                this.searchNotifications(userInput, this.notifications, this.lstRecentActivity);
-            }
-        }
-
-        // Method used to re-display all notifications after search
-        private void btnRefreshNotifications_Click_1(object sender, EventArgs e)
-        {
-            this.lstRecentActivity.Items.Clear();
-            this.recentActivitySearchResults.Clear();
-            this.txtSearchRecentActivity.Text = "";
-
-            for (int i = 0; i < this.notifications.Count; i++)
-            {
-                this.lstRecentActivity.Items.Add(this.notifications[i]);
-            }
-        }
-
-        // Method used to search through the notifications list and display results
-        private void searchNotifications(string userInput, List<string> list, ListBox lstBox)
-        {
-            this.recentActivitySearchResults.Clear();
-
-            bool match = false;
-
-            for (int i = 0; i < list.Count; i++)
-            {
-                if (list[i].ToUpper().Contains(userInput.ToUpper()))
-                {
-                    match = true;
-
-                    this.recentActivitySearchResults.Add(list[i]);
-                }
-            }
-
-            if (!match)
-            {
-                lstBox.Items.Clear();
-
-                lstBox.Items.Add("No recent activity like that has been found!");
-            }
-            else
-            {
-                lstBox.Items.Clear();
-
-                for (int j = 0; j < this.recentActivitySearchResults.Count; j++)
-                {
-                    lstBox.Items.Add(this.recentActivitySearchResults[j]);
-                }
-            }
-        }
-
-        // Method used to update the notifications and keep the user up to date
-        private void UpdateNotifications(List<string> list)
-        {
-            this.lstRecentActivity.Items.Clear();
-
-            for (int i = 0; i < this.notifications.Count; i++)
-            {
-                this.lstRecentActivity.Items.Add(list[i]);
-            }
-
-            if (list.Count == 0)
-            {
-                this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
-            }
-        }
-
-        #endregion
-
         #region code dealing with loading form correctly
-
-        // Method called every 1/10 second to perform routine tasks
 
         // Method called on program load
         private void initiateProgram()
@@ -1061,9 +843,7 @@ namespace SOFT151_Coursework
             autoSaveWork.Start();
 
             // Prepare page for load:
-            this.radNotificationsOff.Select();
             this.radAutoSaveOn.Select();
-            this.notifications.Clear();
 
             // Check items are present to select:
             if (this.lstAllCompanies.Items.Count > 0)
@@ -1071,9 +851,7 @@ namespace SOFT151_Coursework
                 this.setSelectedFields();
             }
 
-            this.lstRecentActivity.Items.Clear();
             this.lblLastSaved.Text = "Last Saved: " + DateTime.Now.ToShortTimeString();
-            this.lstRecentActivity.Items.Add("You currently have no recent activities recorded.");
             this.txtInputFileName.Text = "exampleFile.txt";
 
             // Apply color change:
@@ -1205,16 +983,6 @@ namespace SOFT151_Coursework
                 this.nullField(this.picCarMake);
                 this.nullField(this.picCarModel);
                 this.nullField(this.picCarReg);
-            }
-
-            // Check if user wants to display notifications:
-            if (!this.radNotificationsOn.Checked)
-            {
-                this.Width = 1373;
-            }
-            else
-            {
-                this.Width = 1835;
             }
 
             // Display correct button colors 
