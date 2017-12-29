@@ -181,7 +181,7 @@
             this.btnAbout.Name = "btnAbout";
             this.btnAbout.Size = new System.Drawing.Size(296, 28);
             this.btnAbout.TabIndex = 27;
-            this.btnAbout.Text = "Need Help? View Full Guide Here";
+            this.btnAbout.Text = "Having Trouble? View Full Guide Here";
             this.btnAbout.UseVisualStyleBackColor = true;
             this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
             // 

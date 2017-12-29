@@ -1,3 +1,82 @@
-Welcome to your new Hire Car Maintenance Application. Please refer to this documentation if you 
-every have any issues when operating this software.
+ - PLEASE READ CAREFULLY - 
 
+Welcome to your new Hire Car Maintenance Application. Please refer to this documentation if you ever have issues whilst operating this software.
+
+LEARNING TO USE YOUR NEW SOFTWARE:
+
+READING IN A NEW FILE:
+
+When you want to load data into your file, you will need to enter the name of the file into the text box on the top left of the home screen.
+When specifying the file name, you will not need to add the document type, for example ".txt" as the program will do this for you.
+Place the file into the program directory and then enter the name of that file into the text box, for example "exampleFile".
+When you have done this, you will need to click the "use this file" button and you should see the program populate. 
+If this does not happen, you must read the error message and correct the issue with your file.
+
+SAVING YOUR WORK:
+
+MANUAL SAVE:
+
+Move over to the top right hand side of the home screen and you should see a button which says "save work".
+When you want to save your work manually, you will need to use this button. 
+As long as you have a file selected (same rules apply to reading as apply to writing (saving)) you will be able to save your work.
+When you have clicked the "save work" button you will have a pop-up notification appear and inform you that your work has saved successfully. 
+You will also notice that the time next to the header "last-saved" will have also been updated.
+
+AUTO-SAVE:
+
+Just like saving manually, auto-save also requires you to have a file selected. (A file name in the text box in the top left hand side of the screen.)
+Auto-save is programmed to automatically save your work to the specified file every 5 minutes. 
+Whenever auto-save has taken place, you will be notified by a small pop-up window.
+The "last-saved" data will also be updated with auto-save.
+
+WORKING WITH COMPANY DATA:
+
+ADDING A NEW COMPANY:
+
+When adding a new company to your records, you will need to use the "add new company" button, located towards the middle (far right) of the program.
+After clicking this you will be met with a new window which will ask you to specify the data regarding the new company.
+You will be asked for an; ID, name, address & postcode.
+You will only be able to add this new data if all fields are met, green ticks will appear to guide you through this process.
+When all the fields are approved, you may add your new data and you will see it appear on your home screen.  		
+	
+EDITING AN EXISTING COMPANY:
+
+Before you start editing a company, you must make sure to select one.
+Your companies that are available to editing can be seen in the list towards the middle (left) of the program.
+When you have selected one, you will see the "edit selected company" button become available.
+Your changes will need to be approved, and you are guided through this process similar to adding a new company.
+Green ticks will indicate an approved field. 
+When all fields are approved, you will be able to save your changes. 
+	
+CANCELING AN UPDATE TO AN EXISTING COMPANY:
+
+During your update, you are able to cancel your changes and nothing will be saved.
+This can be achieved by clicking the "cancel company update" button.	
+
+REMOVING AN EXISTING COMPANY:
+
+Before removing a company, make sure to select one first.
+If you wish to remove company data completely from your records, you may do so by clicking the "remove selected company" button.
+Please be aware that this action is only reversible if you do not save your work, close it, and then re-open it again.
+
+WORKING WITH CAR DATA:
+
+ADDING A NEW CAR:
+
+** SAME PROCESS AS ADDING A NEW COMPANY **
+	
+EDITING AN EXISTING CAR:
+
+** SAME PROCESS AS EDITING A COMPANY **
+	
+CANCELING AN UPDATE TO AN EXISTING CAR:
+
+** SAME PROCESS AS CANCELING A COMPANY UPDATE **
+	
+REMOVING AN EXISTING CAR:
+
+** SAME PROCESS AS REMOVING A COMPANY **
+
+CONTACT INFORMATION:
+
+If you have had serious trouble operating this software, or detect any bugs, please do not hesitate to contact us here: 01752 123456 / support@softdev.co.uk 
