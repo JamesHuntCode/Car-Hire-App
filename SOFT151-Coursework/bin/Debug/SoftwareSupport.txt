@@ -1,0 +1,3 @@
+Welcome to your new Hire Car Maintenance Application. Please refer to this documentation if you 
+every have any issues when operating this software.
+

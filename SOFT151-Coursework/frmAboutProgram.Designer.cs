@@ -32,7 +32,7 @@
             this.lblCreationDate = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
             this.lblCodedIn = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.txtDisplaySupport = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -75,21 +75,21 @@
             this.lblCodedIn.TabIndex = 3;
             this.lblCodedIn.Text = "Programmed in: C#";
             // 
-            // label5
+            // txtDisplaySupport
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 174);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(0, 20);
-            this.label5.TabIndex = 4;
+            this.txtDisplaySupport.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDisplaySupport.Location = new System.Drawing.Point(12, 98);
+            this.txtDisplaySupport.Name = "txtDisplaySupport";
+            this.txtDisplaySupport.Size = new System.Drawing.Size(604, 523);
+            this.txtDisplaySupport.TabIndex = 4;
+            this.txtDisplaySupport.Text = "";
             // 
             // frmAboutProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(628, 253);
-            this.Controls.Add(this.label5);
+            this.ClientSize = new System.Drawing.Size(628, 633);
+            this.Controls.Add(this.txtDisplaySupport);
             this.Controls.Add(this.lblCodedIn);
             this.Controls.Add(this.lblVersion);
             this.Controls.Add(this.lblCreationDate);
@@ -109,6 +109,6 @@
         private System.Windows.Forms.Label lblCreationDate;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label lblCodedIn;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RichTextBox txtDisplaySupport;
     }
 }
