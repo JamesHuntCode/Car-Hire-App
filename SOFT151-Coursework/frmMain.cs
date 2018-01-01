@@ -202,9 +202,16 @@ namespace SOFT151_Coursework
         // Add a new company 
         private void btnAddNewCompany_Click(object sender, EventArgs e)
         {
-            // Generate a new dynamic form allowing the user to add a new company:
-            frmAddCompany popup = new frmAddCompany();
-            popup.ShowDialog(this);
+            if (!this.companyEditingMode && !this.carEditingMode)
+            {
+                // Generate a new dynamic form allowing the user to add a new company:
+                frmAddCompany popup = new frmAddCompany();
+                popup.ShowDialog(this);
+            }
+            else
+            {
+                MessageBox.Show("Please complete your update before adding new data.");
+            }
         }
 
         // Update an existing company 
@@ -275,7 +282,7 @@ namespace SOFT151_Coursework
         // Remove an existing company 
         private void btnRemoveCompany_Click(object sender, EventArgs e)
         {
-            if (this.lstAllCompanies.Items[0].ToString() != "No companies have been found!")
+            if (this.lstAllCompanies.Items[0].ToString() != "No companies have been found!" && !this.carEditingMode && !this.companyEditingMode)
             {
                 string companySummary = "";
 
@@ -525,18 +532,25 @@ namespace SOFT151_Coursework
         // Add new car
         private void btnAddNewCar_Click(object sender, EventArgs e)
         {
-            if (this.lstAllCompanies.SelectedIndex == -1 || this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString() == "No companies have been found!")
+            if (!this.carEditingMode && !this.companyEditingMode)
             {
-                MessageBox.Show("Make sure you select the company you want to add a car to."); // Alert the user
+                if (this.lstAllCompanies.SelectedIndex == -1 || this.lstAllCompanies.Items[this.lstAllCompanies.SelectedIndex].ToString() == "No companies have been found!")
+                {
+                    MessageBox.Show("Make sure you select the company you want to add a car to."); // Alert the user
+                }
+                else
+                {
+                    this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
+
+                    // Generate a new dynamic form allowing the user to add a new car:
+
+                    frmAddCar popup = new frmAddCar();
+                    popup.ShowDialog(this);
+                }
             }
             else
             {
-                this.currentSelectedCompany = this.companies[this.lstAllCompanies.SelectedIndex];
-
-                // Generate a new dynamic form allowing the user to add a new car:
-
-                frmAddCar popup = new frmAddCar();
-                popup.ShowDialog(this);
+                MessageBox.Show("Please complete your update before adding new data.");
             }
         }
 
@@ -610,7 +624,7 @@ namespace SOFT151_Coursework
         // Remove existing car
         private void btnRemoveCar_Click(object sender, EventArgs e)
         {
-            if (this.lstCars.Items[this.lstCars.SelectedIndex].ToString() != "No cars have been found!")
+            if (this.lstCars.Items[this.lstCars.SelectedIndex].ToString() != "No cars have been found!" && !this.companyEditingMode && !this.carEditingMode)
             {
                 string carSummary = "";
 
@@ -974,6 +988,7 @@ namespace SOFT151_Coursework
             {
                 this.enableCarFields();
                 this.btnCancelCarUpdate.Enabled = true;
+                //this.disableAdditionalData();
 
                 // Check all criteria is met
                 if (this.txtCarID.Text.Length < 1 || this.txtCarMake.Text.Length < 3 || this.txtCarModel.Text.Length < 2 || this.txtCarReg.Text.Length < 3)
