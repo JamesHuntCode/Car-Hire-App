@@ -874,6 +874,7 @@ namespace SOFT151_Coursework
 
             // Prepare page for load:
             this.radAutoSaveOn.Select();
+            this.dtpLastServiced.MaxDate = DateTime.Today;
 
             // Check items are present to select:
             if (this.lstAllCompanies.Items.Count > 0)

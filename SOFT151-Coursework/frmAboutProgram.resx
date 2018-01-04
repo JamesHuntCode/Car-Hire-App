@@ -167,6 +167,8 @@ When you have selected one, you will see the "edit selected company" button beco
 Your changes will need to be approved, and you are guided through this process similar to adding a new company.
 Green ticks will indicate an approved field. 
 When all fields are approved, you will be able to save your changes. 
+You will also not be able to perform another action until the update is saved or canceled. 
+This includes adding or removing any data from the program.
 	
 CANCELING AN UPDATE TO AN EXISTING COMPANY:
 
